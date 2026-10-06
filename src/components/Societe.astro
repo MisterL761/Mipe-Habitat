@@ -1,0 +1,48 @@
+---
+import { Check } from '@lucide/astro';
+import '../styles/global.css';
+import '../styles/styleComponents/Societe.css';
+import { Image } from 'astro:assets';
+import interieur from '../assets/image/interieur.jpeg'
+import exterieur from '../assets/image/exterieur.webp'
+
+---
+
+<section class="reveal">
+
+    <div class="societeContainer">
+        <div class="textSociete">
+            <p class="petitTitre">NOTRE ENTREPRISE</p>
+            <h2 class="titreSociete">Une entreprise de l'Oise, à votre service</h2>
+            <p class="descSociete">Depuis 2011, MIPE Habitat accompagne les particuliers dans leurs travaux de rénovation énérgétique depuis Le Plessis-Belleville, avec une équipe qualifiée spécialisée dans la performance de l'habitat</p>
+
+            <div class="checkContainer">
+                <p class="check"><Check size={15} color="#8FE05C"/>Certifiés RGE Qualibat pour nos travaux de rénovation énergétique</p>
+                <p class="check"><Check size={15} color="#8FE05C"/>Votre projet en toute sérénité : nos travaux bénéficient des garanties légales et professionnelles applicables selon la nature des prestations réalisées.</p>
+                <p class="check"><Check size={15} color="#8FE05C"/>Un accompagnement personnalisé pour vos démarches d’aides à la rénovation</p>
+            </div>
+
+            <button class="boutonSociete">Nous contacter</button>
+
+
+
+
+        </div>
+        <div class="imageInterieur">
+            <Image
+                    src={interieur}
+                    alt="Intérieur des locaux de MIPE Habitat"
+                    width={800}
+                    height={295}
+            />
+        </div>
+        <div class="imageExterieur">
+            <Image
+                    src={exterieur}
+                    alt="Vue d'exterieur de MIPE Habitat"
+                    width={548}
+            />
+        </div>
+    </div>
+
+</section>

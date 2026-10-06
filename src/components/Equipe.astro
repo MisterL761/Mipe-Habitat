@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import '../styles/global.css';
+import '../styles/styleComponents/Equipe.css';
+
+import { ArrowRight, ArrowLeft } from '@lucide/astro';
+
+
+import photoGiorgiana from '../assets/image/giorgiana.webp';
+import photoMyriam from '../assets/image/myriam.webp';
+import photoAlex from '../assets/image/alex.webp';
+import photoRafael from '../assets/image/rafael.webp';
+import photoPatrice from '../assets/image/patrice.webp';
+import photoLaurent from '../assets/image/laurent.webp';
+import photoClement from '../assets/image/clement.webp';
+import photoIssaka from '../assets/image/issaka.webp';
+import photoLionel from '../assets/image/lionel.webp';
+import photoGabriel from '../assets/image/gabriel.webp';
+
+
+
+const equipe = [
+	{ nom: 'Giorgiana', poste: "Responsable d'agence Oise", photo: photoGiorgiana },
+    { nom: 'Myriam', poste: "Responsable administrative et financier", photo: photoMyriam },
+    { nom: 'Alexandre', poste: "Chargé d'affaires", photo: photoAlex },
+    { nom: 'Patrice', poste: "Chargé d'affaires", photo: photoPatrice },
+    { nom: 'Rafael', poste: "Chargé d'affaires", photo: photoRafael },
+    { nom: 'Laurent', poste: "Responsable pôle menuiserie Oise", photo: photoLaurent },
+    { nom: 'Clement', poste: "Technicien isolation confirmé", photo: photoClement },
+    { nom: 'Issaka', poste: "Technicien isolation confirmé", photo: photoIssaka },
+    { nom: 'Gabriel', poste: "technicien", photo: photoGabriel },
+    { nom: 'Lionel', poste: "Responsable technique", photo: photoLionel },
+];
+---
+
+<section class="reveal">
+
+    <div class="equipeContainer">
+        <h2>Notre équipe</h2>
+        <div class="listeEquipe" id="listeEquipe">
+            {
+                equipe.map(({ nom, poste, photo }) => (
+                    <div class="cardEquipe">
+                        <Image src={photo} alt={`Photo de ${nom}`} width={280} height={390} />
+                        <div class="containerInfo">
+                            <p class="nomPresonne">{nom}</p>
+                            <p class="poste">{poste}</p>
+                        </div>
+                    </div>
+                ))
+            }
+
+
+
+        </div>
+
+        <div class="containerButton">
+            <button class="suivant" id="suivant"><ArrowLeft size={20} color="#FFF"/></button>
+            <button class="precedent" id="precedent"><ArrowRight size={20} color="#FFF"/></button>
+        </div>
+    </div>
+</section>
+<script src="../js/sliderEquipe.js"></script>
+

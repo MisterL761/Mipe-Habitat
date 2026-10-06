@@ -1,0 +1,62 @@
+---
+import '../styles/styleComponents/TimeLine.css';
+import '../styles/global.css';
+
+const etapes = [
+	{
+		annee: '2011',
+		texte: "Création de l’entreprise le 27 décembre 2011 à Saint-Pathus. L’aventure commence autour de la rénovation et de l’amélioration énergétique de l’habitat.",
+	},
+	{
+		annee: '2018',
+		texte: "Le Plessis-Belleville (60) — En décembre 2018, l’entreprise quitte Saint-Pathus et installe son siège au 5 avenue Georges-Bataille au Plessis-Belleville. Cette nouvelle implantation accompagne le développement de l’entreprise et de son activité dans l’Oise et en Île-de-France.",
+	},
+	{
+		annee: '2021',
+		texte: "Développement en Île-de-France, Ris-Orangis (91) — Ouverture d’un établissement secondaire à Ris-Orangis, afin de poursuivre le développement de l’activité en Île-de-France.",
+	},
+	{
+		annee: '2023',
+		texte: "L’entreprise grandit au Plessis-Belleville (60) — Le siège déménage dans des locaux plus adaptés au développement de l’entreprise : 11 avenue des Meuniers, 60330 Le Plessis-Belleville. L’établissement de Ris-Orangis est également transféré à Boissy-Saint-Léger (94).",
+	},
+	{
+		annee: '2024',
+		texte: "Naissance de MIPE Habitat — Une étape majeure dans l’histoire de l’entreprise. AD VALIDEM HABITAT devient MIPE HABITAT. Mais l’histoire continue : même entreprise, même philosophie et une expérience commencée en 2011. Une nouvelle identité pour accompagner une nouvelle ambition.",
+	},
+	{
+		annee: '2026',
+		texte: "Une nouvelle implantation, Plaisir (78) — MIPE Habitat poursuit son développement avec l’ouverture d'un établissement dans le 78. L’agence du Plessis-Belleville reste le siège historique de MIPE Habitat.",
+	},
+	{
+		annee: 'Aujourd’hui',
+		texte: "De Saint-Pathus au Plessis-Belleville, puis à travers l’Île-de-France, MIPE Habitat s’est développée sans perdre ce qui fait son ADN depuis ses débuts.",
+	},
+];
+---
+<section class="reveal">
+
+	<div class="frise">
+
+		<h2 class="titreTimeLine">Notre histoire</h2>
+
+		{
+			etapes.map(({ annee, texte }, index) => (
+				<>
+					<div class="etapeFrise reveal">
+						<h3 class="chronologie">{annee}</h3>
+						<p class="histoire">{texte}</p>
+					</div>
+					{index < etapes.length - 1 && (
+						<span class="liaisonFrise reveal" aria-hidden="true">
+							<span class="pointLiaison pointHaut"></span>
+							<span class="traitLiaison"></span>
+							<span class="pointLiaison pointBas"></span>
+						</span>
+					)}
+				</>
+			))
+		}
+
+	</div>
+
+</section>

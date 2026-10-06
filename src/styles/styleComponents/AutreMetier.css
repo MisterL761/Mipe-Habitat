@@ -1,0 +1,45 @@
+.petitTitreAutreMetier{
+    text-align: center;
+    margin-top: 2rem;
+    text-transform: uppercase;
+    color: #8A97A3;
+    font-weight: bold;
+}
+.titreAutreMetier{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+.textAutreMetier{
+    text-align: center;
+    color: #000;
+    font-size: 1.1rem;
+}
+.bottomAutreMetier{
+    margin-bottom: 2rem;
+}
+
+
+.autreMetierContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-top: 2rem;
+}
+
+.cardAutreMetier{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 340px;
+    padding: 2rem;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    border : 1px solid #E4E7E2;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cardAutreMetier:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(22, 39, 59, 0.08);
+}

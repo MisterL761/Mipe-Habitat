@@ -1,0 +1,64 @@
+.formHero{
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 20px;
+}
+.titreForm{
+    font-size: 22px;
+    font-weight: bold;
+}
+.textForm{
+    font-size: 15px;
+    color: #4A5B6B;
+    margin-top: 0.5rem;
+}
+
+select{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    height: 2.75rem;
+    box-sizing: border-box;
+}
+input:not([type="checkbox"]){
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    height: 2.75rem;
+    box-sizing: border-box;
+}
+
+.containerNp,
+.containerTc{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.boutonForm{
+    background-color: #6FBE2C;
+    width: 100%;
+    color: white;
+    border-radius: 999px;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.boutonForm:hover{
+    filter: brightness(0.9);
+}
+
+.checkForm{
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    gap: 0.5rem;
+    color: #4A5B6B;
+    margin-top: 1rem;
+}

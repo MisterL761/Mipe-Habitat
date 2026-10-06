@@ -1,0 +1,115 @@
+.titreTimeLine{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.etapeFrise{
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.chronologie{
+    font-size: 55px;
+    font-weight: bold;
+    text-align: center;
+    padding : 2rem;
+}
+
+/* L'année "s'imprime" en grand puis se stabilise, juste après que le bloc
+   soit arrivé — un petit temps fort propre à chaque étape. */
+@keyframes tamponAnnee{
+    0%   { transform: scale(1.5); opacity: 0; color: #6FBE2C; }
+    60%  { transform: scale(0.96); opacity: 1; }
+    100% { transform: scale(1); color: #000; }
+}
+.etapeFrise.est-visible .chronologie{
+    animation: tamponAnnee 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .etapeFrise.est-visible .chronologie{
+        animation: none;
+    }
+}
+
+.histoire{
+    text-align: center;
+    width: 100%;
+    padding: 0 1.5rem 2rem 1.5rem;
+    line-height: 1.6;
+    color: #4A5B6B;
+}
+
+/* Le connecteur entre deux étapes, entièrement en CSS (plus une image) :
+   point du haut, trait, point du bas. Au lieu d'une simple apparition,
+   les trois éléments se jouent l'un après l'autre quand on scrolle
+   jusqu'ici — comme un petit relais qui se transmet d'une année à l'autre. */
+.liaisonFrise{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90px;
+    margin: 0 auto;
+}
+
+.pointLiaison{
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #6FBE2C;
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.traitLiaison{
+    flex: 1;
+    width: 3px;
+    background-color: #6FBE2C;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s ease-out;
+}
+
+.liaisonFrise.est-visible .pointHaut{
+    transition-delay: 0s;
+    transform: scale(1);
+}
+.liaisonFrise.est-visible .traitLiaison{
+    transition-delay: 0.25s;
+    transform: scaleY(1);
+}
+.liaisonFrise.est-visible .pointBas{
+    transition-delay: 0.75s;
+    transform: scale(1);
+}
+
+/* Une onde de choc, une seule fois, au moment exact où chaque point se
+   pose — pour marquer que cette étape est bien arrivée. */
+@keyframes ondePoint{
+    from{ box-shadow: 0 0 0 0 rgba(111, 190, 44, 0.55); }
+    to{ box-shadow: 0 0 0 12px rgba(111, 190, 44, 0); }
+}
+.liaisonFrise.est-visible .pointHaut{
+    animation: ondePoint 0.6s ease-out 0s both;
+}
+.liaisonFrise.est-visible .pointBas{
+    animation: ondePoint 0.6s ease-out 0.75s both;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .liaisonFrise.est-visible .pointHaut,
+    .liaisonFrise.est-visible .pointBas{
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .pointLiaison,
+    .traitLiaison{
+        transform: none;
+        transition: none;
+    }
+}

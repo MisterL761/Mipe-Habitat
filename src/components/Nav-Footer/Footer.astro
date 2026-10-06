@@ -1,0 +1,60 @@
+---
+import '../../styles/styleComponents/Nav-Footer/Footer.css';
+import '../../styles/global.css';
+import logoMipe from '../../assets/logo-mipe-habitat.jpeg'
+import { Image } from 'astro:assets';
+---
+
+<footer class="footer-section">
+    <div class="footer-container">
+
+        <div class="footer-grid">
+
+            <div class="grid-header">
+                <Image class="footer-logo" src={logoMipe} alt="Logo de Mipe Habitat"/>
+            </div>
+            <div class="grid-header">
+                <h3 class="footer-title">COORDONNÉES</h3>
+            </div>
+            <div class="grid-header">
+                <h3 class="footer-title">HORAIRES</h3>
+            </div>
+            <div class="grid-header">
+                <h3 class="footer-title">INFORMATIONS LÉGALES</h3>
+            </div>
+
+            <div class="grid-content">
+                <p>Votre spécialiste de la rénovation énergétique et de l’amélioration de l’habitat dans l’Oise et en Île-de-France.</p>
+            </div>
+            <div class="grid-content">
+                <p>11 Avenue des Meuniers <br>60330 Le Plessis-Belleville <br>03 75 19 01 60</p>
+            </div>
+            <div class="grid-content">
+                <p>Lundi – Vendredi : 9h00 – 12h30, 13h30 – 17h00</p>
+                <p>Samedi – Dimanche : fermé</p>
+            </div>
+            <div class="grid-content footer-links">
+                <a href="#">Mentions légales</a>
+                <a href="#">CGV</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 MiPe Habitat</p>
+            <div class="footer-socials">
+                <a href="https://www.tiktok.com/@mipe.habitat" class="social-icon" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16.5 3c.4 2.2 2 3.8 4.2 4.1v3c-1.6 0-3.1-.5-4.3-1.4v6.6c0 3.7-3 6.7-6.7 6.7S3 19 3 15.3s3-6.7 6.7-6.7c.4 0 .8 0 1.2.1v3.2c-.4-.1-.8-.2-1.2-.2-1.9 0-3.4 1.5-3.4 3.4s1.5 3.4 3.4 3.4 3.5-1.5 3.5-3.4V3h3.3Z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/mipehabitat/" target="_blank" class="social-icon" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17" cy="7" r="0.6" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100063916879593" target="_blank" class="social-icon" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 13.5h2.5l.5-3H14V8.5c0-.9.3-1.5 1.6-1.5H17V4.1C16.7 4.1 15.8 4 14.7 4 12.5 4 11 5.3 11 7.8V10.5H8.5v3H11V21h3V13.5Z"/></svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</footer>

@@ -1,0 +1,32 @@
+---
+import '../styles/styleComponents/FaqHome.css';
+import '../styles/global.css';
+
+const faq = [
+
+    {question : 'Quelles aides puis-je obtenir pour mes travaux ?', reponse : 'MaPrimeRénov\', les Certificats d\'Économie d\'Énergie (CEE) et les aides d\'Action Logement peuvent être mobilisés selon\n' +
+            'votre profil et votre projet.'},
+
+    {question : 'Intervenez-vous dans mon secteur ?', reponse : 'MIPE Habitat intervient principalement dans l’Oise (60), la Seine-et-Marne (77), l’Aisne (02) et la Seine-Saint-Denis (93), ainsi qu’en périphérie de notre implantation dans les Yvelines (78).'},
+    {question : 'Vos équipes sont-elles qualifiées RGE ?', reponse : 'Oui. MIPE Habitat dispose de qualifications RGE Qualibat 7121, 7122 et 7131, correspondant à différents domaines de travaux d’isolation. Nos qualifications sont consultables sur notre site.'},
+    {question : 'Le devis est-il gratuit ?', reponse : 'Oui. Après un premier échange sur votre projet, un conseiller peut se déplacer à votre domicile pour étudier vos besoins. Le devis est gratuit et sans engagement.'},
+    {question : 'Quelle garantie sur les travaux ?', reponse : 'Nos travaux bénéficient des garanties légales et professionnelles applicables selon la nature des prestations réalisées, ainsi que des assurances professionnelles correspondantes.'},
+
+
+]
+---
+<section>
+
+    {
+        faq.map(({question, reponse}) => (
+            <details class="faqHome" open={false}>
+                <summary class="questionFaqHome">{question}</summary>
+                <p class="reponseFaqHome">{reponse}</p>
+            </details>
+        ))
+    }
+
+
+
+
+</section>

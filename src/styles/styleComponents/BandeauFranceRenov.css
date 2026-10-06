@@ -1,0 +1,27 @@
+.bandeauFranceRenov {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 3fr;
+    grid-template-rows: 0.25fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logoRep {
+    grid-area: 1 / 1 / 2 / 2;
+    border-right: 1px solid #000;
+}
+.logoRenov { grid-area: 1 / 2 / 2 / 3; }
+.textFranceRenov {
+    grid-area: 1 / 3 / 2 / 4;
+    font-size: 14px;
+}
+
+.textFranceRenov a {
+    font-weight: bold;
+}

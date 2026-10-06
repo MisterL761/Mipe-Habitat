@@ -1,0 +1,39 @@
+---
+import '../styles/styleComponents/Financement.css';
+import '../styles/global.css';
+
+import { CreditCard, Zap, ScrollText, ArrowRight } from '@lucide/astro';
+
+
+const financementContenu = [
+
+    {icone: CreditCard, titre: 'Paiement en plusieurs fois avec ARKEA (Filliale du Credit Mutuel)', description: 'Des solutions de financement adaptées pour réaliser vos travaux et maîtriser votre budget.'},
+    {icone: Zap, titre: 'Certificats d\'Économie d\'Énergie (CEE)', description: 'Profitez des primes CEE, financées par les fournisseurs d’énergie, pour réduire le coût de vos travaux. MIPE Habitat vous accompagne dans vos démarches.'},
+    {icone: ScrollText, titre: 'MaPrimeRénov’ – Rénovation d’ampleur', description: 'Une aide de l’État pour financer un projet complet de rénovation énergétique et améliorer significativement la performance de votre logement. MIPE Habitat vous accompagne dans votre projet.'},
+
+];
+---
+
+<section class="reveal">
+    <p class="petitTitre petitTitreFinancement">Facilités de paiement</p>
+    <h2 class="titreFinancement">Un financement adapté à votre projet</h2>
+    <p class="textFinancement">Nous mobilisons les aides de l'État et proposons des solutions de paiement échelonné <br> pour faciliter vos travaux</p>
+
+    <div class="financementContainer">
+        <div class="containerFinancementCard">
+
+            {
+                financementContenu.map(({icone: Icone, titre, description}) => (
+                    <div class="cardFinancement">
+                        <p class="iconeFinancement"><Icone size={25} color="#3E7C1F" /></p>
+                        <p class="titreFinancementCard">{titre}</p>
+                        <p class="descriptionFinancementCard">{description}</p>
+                    </div>
+                ))
+            }
+
+        </div>
+    </div>
+
+    <button class="boutonFinancement">En savoir plus sur les aides <ArrowRight size={15} color='#fff' /></button>
+</section>

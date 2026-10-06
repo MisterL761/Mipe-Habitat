@@ -1,0 +1,17 @@
+.containerDemandeDevis{
+    padding: 0 4rem;
+    margin-bottom: 5rem;
+}
+.petitTitre{
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+.titreDemandeDevis{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.containerDemandeDevis p {
+    font-size: 1.2rem;
+}

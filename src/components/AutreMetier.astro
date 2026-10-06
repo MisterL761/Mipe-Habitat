@@ -1,0 +1,39 @@
+---
+import '../styles/styleComponents/AutreMetier.css';
+import '../styles/global.css'
+
+import { BrickWall,Triangle, TriangleDashed} from '@lucide/astro';
+
+
+
+const autreMetier = [
+    { icone: BrickWall, prestation: 'Ravalement de façade', description: 'Rénovez, protégez et embellissez vos façades pour redonner durablement de la valeur à votre habitation.' },
+    { icone: TriangleDashed, prestation: 'Aménagement des combles', description: 'Transformez vos combles en nouveaux espaces de vie, adaptés à vos besoins et à votre habitation.' },
+    { icone: Triangle, prestation: 'Travaux de toiture', description: 'Entretien, réparation et rénovation pour préserver durablement la couverture et l’étanchéité de votre habitation.' },
+
+
+
+];
+---
+
+<section class="reveal">
+
+        <p class="petitTitreAutreMetier">Aussi disponible</p>
+        <h2 class="titreAutreMetier">Nos autres métiers</h2>
+        <br>
+        <p class="textAutreMetier">Entretenir, rénover et valoriser votre habitat</p>
+        <p class="textAutreMetier bottomAutreMetier">Au-delà de la rénovation énergétique, MIPE Habitat vous accompagne également dans l’entretien et l’amélioration de votre maison.</p>
+
+        <div class="autreMetierContainer" >
+            {
+                autreMetier.map(({ icone: Icone, prestation, description }) => (
+                        <div class="cardAutreMetier">
+                            <p class="iconeMetier"><Icone size={25} color="#3E7C1F" /></p>
+                            <p class="titrePrestation">{prestation}</p>
+                            <p class="descriptionMetier">{description}</p>
+                        </div>
+                ))
+            }
+        </div>
+
+</section>

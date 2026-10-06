@@ -1,0 +1,89 @@
+.equipeContainer{
+    padding: 4.5rem;
+}
+
+.equipeContainer h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+
+}
+
+.listeEquipe{
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    width: 98%;
+
+}
+
+.cardEquipe{
+    position: relative;
+    height: 440px;
+    border-radius: 15px;
+    overflow: hidden;
+    flex: 0 0 280px;
+}
+
+.cardEquipe img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.cardEquipe:hover img{
+    transform: scale(1.08);
+}
+
+.containerInfo{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #16273B;
+    color: #ffffff;
+    width: 100%;
+    height: 20%;
+    border-top : 3px solid #6FBE2C;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nomPresonne{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.poste{
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: bold;
+}
+.precedent,
+.suivant{
+    background-color: #6FBE2C;
+    color: #ffffff;
+    border: none;
+    padding: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold ;
+    margin-top: 1.5rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.precedent:hover,
+.suivant:hover{
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+}
+.suivant{
+    margin-right: 0.5rem;
+}
+.containerButton{
+    display: flex;
+    justify-content: center;
+}

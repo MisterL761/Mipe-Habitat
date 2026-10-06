@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import '../styles/global.css';
+import '../styles/pages/qualifications.css';
+import Navbar from '../components/Nav-Footer/Navbar.astro'
+import Footer from '../components/Nav-Footer/Footer.astro'
+
+import logoRge from '../assets/image/logo-rge.webp'
+---
+
+<Layout>
+
+    <Navbar></Navbar>
+
+    <div>
+        <p class="petitTitre petitTitreQualification">Qualifications</p>
+        <h1 class="titreQualification" >Nos certifications</h1>
+        <p class="descQualification">MIPE Habitat dispose de qualifications professionnelles et de garanties à jour, adaptées à ses <br> différents métiers. Elles témoignent de notre savoir-faire et vous permettent de réaliser vos travaux <br> dans un cadre professionnel, sécurisé et conforme aux exigences de la rénovation énergétique.</p>
+    </div>
+
+    <div class="qualificationsContainer">
+        <div class="qualificationCard">
+            <Image class="imageQualif" src={logoRge} alt={'image du logo RGE'}/>
+            <p class="titreQualifCard">RGE Qualibat</p>
+            <p class="descQualif" >Des qualifications adaptées à nos métiers MIPE Habitat est qualifiée RGE Qualibat 7121, 7122 et 7131, attestant de nos compétences techniques pour la réalisation de différents travaux d’isolation et de rénovation énergétique.</p>
+            <a>Voir les certificats</a>
+        </div>
+    </div>
+
+
+
+</Layout>

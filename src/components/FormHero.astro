@@ -1,0 +1,38 @@
+---
+import '../styles/styleComponents/FormHero.css';
+---
+
+<section>
+    <form class="formHero">
+        <p class="titreForm">Être rappelé par un conseiller</p>
+        <p class="textForm" >Parlons de votre projet. Nous vous recontactons sous 48h ouvrées</p>
+
+        <select>
+            <option class="selection" value="" disabled selected >Type de travaux</option>
+            <option>Isolation thermique extérieure</option>
+            <option>Isolation thermique intérieure</option>
+            <option>Isolation des combles</option>
+            <option>Ravalement de façade</option>
+            <option>Menuiserie</option>
+        </select>
+
+        <div class="containerNp">
+            <input type="text" placeholder="Nom" />
+            <input type="text" placeholder="Prénom" />
+        </div>
+        <div class="containerTc">
+            <input type="number" placeholder="Téléphone" />
+            <input type="number" placeholder="Code postal" />
+        </div>
+
+        <input type="email" placeholder="Email" />
+
+        <div class="checkForm">
+            <input type="checkbox"/>
+            <label>J'accepte que mes données soient utilisées pour traiter ma demande.</label>
+        </div>
+
+        <button class="boutonForm">Envoyer</button>
+
+    </form>
+</section>

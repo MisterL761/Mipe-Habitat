@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", sans-serif;
+}
+
+.petitTitre{
+  font-size: 0.8rem;
+  color: #3E7C1F;
+  text-transform: uppercase ;
+  font-weight: bold;
+}
+
+
+/* Apparition au scroll, utilisée sur la plupart des sections du site.
+   Activée en JS (src/js/scrollReveal.js) via IntersectionObserver,
+   qui ajoute .est-visible une fois l'élément entré dans l'écran. */
+.reveal{
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.est-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,63 @@
+---
+import '../styles/styleComponents/FormDemandeDevis.css';
+import '../styles/global.css';
+---
+
+
+<div class="containerFormDevis">
+
+        <div class="fromContainerDevis">
+
+            <form class="formDevis">
+
+                <div class="containerNpDevis">
+                    <input type="text" placeholder="Nom" />
+                    <input type="text" placeholder="Prénom" />
+                </div>
+                <div class="containerTcDevis">
+                    <input type="number" placeholder="Code postal" />
+                    <input type="number" placeholder="Téléphone" />
+                </div>
+
+                <input type="email" placeholder="Email" />
+
+                <select>
+                    <option class="selection" value="" disabled selected >Type de projet</option>
+                    <option>Isolation thermique extérieure</option>
+                    <option>Isolation thermique intérieure</option>
+                    <option>Isolation des combles</option>
+                    <option>Ravalement de façade</option>
+                    <option>Menuiserie</option>
+                </select>
+
+                <textarea class="grandTextFormDevis" placeholder="Votre projet en quelques mots" rows="6"></textarea>
+
+                <div class="checkFormDevis">
+                    <input type="checkbox"/>
+                    <label class="checkText" > J'accepte que mes données soient utilisées pour traiter ma demande.</label>
+                </div>
+
+                <button class="boutonFormDevis">Envoyer ma demande</button>
+
+            </form>
+        </div>
+        <div class="coordonneDevis">
+
+            <div class="cardCord">
+                <p class="titreCord">Coordonnées</p>
+                <p class="addressCord">11 Avenue des Meuniers, 60330 Le Plessis-Belleville</p>
+                <p class="numCord">03 75 19 01 60</p>
+                <p class="emailCord">contact@mipe-habitat.fr</p>
+            </div>
+
+            <div class="cardHoraire">
+                <p class="titreHoraire">Horaires</p>
+                <p class="horaireSemaine">Lundi – Vendredi : 9h00 – 12h30, 13h30 – 17h00</p>
+                <p class="HoraireWeekEnd">Samedi – Dimanche : fermé</p>
+            </div>
+
+
+        </div>
+</div>
+
+

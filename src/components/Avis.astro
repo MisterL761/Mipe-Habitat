@@ -1,0 +1,46 @@
+---
+import { Star } from '@lucide/astro';
+import '../styles/styleComponents/Avis.css';
+import '../styles/global.css';
+
+const avis = [
+	{ note: 5, texte: "Isolation extérieure réalisée rapidement et proprement, avec un suivi de chantier clair jusqu'à la fin des travaux.", zone: 'Yvelines', cp: '78' },
+	{ note: 5, texte: 'Une équipe de pose sérieuse et minutieuse, un chantier toujours propre du premier jour au dernier.', zone: 'Oise', cp: '60' },
+	{ note: 5, texte: "Rénovation globale bouclée en temps record : isolation, menuiseries et pompe à chaleur, avec un vrai accompagnement sur les aides.", zone: 'Seine-et-Marne', cp: '77' },
+	{ note: 4, texte: "Devis clair, délais respectés et une équipe à l'écoute pour l'aménagement de nos combles.", zone: 'Oise', cp: '60' },
+	{ note: 5, texte: 'Ravalement de façade impeccable, le rendu a complètement transformé la maison.', zone: 'Yvelines', cp: '78' },
+	{ note: 4, texte: "Bon relationnel du début à la fin, et un vrai suivi sur le dossier MaPrimeRénov'.", zone: 'Seine-et-Marne', cp: '77' },
+];
+
+// On double la liste pour boucler le défilement sans coupure visible.
+const avisDefilement = [...avis, ...avis];
+---
+
+<section>
+	<div class="avisContainer">
+		<p class="petitTitre petitTitreAvis">Avis clients</p>
+		<h2 class="titreAvis">ils nous ont fait confiance</h2>
+
+		<div class="avisDefilement">
+			<div class="avisPiste">
+				{
+					avisDefilement.map(({ note, texte, zone, cp }) => (
+						<div class="carteAvis">
+							<div class="etoiles">
+								{Array.from({ length: 5 }).map((_, i) => (
+									<Star
+										size={16}
+										color={i < note ? '#F5A623' : '#E4E7E2'}
+										fill={i < note ? '#F5A623' : 'none'}
+									/>
+								))}
+							</div>
+							<p class="texteAvis">{texte}</p>
+							<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>

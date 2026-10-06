@@ -1,0 +1,23 @@
+---
+import '../layouts/Layout.astro';
+import '../styles/global.css';
+import '../components/Nav-Footer/Navbar.astro'
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Nav-Footer/Navbar.astro";
+import FormDemandeDevis from '../components/FormDemandeDevis.astro';
+import '../styles/pages/demander-un-devis.css';
+import Footer from '../components/Nav-Footer/Footer.astro';
+---
+
+<Layout>
+    <Navbar></Navbar>
+
+    <div class="containerDemandeDevis">
+        <p class="petitTitre">Contact</p>
+        <h1 class="titreDemandeDevis">Parlons de votre projet</h1>
+        <p>Un projet de façade, d’isolation ou de rénovation ? Nos équipes sont à votre <br> écoute pour vous conseiller et étudier votre projet.</p>
+
+        <FormDemandeDevis></FormDemandeDevis>
+    </div>
+    <Footer></Footer>
+</Layout>

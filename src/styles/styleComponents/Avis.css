@@ -1,0 +1,66 @@
+.avisContainer{
+    background-color: #F7F8F6;
+    padding: 2rem;
+    margin-top: 2rem ;
+}
+.petitTitreAvis{
+    text-align: center;
+    margin-top: 4rem;
+}
+.titreAvis{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.avisDefilement{
+    overflow: hidden;
+    margin-top: 2.5rem;
+}
+
+.avisPiste{
+    display: flex;
+    width: max-content;
+    padding-bottom: 1rem;
+}
+
+.carteAvis{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 320px;
+    margin-right: 1.5rem;
+    background-color: #FFFFFF;
+    border: 1px solid #E4E7E2;
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.etoiles{
+    display: flex;
+    gap: 0.2rem;
+}
+
+.texteAvis{
+    margin-top: 0.8rem;
+    color: #000;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.auteurAvis{
+    margin-top: 1rem;
+    color: #4A5B6B;
+    font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .avisPiste{
+        animation: defilementAvis 40s linear infinite;
+    }
+}
+
+@keyframes defilementAvis {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-6 * (320px + 1.5rem))); }
+}

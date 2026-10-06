@@ -1,0 +1,124 @@
+---
+import { Image as ImageIcon, X } from '@lucide/astro';
+import 'leaflet/dist/leaflet.css';
+import '../styles/styleComponents/CarteRealisations.css';
+
+const siege = { nom: 'Le Plessis-Belleville', lat: 49.1167, lng: 2.7667 };
+
+const chantiers = [
+	{
+		id: 1,
+		titre: 'Isolation thermique extérieure',
+		categorie: 'Isolation',
+		annee: '2025',
+		ville: 'Senlis',
+		cp: '60',
+		description: "Isolation des façades d'un pavillon par l'extérieur avec enduit de finition ton sable.",
+		lat: 49.2058,
+		lng: 2.5847,
+	},
+	{
+		id: 2,
+		titre: 'Isolation des combles',
+		categorie: 'Isolation',
+		annee: '2025',
+		ville: 'Meaux',
+		cp: '77',
+		description: 'Isolation des combles perdus pour limiter les déperditions de chaleur par la toiture.',
+		lat: 48.9600,
+		lng: 2.8788,
+	},
+	{
+		id: 3,
+		titre: 'Remplacement de menuiseries',
+		categorie: 'Menuiserie',
+		annee: '2024',
+		ville: 'Chantilly',
+		cp: '60',
+		description: 'Remplacement complet des fenêtres par des menuiseries performantes double vitrage.',
+		lat: 49.1928,
+		lng: 2.4708,
+	},
+	{
+		id: 4,
+		titre: 'Ravalement de façade',
+		categorie: 'Façade',
+		annee: '2024',
+		ville: 'Crépy-en-Valois',
+		cp: '60',
+		description: "Ravalement complet de façade avec traitement et reprise des enduits existants.",
+		lat: 49.2333,
+		lng: 2.8833,
+	},
+	{
+		id: 5,
+		titre: 'Isolation thermique intérieure',
+		categorie: 'Isolation',
+		annee: '2024',
+		ville: 'Dammartin-en-Goële',
+		cp: '77',
+		description: "Isolation par l'intérieur des murs donnant sur l'extérieur, doublage et finition placo.",
+		lat: 49.0547,
+		lng: 2.6783,
+	},
+	{
+		id: 6,
+		titre: 'Rénovation globale',
+		categorie: 'Rénovation',
+		annee: '2023',
+		ville: 'Nanteuil-le-Haudouin',
+		cp: '60',
+		description: 'Projet complet : isolation, menuiseries et chauffage pour une rénovation énergétique globale.',
+		lat: 49.1431,
+		lng: 2.8208,
+	},
+];
+---
+
+<section class="reveal">
+	<div class="containerRealisations">
+		<p class="petitTitre">Nos réalisations</p>
+		<h1 class="titreRealisations">Des chantiers menés dans tout le secteur</h1>
+		<p class="textRealisations">Cliquez sur un point de la carte pour découvrir le chantier réalisé par nos équipes.</p>
+
+		<div class="carteContainer">
+			<div id="carte" data-siege={JSON.stringify(siege)} data-chantiers={JSON.stringify(chantiers)}></div>
+
+			<div class="cardChantier" id="cardChantier" hidden>
+				<button type="button" class="fermerCard" id="fermerCard" aria-label="Fermer">
+					<X size={16} />
+				</button>
+				<div class="imageChantier"><ImageIcon size={28} color="#A9B2BA" /></div>
+				<div class="contenuCardChantier">
+					<div class="tagsChantier">
+						<span class="tagCategorie" id="cardCategorie"></span>
+						<span class="tagAnnee" id="cardAnnee"></span>
+					</div>
+					<p class="titreCardChantier" id="cardTitre"></p>
+					<p class="lieuCardChantier" id="cardLieu"></p>
+					<p class="descCardChantier" id="cardDesc"></p>
+				</div>
+			</div>
+
+			<div class="legendeCarte">
+				<span class="itemLegende"><span class="pointLegende pointSiege"></span>Siège MiPe Habitat</span>
+				<span class="itemLegende"><span class="pointLegende pointChantier"></span>Chantier réalisé</span>
+			</div>
+		</div>
+
+		<h2 class="titreToutesRealisations">Toutes nos réalisations</h2>
+		<div class="grilleRealisations">
+			{
+				chantiers.map(({ titre, ville, cp }) => (
+					<div class="carteRealisation">
+						<div class="imageChantier"><ImageIcon size={28} color="#A9B2BA" /></div>
+						<p class="titreCarteRealisation">{titre}</p>
+						<p class="lieuCarteRealisation">{ville} ({cp})</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<script src="../js/leaflet.js"></script>

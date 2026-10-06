@@ -1,0 +1,86 @@
+---
+import { Image as ImageIcon, ArrowRight } from '@lucide/astro';
+import '../styles/global.css';
+import '../styles/styleComponents/Blog.css';
+
+const articles = [
+	{
+		tag: 'Lorem ipsum',
+		titre: 'Lorem ipsum dolor sit amet consectetur',
+		contenu: [
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+			"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+		],
+	},
+	{
+		tag: 'Lorem ipsum',
+		titre: 'Ut enim ad minim veniam quis',
+		contenu: [
+			"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+			"Eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+		],
+	},
+	{
+		tag: 'Lorem ipsum',
+		titre: 'Duis aute irure dolor in reprehenderit',
+		contenu: [
+			"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+			"Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+			"Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+		],
+	},
+];
+---
+
+<section class="reveal">
+	<div class="blogContainer">
+		<div class="enteteBlog">
+			<div>
+				<p class="petitTitre">Le blog</p>
+				<h2 class="titreBlog">Conseils et actualités</h2>
+			</div>
+			<a href="/blog" class="lienTousArticles">
+				Voir tous les articles <ArrowRight size={15} color="#3E7C1F" />
+			</a>
+		</div>
+
+		<div class="listeArticles">
+			{
+				articles.map(({ tag, titre, contenu }) => (
+					<div class="carteArticle">
+						<div class="imagePlaceholder"><ImageIcon size={28} color="#A9B2BA" /></div>
+						<div class="contenuArticle">
+							<p class="tagArticle">{tag}</p>
+							<p class="titreArticle">{titre}</p>
+							<button
+								type="button"
+								class="lirePlus"
+								data-tag={tag}
+								data-titre={titre}
+								data-contenu={JSON.stringify(contenu)}
+							>
+								Lire plus <ArrowRight size={14} color="#3E7C1F" />
+							</button>
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+		<a href="/blog" class="boutonBlog">Voir tous les articles du blog</a>
+	</div>
+
+	<dialog class="modaleArticle" id="modaleArticle">
+		<div class="imageModale"><ImageIcon size={32} color="#A9B2BA" /></div>
+		<div class="contenuModale">
+			<p class="tagModale" id="modaleTag"></p>
+			<h3 class="titreModale" id="modaleTitre"></h3>
+			<div class="texteModale" id="modaleTexte"></div>
+			<button type="button" class="boutonFermer" id="modaleFermer">Fermer</button>
+		</div>
+	</dialog>
+</section>
+
+<script src="../js/modaleBlog.js"></script>

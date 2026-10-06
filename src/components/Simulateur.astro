@@ -1,0 +1,44 @@
+---
+import { Check, ArrowRight } from '@lucide/astro';
+import '../styles/styleComponents/Simulateur.css';
+import '../styles/global.css'
+import { Image } from 'astro:assets';
+import echelleDpe from '../assets/image/echelleDpe.png';
+---
+
+<section class="reveal">
+
+    <div class="SimulateurContainer">
+        <div class="textSimulateur">
+            <h2>Accédez gratuitement à notre simulateur MIPéconomie</h2>
+
+            <p class="descSimulateur">Vous envisagez des travaux de rénovation énergétique et vous ne savez pas par où commencer ? En moins de 3 minutes, notre simulateur énergétique gratuit vous permet d’obtenir une vision claire et personnalisée de votre projet.</p>
+            <p class="descSimulateur2">Grâce à MIPéconomie, vous pouvez :</p>
+
+            <div class="checkContainer">
+
+                <p><Check size={15} color="#8FE05C"/>Identifier les travaux de rénovation énergétique à prioriser selon l’état et les performances de votre logement ;</p>
+                <p><Check size={15} color="#8FE05C"/>Découvrir les aides financières auxquelles vous pouvez prétendre et estimer votre reste à charge ;</p>
+                <p><Check size={15} color="#8FE05C"/>Estimer vos futures économies d’énergie ;</p>
+                <p><Check size={15} color="#8FE05C"/>Mesurer l’amélioration de votre DPE et la réduction potentielle de vos émissions de CO₂ ;</p>
+                <p><Check size={15} color="#8FE05C"/>Évaluer l’évolution de la valeur de votre bien immobilier après rénovation.</p>
+
+            </div>
+
+
+
+            <button class="btnSimulation">Demarrer ma simulation <ArrowRight size={15} /></button>
+        </div>
+
+
+        <div class="imageSimulateur">
+            <Image
+                    src={echelleDpe}
+                    alt="Echelle des classes énérgétiques"
+                    width={400}
+            />
+        </div>
+    </div>
+
+</section>
+

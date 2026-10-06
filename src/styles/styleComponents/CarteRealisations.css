@@ -1,0 +1,210 @@
+.containerRealisations{
+	padding: 4rem 2.5rem;
+}
+
+.titreRealisations{
+	font-size: 2rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+}
+
+.textRealisations{
+	color: #4A5B6B;
+	margin-top: 0.5rem;
+}
+
+.carteContainer{
+	position: relative;
+	margin-top: 2rem;
+	border-radius: 20px;
+	overflow: hidden;
+	border: 1px solid #E4E7E2;
+}
+
+#carte{
+	width: 100%;
+	height: 480px;
+	background-color: #EAEDE8;
+}
+
+/* Le petit pin en forme de goutte : un rond avec un coin pointu en bas,
+   obtenu en arrondissant trois coins sur quatre, puis en tournant le tout. */
+.pinCarte{
+	display: block;
+	width: 26px;
+	height: 26px;
+	border-radius: 50% 50% 50% 0;
+	transform: rotate(-45deg);
+	border: 2px solid white;
+	box-shadow: 0 2px 6px rgba(22, 39, 59, 0.35);
+}
+
+.legendeCarte{
+	position: absolute;
+	bottom: 0.75rem;
+	right: 0.75rem;
+	background: rgba(255, 255, 255, 0.92);
+	border-radius: 10px;
+	padding: 0.5rem 0.75rem;
+	display: flex;
+	gap: 1rem;
+	font-size: 0.8rem;
+	color: #16273B;
+	z-index: 400;
+}
+
+.itemLegende{
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.pointLegende{
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+
+.pointSiege{ background-color: #16273B; }
+.pointChantier{ background-color: #6FBE2C; }
+
+/* La carte flottante qui affiche le détail du chantier cliqué */
+.cardChantier{
+	position: absolute;
+	top: 0.75rem;
+	left: 0.75rem;
+	width: 360px;
+	max-height: calc(100% - 1.5rem);
+	overflow-y: auto;
+	background: white;
+	border-radius: 16px;
+	box-shadow: 0 16px 32px rgba(22, 39, 59, 0.18);
+	z-index: 500;
+}
+
+.fermerCard{
+	position: absolute;
+	top: 0.6rem;
+	right: 0.6rem;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: white;
+	border: 1px solid #E4E7E2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: #16273B;
+	transition: background-color 0.15s ease;
+}
+
+.fermerCard:hover{
+	background-color: #EEF6E7;
+}
+
+.imageChantier{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	aspect-ratio: 16 / 10;
+	background-color: #EAEDE8;
+}
+
+.contenuCardChantier{
+	padding: 1.25rem;
+}
+
+.tagsChantier{
+	display: flex;
+	gap: 0.5rem;
+}
+
+.tagCategorie,
+.tagAnnee{
+	font-size: 0.75rem;
+	font-weight: bold;
+	padding: 0.25rem 0.6rem;
+	border-radius: 999px;
+}
+
+.tagCategorie{
+	background-color: #EEF6E7;
+	color: #3E7C1F;
+}
+
+.tagAnnee{
+	background-color: #F0F1EF;
+	color: #4A5B6B;
+}
+
+.titreCardChantier{
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin-top: 0.75rem;
+}
+
+.lieuCardChantier{
+	font-size: 0.85rem;
+	color: #4A5B6B;
+	margin-top: 0.2rem;
+}
+
+.descCardChantier{
+	font-size: 0.9rem;
+	color: #333;
+	margin-top: 0.75rem;
+	line-height: 1.5;
+}
+
+.titreToutesRealisations{
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-top: 3rem;
+}
+
+.grilleRealisations{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+.carteRealisation{
+	border-radius: 15px;
+	overflow: hidden;
+	border: 1px solid #E4E7E2;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carteRealisation:hover{
+	transform: translateY(-4px);
+	box-shadow: 0 10px 24px rgba(22, 39, 59, 0.08);
+}
+
+.titreCarteRealisation{
+	font-weight: bold;
+	margin: 1rem 1rem 0 1rem;
+}
+
+.lieuCarteRealisation{
+	color: #4A5B6B;
+	font-size: 0.9rem;
+	margin: 0.3rem 1rem 1rem 1rem;
+}
+
+@media (max-width: 800px){
+	.grilleRealisations{
+		grid-template-columns: 1fr;
+	}
+	.cardChantier{
+		width: calc(100% - 1.5rem);
+	}
+	/* Sur mobile, la carte flottante prend presque toute la largeur de la carte :
+	   elle chevaucherait les boutons +/- quel que soit le coin choisi. On les
+	   masque donc ici, le zoom au pincement (tactile) restant disponible. */
+	.leaflet-control-zoom{
+		display: none;
+	}
+}

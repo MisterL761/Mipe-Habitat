@@ -1,0 +1,47 @@
+---
+import { Check } from '@lucide/astro';
+import '../styles/styleComponents/HeroSection.css';
+import '../styles/global.css';
+import '../assets/image/ImageHero.webp'
+import FormHero from './FormHero.astro';
+---
+
+<section class="heroSection">
+    <div class="hero">
+        <div class="text">
+            <span class="miniTitre" >Rénovation énergétique . Oise</span>
+            <h1>La rénovation énergétique, sans le casse-tête</h1>
+            <p>Façade, isolation, menuiseries : MIPE Habitat vous accompagne dans touts vos projets de rénovation de l'habitat</p>
+                <div class="checkContainer">
+                    <p><Check size={15} color="#8FE05C"/>Devis gratuit et sans engagement</p>
+                    <p><Check size={15} color="#8FE05C"/> Étude personnalisée de votre projet à domicile</p>
+                    <p><Check size={15} color="#8FE05C"/> Accompagnement dans vos démarches d'aides à la rénovation</p>
+                </div>
+
+        </div>
+        <div class="form">
+            <FormHero></FormHero>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="bandeau">
+        <div class="date">
+            <p class="cat"><strong>Depuis 2011</strong></p>
+            <p class="sousCat">15 ans d'expérience</p>
+        </div>
+        <div class="rge">
+            <p class="cat"><strong>RGE Qualibat</strong></p>
+            <p class="sousCat">Entreprise certifiée</p>
+        </div>
+        <div class="garantie">
+            <p class="cat"><strong>Travaux garantis</strong></p>
+            <p class="sousCat">Selon les garanties applicables</p>
+        </div>
+        <div class="localisation">
+            <p class="cat"><strong>2 implantations</strong></p>
+            <p class="sousCat">Plessis-Belleville & Yvelines</p>
+        </div>
+    </div>
+</section>

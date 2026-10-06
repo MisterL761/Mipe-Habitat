@@ -1,0 +1,59 @@
+.societeContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1.5fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+
+}
+.textSociete {
+    grid-area: 1 / 1 / 2 / 2;
+    padding: 5% 5% 0% 5%;
+}
+.imageInterieur { grid-area: 2 / 1 / 3 / 2; }
+.imageExterieur {
+    grid-area: 1 / 2 / 3 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titreSociete{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+.descSociete{
+    color: #4A5B6B;
+    font-size: 16px;
+    margin-bottom: 2rem;
+    width: 85%;
+}
+.boutonSociete{
+    background-color: #000000;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 2rem;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.boutonSociete:hover{
+    filter: brightness(1.3);
+    transform: translateY(-2px);
+}
+.check{
+    font-size: 15px;
+}
+.imageInterieur img {
+    border-radius: 50px;
+    padding: 5% 5% 5% 5%;
+
+}
+.imageExterieur img {
+    border-radius: 30px;
+}

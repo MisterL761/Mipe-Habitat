@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import logoImage from '../../assets/logo-mipe-habitat.jpeg';
+import { ChevronDown } from '@lucide/astro';
+import '../../styles/styleComponents/Nav-Footer/Navbar.css';
+import '../../styles/global.css';
+
+interface Props {
+	logo?: string;
+}
+
+const liens = [
+	{ href: '/', label: 'Accueil' },
+	{
+		href: '/prestations',
+		label: 'Nos métiers',
+		fleche: true ,
+
+		sousMenu:[
+
+			{href : '/prestations/tous-les-metiers', label: 'Tous nos métiers'},
+			{href : '/prestations/isolation-thermique-exterieur', label: 'Isolation thermique extérieure'},
+			{href : '/prestations/isolation-thermique-interieure', label: 'Isolation thermique intérieure'},
+			{href : '/prestations/isolation-des-combles', label: 'Isolation des combles'},
+			{href : '/prestations/ravalement-de-facade', label: 'Ravalement de façade'},
+			{href : '/prestations/menuiserie', label: 'Menuiserie'},
+
+		],
+	},
+	{ href: 'https://revelhome.app/connexion?slug=' , label: 'Espace client' },
+	{ href: '/realisation', label: 'Nos réalisations'},
+	{ href: '/qualifications', label: 'Qualification' },
+	
+];
+const pageActuelle = Astro.url.pathname;
+---
+
+<header class="navbar">
+	<Image class="logo" src={logoImage} alt={"Image du logo"} />
+	<nav aria-label="Navigation principale">
+		<ul>
+			{
+				liens.map(({ href, label, fleche, sousMenu }) => (
+					<li class={sousMenu ? 'aSousMenu' : undefined}>
+						<a href={href} class={sousMenu ? 'lienAvecMenu' : undefined} aria-current={pageActuelle === href ? 'page' : undefined}>
+							{label}
+							{fleche && <ChevronDown size={16} />}
+						</a>
+
+						{sousMenu && (
+							<ul class="sousMenu">
+								{sousMenu.map((item) => (
+									<li><a href={item.href}>{item.label}</a></li>
+								))}
+							</ul>
+						)}
+					</li>
+				))
+			}
+
+		</ul>
+	</nav>
+
+	<div class="contact">
+		<a class="telephone" href="tel:0375190160">03 75 19 01 60</a>
+		<a class="bouton-devis" href="/demander-un-devis">Demander un devis</a>
+	</div>
+</header>
+
+<script src="../../js/sousMenu.js"></script>
+
+
+

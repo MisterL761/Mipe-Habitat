@@ -1,0 +1,116 @@
+.formDevis{
+    border : 1px solid #E4E7E2;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.containerFormDevis {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.fromContainerDevis {
+    grid-area: 1 / 1 / 2 / 2;
+    margin-top : 1rem;
+}
+.coordonneDevis { grid-area: 1 / 2 / 2 / 3; }
+
+
+.boutonFormDevis{
+    background-color: #6FBE2C;
+    width: 40%;
+    color: white;
+    border-radius: 999px;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.containerNpDevis,
+.containerTcDevis{
+    display: flex;
+    gap: 0.5rem;
+}
+
+input:not([type="checkbox"]){
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    height: 2.75rem;
+    box-sizing: border-box;
+}
+
+
+select{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    height: 2.75rem;
+    box-sizing: border-box;
+}
+.grandTextFormDevis{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+}
+.checkText{
+    color: #4A5B6B;
+}
+
+.cardCord{
+    background-color: #16273B;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+}
+.titreCord{
+    color: #8FE05C;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.titreHoraire{
+    color: #3E7C1F;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+
+.horaireSemaine,
+.HoraireWeekEnd{
+    color : #4A5B6B;
+}
+
+
+.addressCord,
+.numCord,
+.emailCord{
+    color: #ffffff ;
+}
+
+.cardHoraire{
+    border: 1px solid #E4E7E2;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 15px;
+}
+.coordonneDevis{
+}
