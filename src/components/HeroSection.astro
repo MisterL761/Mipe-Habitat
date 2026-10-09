@@ -11,7 +11,7 @@ import FormHero from './FormHero.astro';
         <div class="text">
             <span class="miniTitre" >Rénovation énergétique . Oise</span>
             <h1>La rénovation énergétique, sans le casse-tête</h1>
-            <p>Façade, isolation, menuiseries : MIPE Habitat vous accompagne dans touts vos projets de rénovation de l'habitat</p>
+            <p>Façade, isolation, menuiseries : MIPE Habitat vous accompagne dans tous vos projets de rénovation de l'habitat</p>
                 <div class="checkContainer">
                     <p><Check size={15} color="#8FE05C"/>Devis gratuit et sans engagement</p>
                     <p><Check size={15} color="#8FE05C"/> Étude personnalisée de votre projet à domicile</p>
@@ -27,21 +27,23 @@ import FormHero from './FormHero.astro';
 
 <section>
     <div class="bandeau">
-        <div class="date">
+        <div class="date reveal">
             <p class="cat"><strong>Depuis 2011</strong></p>
-            <p class="sousCat">15 ans d'expérience</p>
+            <p class="sousCat"><span class="chiffreAnime" data-cible="15">0</span> ans d'expérience</p>
         </div>
-        <div class="rge">
+        <div class="rge reveal">
             <p class="cat"><strong>RGE Qualibat</strong></p>
             <p class="sousCat">Entreprise certifiée</p>
         </div>
-        <div class="garantie">
+        <div class="garantie reveal">
             <p class="cat"><strong>Travaux garantis</strong></p>
             <p class="sousCat">Selon les garanties applicables</p>
         </div>
-        <div class="localisation">
+        <div class="localisation reveal">
             <p class="cat"><strong>2 implantations</strong></p>
-            <p class="sousCat">Plessis-Belleville & Yvelines</p>
+            <p class="sousCat">Plessis-Belleville & Plaisir</p>
         </div>
     </div>
 </section>
+
+<script src="../js/compteurBandeau.js"></script>

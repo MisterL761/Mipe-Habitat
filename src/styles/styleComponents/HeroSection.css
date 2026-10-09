@@ -76,6 +76,15 @@ h1{
     border-right: 1px solid #ccc;
 }
 
+/* Les 4 chiffres-cles apparaissent l'un apres l'autre (petit effet de
+   cascade) au lieu de tous en meme temps - ".reveal" gere deja le
+   fondu+glissement (voir global.css et scrollReveal.js), on ajoute juste un
+   delai croissant a chacun. */
+.bandeau .date{ transition-delay: 0s; }
+.bandeau .rge{ transition-delay: 0.12s; }
+.bandeau .garantie{ transition-delay: 0.24s; }
+.bandeau .localisation{ transition-delay: 0.36s; }
+
 .cat{
     font-size: 18px;
 }
@@ -138,4 +147,47 @@ h1{
     to {
         stroke-dashoffset: 0;
     }
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .heroSection{
+        height: auto;
+        padding: 1rem;
+    }
+    .hero{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    .text{
+        grid-area: 1 / 1 / 2 / 2;
+        padding: 6%;
+    }
+    .form{
+        grid-area: 2 / 1 / 3 / 2;
+        padding: 6%;
+    }
+    h1{
+        font-size: 2rem;
+    }
+    .bandeau{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
+    }
+    .date{ grid-area: 1 / 1 / 2 / 2; }
+    .rge{ grid-area: 1 / 2 / 2 / 3; }
+    .garantie{ grid-area: 2 / 1 / 3 / 2; }
+    .localisation{ grid-area: 2 / 2 / 3 / 3; }
+    .date, .rge, .garantie, .localisation{
+        padding: 1rem;
+    }
+}
+@media (max-width: 480px){
+    .bandeau{
+        grid-template-columns: 1fr;
+    }
+    .date{ grid-area: 1 / 1 / 2 / 2; }
+    .rge{ grid-area: 2 / 1 / 3 / 2; }
+    .garantie{ grid-area: 3 / 1 / 4 / 2; }
+    .localisation{ grid-area: 4 / 1 / 5 / 2; border-right: none; }
 }

@@ -100,3 +100,23 @@
 .social-icon:hover {
     background-color: #515e70;
 }
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .footer-grid{
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 2rem;
+    }
+}
+@media (max-width: 600px){
+    .footer-container{
+        padding: 3rem 1.25rem 1.5rem 1.25rem;
+    }
+    .footer-grid{
+        grid-template-columns: 1fr;
+    }
+    .footer-bottom{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}

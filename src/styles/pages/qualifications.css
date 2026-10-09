@@ -14,24 +14,77 @@
     font-size: 1rem;
     margin-top: 1rem;
     text-align: center;
+    margin-bottom: 2rem;
 }
-
+.qualificationsContainer{
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
 
 .qualificationCard{
     border : 1px solid #E4E7E2 ;
     width: 30%;
     padding: 2rem;
     border-radius: 15px;
+    margin-bottom: 5rem;
+    /* 1) On transforme la carte en conteneur flex vertical : ses enfants
+       (image, titre, description, lien) s'empilent comme avant, mais on
+       peut maintenant controler leur taille individuellement. */
+    display: flex;
+    flex-direction: column;
 }
 .imageQualif{
-    width: 20%;
-    height: auto;
+    /* 2) Hauteur fixe + object-fit: contain -> chaque logo occupe exactement
+       la meme place, qu'il soit large (170px) ou etroit (80px), sans etre
+       deforme. C'est ce qui faisait demarrer les titres a des hauteurs
+       differentes avant. */
+    height: 60px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    /* La carte est en flex-direction: column, donc l'axe horizontal est
+       l'axe "croise". Le texte (bloc normal) s'etire sur toute la largeur
+       par defaut, mais l'image garde sa taille naturelle et se collait a
+       gauche : align-self la centre elle, sans toucher au texte. */
+    align-self: start;
 }
 .titreQualifCard{
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+.descQualif{
+    color: #4A5B6B;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    /* 3) L'astuce principale : flex-grow fait que cette description
+       "s'etire" pour remplir tout l'espace vertical restant dans la carte.
+       Peu importe sa longueur reelle, elle pousse toujours le lien
+       jusqu'au meme endroit dans les 3 cartes. */
+    flex: 1;
+}
+.voirCertif{
+    font-size: 1rem;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .qualificationsContainer{
+        flex-wrap: wrap;
+        padding: 0 1.5rem;
+    }
+    .qualificationCard{
+        width: 100%;
+    }
+    .titreQualification{
+        font-size: 1.6rem;
+    }
 }

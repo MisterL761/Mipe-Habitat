@@ -8,16 +8,12 @@
 }
 
 .petitTitre{
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #3E7C1F;
   text-transform: uppercase ;
   font-weight: bold;
 }
 
-
-/* Apparition au scroll, utilisée sur la plupart des sections du site.
-   Activée en JS (src/js/scrollReveal.js) via IntersectionObserver,
-   qui ajoute .est-visible une fois l'élément entré dans l'écran. */
 .reveal{
   opacity: 0;
   transform: translateY(22px);
@@ -27,10 +23,128 @@
   opacity: 1;
   transform: translateY(0);
 }
+.containerParentImageDroite {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: 0.5fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.textImageDroite { grid-area: 1 / 1 / 2 / 2; }
+.imageDroite {
+  grid-area: 1 / 2 / 2 / 3;
+  padding: 2rem;
+}
+.imageDroite img {
+  border-radius: 15px;
+}
+
+.check{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.titreImage{
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.containerParentImageDroite{
+  padding: 0rem 4rem 0rem 4rem ;
+}
+.descImage{
+  margin-bottom: 2rem;
+  color: #4A5B6B;
+  font-size: 1.1rem;
+  width: 95%;
+}
+
+.containerCardAtout{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0rem 4rem 0rem 4rem;
+}
+
+.cardAtout{
+  border: 1px solid #E4E7E2;
+  width: 25%;
+  padding: 1.5rem;
+  border-radius: 15px;
+}
+.titreAtout{
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.descriptionAtout{
+  color: #4A5B6B;
+  font-size: 1rem;
+}
+
+.containerParentImageGauche {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  grid-template-rows: 0.5fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  padding: 4rem 4rem 4rem 4rem ;
+
+}
+.imageGauche {
+  grid-area: 1 / 1 / 2 / 2;
+  padding: 2rem;
+}
+.textImageGauche {
+  grid-area: 1 / 2 / 2 / 3;
+  padding: 2rem;
+}
+.imageGauche img {
+  border-radius: 15px;
+}
+
+
+
+
+
 @media (prefers-reduced-motion: reduce){
   .reveal{
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ===================== Responsive partage (pages metiers) =====================
+   Ces classes sont utilisees par plusieurs pages (menuiseries, isolation
+   exterieure/interieure, combles, ravalement) : un seul correctif ici
+   profite a toutes ces pages d'un coup. */
+@media (max-width: 900px){
+  .containerParentImageDroite,
+  .containerParentImageGauche{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 2rem 1.5rem;
+  }
+  .textImageDroite{ grid-area: 1 / 1 / 2 / 2; }
+  .imageDroite{ grid-area: 2 / 1 / 3 / 2; padding: 1.5rem 0; }
+  .imageGauche{ grid-area: 1 / 1 / 2 / 2; padding: 0 0 1.5rem 0; }
+  .textImageGauche{ grid-area: 2 / 1 / 3 / 2; padding: 0; }
+
+  .titreImage{
+    font-size: 1.6rem;
+  }
+  .descImage{
+    width: 100%;
+  }
+
+  .containerCardAtout{
+    flex-wrap: wrap;
+    padding: 0 1.5rem;
+  }
+  .cardAtout{
+    width: 100%;
   }
 }

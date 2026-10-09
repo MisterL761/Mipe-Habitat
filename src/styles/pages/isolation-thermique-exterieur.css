@@ -1,0 +1,188 @@
+.conseille{
+    background-color: #EEF6E7;
+    padding: 2rem;
+    margin: auto;
+    width: 92%;
+    border-radius: 15px;
+}
+.deroulementProjetContainer{
+    padding: 4rem;
+
+}
+.deroulementProjetCard{
+    border-top: 2px solid #6FBE2C;
+    width: 25%;
+}
+.deroulementProjet{
+    display: flex;
+    gap: 1rem;
+}
+.numero{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6FBE2C;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+}
+.titre{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.description{
+    color: #4A5B6B;
+}
+/* ===================== Section "Aides et financement" ===================== */
+.sectionAidesIte{
+    margin: 4rem 4rem 0 4rem;
+}
+.carteAidesIte{
+    background-color: #16273B;
+    border-radius: 28px;
+    padding: 2.5rem;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+.aidesIteTexte{
+    width: 42%;
+    flex-shrink: 0;
+}
+.titreAidesIte{
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+.descAidesIte{
+    color: #C9D3DC;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.lienAidesIte{
+    color: #8FE05C;
+    font-weight: bold;
+}
+.aidesIteGrille{
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.carteMiniAide{
+    background-color: #1F324A;
+    border-radius: 16px;
+    padding: 1.25rem;
+}
+.titreMiniAide{
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.descMiniAide{
+    color: #C9D3DC;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.mentionAidesIte{
+    color: #8A95A1;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+/* ===================== Section FAQ "Vos questions sur l'isolation..." =====================
+   Meme technique que les FAQ de nos-metiers.css / menuiseries.css (details/summary,
+   "+" qui devient "-"), juste renommee pour cette page. */
+.sectionFaqIte{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 4rem;
+    align-items: flex-start;
+}
+.faqIteTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqIte{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqIteListe{
+    flex: 1;
+}
+.faqIteItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqIteItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqIte{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqIte::-webkit-details-marker{
+    display: none;
+}
+.questionFaqIte::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqIteItem[open] .questionFaqIte::after{
+    content: '−';
+}
+.reponseFaqIte{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .deroulementProjetContainer{
+        padding: 2.5rem 1.5rem;
+    }
+    .deroulementProjet{
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .deroulementProjetCard{
+        width: calc(50% - 1rem);
+    }
+
+    .sectionAidesIte{
+        margin: 2.5rem 1.5rem 0 1.5rem;
+    }
+    .carteAidesIte{
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.5rem;
+    }
+    .aidesIteTexte{
+        width: 100%;
+    }
+    .aidesIteGrille{
+        grid-template-columns: 1fr;
+    }
+
+    .sectionFaqIte{
+        flex-direction: column;
+        margin: 2.5rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .faqIteTexte{
+        width: 100%;
+    }
+}
+@media (max-width: 560px){
+    .deroulementProjetCard{
+        width: 100%;
+    }
+}

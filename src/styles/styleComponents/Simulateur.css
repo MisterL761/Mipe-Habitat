@@ -3,12 +3,20 @@
     padding: 0;
 }
 
+.simulateurSection{
+    background-color: #16273B;
+    /* Le bandeau France Renov juste au-dessus n'a pas de marge basse ; sans
+       ca, le fond bleu de cette section le touchait directement. */
+    margin-top: 3rem;
+}
+
 .SimulateurContainer {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    align-items: center;
 
     padding: 4rem;
 }
@@ -16,16 +24,22 @@
 .imageSimulateur { grid-area: 1 / 2 / 2 / 3; }
 
 .textSimulateur h2 {
+    color: #ffffff;
     font-size: 1.9rem;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 .descSimulateur {
+    color: #ffffff;
     margin-bottom: 1rem ;
     width: 85%;
 }
 .descSimulateur2{
+    color: #ffffff;
     margin-bottom: 1.5rem ;
+}
+.simulateurSection .checkContainer p{
+    color: #ffffff;
 }
 .btnSimulation{
     background-color: #6FBE2C;
@@ -38,4 +52,69 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+/* Echelle DPE : chaque bande est une fleche (clip-path) qui "pousse" depuis
+   la gauche (scaleX 0 -> 1) quand on arrive sur la section. Le delai de
+   chacune (defini en inline, voir Simulateur.astro) les fait apparaitre
+   dans l'ordre G -> A plutot que toutes en meme temps. */
+.echelleDpe{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.bandeDpe{
+    width: var(--largeur-bande);
+    height: 2.75rem;
+    background-color: var(--couleur-bande);
+    clip-path: polygon(0 0, calc(100% - 1.4rem) 0, 100% 50%, calc(100% - 1.4rem) 100%, 0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1.6rem;
+
+    /* on recouvre le fondu/glissement par defaut de ".reveal" par une
+       croissance depuis la gauche, plus parlante pour une echelle */
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+.bandeDpe.est-visible{
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce){
+    .bandeDpe{
+        transition: none;
+    }
+}
+
+.lettreDpe{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .SimulateurContainer{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 3rem 1.5rem;
+        gap: 2rem;
+    }
+    .textSimulateur{ grid-area: 1 / 1 / 2 / 2; }
+    .imageSimulateur{ grid-area: 2 / 1 / 3 / 2; }
+    .descSimulateur{
+        width: 100%;
+    }
+    .bandeDpe{
+        height: 2.25rem;
+    }
+    .lettreDpe{
+        font-size: 1.1rem;
+    }
 }

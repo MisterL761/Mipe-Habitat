@@ -62,3 +62,12 @@ input:not([type="checkbox"]){
     color: #4A5B6B;
     margin-top: 1rem;
 }
+
+/* ===================== Responsive (mobile) ===================== */
+@media (max-width: 420px){
+    .containerNp,
+    .containerTc{
+        flex-direction: column;
+        gap: 0;
+    }
+}

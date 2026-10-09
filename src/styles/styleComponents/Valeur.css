@@ -1,3 +1,26 @@
+.valeurContainer{
+    padding-bottom: 3rem;
+}
+.lignesValeurs{
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+}
+/* Les cases passent de 90% centre (ancien affichage en 1 colonne) a 100%
+   de leur propre colonne, maintenant que c'est ".lignesValeurs" qui gere
+   la largeur et le centrage. */
+.lignesValeurs .caseValeur{
+    width: 100%;
+    margin: 0;
+}
+
+@media (max-width: 700px){
+    .lignesValeurs{
+        grid-template-columns: 1fr;
+    }
+}
 .valeurContainer h2 {
     font-size: 1.5rem;
     font-weight: bold;

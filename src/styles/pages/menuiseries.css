@@ -1,0 +1,84 @@
+/* ===================== Section "Et aussi" (autres menuiseries) ===================== */
+.sectionAutresMenuiseries{
+    background-color: #EEF6E7;
+    border-radius: 24px;
+    padding: 2.5rem;
+    margin: 4rem 4rem 0 4rem;
+}
+.titreAutresMenuiseries{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+.descAutresMenuiseries{
+    color: #4A5B6B;
+    margin-bottom: 1.5rem;
+}
+.listeAutresMenuiseries{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.badgeAutreMenuiserie{
+    background-color: #fff;
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #16273B;
+}
+
+/* ===================== Section FAQ "Vos questions sur nos menuiseries" =====================
+   Meme technique que la FAQ de la page nos-metiers (details/summary + "+" qui devient "-"),
+   juste renommee pour cette page. Voir nos-metiers.css si besoin de comparer. */
+.sectionFaqMenuiseries{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 4rem;
+    align-items: flex-start;
+}
+.faqMenuiseriesTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqMenuiseries{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqMenuiseriesListe{
+    flex: 1;
+}
+.faqMenuiseriesItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqMenuiseriesItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqMenuiseries{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqMenuiseries::-webkit-details-marker{
+    display: none;
+}
+.questionFaqMenuiseries::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqMenuiseriesItem[open] .questionFaqMenuiseries::after{
+    content: '−';
+}
+.reponseFaqMenuiseries{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}

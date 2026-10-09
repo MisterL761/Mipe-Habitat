@@ -43,3 +43,16 @@
     transform: translateY(-4px);
     box-shadow: 0 10px 24px rgba(22, 39, 59, 0.08);
 }
+
+/* ===================== Responsive (mobile) ===================== */
+@media (max-width: 480px){
+    .autreMetierContainer{
+        padding: 2rem 1rem;
+    }
+    .cardAutreMetier{
+        flex: 1 1 100%;
+    }
+    .titreAutreMetier{
+        font-size: 1.7rem;
+    }
+}

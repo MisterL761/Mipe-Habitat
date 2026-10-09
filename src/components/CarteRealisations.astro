@@ -1,78 +1,39 @@
 ---
 import { Image as ImageIcon, X } from '@lucide/astro';
+import { Image } from 'astro:assets';
 import 'leaflet/dist/leaflet.css';
 import '../styles/styleComponents/CarteRealisations.css';
+import othisApres1 from '../assets/realisation/othis/gaudry-othis1.webp';
+import othisApres2 from '../assets/realisation/othis/gaudry-othis2.webp';
+import othisPendant1 from '../assets/realisation/othis/gaudry-othis3.webp';
+import othisPendant2 from '../assets/realisation/othis/gaudry-othtis4.webp';
 
 const siege = { nom: 'Le Plessis-Belleville', lat: 49.1167, lng: 2.7667 };
 
 const chantiers = [
 	{
 		id: 1,
+		photos: [othisApres1, othisApres2, othisPendant1, othisPendant2],
 		titre: 'Isolation thermique extérieure',
 		categorie: 'Isolation',
-		annee: '2025',
-		ville: 'Senlis',
-		cp: '60',
-		description: "Isolation des façades d'un pavillon par l'extérieur avec enduit de finition ton sable.",
-		lat: 49.2058,
-		lng: 2.5847,
-	},
-	{
-		id: 2,
-		titre: 'Isolation des combles',
-		categorie: 'Isolation',
-		annee: '2025',
-		ville: 'Meaux',
+		annee: '2022',
+		ville: 'Othis',
 		cp: '77',
-		description: 'Isolation des combles perdus pour limiter les déperditions de chaleur par la toiture.',
-		lat: 48.9600,
-		lng: 2.8788,
-	},
-	{
-		id: 3,
-		titre: 'Remplacement de menuiseries',
-		categorie: 'Menuiserie',
-		annee: '2024',
-		ville: 'Chantilly',
-		cp: '60',
-		description: 'Remplacement complet des fenêtres par des menuiseries performantes double vitrage.',
-		lat: 49.1928,
-		lng: 2.4708,
-	},
-	{
-		id: 4,
-		titre: 'Ravalement de façade',
-		categorie: 'Façade',
-		annee: '2024',
-		ville: 'Crépy-en-Valois',
-		cp: '60',
-		description: "Ravalement complet de façade avec traitement et reprise des enduits existants.",
-		lat: 49.2333,
-		lng: 2.8833,
-	},
-	{
-		id: 5,
-		titre: 'Isolation thermique intérieure',
-		categorie: 'Isolation',
-		annee: '2024',
-		ville: 'Dammartin-en-Goële',
-		cp: '77',
-		description: "Isolation par l'intérieur des murs donnant sur l'extérieur, doublage et finition placo.",
-		lat: 49.0547,
-		lng: 2.6783,
-	},
-	{
-		id: 6,
-		titre: 'Rénovation globale',
-		categorie: 'Rénovation',
-		annee: '2023',
-		ville: 'Nanteuil-le-Haudouin',
-		cp: '60',
-		description: 'Projet complet : isolation, menuiseries et chauffage pour une rénovation énergétique globale.',
-		lat: 49.1431,
-		lng: 2.8208,
+		description: "Isolation des murs par l'extérieur avec pose de panneaux isolants et finition enduit sur une maison individuelle.",
+		lat: 49.0167,
+		lng: 2.6667,
 	},
 ];
+
+// Pour la carte Leaflet (script JS classique, pas de traitement Astro des
+// images) : on ne transmet que l'URL finale de chaque photo (photo.src),
+// pas l'objet Image complet. Le tableau "chantiers" original, lui, garde
+// les vrais objets Image pour que la grille du bas beneficie de
+// l'optimisation automatique des images d'Astro.
+const chantiersPourCarte = chantiers.map((chantier) => ({
+	...chantier,
+	photos: (chantier.photos || []).map((photo) => photo.src),
+}));
 ---
 
 <section class="reveal">
@@ -82,13 +43,19 @@ const chantiers = [
 		<p class="textRealisations">Cliquez sur un point de la carte pour découvrir le chantier réalisé par nos équipes.</p>
 
 		<div class="carteContainer">
-			<div id="carte" data-siege={JSON.stringify(siege)} data-chantiers={JSON.stringify(chantiers)}></div>
+			<div id="carte" data-siege={JSON.stringify(siege)} data-chantiers={JSON.stringify(chantiersPourCarte)}></div>
 
 			<div class="cardChantier" id="cardChantier" hidden>
 				<button type="button" class="fermerCard" id="fermerCard" aria-label="Fermer">
 					<X size={16} />
 				</button>
-				<div class="imageChantier"><ImageIcon size={28} color="#A9B2BA" /></div>
+				<div class="galerieChantier">
+					<div class="galerieTrack" id="galerieCardTrack">
+						<div class="imageChantier"><ImageIcon size={28} color="#A9B2BA" /></div>
+					</div>
+					<button type="button" class="galeriePrec" id="galerieCardPrec" hidden aria-label="Photo précédente">‹</button>
+					<button type="button" class="galerieSuiv" id="galerieCardSuiv" hidden aria-label="Photo suivante">›</button>
+				</div>
 				<div class="contenuCardChantier">
 					<div class="tagsChantier">
 						<span class="tagCategorie" id="cardCategorie"></span>
@@ -109,9 +76,25 @@ const chantiers = [
 		<h2 class="titreToutesRealisations">Toutes nos réalisations</h2>
 		<div class="grilleRealisations">
 			{
-				chantiers.map(({ titre, ville, cp }) => (
+				chantiers.map(({ titre, ville, cp, photos }) => (
 					<div class="carteRealisation">
-						<div class="imageChantier"><ImageIcon size={28} color="#A9B2BA" /></div>
+						{photos && photos.length > 0 ? (
+							<div class="galerieChantier">
+								<div class="galerieTrack">
+									{photos.map((photo) => (
+										<Image src={photo} alt={titre} />
+									))}
+								</div>
+								{photos.length > 1 && (
+									<Fragment>
+										<button type="button" class="galeriePrec" aria-label="Photo précédente">‹</button>
+										<button type="button" class="galerieSuiv" aria-label="Photo suivante">›</button>
+									</Fragment>
+								)}
+							</div>
+						) : (
+							<div class="imageChantier"><ImageIcon size={28} color="#A9B2BA" /></div>
+						)}
 						<p class="titreCarteRealisation">{titre}</p>
 						<p class="lieuCarteRealisation">{ville} ({cp})</p>
 					</div>

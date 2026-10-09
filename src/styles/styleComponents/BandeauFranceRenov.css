@@ -1,27 +1,80 @@
 .bandeauFranceRenov {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 3fr;
-    grid-template-rows: 0.25fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    border-top: 3px solid #000;
-    border-bottom: 3px solid #000;
-
-    padding: 0.5rem 2rem 0.5rem 2rem;
+    display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
+
+    /* Marge haute : espace avec la hero section juste au-dessus.
+       Marges laterales : 5%, pour retrouver la largeur de contenu des
+       autres sections de la page (ex: Societe.css utilise la meme valeur)
+       au lieu de toucher les bords de l'ecran. */
+    margin: 3rem 5% 0 5%;
+
+    border: 2px solid #16273B;
+    border-radius: 45px;
+    /* Padding reduit (etait 1.25rem 2rem) : la bande etait trop "grasse". */
+    padding: 1rem 1.5rem;
+
+    text-decoration: none;
+    color: inherit;
+
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.logoRep {
-    grid-area: 1 / 1 / 2 / 2;
-    border-right: 1px solid #000;
+.bandeauFranceRenov:hover{
+    box-shadow: 0 8px 20px rgba(22, 39, 59, 0.12);
+    transform: translateY(-2px);
 }
-.logoRenov { grid-area: 1 / 2 / 2 / 3; }
+
+.logoRep,
+.logoRenov{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
 .textFranceRenov {
-    grid-area: 1 / 3 / 2 / 4;
-    font-size: 14px;
+    flex: 1;
+    font-size: 1rem;
+    color: #16273B;
+    line-height: 1.5;
 }
 
-.textFranceRenov a {
+.lienFranceRenov{
     font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Le petit bouton rond avec la fleche, tout a droite de la bande. flex-shrink:0
+   l'empeche de se faire ecraser si le texte est long (c'est .textFranceRenov,
+   avec son flex:1, qui absorbe toute la largeur restante avant lui). */
+.boutonFlecheFranceRenov{
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #16273B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===================== Responsive (mobile) ===================== */
+@media (max-width: 700px){
+    .bandeauFranceRenov{
+        flex-wrap: wrap;
+        border-radius: 24px;
+        margin: 2rem 1.25rem 0 1.25rem;
+    }
+    .logoRep,
+    .logoRenov{
+        order: 1;
+    }
+    .boutonFlecheFranceRenov{
+        order: 2;
+        margin-left: auto;
+    }
+    .textFranceRenov{
+        order: 3;
+        flex-basis: 100%;
+    }
 }

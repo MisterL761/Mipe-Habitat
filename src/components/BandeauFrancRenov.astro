@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { ArrowUpRight } from '@lucide/astro';
 import franceRenov from '../assets/image/franceRenov.jpg.webp';
 import repFrancaise from '../assets/image/repFrancaise.webp';
 
@@ -7,23 +8,24 @@ import '../styles/styleComponents/BandeauFranceRenov.css';
 ---
 
 <section class="reveal">
-    <div class="bandeauFranceRenov">
+    <a href="https://www.france-renov.gouv.fr" class="bandeauFranceRenov" target="_blank" rel="noopener">
         <div class="logoRep">
             <Image
                     src={repFrancaise}
                     alt="logo de la république française "
-                    width={125}
+                    width={110}
             />
         </div>
         <div class="logoRenov">
             <Image
                     src={franceRenov}
                     alt="logo de la France Rénov"
-                    width={200}
+                    width={160}
             />
         </div>
         <div class="textFranceRenov">
-            <p>Avant de vous engager, le service public vous informe gratuitement pour préparer et sécuriser votre projet : <a href="https://france-renov.gouv.fr">france-renov.gouv.fr</a> </p>
+            <p>Avant de vous engager, le service public vous informe gratuitement pour préparer et sécuriser votre projet : <span class="lienFranceRenov">www.france-renov.gouv.fr</span></p>
         </div>
-    </div>
+        <span class="boutonFlecheFranceRenov" aria-hidden="true"><ArrowUpRight size={20} color="#fff" /></span>
+    </a>
 </section>

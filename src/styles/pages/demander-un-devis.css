@@ -15,3 +15,12 @@
 .containerDemandeDevis p {
     font-size: 1.2rem;
 }
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .containerDemandeDevis{
+        padding: 0 1.5rem;
+    }
+    .titreDemandeDevis{
+        font-size: 1.6rem;
+    }
+}

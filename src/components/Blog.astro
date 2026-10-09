@@ -1,34 +1,56 @@
 ---
 import { Image as ImageIcon, ArrowRight } from '@lucide/astro';
+import { Image } from 'astro:assets';
 import '../styles/global.css';
 import '../styles/styleComponents/Blog.css';
+import maprimerenov from '../assets/image/maprimerenov.webp';
+import toiture from '../assets/image/toitureBlog.webp';
+import menuiseries from '../assets/image/collageMenuiserie.webp';
 
 const articles = [
 	{
-		tag: 'Lorem ipsum',
-		titre: 'Lorem ipsum dolor sit amet consectetur',
+		tag: 'MaPrimeRénov',
+		titre: 'MaPrimeRénov’ 2026 : les nouvelles règles pour vos travaux de rénovation énergétique',
+		image: maprimerenov,
 		contenu: [
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-			"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-			"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+			"En 2026, MaPrimeRénov’ évolue pour favoriser les rénovations énergétiques les plus efficaces. Il est essentiel d’anticiper ses travaux et de vérifier les conditions d’accès aux aides.\n",
+			"<h2>Vers une rénovation énergétique plus globale</h2>\n",
+			"Les aides encouragent les projets combinant plusieurs travaux, comme l’isolation et le chauffage, afin d’améliorer durablement la performance énergétique des logements.\n",
+			"<h2>Des aides ciblées et des contrôles renforcés</h2>\n",
+			"Les logements énergivores et les ménages modestes restent des publics importants. Les contrôles visent également à garantir la qualité des travaux et le sérieux des entreprises.\n",
+			"<h2>MIPE Habitat vous accompagne</h2>\n",
+			"Chez <strong>MIPE Habitat</strong>, nous privilégions la qualité des travaux et le respect du bâti. Nous vous accompagnons dans votre projet de rénovation énergétique pour améliorer votre confort et réduire durablement vos consommations.\n",
+			"<strong>Un projet de rénovation ?</strong> Contactez MIPE Habitat pour bénéficier d’un accompagnement adapté à votre logement."
 		],
 	},
 	{
-		tag: 'Lorem ipsum',
-		titre: 'Ut enim ad minim veniam quis',
+		tag: 'Entretien toiture',
+		titre: 'Nettoyage et entretien de toiture : protégez votre maison',
+		image: toiture,
 		contenu: [
-			"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-			"Eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-			"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+			"Un entretien régulier de votre toiture permet de préserver son état, d’éviter les infiltrations et de prolonger sa durée de vie.\n",
+			"<h2>Pourquoi nettoyer sa toiture ?</h2>\n",
+			"Mousses, lichens et salissures peuvent fragiliser les matériaux et favoriser les infiltrations d’eau. Un nettoyage adapté aide à protéger votre maison et à préserver sa valeur.\n",
+			"<h2>Un entretien adapté à votre toit</h2>\n",
+			"L’inspection, le démoussage et le contrôle des gouttières permettent de maintenir une toiture en bon état. La méthode de nettoyage doit être adaptée aux matériaux pour éviter de les endommager.\n",
+			"<h2>MIPE Habitat vous accompagne</h2>\n",
+			"MIPE Habitat vous conseille pour entretenir votre toiture et protéger durablement votre maison.\n",
+			"<strong>Besoin d’un entretien de toiture ?</strong> Contactez MIPE Habitat pour évaluer vos besoins."
 		],
 	},
 	{
-		tag: 'Lorem ipsum',
-		titre: 'Duis aute irure dolor in reprehenderit',
+		tag: 'Menuiseries extérieures',
+		titre: 'Menuiseries extérieures : confort, esthétique et performance',
+		image: menuiseries,
 		contenu: [
-			"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
-			"Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-			"Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+			"Les fenêtres, portes, baies vitrées et volets contribuent au confort, à l’isolation et à la sécurité de votre logement. Bien choisies, les menuiseries améliorent aussi l’esthétique de votre façade.\n",
+			"<h2>Améliorez votre isolation et votre confort</h2>\n",
+			"Des menuiseries performantes limitent les pertes de chaleur en hiver et contribuent au confort en été. Elles permettent également de réduire les nuisances sonores et de mieux maîtriser vos consommations d’énergie.\n",
+			"<h2>Un style adapté à votre maison</h2>\n",
+			"PVC, aluminium, bois ou matériaux mixtes : choisissez des menuiseries adaptées à votre habitation et à vos envies pour valoriser votre façade.\n",
+			"<h2>MIPE Habitat vous accompagne</h2>\n",
+			"MIPE Habitat vous conseille dans le choix de vos menuiseries extérieures pour allier esthétique, confort et durabilité.\n",
+			"<strong>Un projet de remplacement ?</strong> Contactez MIPE Habitat pour trouver une solution adaptée à votre logement."
 		],
 	},
 ];
@@ -48,9 +70,13 @@ const articles = [
 
 		<div class="listeArticles">
 			{
-				articles.map(({ tag, titre, contenu }) => (
+				articles.map(({ tag, titre, image, contenu }) => (
 					<div class="carteArticle">
-						<div class="imagePlaceholder"><ImageIcon size={28} color="#A9B2BA" /></div>
+						{image ? (
+							<div class="imageArticle"><Image src={image} alt={titre} /></div>
+						) : (
+							<div class="imagePlaceholder"><ImageIcon size={28} color="#A9B2BA" /></div>
+						)}
 						<div class="contenuArticle">
 							<p class="tagArticle">{tag}</p>
 							<p class="titreArticle">{titre}</p>
@@ -59,6 +85,7 @@ const articles = [
 								class="lirePlus"
 								data-tag={tag}
 								data-titre={titre}
+								data-image={image ? image.src : ''}
 								data-contenu={JSON.stringify(contenu)}
 							>
 								Lire plus <ArrowRight size={14} color="#3E7C1F" />
@@ -73,7 +100,10 @@ const articles = [
 	</div>
 
 	<dialog class="modaleArticle" id="modaleArticle">
-		<div class="imageModale"><ImageIcon size={32} color="#A9B2BA" /></div>
+		<div class="imageModale" id="imageModale">
+			<span id="iconeModalePlaceholder"><ImageIcon size={32} color="#A9B2BA" /></span>
+			<img id="photoModale" alt="" hidden />
+		</div>
 		<div class="contenuModale">
 			<p class="tagModale" id="modaleTag"></p>
 			<h3 class="titreModale" id="modaleTitre"></h3>

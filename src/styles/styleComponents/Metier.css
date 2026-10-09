@@ -59,3 +59,16 @@
     transform: translateY(-4px);
     box-shadow: 0 10px 24px rgba(22, 39, 59, 0.08);
 }
+
+/* ===================== Responsive (mobile) ===================== */
+@media (max-width: 480px){
+    .metierContainer{
+        padding: 2rem 1rem;
+    }
+    .cardMetier{
+        flex: 1 1 100%;
+    }
+    .titreMetier{
+        font-size: 1.7rem;
+    }
+}

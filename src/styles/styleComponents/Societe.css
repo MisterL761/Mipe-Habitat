@@ -4,8 +4,6 @@
     grid-template-rows: 1.5fr 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-
-
 }
 .textSociete {
     grid-area: 1 / 1 / 2 / 2;
@@ -47,6 +45,7 @@
     transform: translateY(-2px);
 }
 .check{
+    color: #4A5B6B;
     font-size: 15px;
 }
 .imageInterieur img {
@@ -56,4 +55,30 @@
 }
 .imageExterieur img {
     border-radius: 30px;
+}
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .societeContainer{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    .textSociete{
+        grid-area: 1 / 1 / 2 / 2;
+        padding: 2rem 1.5rem 0 1.5rem;
+    }
+    .imageExterieur{
+        grid-area: 2 / 1 / 3 / 2;
+        padding: 1.5rem;
+    }
+    .imageInterieur{
+        grid-area: 3 / 1 / 4 / 2;
+    }
+    .descSociete{
+        width: 100%;
+    }
+    .imageInterieur img,
+    .imageExterieur img{
+        max-width: 100%;
+        height: auto;
+    }
 }

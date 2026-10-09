@@ -114,3 +114,28 @@ select{
 }
 .coordonneDevis{
 }
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .formDevis,
+    .cardCord,
+    .cardHoraire{
+        width: 100%;
+    }
+    .containerFormDevis{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 1.5rem;
+    }
+    .fromContainerDevis{ grid-area: 1 / 1 / 2 / 2; }
+    .coordonneDevis{ grid-area: 2 / 1 / 3 / 2; }
+    .boutonFormDevis{
+        width: 100%;
+    }
+}
+@media (max-width: 420px){
+    .containerNpDevis,
+    .containerTcDevis{
+        flex-direction: column;
+        gap: 0;
+    }
+}

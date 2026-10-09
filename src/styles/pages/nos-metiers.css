@@ -1,0 +1,248 @@
+.sectionNosMetiers{
+    padding: 4rem;
+}
+.heroNosMetiers{
+    width: 60%;
+}
+.petitTitre{
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.titreNosMetiers{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.descriptionNosMetiers{
+    margin-bottom: 5rem;
+}
+.renovationEnergetiqueMetiers{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.containerCardMetiers{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.cardMetiers{
+    width: 25%;
+    border: 1px solid #E4E7E2;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+.imageCard{
+    width: 100%;
+    /* aspect-ratio force la boite de l'image a toujours garder les memes
+       proportions (ici 4/3), peu importe la taille reelle du fichier photo
+       importe. Resultat : les 4 images occupent exactement la meme hauteur,
+       donc les cards s'alignent, meme si tes photos de depart ont des
+       dimensions differentes. */
+    aspect-ratio: 4 / 3;
+    /* Par defaut, une image mise dans une boite plus petite qu'elle se
+       deforme (etiree/ecrasee) pour remplir l'espace. object-fit: cover
+       empeche ca : il garde les proportions d'origine de la photo et
+       recadre ce qui depasse (centre par defaut) pour remplir la boite
+       entierement, sans jamais la deformer. */
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+.contenuCardMetiers{
+    padding: 1rem;
+    /* Comme .cardMetiers, ce wrapper devient lui aussi un conteneur flex
+       vertical. Sans ca, le "flex: 1" mis sur la description juste en
+       dessous n'aurait aucun effet : il faut que son PARENT direct soit
+       flex-direction: column pour qu'il sache dans quel sens grandir. */
+    display: flex;
+    flex-direction: column;
+    /* IMPORTANT : ce wrapper doit AUSSI grandir pour remplir tout l'espace
+       restant de .cardMetiers (sous l'image). Chrome le devine tout seul
+       meme sans cette ligne, mais Safari non : sans "flex: 1" ICI, Safari
+       laisse ce wrapper a sa taille naturelle (plus petite que la card), et
+       le "flex: 1" de la description plus bas n'a alors plus rien a remplir.
+       -> Chaque etage de la chaine flex imbriquee a besoin de son propre
+       "flex: 1" explicite, pas seulement le tout dernier element. */
+    flex: 1;
+}
+.titreCardMetiers{
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+.descriptionCardMetiers{
+    font-size: 0.9rem;
+    color: #4A5B6B;
+    margin-bottom: 2rem;
+    /* L'astuce : la description "s'etire" pour remplir tout l'espace vertical
+       restant dans la card, quelle que soit sa longueur reelle. Comme les 4
+       cards font deja la meme hauteur (grace au flex du conteneur parent),
+       ca pousse le lien "Decouvrir" exactement a la meme hauteur partout. */
+    flex: 1;
+}
+.lienDecouvrirCardMetiers{
+    color: #3E7C1F;
+    font-weight: bold;
+
+}
+
+.renoAmelioration{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/* ===================== Section "Associer les bons travaux" ===================== */
+.sectionCombinaison{
+    display: flex;
+    gap: 3rem;
+    margin-top: 6rem;
+    align-items: flex-start;
+}
+.combinaisonTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreCombinaison{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.descCombinaison{
+    color: #4A5B6B;
+    line-height: 1.6;
+}
+.combinaisonCards{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.carteCombinaison{
+    border: 1px solid #E4E7E2;
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+.titreCarteCombinaison{
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+/* Le petit point vert avant le titre : un simple rond cree en CSS, pas une image. */
+.pointCombinaison{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #6FBE2C;
+    flex-shrink: 0;
+}
+.descCarteCombinaison{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    /* padding-left pour que le texte de la description s'aligne avec le
+       TITRE (apres le point vert), pas avec le point lui-meme. */
+    padding-left: 1.4rem;
+}
+
+/* ===================== Section FAQ "Vos questions sur nos metiers" ===================== */
+.sectionFaqMetiers{
+    display: flex;
+    gap: 3rem;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    align-items: flex-start;
+}
+.faqMetiersTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqMetiers{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqMetiersListe{
+    flex: 1;
+}
+.faqMetiersItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqMetiersItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqMetiers{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqMetiers::-webkit-details-marker{
+    display: none;
+}
+/* Ici, contrairement a la FAQ de l'accueil (qui fait tourner un "+" de 45deg),
+   on change carrement le caractere affiche : "+" ferme, "−" ouvert. */
+.questionFaqMetiers::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqMetiersItem[open] .questionFaqMetiers::after{
+    content: '−';
+}
+.reponseFaqMetiers{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .sectionNosMetiers{
+        padding: 2rem 1.5rem;
+    }
+    .heroNosMetiers{
+        width: 100%;
+    }
+    .titreNosMetiers{
+        font-size: 1.8rem;
+    }
+
+    .containerCardMetiers{
+        flex-wrap: wrap;
+    }
+    .cardMetiers{
+        width: calc(50% - 0.5rem);
+    }
+
+    .sectionCombinaison{
+        flex-direction: column;
+        margin-top: 3rem;
+        gap: 1.5rem;
+    }
+    .combinaisonTexte{
+        width: 100%;
+    }
+
+    .sectionFaqMetiers{
+        flex-direction: column;
+        margin-top: 3rem;
+        gap: 1.5rem;
+    }
+    .faqMetiersTexte{
+        width: 100%;
+    }
+}
+@media (max-width: 560px){
+    .cardMetiers{
+        width: 100%;
+    }
+}

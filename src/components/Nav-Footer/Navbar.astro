@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../../assets/logo-mipe-habitat.jpeg';
-import { ChevronDown } from '@lucide/astro';
+import { ChevronDown, Menu, X } from '@lucide/astro';
 import '../../styles/styleComponents/Nav-Footer/Navbar.css';
 import '../../styles/global.css';
 
@@ -18,25 +18,32 @@ const liens = [
 
 		sousMenu:[
 
-			{href : '/prestations/tous-les-metiers', label: 'Tous nos métiers'},
-			{href : '/prestations/isolation-thermique-exterieur', label: 'Isolation thermique extérieure'},
-			{href : '/prestations/isolation-thermique-interieure', label: 'Isolation thermique intérieure'},
-			{href : '/prestations/isolation-des-combles', label: 'Isolation des combles'},
-			{href : '/prestations/ravalement-de-facade', label: 'Ravalement de façade'},
-			{href : '/prestations/menuiserie', label: 'Menuiserie'},
+			{href : '/nos-metiers', label: 'Tous nos métiers'},
+			{href : '/isolation-thermique-exterieur', label: 'Isolation thermique extérieure'},
+			{href : '/isolation-thermique-interieur', label: 'Isolation thermique intérieure'},
+			{href : '/isolation-des-combles', label: 'Isolation des combles'},
+			{href : '/ravalement-de-facade', label: 'Ravalement de façade'},
+			{href : '/menuiseries', label: 'Menuiserie'},
 
 		],
 	},
 	{ href: 'https://revelhome.app/connexion?slug=' , label: 'Espace client' },
 	{ href: '/realisation', label: 'Nos réalisations'},
 	{ href: '/qualifications', label: 'Qualification' },
+	{ href: '/aides-et-financements', label: 'Aides et financements' },
 	
 ];
 const pageActuelle = Astro.url.pathname;
 ---
 
-<header class="navbar">
+<header class="navbar" id="navbar">
 	<Image class="logo" src={logoImage} alt={"Image du logo"} />
+
+	<button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navbar">
+		<Menu class="iconeBurger iconeBurgerOuvrir" size={24} />
+		<X class="iconeBurger iconeBurgerFermer" size={24} />
+	</button>
+
 	<nav aria-label="Navigation principale">
 		<ul>
 			{
@@ -68,6 +75,7 @@ const pageActuelle = Astro.url.pathname;
 </header>
 
 <script src="../../js/sousMenu.js"></script>
+<script src="../../js/menuMobile.js"></script>
 
 
 

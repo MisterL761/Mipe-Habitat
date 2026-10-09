@@ -1,20 +1,75 @@
+/* Fond de la frise : 3 photos du meme village (ancien / en travaux / renove)
+   superposees exactement au meme endroit, et jamais recadrees ni zoomees
+   (le bloc a le meme ratio que les photos : 2201/1228, donc la hauteur suit
+   toujours la largeur naturellement). Une seule photo est visible a la fois
+   a l'ecran : le JS (friseFondu.js) "epingle" ce bloc a l'ecran (position
+   fixed) pendant qu'on scrolle la frise, et fait un fondu enchaine entre
+   les 3 photos - donc jamais de repetition visible, juste une
+   transformation continue du debut a la toute fin de la frise. */
+.frise{
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.friseFond{
+    position: absolute; /* le JS recalcule "top" a chaque scroll pour simuler un epinglage */
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 2201 / 1228;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.friseImage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+}
+
+/* La 1re photo (la plus ancienne) est la base, toujours visible : les
+   photos 2 et 3 se posent par-dessus avec une opacite qui monte de 0 a 1
+   au fil du scroll (voir friseFondu.js), ce qui cree le fondu enchaine. */
+#friseImage2,
+#friseImage3{
+    opacity: 0;
+}
+
 .titreTimeLine{
+    position: relative;
     font-size: 32px;
     font-weight: bold;
     text-align: center;
     margin-top: 2rem;
+    /* Petit halo blanc derriere le texte pour qu'il reste lisible quelle
+       que soit la zone de la photo qui se trouve dessous. */
+    text-shadow:
+        0 0 16px rgba(255, 255, 255, 0.95),
+        0 0 16px rgba(255, 255, 255, 0.95);
 }
 
 .etapeFrise{
-    max-width: 640px;
+    position: relative;
+    max-width: 480px;
     margin: 0 auto;
+    padding: 1.25rem 0;
+    background-color: rgba(255, 255, 255, 0.88);
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(22, 39, 59, 0.1);
 }
 
 .chronologie{
-    font-size: 55px;
+    font-size: 36px;
     font-weight: bold;
     text-align: center;
-    padding : 2rem;
+    padding : 1rem;
 }
 
 /* L'année "s'imprime" en grand puis se stabilise, juste après que le bloc
@@ -111,5 +166,16 @@
     .traitLiaison{
         transform: none;
         transition: none;
+    }
+}
+
+/* ===================== Responsive (mobile) ===================== */
+@media (max-width: 480px){
+    .titreTimeLine{
+        font-size: 1.6rem;
+    }
+    .chronologie{
+        font-size: 1.8rem;
+        padding: 0.75rem;
     }
 }

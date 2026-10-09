@@ -17,7 +17,11 @@
 
 }
 
-ul {
+/* Scope a "nav ul" (et non juste "ul") : cette regle ne doit styler QUE
+   les listes de la navbar. Un simple "ul" s'appliquait a TOUTES les listes
+   du site (vu que la Navbar est chargee sur chaque page), et les cassait
+   en les transformant en ligne horizontale. */
+nav ul {
     display: flex;
     gap: 1.5rem;
     margin: 0;
@@ -136,4 +140,102 @@ nav a,
 
 @media (prefers-reduced-motion: reduce){
     .bouton-devis{ animation: none; }
+}
+
+/* ===================== Bouton burger (menu mobile) ===================== */
+/* Cache par defaut (desktop) : visible uniquement sous 900px, voir plus bas. */
+.burger{
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #16273B;
+}
+
+/* Les deux icones (burger et croix) sont superposees au meme endroit ;
+   seule une des deux est visible a la fois, selon que le menu est ouvert
+   ou non (voir regles ".menuOuvert" plus bas). */
+.iconeBurgerFermer{
+    display: none;
+}
+.navbar.menuOuvert .iconeBurgerOuvrir{
+    display: none;
+}
+.navbar.menuOuvert .iconeBurgerFermer{
+    display: block;
+}
+
+/* ===================== Navbar mobile (<= 900px) ===================== */
+@media (max-width: 900px){
+    .navbar{
+        flex-wrap: wrap;
+    }
+    .burger{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* nav et .contact passent chacun sur leur propre ligne, en dessous du
+       bandeau logo+burger (flex-wrap ci-dessus les fait descendre), et
+       restent caches tant que le menu n'est pas ouvert. */
+    .navbar nav,
+    .navbar .contact{
+        display: none;
+        width: 100%;
+        order: 3;
+    }
+    .navbar.menuOuvert nav,
+    .navbar.menuOuvert .contact{
+        display: flex;
+    }
+    .navbar .contact{
+        order: 4;
+    }
+
+    nav ul{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 1rem 0;
+    }
+    nav ul li{
+        width: 100%;
+    }
+    nav a{
+        padding: 0.75rem 0.5rem;
+        width: 100%;
+    }
+
+    /* Le sous-menu "Nos metiers" : au lieu de flotter par-dessus le contenu
+       (comme sur desktop), il s'affiche "en ligne", juste en dessous de son
+       lien, et pousse le reste du menu vers le bas. */
+    .sousMenu{
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: none;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        margin-top: 0;
+        padding: 0 0 0 1rem;
+        max-height: 0;
+        overflow: hidden;
+    }
+    .aSousMenu.ouvert .sousMenu{
+        max-height: 30rem;
+    }
+
+    .contact{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1rem 0.5rem 1.5rem 0.5rem;
+    }
+    .bouton-devis{
+        text-align: center;
+    }
 }

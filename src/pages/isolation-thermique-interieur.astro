@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import '../styles/global.css'
+import '../styles/pages/isolation-thermique-interieur.css';
+import itiHero from "../assets/image/iti-hero.webp";
+import choixIso from "../assets/image/choixIso.webp";
+import {Check} from "@lucide/astro";
+import {Image} from "astro:assets";
+
+const atout = [
+    {titre : 'Confort thermique', description : 'Des parois moins froides et une température plus homogène pour améliorer votre confort.'},
+    {titre : 'Confort acoustique', description : "Selon la solution choisie, l'ITI peut également contribuer à réduire les nuisances sonores."},
+    {titre : 'Travaux ciblés', description : "Une isolation réalisable pièce par pièce ou dans le cadre d'une rénovation plus globale."},
+    {titre : 'Rénovation intérieure', description : "Profitez des travaux d'isolation pour rénover vos murs, intégrer les réseaux et repartir sur des finitions intérieures neuves."},
+];
+const atout2 = [
+    {titre : 'Doublage sur ossature', description : "Une ossature accueille l'isolant avant la pose des plaques de finition. Une solution polyvalente permettant également d'intégrer certains réseaux techniques."},
+    {titre : 'Doublage collé', description : "Un complexe associant isolant et plaque de plâtre est directement fixé sur un support compatible. Une solution adaptée à certaines configurations."},
+    {titre : 'Laine minérale', description : "Laine de verre ou de roche : bon isolant thermique et acoustique, au meilleur prix."},
+    {titre : 'Isolants biosourcés', description : "Fibre de bois, ouate de cellulose : des matériaux naturels qui régulent l'humidité."},
+];
+const pointsAnticiper = [
+    "adaptation des prises, interrupteurs et réseaux électriques ;",
+    "déplacement ou adaptation de radiateurs et canalisations ;",
+    "reprise des plinthes, encadrements et habillages ;",
+    "adaptation de certains équipements de plomberie ;",
+    "travaux de peinture et finitions après isolation.",
+];
+const deroulement = [
+    {numero: '1', titre:'Étude technique & devis', description:'Un conseiller se déplace pour examiner les murs, les surfaces, les réseaux existants et les contraintes des pièces afin de définir la solution adaptée.'},
+    {numero: '2', titre:'Préparation du projet', description:"Nous définissons le système d'isolation, les matériaux, les épaisseurs ainsi que les éventuels travaux annexes nécessaires : électricité, plomberie, déplacement d'équipements et finitions"},
+    {numero: '3', titre:'Réalisation des travaux', description:"Préparation des supports, adaptation des équipements concernés, pose de l'isolant et du système de doublage puis réalisation des finitions prévues au projet."},
+    {numero: '4', titre:'Réception & suivi', description:'Nous réalisons avec vous la réception du chantier. Les travaux bénéficient des garanties légales et professionnelles applicables selon la nature des prestations.'},
+];
+const aidesIti = [
+    { titre: "MaPrimeRénov' – Rénovation d'ampleur", description: "L'isolation intérieure peut être intégrée à un projet global de rénovation d'ampleur, sous réserve de respecter les conditions du dispositif." },
+    { titre: 'CEE', description: "Les Certificats d'Économies d'Énergie, financés par les fournisseurs d'énergie, peuvent contribuer au financement de certains travaux d'isolation sous conditions." },
+    { titre: 'TVA à taux réduit', description: "Les travaux de rénovation énergétique peuvent bénéficier d'un taux de TVA réduit, sous réserve des conditions applicables." },
+    { titre: 'Éco-PTZ', description: "Un prêt sans intérêts peut permettre de financer certains travaux de rénovation énergétique et une partie du reste à charge." },
+];
+const faqIti = [
+    { question: 'Combien de surface perd-on avec une ITI ?', reponse: "Selon la technique, le doublage fait entre 8 et 15 cm d'épaisseur. Nous choisissons la solution qui limite au mieux la perte de surface.", ouvert: true },
+    { question: 'Faut-il vider les pièces ?', reponse: "Il est nécessaire de dégager les murs à isoler (meubles, objets fixés, décorations). Selon l'ampleur des travaux, la pièce peut rester partiellement utilisable, mais un espace de travail dégagé facilite l'intervention de nos équipes.", ouvert: false },
+    { question: 'Quelle performance faut-il pour les aides ?', reponse: "Les dispositifs d'aides fixent généralement un niveau de résistance thermique minimal à atteindre (R ≥ 3,7 m².K/W pour les murs, selon les barèmes en vigueur). Nous vous conseillons sur l'épaisseur et le matériau permettant de respecter ce seuil.", ouvert: false },
+    { question: "L'ITI traite-t-elle les ponts thermiques ?", reponse: "L'ITI traite une partie des ponts thermiques, mais moins efficacement que l'isolation par l'extérieur : certains points singuliers (jonctions entre murs et planchers, refends) restent plus difficiles à traiter depuis l'intérieur. Un traitement spécifique de ces zones peut être proposé selon votre projet.", ouvert: false },
+];
+---
+
+<Layout>
+    <main>
+        <Navbar></Navbar>
+        <section class="containerImageDroite">
+
+            <br>
+            <br>
+
+            <div class="containerParentImageDroite">
+                <div class="textImageDroite">
+                    <p class="petitTitre">Isolation thermique par l'intérieur</p>
+                    <h1 class="titreImage">Isolez vos murs par l'intérieur pour gagner en confort</h1>
+                    <p class="descImage">Lorsque l'isolation par l'extérieur n'est pas adaptée ou réalisable, l'isolation thermique par l'intérieur (ITI) permet d'améliorer les performances des murs depuis l'intérieur du logement, avec une finition prête à décorer.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Une solution adaptée lorsque l'ITE n'est pas envisageable</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Des travaux réalisables pièce par pièce</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Amélioration du confort thermique et acoustique</p>
+                </div>
+                <div class="imageDroite">
+                    <Image src={itiHero} alt="pièce en cours d'isolation thermique par l'intérieur, ossature et laine minérale"/>
+                </div>
+            </div>
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="containerImageGauche">
+
+            <div class="containerParentImageGauche">
+                <div class="imageGauche">
+                    <Image src={choixIso} alt="artisan comparant des échantillons d'isolants face à un mur en brique"/>
+                </div>
+                <div class="textImageGauche">
+
+                    <p class="petitTitre">Isolation par l'intérieur</p>
+                    <h2 class="titreImage">Une solution technique adaptée à chaque mur</h2>
+                    <p class="descImage">Nature des murs, état des supports, espace disponible, humidité et performance recherchée : chaque habitation nécessite une étude spécifique.</p>
+                    <p class="descImage">La performance d'une isolation est notamment définie par sa résistance thermique (R). Plus le R est élevé, plus la paroi est isolante</p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout2.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+            <br>
+            <p class="conseille">Avant les travaux, nos équipes vérifient l'état et la nature des murs afin d'identifier d'éventuels problèmes d'humidité ou désordres à traiter. La gestion de la vapeur d'eau et de l'humidité est ensuite étudiée selon la composition de la paroi et le système d'isolation retenu.</p>
+        </section>
+
+        <section class="sectionAnticiper">
+            <div class="carteAnticiper">
+                <div class="anticiperTexte">
+                    <p class="petitTitre">Un point important à anticiper</p>
+                    <h2 class="titreAnticiper">L'ITI implique aussi des travaux à l'intérieur</h2>
+                    <p class="descAnticiper">Contrairement à l'isolation par l'extérieur, l'ITI intervient directement dans vos pièces et peut nécessiter des adaptations et des travaux de finition complémentaires.</p>
+                    <div class="encartOpportunite">
+                        <p class="titreOpportunite">Une opportunité pour rénover votre intérieur</p>
+                        <p class="descOpportunite">Lorsque plusieurs pièces doivent déjà être rénovées, l'ITI peut être l'occasion de regrouper isolation, électricité, plomberie et finitions dans un même projet de rénovation intérieure.</p>
+                    </div>
+                </div>
+                <div class="anticiperListe">
+                    <p class="introAnticiperListe">Selon la configuration du logement, il peut être nécessaire de prévoir :</p>
+                    <ul class="listeAnticiper">
+                        {
+                            pointsAnticiper.map((point) => (
+                                <li><Check size={15} color="#3E7C1F"/>{point}</li>
+                            ))
+                        }
+                    </ul>
+                    <p class="noteAnticiperListe">Ces éléments sont étudiés en amont afin d'avoir une vision globale du chantier et d'intégrer les travaux nécessaires au projet.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="deroulementProjetContainer">
+                <p class="petitTitre">Déroulement du chantier</p>
+                <h2 class="titreImage">Votre projet, étape par étape</h2>
+                <div class="deroulementProjet">
+                        {
+                            deroulement.map(({numero, titre, description}) => (
+                                <div class="deroulementProjetCard">
+                                    <p class="numero">{numero}</p>
+                                    <p class="titre">{titre}</p>
+                                    <p class="description">{description}</p>
+                                </div>
+                            ))
+                        }
+                </div>
+            </div>
+        </section>
+
+        <section class="sectionAidesIti">
+            <div class="carteAidesIti">
+                <div class="aidesItiTexte">
+                    <p class="petitTitre">Aides et financement</p>
+                    <h2 class="titreAidesIti">Des solutions selon votre projet</h2>
+                    <p class="descAidesIti">En 2026, l'isolation des murs réalisée seule n'est plus financée par MaPrimeRénov' dans le parcours par geste. D'autres dispositifs peuvent néanmoins être mobilisables selon votre projet et votre situation.</p>
+                    <a href="/aides-et-financements" class="lienAidesIti">En savoir plus sur les aides →</a>
+                </div>
+                <div class="aidesItiGrille">
+                    {
+                        aidesIti.map(({ titre, description }) => (
+                            <div class="carteMiniAideIti">
+                                <p class="titreMiniAideIti">{titre}</p>
+                                <p class="descMiniAideIti">{description}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <p class="mentionAidesIti">Sous réserve d'éligibilité et des conditions en vigueur au moment de la demande.</p>
+        </section>
+
+        <section class="sectionFaqIti">
+            <div class="faqItiTexte">
+                <p class="petitTitre">Questions fréquentes</p>
+                <h2 class="titreFaqIti">Vos questions sur l'isolation thermique par l'intérieur</h2>
+            </div>
+            <div class="faqItiListe">
+                {
+                    faqIti.map(({ question, reponse, ouvert }) => (
+                        <details class="faqItiItem" open={ouvert}>
+                            <summary class="questionFaqIti">{question}</summary>
+                            <p class="reponseFaqIti">{reponse}</p>
+                        </details>
+                    ))
+                }
+            </div>
+        </section>
+
+        <Footer></Footer>
+    </main>
+</Layout>

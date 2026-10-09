@@ -1,6 +1,16 @@
 ---
 import '../styles/styleComponents/TimeLine.css';
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import friseAncienSrc from '../assets/image/frise1.webp';
+import friseChantierSrc from '../assets/image/frise2.webp';
+import friseTermineSrc from '../assets/image/frise3.webp';
+
+// getImage() (et non <Image>) car on a besoin d'une simple URL a mettre en
+// background-image CSS plus bas, pas d'une balise <img>.
+const friseAncien = await getImage({ src: friseAncienSrc, width: 1920 });
+const friseChantier = await getImage({ src: friseChantierSrc, width: 1920 });
+const friseTermine = await getImage({ src: friseTermineSrc, width: 1920 });
 
 const etapes = [
 	{
@@ -35,7 +45,19 @@ const etapes = [
 ---
 <section class="reveal">
 
-	<div class="frise">
+	<div class="frise" id="frise">
+
+		<!-- Fond de la frise : 3 photos du meme village (ancien / en travaux /
+		     renove), jamais recadrees ni zoomees (ratio naturel conserve).
+		     Une seule est visible a l'ecran a la fois : le JS (friseFondu.js)
+		     "epingle" ce bloc a l'ecran pendant qu'on scrolle la frise, et
+		     enchaine les 3 photos en fondu - donc jamais de repetition visible,
+		     juste une transformation continue du debut a la fin. -->
+		<div class="friseFond" id="friseFond" aria-hidden="true">
+			<div class="friseImage" style={`background-image:url(${friseAncien.src})`}></div>
+			<div id="friseImage2" class="friseImage" style={`background-image:url(${friseChantier.src})`}></div>
+			<div id="friseImage3" class="friseImage" style={`background-image:url(${friseTermine.src})`}></div>
+		</div>
 
 		<h2 class="titreTimeLine">Notre histoire</h2>
 
@@ -60,3 +82,5 @@ const etapes = [
 	</div>
 
 </section>
+
+<script src="../js/friseFondu.js"></script>

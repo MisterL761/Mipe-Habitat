@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import '../styles/global.css';
+import '../styles/pages/menuiseries.css';
+import { Check } from '@lucide/astro';
+import { Image } from 'astro:assets';
+
+import menuiserie from '../assets/image/menuiserie.webp';
+import analyse from '../assets/image/analyseDepFenetre.webp'
+import pe from '../assets/image/pe.webp';
+import voletRoulant from '../assets/image/voletR.webp'
+
+const autresMenuiseries = [
+    'Portes de garage', 'Portes d\'intérieur', 'Pergolas', 'Vérandas',
+    'Portails, clôtures et portillons', 'Garde-corps', 'Stores intérieurs',
+    'Stores extérieurs', 'Moustiquaires', 'Grilles de défense', 'Motorisation',
+];
+
+const faqMenuiseries = [
+    { question: 'Le remplacement des fenêtres est-il aidé ?', reponse: "Selon votre projet, certaines aides peuvent être mobilisables. Les CEE peuvent notamment concerner le remplacement de certaines fenêtres, sous conditions. Les menuiseries peuvent également s'intégrer à un projet MaPrimeRénov' Rénovation d'ampleur lorsqu'elles participent à un programme global de travaux.", ouvert: true },
+    { question: 'Faut-il isoler avant de changer ses fenêtres ?', reponse: "Pas nécessairement. L’idéal est d’avoir une vision globale de l’isolation du logement afin de coordonner les menuiseries avec l’isolation des murs, la ventilation et le chauffage. Nos équipes étudient votre projet dans son ensemble.", ouvert: false },
+    { question: 'PVC, aluminium ou autres solutions ?', reponse: "le choix dépend de vos priorités en matière de performance thermique, d’esthétique, d’entretien, de dimensions et de configuration du logement. Nous vous conseillons la solution adaptée à votre projet.", ouvert: false },
+    { question: 'Faut-il une autorisation pour changer ses menuiseries ?', reponse: "Un remplacement à l’identique ne nécessite généralement pas de déclaration préalable. En revanche, si vous modifiez l’aspect extérieur du bâtiment — couleur, dimensions, matériau, type d’ouverture — une autorisation d’urbanisme peut être nécessaire. Des règles particulières peuvent également s’appliquer en secteur protégé.", ouvert: false },
+    { question: "Comment connaître la performance d'une fenêtre ?", reponse: "La performance thermique d’une fenêtre est notamment mesurée par son coefficient Uw. Plus le Uw est faible, plus la fenêtre est performante thermiquement. Le vitrage, le châssis et la qualité de la pose participent ensemble à la performance finale.", ouvert: false },
+];
+
+const atout = [
+    {titre : 'Performance thermique', description : 'Des vitrages et profilés performants pour limiter les déperditions et améliorer le confort intérieur.'},
+    {titre : 'Performance thermique', description : 'Des vitrages et profilés performants pour limiter les déperditions et améliorer le confort intérieur.'},
+    {titre : 'Performance thermique', description : 'Des vitrages et profilés performants pour limiter les déperditions et améliorer le confort intérieur.'},
+    {titre : 'Performance thermique', description : 'Des vitrages et profilés performants pour limiter les déperditions et améliorer le confort intérieur.'},
+];
+---
+
+<Layout>
+
+    <main>
+        <Navbar></Navbar>
+        <section class="containerImageDroite">
+
+            <br>
+            <br>
+
+            <div class="containerParentImageDroite">
+                <div class="textImageDroite">
+                    <p class="petitTitre">Menuiseries</p>
+                    <h1 class="titreImage">Des menuiseries performantes pour un logement mieux isolé</h1>
+                    <p class="descImage">Des menuiseries performantes pour améliorer votre confort fenêtres, portes-fenêtres, baies vitrées et portes d’entrée participent pleinement au confort thermique et acoustique de votre logement. Remplacer des menuiseries anciennes permet de limiter les déperditions et les infiltrations d’air tout en modernisant votre habitation.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Amélioration de l’isolation thermique et acoustique</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Menuiseries sur mesure adaptées à votre habitation</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Un large choix de matériaux, finitions et équipements</p>
+                </div>
+                <div class="imageDroite">
+
+                    <Image src={menuiserie} alt="image d'une facade avec des menuiseries neuve"/>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="containerImageGauche">
+
+            <div class="containerParentImageGauche">
+                <div class="imageGauche">
+                    <Image src={analyse} alt="image d'une facade avec des menuiseries neuve"/>
+                </div>
+                <div class="textImageGauche">
+
+                    <p class="petitTitre">Fenêtres</p>
+                    <h2 class="titreImage">Des fenêtres performantes, été comme hiver</h2>
+                    <p class="descImage">Le remplacement de fenêtres anciennes permet de limiter les déperditions, les infiltrations d’air et l’effet de paroi froide. Le choix du vitrage et de la menuiserie est étudié selon les caractéristiques de votre logement.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Double ou triple vitrage selon les besoins</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>PVC, aluminium ou autres solutions selon le projet</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Fenêtres, portes-fenêtres et baies vitrées sur mesure</p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="containerImageDroite">
+
+            <div class="containerParentImageDroite">
+                <div class="textImageDroite">
+                    <p class="petitTitre">Portes d'entrée</p>
+                    <h1 class="titreImage">Isolation, sécurité et esthétique dès l’entrée</h1>
+                    <p class="descImage">Une porte d’entrée performante contribue à limiter les infiltrations d’air et les déperditions tout en renforçant la sécurité et l’esthétique de votre habitation. Le coefficient Ud mesure la quantité de chaleur qui traverse une porte : plus il est faible, meilleure est son isolation thermique.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Performances thermiques adaptées au logement</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Systèmes de fermeture multipoints</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Large choix de modèles, matériaux et coloris</p>
+                </div>
+                <div class="imageDroite">
+
+                    <Image src={pe} alt="image d'une facade avec des menuiseries neuve"/>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="containerImageGauche">
+
+            <div class="containerParentImageGauche">
+                <div class="imageGauche">
+                    <Image src={voletRoulant} alt="image d'une facade avec des menuiseries neuve"/>
+                </div>
+                <div class="textImageGauche">
+
+                    <p class="petitTitre">VOLETS & FERMETURES</p>
+                    <h2 class="titreImage">Confort, protection et maîtrise de la lumière</h2>
+                    <p class="descImage">Volets roulants ou battants : les fermetures complètent vos menuiseries pour améliorer le confort, l’occultation et la protection de votre habitation.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Volets roulants électriques ou motorisés</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Solutions adaptées en rénovation</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Large choix de finitions et de coloris</p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="sectionAutresMenuiseries">
+            <p class="petitTitre">Et aussi</p>
+            <h2 class="titreAutresMenuiseries">Nous proposons également d'autres menuiseries</h2>
+            <p class="descAutresMenuiseries">Pour l'aménagement, la sécurité et le confort de votre maison, nos équipes fournissent et posent aussi :</p>
+            <div class="listeAutresMenuiseries">
+                {
+                    autresMenuiseries.map((nom) => (
+                        <span class="badgeAutreMenuiserie">{nom}</span>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="sectionFaqMenuiseries">
+            <div class="faqMenuiseriesTexte">
+                <p class="petitTitre">Questions fréquentes</p>
+                <h2 class="titreFaqMenuiseries">Vos questions sur nos menuiseries</h2>
+            </div>
+            <div class="faqMenuiseriesListe">
+                {
+                    faqMenuiseries.map(({ question, reponse, ouvert }) => (
+                        <details class="faqMenuiseriesItem" open={ouvert}>
+                            <summary class="questionFaqMenuiseries">{question}</summary>
+                            <p class="reponseFaqMenuiseries">{reponse}</p>
+                        </details>
+                    ))
+                }
+            </div>
+        </section>
+        <Footer></Footer>
+    </main>
+
+
+</Layout>
+
+
+
+
+
+
+

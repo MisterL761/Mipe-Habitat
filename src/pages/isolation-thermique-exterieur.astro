@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import '../styles/global.css'
+import '../styles/pages/isolation-thermique-exterieur.css';
+import menuiserie from "../assets/image/menuiserie.webp";
+import isoExt from "../assets/image/iso-ext.webp";
+import {Check} from "@lucide/astro";
+import {Image} from "astro:assets";
+import analyse from "../assets/image/analyseDepFenetre.webp";
+import typeIso from "../assets/image/type-disolation.webp"
+
+const aidesIte = [
+    { titre: "MaPrimeRénov' – Rénovation d'ampleur", description: "L'ITE peut être intégrée à un parcours de rénovation d'ampleur, sous conditions." },
+    { titre: 'CEE', description: "Primes financées par les fournisseurs d'énergie pour certains travaux d'économies d'énergie." },
+    { titre: 'TVA à taux réduit', description: 'Un taux de TVA réduit peut s\'appliquer aux travaux de rénovation énergétique, selon les conditions en vigueur.' },
+    { titre: 'Éco-PTZ', description: 'Un prêt sans intérêts permettant de financer tout ou partie du reste à charge de certains travaux de rénovation énergétique.' },
+];
+
+const faqIte = [
+    { question: "Combien de temps durent des travaux d'ITE ?", reponse: 'Pour une maison individuelle, comptez généralement 2 à 4 semaines, selon la surface, la configuration du bâtiment, la finition choisie et les conditions météorologiques.', ouvert: true },
+    { question: 'Faut-il une autorisation pour isoler par l\'extérieur ?', reponse: "Oui, une ITE modifie l’aspect extérieur du bâtiment et nécessite généralement une déclaration préalable de travaux en mairie. Des règles particulières peuvent s’appliquer selon la commune et la situation du bien.", ouvert: false },
+    { question: "Quelle épaisseur d'isolant faut-il ?", reponse: "il n’existe pas d’épaisseur unique : elle varie selon le type d’isolant et sa conductivité thermique. L’objectif est avant tout d’atteindre une résistance thermique (R) suffisante, qui mesure la performance de l’isolation. Pour une ITE, on vise généralement R ≥ 3,7 m².K/W pour répondre aux critères couramment retenus en rénovation énergétique. L’épaisseur nécessaire est ensuite adaptée à l’isolant choisi et aux caractéristiques du bâtiment.", ouvert: false },
+    { question: 'Peut-on habiter la maison pendant les travaux ?', reponse: 'Oui, dans la grande majorité des cas. Les travaux étant réalisés principalement à l’extérieur du logement, vous pouvez continuer à occuper votre habitation pendant le chantier.', ouvert: false },
+    { question: "L'isolation extérieure est-elle encore éligible aux aides ?", reponse: "Oui, certains dispositifs restent mobilisables, notamment les CEE. Depuis 2026, l’ITE n’est plus financée seule par MaPrimeRénov’ dans le parcours par geste, mais elle peut être intégrée à une rénovation d’ampleur, sous réserve de respecter les conditions d’éligibilité.", ouvert: false },
+];
+
+const atout = [
+    {titre : 'Confort thermique', description : 'Une température plus homogène dans votre logement, en hiver comme en été.'},
+    {titre : 'Économies d\'énergie', description : 'Moins de déperditions thermiques pour réduire les besoins en chauffage.'},
+    {titre : 'Façade rénovée', description : 'Isolez tout en protégeant, modernisant et embellissant votre habitation.'},
+    {titre : 'Protection du bâti', description : 'Une enveloppe extérieure qui protège les murs et améliore la continuité de l’isolation.'},
+
+];
+const atout2 = [
+    {titre : 'Polystyrène expansé (PSE)', description : 'Une solution éprouvée en ITE offrant de bonnes performances thermiques et un excellent rapport performance/coût.'},
+    {titre : 'Laine de roche', description : 'Une solution performante offrant isolation thermique, confort acoustique et excellent comportement au feu.'},
+    {titre : 'Fibre de bois', description : 'Un isolant biosourcé offrant de bonnes performances thermiques et particulièrement intéressant pour le confort d’été.'},
+    {titre : 'Autres solutions isolantes', description : 'Selon les contraintes techniques du chantier, d’autres isolants peuvent être étudiés afin de répondre aux performances recherchées.'},
+];
+const deroulement = [
+    {numero: '1', titre:'Étude technique & devis', description:'Un conseiller se déplace pour analyser vos façades, prendre les mesures nécessaires et définir la solution technique adaptée. Un devis détaillé vous est ensuite présenté.'},
+    {numero: '2', titre:'Étude des aides & financement', description:'Nous vous informons sur les dispositifs de financement mobilisables selon votre projet et votre situation, notamment les CEE. Dans le cadre d’une rénovation d’ampleur, l’ITE peut également être intégrée au parcours MaPrimeRénov’, sous conditions.'},
+    {numero: '3', titre:'Réalisation de votre ITE', description:'Installation de l’échafaudage, préparation des supports, pose de l’isolant, traitement des points singuliers, armature et réalisation de la finition.'},
+    {numero: '4', titre:'Réception et suivi', description:'À la fin des travaux, nous réalisons la réception du chantier avec vous. Les travaux bénéficient des garanties légales et professionnelles applicables.'},
+
+];
+---
+
+<Layout>
+    <main>
+        <Navbar></Navbar>
+        <section class="containerImageDroite">
+
+            <br>
+            <br>
+
+            <div class="containerParentImageDroite">
+                <div class="textImageDroite">
+                    <p class="petitTitre">Isolation thermique par l'extérieur</p>
+                    <h1 class="titreImage">Isolez vos murs par l’extérieur, sans réduire votre espace de vie</h1>
+                    <p class="descImage">Isolez vos murs par l’extérieur, sans réduire votre espace de vie L’Isolation Thermique par l’Extérieur (ITE) consiste à créer une enveloppe isolante continue autour de votre habitation, puis à appliquer une finition adaptée. Elle permet d’améliorer les performances thermiques du logement tout en rénovant l’aspect de vos façades.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Réduction des déperditions thermiques par les murs</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Aucune perte de surface habitable</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Amélioration du confort été comme hiver</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Isolation et rénovation des façades en une seule intervention</p>
+                </div>
+                <div class="imageDroite">
+
+                    <Image src={isoExt} alt="image d'une facade avec des menuiseries neuve"/>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="containerImageGauche">
+
+            <div class="containerParentImageGauche">
+                <div class="imageGauche">
+                    <Image src={typeIso} alt="image d'une facade avec des menuiseries neuve"/>
+                </div>
+                <div class="textImageGauche">
+
+                    <p class="petitTitre">LE CHOIX DE L’ISOLANT</p>
+                    <h2 class="titreImage">Une solution adaptée à chaque habitation</h2>
+                    <p class="descImage">Le choix de l’isolant ne se fait pas au hasard. Il dépend du bâti existant, des performances recherchées, des contraintes techniques et de la finition souhaitée. Nos équipes étudient votre habitation pour vous proposer une solution adaptée.</p>
+
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout2.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+            <br>
+            <p class="conseille">Les matériaux et systèmes mis en œuvre sont sélectionnés selon leurs performances certifiées, leur compatibilité avec le support et les exigences techniques du chantier. Chaque projet fait l’objet d’une étude afin de définir la solution d’ITE la plus adaptée à votre habitation.</p>
+        </section>
+
+        <section>
+            <div class="deroulementProjetContainer">
+                <p class="petitTitre">Déroulement du chantier</p>
+                <h2 class="titreImage">Votre projet, étape par étape</h2>
+                <div class="deroulementProjet">
+                        {
+                            deroulement.map(({numero, titre, description}) => (
+                                <div class="deroulementProjetCard">
+                                    <p class="numero">{numero}</p>
+                                    <p class="titre">{titre}</p>
+                                    <p class="description">{description}</p>
+                                </div>
+                            ))
+                        }
+                </div>
+            </div>
+        </section>
+
+        <section class="sectionAidesIte">
+            <div class="carteAidesIte">
+                <div class="aidesIteTexte">
+                    <p class="petitTitre">Aides et financement</p>
+                    <h2 class="titreAidesIte">Réduisez le coût de vos travaux</h2>
+                    <p class="descAidesIte">Des solutions pour financer votre projet : l'isolation thermique par l'extérieur peut bénéficier de plusieurs dispositifs de financement selon votre situation et votre projet. Les CEE peuvent notamment contribuer au financement de l'ITE. Dans le cadre d'une rénovation d'ampleur, l'isolation des murs peut également être intégrée à un projet bénéficiant de MaPrimeRénov', sous conditions.</p>
+                    <a href="/aides-et-financements" class="lienAidesIte">En savoir plus sur les aides →</a>
+                </div>
+                <div class="aidesIteGrille">
+                    {
+                        aidesIte.map(({ titre, description }) => (
+                            <div class="carteMiniAide">
+                                <p class="titreMiniAide">{titre}</p>
+                                <p class="descMiniAide">{description}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <p class="mentionAidesIte">Sous réserve d'éligibilité et des conditions en vigueur au moment de la demande.</p>
+        </section>
+
+        <section class="sectionFaqIte">
+            <div class="faqIteTexte">
+                <p class="petitTitre">Questions fréquentes</p>
+                <h2 class="titreFaqIte">Vos questions sur l'isolation thermique par l'extérieur</h2>
+            </div>
+            <div class="faqIteListe">
+                {
+                    faqIte.map(({ question, reponse, ouvert }) => (
+                        <details class="faqIteItem" open={ouvert}>
+                            <summary class="questionFaqIte">{question}</summary>
+                            <p class="reponseFaqIte">{reponse}</p>
+                        </details>
+                    ))
+                }
+            </div>
+        </section>
+        <Footer></Footer>
+    </main>
+</Layout>

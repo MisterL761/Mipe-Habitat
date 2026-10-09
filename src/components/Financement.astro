@@ -15,25 +15,27 @@ const financementContenu = [
 ---
 
 <section class="reveal">
-    <p class="petitTitre petitTitreFinancement">Facilités de paiement</p>
-    <h2 class="titreFinancement">Un financement adapté à votre projet</h2>
-    <p class="textFinancement">Nous mobilisons les aides de l'État et proposons des solutions de paiement échelonné <br> pour faciliter vos travaux</p>
+    <div class="financementSection">
+        <p class="petitTitre petitTitreFinancement">Facilités de paiement</p>
+        <h2 class="titreFinancement">Un financement adapté à votre projet</h2>
+        <p class="textFinancement">Nous mobilisons les aides de l'État et proposons des solutions de paiement échelonné <br> pour faciliter vos travaux</p>
 
-    <div class="financementContainer">
-        <div class="containerFinancementCard">
+        <div class="financementContainer">
+            <div class="containerFinancementCard">
 
-            {
-                financementContenu.map(({icone: Icone, titre, description}) => (
-                    <div class="cardFinancement">
-                        <p class="iconeFinancement"><Icone size={25} color="#3E7C1F" /></p>
-                        <p class="titreFinancementCard">{titre}</p>
-                        <p class="descriptionFinancementCard">{description}</p>
-                    </div>
-                ))
-            }
+                {
+                    financementContenu.map(({icone: Icone, titre, description}) => (
+                        <div class="cardFinancement">
+                            <p class="iconeFinancement"><Icone size={25} color="#3E7C1F" /></p>
+                            <p class="titreFinancementCard">{titre}</p>
+                            <p class="descriptionFinancementCard">{description}</p>
+                        </div>
+                    ))
+                }
 
+            </div>
         </div>
-    </div>
 
-    <button class="boutonFinancement">En savoir plus sur les aides <ArrowRight size={15} color='#fff' /></button>
+        <a href="/aides-et-financements" class="boutonFinancement">En savoir plus sur les aides <ArrowRight size={15} color='#fff' /></a>
+    </div>
 </section>
