@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import '../styles/global.css'
+import '../styles/pages/isolation-des-combles.css';
+import {Check} from "@lucide/astro";
+import {Image} from "astro:assets";
+import soufflage from "../assets/image/soufflage.webp";
+import etudeComble from "../assets/image/etudeComble.webp";
+
+const atout = [
+    {titre : 'Confort thermique', description : 'Limitez les pertes de chaleur par la toiture et améliorez le confort des pièces situées sous les combles.'},
+    {titre : "Économies d'énergie", description : 'Une toiture correctement isolée permet de réduire les besoins de chauffage et de climatisation du logement.'},
+    {titre : "Confort d'été", description : 'Une isolation adaptée contribue à limiter la montée en température des pièces situées sous la toiture.'},
+    {titre : 'Pose certifiée RGE', description : "Des travaux éligibles aux aides de l'État, réalisés par nos équipes."},
+];
+const atout2 = [
+    {titre : 'Soufflage (combles perdus)', description : "Idéal pour les combles perdus, l'isolant en vrac est soufflé pour créer une couche homogène et continue, limitant les ponts thermiques et améliorant l'isolation."},
+    {titre : 'Déroulage (combles perdus)', description : "Des rouleaux d'isolant sont disposés sur le plancher des combles. Cette technique convient particulièrement aux surfaces régulières et facilement accessibles, lorsque la configuration permet une pose continue."},
+    {titre : 'Isolation des rampants', description : "L'isolant est mis en œuvre sous les pans de toiture, entre et/ou sous les chevrons, afin d'isoler des combles aménagés ou destinés à le devenir."},
+    {titre : 'Plancher de grenier', description : "Lorsque le grenier doit rester accessible ou servir au stockage, une solution spécifique permet d'associer isolation et plancher praticable, selon la configuration et les contraintes du bâtiment."},
+];
+const deroulement = [
+    {numero: '1', titre:'Visite technique et devis', description:'Un conseiller se déplace pour étudier vos combles, leur accessibilité, l\'état de l\'isolation existante et les contraintes techniques. Nous définissons ensuite la solution adaptée.'},
+    {numero: '2', titre:'Préparation du chantier', description:"Nous vérifions les points techniques : ventilation, réseaux électriques, conduits, trappe d'accès et éventuel isolant existant. Le chantier est ensuite préparé selon la technique retenue."},
+    {numero: '3', titre:'Réalisation des travaux', description:'Protection des équipements et points singuliers, mise en œuvre de l\'isolant par soufflage, déroulage ou isolation des rampants, selon la configuration.'},
+    {numero: '4', titre:'Contrôle & réception', description:'Nous contrôlons la bonne mise en œuvre de l\'isolation et réalisons avec vous la réception du chantier. Les garanties applicables dépendent de la nature des travaux réalisés.'},
+];
+const aidesCombles = [
+    { titre: "MaPrimeRénov' – Rénovation d'ampleur", description: "L'isolation de la toiture peut être intégrée à un projet global bénéficiant de MaPrimeRénov' Rénovation d'ampleur, sous conditions.", note: null },
+    { titre: 'CEE', description: "Les Certificats d'Économies d'Énergie, financés par les fournisseurs d'énergie, peuvent contribuer au financement de certains travaux d'isolation.", note: null },
+    { titre: 'TVA à taux réduit', description: "Un taux réduit peut s'appliquer aux travaux de rénovation énergétique selon les conditions en vigueur.", note: null },
+    { titre: 'Éco-PTZ', description: "Un prêt sans intérêts peut permettre de financer certains travaux de rénovation énergétique.", note: "Dispositifs soumis aux conditions d'éligibilité et à la réglementation en vigueur au moment de la demande." },
+];
+const faqCombles = [
+    { question: "Combien de temps dure l'isolation des combles perdus ?", reponse: "Pour une maison individuelle, le soufflage d'isolant en combles perdus se réalise généralement en une journée.", ouvert: true },
+    { question: "Quelle épaisseur d'isolant pour les combles ?", reponse: "L'épaisseur dépend de la technique et du matériau choisi. Pour atteindre les performances recherchées par les dispositifs d'aides, une résistance thermique R ≥ 7 m².K/W est généralement visée pour les combles perdus, soit une épaisseur d'isolant importante selon le matériau utilisé.", ouvert: false },
+    { question: 'Faut-il vider les combles avant les travaux ?', reponse: "Si vos combles perdus servent de stockage, il est nécessaire de les dégager avant le soufflage ou le déroulage de l'isolant. Pour une isolation des rampants ou un plancher de grenier, l'espace de travail nécessaire est généralement plus limité.", ouvert: false },
+    { question: "L'isolation des combles est-elle efficace en été ?", reponse: "Oui. Une toiture mal isolée est l'une des principales causes de surchauffe estivale sous les combles. Une isolation adaptée limite la montée en température en été, en plus de réduire les déperditions en hiver.", ouvert: false },
+];
+---
+
+<Layout>
+    <main>
+        <Navbar></Navbar>
+        <section class="containerImageDroite">
+
+            <br>
+            <br>
+
+            <div class="containerParentImageDroite">
+                <div class="textImageDroite">
+                    <p class="petitTitre">Isolation des combles</p>
+                    <h1 class="titreImage">Isolez votre toiture, un poste essentiel de votre rénovation</h1>
+                    <p class="descImage">Dans une maison mal isolée, la toiture peut représenter jusqu'à 25 à 30 % des déperditions de chaleur. Combles perdus, rampants ou grenier : la technique d'isolation est adaptée à la configuration de votre toiture et à l'usage de l'espace.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Jusqu'à 25 à 30 % des déperditions peuvent provenir de la toiture</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Différentes techniques selon la configuration des combles</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Amélioration du confort en hiver comme en été</p>
+                </div>
+                <div class="imageDroite">
+                    <Image src={soufflage} alt="ouvrier MIPE Habitat soufflant de l'isolant dans des combles perdus"/>
+                </div>
+            </div>
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="containerImageGauche">
+
+            <div class="containerParentImageGauche">
+                <div class="imageGauche">
+                    <Image src={etudeComble} alt="ouvrier MIPE Habitat prenant des mesures dans des combles avant travaux"/>
+                </div>
+                <div class="textImageGauche">
+
+                    <p class="petitTitre">Combles perdus ou aménagés</p>
+                    <h2 class="titreImage">Une solution adaptée à chaque configuration</h2>
+                    <p class="descImage">La technique d'isolation dépend de l'accessibilité des combles, de leur usage, de la structure de la toiture et de la performance thermique recherchée. Nos équipes déterminent la solution adaptée après étude du logement.</p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout2.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+            <br>
+            <p class="conseille">Avant toute isolation, nos équipes vérifient l'état des combles, la ventilation, les éventuelles traces d'humidité et les équipements présents. Les conduits, installations électriques et points singuliers sont pris en compte avant la mise en œuvre de l'isolant.</p>
+        </section>
+
+        <section>
+            <div class="deroulementProjetContainer">
+                <p class="petitTitre">Déroulement du chantier</p>
+                <h2 class="titreImage">Votre projet, étape par étape</h2>
+                <div class="deroulementProjet">
+                        {
+                            deroulement.map(({numero, titre, description}) => (
+                                <div class="deroulementProjetCard">
+                                    <p class="numero">{numero}</p>
+                                    <p class="titre">{titre}</p>
+                                    <p class="description">{description}</p>
+                                </div>
+                            ))
+                        }
+                </div>
+            </div>
+        </section>
+
+        <section class="sectionAidesCombles">
+            <div class="carteAidesCombles">
+                <div class="aidesComblesTexte">
+                    <p class="petitTitre">Aides et financement</p>
+                    <h2 class="titreAidesCombles">Des solutions pour financer votre isolation</h2>
+                    <p class="descAidesCombles">L'isolation des combles et de la toiture peut bénéficier de différents dispositifs selon la nature des travaux, votre logement et votre situation. MIPE Habitat vous informe sur les solutions mobilisables pour votre projet.</p>
+                    <a href="/aides-et-financements" class="lienAidesCombles">En savoir plus sur les aides →</a>
+                </div>
+                <div class="aidesComblesGrille">
+                    {
+                        aidesCombles.map(({ titre, description, note }) => (
+                            <div class="carteMiniAideCombles">
+                                <p class="titreMiniAideCombles">{titre}</p>
+                                <p class="descMiniAideCombles">{description}</p>
+                                {note && <p class="noteMiniAideCombles">{note}</p>}
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <p class="mentionAidesCombles">Sous réserve d'éligibilité et des conditions en vigueur au moment de la demande.</p>
+        </section>
+
+        <section class="sectionFaqCombles">
+            <div class="faqComblesTexte">
+                <p class="petitTitre">Questions fréquentes</p>
+                <h2 class="titreFaqCombles">Vos questions sur l'isolation des combles</h2>
+            </div>
+            <div class="faqComblesListe">
+                {
+                    faqCombles.map(({ question, reponse, ouvert }) => (
+                        <details class="faqComblesItem" open={ouvert}>
+                            <summary class="questionFaqCombles">{question}</summary>
+                            <p class="reponseFaqCombles">{reponse}</p>
+                        </details>
+                    ))
+                }
+            </div>
+        </section>
+
+        <Footer></Footer>
+    </main>
+</Layout>

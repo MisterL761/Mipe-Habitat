@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import { Check } from '@lucide/astro';
+import '../styles/global.css';
+import '../styles/pages/aides-et-financements.css';
+---
+
+<Layout>
+
+	<Navbar></Navbar>
+
+	<div class="containerAides">
+		<p class="petitTitre">Aides et financements</p>
+		<h1 class="titreAides">Des aides pour financer votre rénovation</h1>
+		<p class="texteAides">En 2026, plusieurs dispositifs peuvent contribuer au financement de vos travaux : MaPrimeRénov’, Certificats d’Économies d’Énergie (CEE), éco-PTZ, TVA réduite et certaines aides locales, selon votre situation et la nature de votre projet.<br>MIPE Habitat vous accompagne pour identifier les solutions adaptées à votre projet.</p>
+		<p class="noteDiscrete">Informations données à titre indicatif, sous réserve des évolutions décidées par l’État.</p>
+		<p class="texteAides">On vous accompagne à chaque étape : deux façons de financer vos travaux s’offrent à vous, selon l’ampleur de votre projet.</p>
+
+		<div class="carteAide">
+			<p class="petitTitre">Rénovation complète</p>
+			<h2 class="titreCarteAide">MaPrimeRénov’ — Rénovation d’ampleur</h2>
+			<p>Vous envisagez plusieurs travaux pour améliorer significativement la performance énergétique de votre logement ? MaPrimeRénov’ peut financer une partie de votre projet de rénovation d’ampleur.<br>Pour être éligible en 2026, le projet doit notamment concerner un logement classé E, F ou G, permettre un gain d’au moins 2 classes énergétiques et respecter les conditions du parcours accompagné.</p>
+
+			<ul class="listeAide">
+				<li><Check size={16} color="#3E7C1F" /><span>Au moins 2 gestes d’isolation thermique</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Gain minimum de 2 classes énergétiques</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Logement classé E, F ou G avant travaux</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Accompagnement par Mon Accompagnateur Rénov’</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Rendez-vous préalable obligatoire avec France Rénov’</span></li>
+			</ul>
+
+			<p class="texteFort">Jusqu’à 80 % de 40 000 € de travaux éligibles, selon les revenus du ménage et les caractéristiques du projet.</p>
+			<p class="noteDiscrete">Un bonus de 10% s’ajoute si votre logement sort de la catégorie passoire thermique (F ou G). Exemple : un foyer modeste qui fait gagner 3 classes à un logement F peut recevoir jusqu’à 33 000 € d’aide directe.</p>
+		</div>
+
+		<div class="carteAide carteAideVerte">
+			<p class="petitTitre">Un seul geste de travaux</p>
+			<h2 class="titreCarteAide">MaPrimeRénov’ — Rénovation par geste</h2>
+			<p>MaPrimeRénov’ permet encore de financer certains travaux ciblés, principalement liés au chauffage et à la production d’eau chaude performants, sous conditions de ressources.</p>
+
+			<ul class="listeAide">
+				<li><Check size={16} color="#3E7C1F" /><span>Pompe à chaleur air/eau ou géothermique</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Chauffe-eau thermodynamique</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Certains équipements de chauffage renouvelable</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Aide calculée selon les revenus et les travaux réalisés</span></li>
+			</ul>
+
+			<p class="texteFort">Plafond de 20 000 € de travaux par logement sur 5 ans. Cumulable avec les CEE, les aides locales, la TVA à 5,5% et l’éco-PTZ.</p>
+			<p class="noteDiscrete">À savoir : depuis 2026, l’isolation des murs par l’intérieur (ITI) ou par l’extérieur (ITE) n’est plus financée par MaPrimeRénov’ dans le parcours par geste. Pour ces travaux, les CEE peuvent rester mobilisables et l’isolation des murs peut également s’intégrer à une rénovation d’ampleur, sous réserve des conditions d’éligibilité.</p>
+		</div>
+
+		<div class="carteAideSombre">
+			<h2 class="titreCarteSombre">Un accompagnement pour simplifier votre projet</h2>
+			<p>Pour une rénovation d’ampleur, Mon Accompagnateur Rénov’ est obligatoire. Ce professionnel agréé vous accompagne dans les différentes étapes de votre projet : audit énergétique, définition des travaux, plan de financement et démarches administratives.</p>
+			<p>De son côté, MIPE Habitat vous accompagne dans la réalisation de vos travaux, en coordination avec les différents acteurs de votre parcours de rénovation.<br>Un parcours encadré, avec un interlocuteur à chaque étape de votre projet.</p>
+		</div>
+
+		<div class="carteAide">
+			<h2 class="titreCarteAide">Ce qu’il faut savoir avant de démarrer</h2>
+			<ul class="listeAide">
+				<li><Check size={16} color="#3E7C1F" /><span>Votre logement doit avoir au moins 15 ans et être votre résidence principale.</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Le logement doit être classé E, F ou G avant travaux.</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Votre projet doit permettre de gagner au moins 2 classes énergétiques.</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Le programme doit comprendre au moins 2 gestes d’isolation : murs, toiture, sols ou fenêtres/menuiseries.</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Un rendez-vous avec France Rénov’ est obligatoire avant le dépôt de la demande.</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Vous devez être accompagné par Mon Accompagnateur Rénov’, qui réalise ou prend en compte l’audit énergétique et vous accompagne dans le montage du projet.</span></li>
+				<li><Check size={16} color="#3E7C1F" /><span>Les travaux concernés doivent être réalisés par des entreprises RGE disposant des qualifications nécessaires, comme MIPE Habitat pour les travaux relevant de ses qualifications.</span></li>
+			</ul>
+		</div>
+	</div>
+
+	<Footer></Footer>
+
+</Layout>

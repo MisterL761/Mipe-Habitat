@@ -1,0 +1,194 @@
+.conseille{
+    background-color: #EEF6E7;
+    padding: 2rem;
+    margin: auto;
+    width: 92%;
+    border-radius: 15px;
+}
+.deroulementProjetContainer{
+    padding: 4rem;
+}
+.deroulementProjetCard{
+    border-top: 2px solid #6FBE2C;
+    width: 25%;
+}
+.deroulementProjet{
+    display: flex;
+    gap: 1rem;
+}
+.numero{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6FBE2C;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+}
+.titre{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.description{
+    color: #4A5B6B;
+}
+
+
+/* ===================== Section "Aides et financement" ===================== */
+.sectionAidesCombles{
+    margin: 4rem 4rem 0 4rem;
+}
+.carteAidesCombles{
+    background-color: #16273B;
+    border-radius: 28px;
+    padding: 2.5rem;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+.aidesComblesTexte{
+    width: 42%;
+    flex-shrink: 0;
+}
+.titreAidesCombles{
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+.descAidesCombles{
+    color: #C9D3DC;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.lienAidesCombles{
+    color: #8FE05C;
+    font-weight: bold;
+}
+.aidesComblesGrille{
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.carteMiniAideCombles{
+    background-color: #1F324A;
+    border-radius: 16px;
+    padding: 1.25rem;
+}
+.titreMiniAideCombles{
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.descMiniAideCombles{
+    color: #C9D3DC;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.noteMiniAideCombles{
+    color: #8A95A1;
+    font-size: 0.8rem;
+    font-style: italic;
+    line-height: 1.4;
+    margin-top: 0.75rem;
+}
+.mentionAidesCombles{
+    color: #8A95A1;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+/* ===================== Section FAQ ===================== */
+.sectionFaqCombles{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 4rem;
+    align-items: flex-start;
+}
+.faqComblesTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqCombles{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqComblesListe{
+    flex: 1;
+}
+.faqComblesItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqComblesItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqCombles{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqCombles::-webkit-details-marker{
+    display: none;
+}
+.questionFaqCombles::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqComblesItem[open] .questionFaqCombles::after{
+    content: '−';
+}
+.reponseFaqCombles{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .deroulementProjetContainer{
+        padding: 2.5rem 1.5rem;
+    }
+    .deroulementProjet{
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .deroulementProjetCard{
+        width: calc(50% - 1rem);
+    }
+
+    .sectionAidesCombles{
+        margin: 2.5rem 1.5rem 0 1.5rem;
+    }
+    .carteAidesCombles{
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.5rem;
+    }
+    .aidesComblesTexte{
+        width: 100%;
+    }
+    .aidesComblesGrille{
+        grid-template-columns: 1fr;
+    }
+
+    .sectionFaqCombles{
+        flex-direction: column;
+        margin: 2.5rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .faqComblesTexte{
+        width: 100%;
+    }
+}
+@media (max-width: 560px){
+    .deroulementProjetCard{
+        width: 100%;
+    }
+}

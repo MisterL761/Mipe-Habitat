@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import '../styles/global.css'
+import '../styles/pages/ravalement-de-facade.css';
+import {Check} from "@lucide/astro";
+import {Image} from "astro:assets";
+import maisonRavalement from "../assets/image/maisonRavalement.webp";
+import employerRavalement from "../assets/image/employerRavalement.webp";
+
+const atout = [
+    {titre : 'Protection durable', description : 'Une façade rénovée protège durablement les murs contre les intempéries et les agressions extérieures.'},
+    {titre : 'Traitement des désordres', description : 'Fissures, décollements, salissures ou supports dégradés : les désordres sont identifiés et traités avant finition.'},
+    {titre : 'Esthétique', description : 'Teintes, textures et finitions permettent de redonner du caractère à votre habitation tout en respectant son architecture.'},
+    {titre : 'Valorisation du bien', description : 'Une façade entretenue et rénovée améliore l\'aspect général de votre maison et contribue à sa valorisation.'},
+];
+const etapesTraitement = [
+    {titre : '1. Diagnostic', description : "Nous examinons la nature du support, son état, les fissures, l'humidité, les décollements et les éventuelles pathologies afin de définir les travaux nécessaires."},
+    {titre : '2. Nettoyage & préparation', description : "Nettoyage et préparation du support avec une méthode adaptée à la façade afin d'éliminer salissures, mousses et parties non adhérentes."},
+    {titre : '3. Réparation & traitement', description : "Traitement des fissures et désordres identifiés, reprises localisées et préparation du support avant l'application de la finition."},
+    {titre : '4. Protection & finition', description : "Application du revêtement, de l'enduit ou de la peinture adaptée au support, dans la finition et la teinte retenues pour votre projet"},
+];
+const deroulement = [
+    {numero: '1', titre:'Visite technique & diagnostic', description:'Un conseiller se déplace pour examiner votre façade, identifier les désordres et définir les travaux adaptés. Un devis détaillé vous est ensuite proposé.'},
+    {numero: '2', titre:'Préparation du chantier', description:"Installation et protection du chantier, préparation des supports et traitement préalable des zones nécessitant une intervention."},
+    {numero: '3', titre:'Réparation & ravalement', description:'Nettoyage, traitement des fissures et désordres, reprises nécessaires puis application du système de finition adapté.'},
+    {numero: '4', titre:'Réception et suivi', description:'Nous vérifions avec vous le résultat du chantier et réalisons sa réception. Les travaux bénéficient des garanties applicables selon la nature des prestations réalisées.'},
+];
+const finitions = [
+    { titre: 'Enduit de façade', description: 'Une finition adaptée au support pour protéger et renouveler durablement l\'aspect de votre façade.' },
+    { titre: 'Peinture de façade', description: 'Une solution de rénovation permettant de protéger le support et de redonner une nouvelle apparence à votre habitation.' },
+    { titre: 'Finitions & textures', description: 'Différents aspects et finitions peuvent être proposés selon le système retenu et le style recherché.' },
+    { titre: 'Teintes & personnalisation', description: "Un large choix de teintes pour valoriser votre maison, dans le respect des règles d'urbanisme applicables." },
+];
+const faqRavalement = [
+    { question: 'À quelle fréquence faut-il ravaler sa façade ?', reponse: "Il n'existe pas de fréquence unique applicable partout. L'état du support, son exposition et le revêtement existant déterminent le moment opportun.", ouvert: true },
+    { question: 'Faut-il une autorisation pour un ravalement ?', reponse: "Dans la majorité des cas, une déclaration préalable de travaux est nécessaire en mairie, notamment si l'aspect extérieur (couleur, matériau) est modifié. Certaines communes imposent également un ravalement périodique. MIPE Habitat peut vous accompagner dans ces démarches.", ouvert: false },
+    { question: 'Combien de temps dure un ravalement ?', reponse: "Pour une maison individuelle, un ravalement dure généralement 1 à 3 semaines selon la surface des façades, l'état du support et les traitements nécessaires.", ouvert: false },
+    { question: 'Peut-on isoler en même temps que le ravalement ?', reponse: "Oui, c'est même souvent le moment opportun : réaliser une isolation thermique par l'extérieur (ITE) en même temps qu'un ravalement permet de mutualiser l'échafaudage et d'améliorer la performance thermique de vos murs en plus de leur protection et de leur esthétique.", ouvert: false },
+];
+---
+
+<Layout>
+    <main>
+        <Navbar></Navbar>
+        <section class="containerImageDroite">
+
+            <br>
+            <br>
+
+            <div class="containerParentImageDroite">
+                <div class="textImageDroite">
+                    <p class="petitTitre">Ravalement de façade</p>
+                    <h1 class="titreImage">Protégez et redonnez du caractère à votre façade</h1>
+                    <p class="descImage">Avec le temps, les façades sont exposées aux intempéries, aux salissures, aux micro-organismes et aux mouvements du bâtiment. MIPE Habitat diagnostique l'état de vos murs et met en œuvre la solution adaptée pour rénover, protéger et embellir durablement votre façade.</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Traitement adapté à l'état et à la nature du support</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Protection durable contre les agressions extérieures</p>
+                    <p class="check"><Check size={15} color="#8FE05C"/>Large choix de finitions, aspects et teintes</p>
+                </div>
+                <div class="imageDroite">
+                    <Image src={maisonRavalement} alt="maison avec échafaudage pendant un ravalement de façade"/>
+                </div>
+            </div>
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    atout.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="containerImageGauche">
+
+            <div class="containerParentImageGauche">
+                <div class="imageGauche">
+                    <Image src={employerRavalement} alt="ouvrier MIPE Habitat appliquant un enduit sur une façade"/>
+                </div>
+                <div class="textImageGauche">
+
+                    <p class="petitTitre">Votre projet</p>
+                    <h2 class="titreImage">Un ravalement adapté à l'état de votre façade</h2>
+                    <p class="descImage">Un ravalement durable commence par une bonne analyse du support. De la préparation à la finition, chaque étape est adaptée à l'état des murs et au résultat recherché.</p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="containerAtout">
+            <div class="containerCardAtout">
+                {
+                    etapesTraitement.map(({ titre, description }) => (
+                            <div class="cardAtout">
+                                <p class="titreAtout">{titre}</p>
+                                <p class="descriptionAtout">{description}</p>
+                            </div>
+                    ))
+                }
+            </div>
+            <br>
+            <p class="conseille">Ravalement ou isolation extérieure ? Si votre façade doit être rénovée, c'est aussi le bon moment pour étudier l'opportunité d'une <a href="/isolation-thermique-exterieur">isolation thermique par l'extérieur (ITE)</a>. Les deux projets répondent à des objectifs différents : le ravalement rénove et protège la façade ; l'ITE améliore en plus la performance thermique des murs.</p>
+        </section>
+
+        <section>
+            <div class="deroulementProjetContainer">
+                <p class="petitTitre">Déroulement du chantier</p>
+                <h2 class="titreImage">Votre projet, étape par étape</h2>
+                <div class="deroulementProjet">
+                        {
+                            deroulement.map(({numero, titre, description}) => (
+                                <div class="deroulementProjetCard">
+                                    <p class="numero">{numero}</p>
+                                    <p class="titre">{titre}</p>
+                                    <p class="description">{description}</p>
+                                </div>
+                            ))
+                        }
+                </div>
+            </div>
+        </section>
+
+        <section class="sectionFinitions">
+            <div class="carteFinitions">
+                <div class="finitionsTexte">
+                    <p class="petitTitre">Finitions & personnalisation</p>
+                    <h2 class="titreFinitions">Des finitions pensées pour votre façade</h2>
+                    <p class="descFinitions">Une façade qui retrouve tout son caractère. Le choix de la finition dépend de la nature du support, de son état, du rendu recherché et des contraintes locales d'urbanisme. Nos équipes vous accompagnent dans le choix d'une solution adaptée à votre façade.</p>
+                </div>
+                <div class="finitionsGrille">
+                    {
+                        finitions.map(({ titre, description }) => (
+                            <div class="carteMiniFinition">
+                                <p class="titreMiniFinition">{titre}</p>
+                                <p class="descMiniFinition">{description}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <p class="mentionFinitions">Sous réserve d'éligibilité et des conditions en vigueur au moment de la demande.</p>
+        </section>
+
+        <section class="sectionFaqRavalement">
+            <div class="faqRavalementTexte">
+                <p class="petitTitre">Questions fréquentes</p>
+                <h2 class="titreFaqRavalement">Vos questions sur le ravalement de façade</h2>
+            </div>
+            <div class="faqRavalementListe">
+                {
+                    faqRavalement.map(({ question, reponse, ouvert }) => (
+                        <details class="faqRavalementItem" open={ouvert}>
+                            <summary class="questionFaqRavalement">{question}</summary>
+                            <p class="reponseFaqRavalement">{reponse}</p>
+                        </details>
+                    ))
+                }
+            </div>
+        </section>
+
+        <Footer></Footer>
+    </main>
+</Layout>
