@@ -1,0 +1,225 @@
+/* ===================== Hero ===================== */
+.heroPro{
+    background-color: #F7F8F6;
+    padding: 5rem 4rem;
+}
+.heroProContenu{
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+}
+.titrePro{
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+}
+.descPro{
+    color: #4A5B6B;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+.ctaPro{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.boutonPro{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease;
+}
+.boutonProPlein{
+    background-color: #6FBE2C;
+    color: #ffffff;
+}
+.boutonProPlein:hover{
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+}
+.boutonProContour{
+    background-color: transparent;
+    color: #16273B;
+    border: 2px solid #16273B;
+}
+.boutonProContour:hover{
+    background-color: #16273B;
+    color: #ffffff;
+}
+
+/* ===================== "Vous êtes" (4 cartes) ===================== */
+.sectionPublicsPro{
+    padding: 4rem;
+    text-align: center;
+}
+.titreSectionPro{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+.grillePublicsPro{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+}
+.cartePublicPro{
+    border: 1px solid #E4E7E2;
+    border-radius: 15px;
+    padding: 1.75rem;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.cartePublicPro:hover{
+    border-color: #6FBE2C;
+    transform: translateY(-3px);
+}
+.iconePublicPro{
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: #EEF6E7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.titreCartePro{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.descCartePro{
+    color: #4A5B6B;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ===================== "Pourquoi MIPE Habitat" ===================== */
+.sectionAtoutsPro{
+    background-color: #F7F8F6;
+    padding: 4rem;
+}
+.texteAtoutsPro{
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+.sectionAtoutsPro .checkContainer{
+    text-align: left;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+.sectionAtoutsPro .check{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* ===================== "Comment ça marche" (3 etapes) ===================== */
+.sectionEtapesPro{
+    padding: 4rem;
+    text-align: center;
+}
+.grilleEtapesPro{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+}
+.carteEtapePro{
+    border: 1px solid #E4E7E2;
+    border-radius: 15px;
+    padding: 1.75rem;
+}
+.numeroEtapePro{
+    color: #6FBE2C;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.titreEtapePro{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.descEtapePro{
+    color: #4A5B6B;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ===================== CTA finale ===================== */
+.ctaFinalePro{
+    background-color: #16273B;
+    color: #ffffff;
+    text-align: center;
+    padding: 4rem;
+}
+.ctaFinalePro h2{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+.ctaFinalePro p{
+    color: #C7D0D9;
+    margin-bottom: 2rem;
+}
+.ctaFinaleProBoutons{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.boutonProContourBlanc{
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+.boutonProContourBlanc:hover{
+    background-color: #ffffff;
+    color: #16273B;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .heroPro,
+    .sectionPublicsPro,
+    .sectionAtoutsPro,
+    .sectionEtapesPro,
+    .ctaFinalePro{
+        padding: 3rem 1.5rem;
+    }
+    .titrePro{
+        font-size: 1.8rem;
+    }
+    .grillePublicsPro{
+        grid-template-columns: 1fr 1fr;
+    }
+    .grilleEtapesPro{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px){
+    .grillePublicsPro{
+        grid-template-columns: 1fr;
+    }
+    .ctaPro,
+    .ctaFinaleProBoutons{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .boutonPro{
+        justify-content: center;
+    }
+}

@@ -1,0 +1,237 @@
+/* ===================== Onglet vertical "Offres en cours" =====================
+   Colle au bord droit de l'ecran, texte vertical, entre en glissant au
+   chargement puis "respire" (petit nudge) toutes les 3.8s pour attirer
+   l'oeil sans etre agressif. Meme mecanique que sur proferm.net. */
+.offreTab{
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 950;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px;
+
+    background-color: #6FBE2C;
+    color: #ffffff;
+    border: none;
+    border-radius: 14px 0 0 14px;
+    cursor: pointer;
+    box-shadow: -8px 10px 30px rgba(0, 0, 0, 0.25);
+
+    transition: padding-right 0.2s ease;
+    animation:
+        offreTabIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both,
+        offreTabBreathe 3.8s ease-in-out 0.6s infinite;
+}
+.offreTab:hover{
+    padding-right: 14px;
+}
+
+.offreTabLabel{
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.offreTabJours{
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.18);
+    border-radius: 999px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 800;
+}
+.offreTabJours:empty{
+    display: none;
+}
+
+@keyframes offreTabIn{
+    from{ opacity: 0; transform: translate(100%, -50%); }
+    to{ opacity: 1; transform: translateY(-50%); }
+}
+@keyframes offreTabBreathe{
+    0%, 100%{ translate: 0; }
+    50%{ translate: -3px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .offreTab{
+        animation: none;
+    }
+}
+
+/* ===================== Popup de l'offre ===================== */
+.offreModal{
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+.offreModal[hidden]{
+    display: none;
+}
+
+.offreScrim{
+    position: absolute;
+    inset: 0;
+    background-color: rgba(22, 39, 59, 0.6);
+}
+
+.offrePanneau{
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 20px;
+    max-width: 440px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.offreClose{
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border: none;
+    cursor: pointer;
+    color: #16273B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offrePhotoWrap{
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+.offrePhotoWrap img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.offreContenu{
+    padding: 1.75rem 2rem 2rem 2rem;
+}
+
+.offreKicker{
+    color: #3E7C1F;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+.offreTitreModal{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.offreIntro{
+    color: #16273B;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+.offrePoints{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+.offrePoints li{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #16273B;
+}
+
+.offreCompteur{
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+.cdBloc{
+    flex: 1;
+    text-align: center;
+    background-color: #F7F8F6;
+    border-radius: 12px;
+    padding: 0.6rem 0.25rem;
+}
+.cdBloc span{
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #16273B;
+}
+.cdBloc small{
+    color: #4A5B6B;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.offreDisclaimer{
+    color: #4A5B6B;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.offreValidite{
+    color: #4A5B6B;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.offreCta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #6FBE2C;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+.offreCta:hover{
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px){
+    .offreTab{
+        padding: 12px 6px;
+    }
+    .offreTabLabel{
+        font-size: 10px;
+    }
+    .offreContenu{
+        padding: 1.5rem;
+    }
+    .offreTitreModal{
+        font-size: 1.3rem;
+    }
+}
