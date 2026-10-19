@@ -44,6 +44,7 @@
 .btnSimulation{
     background-color: #6FBE2C;
     color: white;
+    text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 999px;
     border: none;
@@ -52,6 +53,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    width: fit-content;
 }
 
 /* Echelle DPE : chaque bande est une fleche (clip-path) qui "pousse" depuis

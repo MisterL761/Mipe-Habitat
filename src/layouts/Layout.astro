@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import BulleSimulation from '../components/BulleSimulation.astro';
+import OffreEnCours from '../components/OffreEnCours.astro';
 ---
 
 <!doctype html>
@@ -14,6 +16,8 @@ import '../styles/global.css';
 	</head>
 	<body>
 		<slot />
+		<BulleSimulation></BulleSimulation>
+		<OffreEnCours></OffreEnCours>
 		<script src="../js/scrollReveal.js"></script>
 	</body>
 </html>

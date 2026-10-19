@@ -2,6 +2,10 @@
     background-color: #FFFFFF;
     padding: 2rem;
     border-radius: 20px;
+    /* Sans ombre, la carte blanche se fond dans le fond blanc de la page
+       sur mobile (ou elle n'est plus posee sur la photo sombre comme sur
+       desktop) et semble aller jusqu'au bord. */
+    box-shadow: 0 16px 40px rgba(22, 39, 59, 0.12);
 }
 .titreForm{
     font-size: 22px;

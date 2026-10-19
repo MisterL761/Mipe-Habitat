@@ -1,13 +1,25 @@
-const lien = document.querySelector('.lienAvecMenu');
-const menu = lien.closest('.aSousMenu');
+// Ouvre/ferme chaque sous-menu de la navbar (ex: "Nos métiers", "Ressources").
+// Plusieurs sous-menus peuvent coexister : chacun s'ouvre/se ferme
+// independamment, et en ouvrir un ferme les autres.
+const sousMenus = document.querySelectorAll('.aSousMenu');
 
-lien.addEventListener('click', (e) => {
-    e.preventDefault();
-    menu.classList.toggle('ouvert');
+sousMenus.forEach((menu) => {
+	const lien = menu.querySelector('.lienAvecMenu');
+	if (!lien) return;
+
+	lien.addEventListener('click', (e) => {
+		e.preventDefault();
+		sousMenus.forEach((autre) => {
+			if (autre !== menu) autre.classList.remove('ouvert');
+		});
+		menu.classList.toggle('ouvert');
+	});
 });
 
 document.addEventListener('click', (e) => {
-    if (!menu.contains(e.target)) {
-        menu.classList.remove('ouvert');
-    }
+	sousMenus.forEach((menu) => {
+		if (!menu.contains(e.target)) {
+			menu.classList.remove('ouvert');
+		}
+	});
 });

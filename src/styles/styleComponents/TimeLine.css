@@ -169,7 +169,19 @@
     }
 }
 
-/* ===================== Responsive (mobile) ===================== */
+/* ===================== Responsive (mobile/tablette) =====================
+   Sous 900px, la photo de fond (pensee pour un format large) devient trop
+   petite par rapport a la hauteur des etapes (le texte prend plus de place
+   sur un ecran etroit) : elle ne couvre plus qu'un minuscule bout de la
+   frise au lieu de l'accompagner tout du long. Comme elle ne peut pas etre
+   agrandie sans la recadrer, on la retire simplement sur ces ecrans - la
+   frise reste parfaitement lisible sans (cartes + texte uniquement). */
+@media (max-width: 900px){
+    .friseFond{
+        display: none;
+    }
+}
+
 @media (max-width: 480px){
     .titreTimeLine{
         font-size: 1.6rem;

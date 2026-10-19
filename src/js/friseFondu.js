@@ -9,8 +9,11 @@ const fond = document.getElementById('friseFond');
 const image2 = document.getElementById('friseImage2');
 const image3 = document.getElementById('friseImage3');
 const reduitMouvement = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Le fond est cache en CSS sous 900px (TimeLine.css) : inutile de calculer
+// sa position/opacite a chaque scroll sur ces ecrans.
+const ecranTropEtroit = window.matchMedia('(max-width: 900px)').matches;
 
-if (frise && fond && image2 && image3) {
+if (frise && fond && image2 && image3 && !ecranTropEtroit) {
 	if (reduitMouvement) {
 		// Pas d'animation liee au scroll : position normale (en haut de la
 		// frise), et on montre directement la photo finale (renovee).

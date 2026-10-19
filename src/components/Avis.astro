@@ -12,35 +12,80 @@ const avis = [
 	{ note: 4, texte: "Bon relationnel du début à la fin, et un vrai suivi sur le dossier MaPrimeRénov'.", zone: 'Seine-et-Marne', cp: '77' },
 ];
 
-// On double la liste pour boucler le défilement sans coupure visible.
-const avisDefilement = [...avis, ...avis];
+// Les avis sont repartis en 2 colonnes (une qui monte, une qui descend),
+// chacune doublee pour boucler le defilement vertical sans coupure visible.
+const avisColonneA = [avis[0], avis[2], avis[4]];
+const avisColonneB = [avis[1], avis[3], avis[5]];
+const colonneADefilement = [...avisColonneA, ...avisColonneA];
+const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 ---
 
 <section>
 	<div class="avisContainer">
-		<p class="petitTitre petitTitreAvis">Avis clients</p>
-		<h2 class="titreAvis">ils nous ont fait confiance</h2>
+		<div class="avisGrille">
 
-		<div class="avisDefilement">
-			<div class="avisPiste">
-				{
-					avisDefilement.map(({ note, texte, zone, cp }) => (
-						<div class="carteAvis">
-							<div class="etoiles">
-								{Array.from({ length: 5 }).map((_, i) => (
-									<Star
-										size={16}
-										color={i < note ? '#F5A623' : '#E4E7E2'}
-										fill={i < note ? '#F5A623' : 'none'}
-									/>
-								))}
-							</div>
-							<p class="texteAvis">{texte}</p>
-							<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
-						</div>
-					))
-				}
+			<div class="enteteAvis reveal">
+				<h2 class="titreAvis">Ce qu’en disent nos clients</h2>
+				<p class="descAvis">La confiance se construit chantier après chantier. Voici quelques retours, parmi des centaines.</p>
+
+				<div class="recapNoteAvis">
+					<span class="grandeNoteAvis" data-cible="4,8">0,0</span>
+					<div class="etoilesRecap" aria-hidden="true">
+						<div class="etoilesFond">★★★★★</div>
+						<div class="etoilesRemplies" data-largeur-cible="96" style="width: 0%">★★★★★</div>
+					</div>
+				</div>
+				<p class="nombreAvisGoogle">+ de 250 avis Google</p>
 			</div>
+
+			<div class="avisColonnes">
+				<div class="colonneAvis colonneMonte">
+					<div class="colonneAvisPiste">
+						{
+							colonneADefilement.map(({ note, texte, zone, cp }) => (
+								<div class="carteAvis">
+									<div class="etoiles">
+										{Array.from({ length: 5 }).map((_, i) => (
+											<Star
+												size={16}
+												color={i < note ? '#F5A623' : '#E4E7E2'}
+												fill={i < note ? '#F5A623' : 'none'}
+											/>
+										))}
+									</div>
+									<p class="texteAvis">{texte}</p>
+									<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+
+				<div class="colonneAvis colonneDescend">
+					<div class="colonneAvisPiste">
+						{
+							colonneBDefilement.map(({ note, texte, zone, cp }) => (
+								<div class="carteAvis">
+									<div class="etoiles">
+										{Array.from({ length: 5 }).map((_, i) => (
+											<Star
+												size={16}
+												color={i < note ? '#F5A623' : '#E4E7E2'}
+												fill={i < note ? '#F5A623' : 'none'}
+											/>
+										))}
+									</div>
+									<p class="texteAvis">{texte}</p>
+									<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </section>
+
+<script src="../js/compteurAvis.js"></script>

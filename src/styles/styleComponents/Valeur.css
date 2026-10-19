@@ -1,3 +1,11 @@
+.valeurSection{
+    background-color: #16273B;
+    /* Le haut de la frise juste au-dessus n'a pas de marge basse ; sans
+       ca, le fond bleu de cette section le touchait directement (meme
+       probleme deja rencontre et corrige pour .simulateurSection). */
+    margin-top: 3rem;
+}
+
 .valeurContainer{
     padding-bottom: 3rem;
 }
@@ -22,6 +30,7 @@
     }
 }
 .valeurContainer h2 {
+    color: #ffffff;
     font-size: 1.5rem;
     font-weight: bold;
     width: 90%;
@@ -38,8 +47,8 @@
 .caseValeur{
     width: 90%;
     margin: auto;
-    border-bottom: 1px solid #E4E7E2;
-    border-top: 1px solid #E4E7E2;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
     padding: 2rem 0;
 
     display: grid;
@@ -49,12 +58,24 @@
         "num desc";
     column-gap: 1rem;
 
-    transition: border-color 0.25s ease;
+    /* Transition complete declaree ici (plutot que de compter sur celle de
+       ".reveal") pour pouvoir donner un delai different a l'apparition
+       (via --delai-carte, cascade) et au survol (toujours instantane). */
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out, border-color 0.25s ease;
+    transition-delay: var(--delai-carte, 0s), var(--delai-carte, 0s), 0s;
 }
 
 .caseValeur:hover{
     border-color: #6FBE2C;
 }
+
+/* Les 4 cases apparaissent l'une apres l'autre plutot que toutes en meme
+   temps - chacune porte son propre delai, aussi reutilise par le "tic" du
+   numero juste en dessous. */
+.lignesValeurs .caseValeur:nth-child(1){ --delai-carte: 0s; }
+.lignesValeurs .caseValeur:nth-child(2){ --delai-carte: 0.12s; }
+.lignesValeurs .caseValeur:nth-child(3){ --delai-carte: 0.24s; }
+.lignesValeurs .caseValeur:nth-child(4){ --delai-carte: 0.36s; }
 
 .numVal{
     grid-area: num;
@@ -67,14 +88,16 @@
 }
 
 /* Le numéro fait un petit "tic" au moment où la case apparaît à l'écran,
-   pour attirer l'œil dessus avant qu'on lise le reste. */
+   pour attirer l'œil dessus avant qu'on lise le reste. Le délai repart de
+   celui de la case (--delai-carte) pour rester synchronisé avec la
+   cascade, + 0.2s pour arriver juste après que la case soit bien visible. */
 @keyframes pulseNumVal{
     0%   { transform: scale(1); }
-    50%  { transform: scale(1.3); color: #3E7C1F; }
+    50%  { transform: scale(1.3); color: #8FE05C; }
     100% { transform: scale(1); }
 }
 .caseValeur.est-visible .numVal{
-    animation: pulseNumVal 0.5s ease-out 0.2s both;
+    animation: pulseNumVal 0.5s ease-out calc(var(--delai-carte, 0s) + 0.2s) backwards;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -85,7 +108,9 @@
 .val{
     grid-area: titre;
     font-weight: bold;
+    color: #ffffff;
 }
 .descVal{
     grid-area: desc;
+    color: #C7D0D9;
 }

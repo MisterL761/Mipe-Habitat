@@ -2,11 +2,23 @@
 import { Check } from '@lucide/astro';
 import '../styles/styleComponents/HeroSection.css';
 import '../styles/global.css';
-import '../assets/image/ImageHero.webp'
+import { getImage } from 'astro:assets';
+import heroImgSrc from '../assets/image/ImageHero.webp';
 import FormHero from './FormHero.astro';
+
+// Une seule image generee (getImage), reutilisee pour les deux usages (fond
+// CSS desktop + balise <img> mobile) : en utilisant <Image> ET un
+// background-image url() separement sur la meme source, Astro finissait par
+// n'ecrire qu'un seul des deux fichiers, laissant l'autre reference en 404.
+const heroImg = await getImage({ src: heroImgSrc, width: 1920 });
 ---
 
-<section class="heroSection">
+<section class="heroSection" style={`--hero-bg:url(${heroImg.src})`}>
+    <!-- Sur mobile/tablette, la photo s'affiche seule (pas de filtre sombre
+         dessus) au-dessus du bloc texte, au lieu de lui servir de fond :
+         voir HeroSection.css. Invisible sur desktop (le fond CSS existant
+         reste utilisé la). -->
+    <img class="photoHeroMobile" src={heroImg.src} alt="Maison rénovée par MIPE Habitat" />
     <div class="hero">
         <div class="text">
             <span class="miniTitre" >Rénovation énergétique . Oise</span>

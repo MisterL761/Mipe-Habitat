@@ -1,5 +1,5 @@
 ---
-import { Image as ImageIcon, ArrowRight } from '@lucide/astro';
+import { Image as ImageIcon, ArrowRight, ArrowLeft } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import '../styles/global.css';
 import '../styles/styleComponents/Blog.css';
@@ -68,7 +68,7 @@ const articles = [
 			</a>
 		</div>
 
-		<div class="listeArticles">
+		<div class="listeArticles" id="listeArticles">
 			{
 				articles.map(({ tag, titre, image, contenu }) => (
 					<div class="carteArticle">
@@ -96,6 +96,11 @@ const articles = [
 			}
 		</div>
 
+		<div class="containerButtonBlog">
+			<button type="button" class="precedentBlog" id="precedentBlog" aria-label="Article précédent"><ArrowLeft size={20} color="#FFF" /></button>
+			<button type="button" class="suivantBlog" id="suivantBlog" aria-label="Article suivant"><ArrowRight size={20} color="#FFF" /></button>
+		</div>
+
 		<a href="/blog" class="boutonBlog">Voir tous les articles du blog</a>
 	</div>
 
@@ -114,3 +119,4 @@ const articles = [
 </section>
 
 <script src="../js/modaleBlog.js"></script>
+<script src="../js/sliderBlog.js"></script>

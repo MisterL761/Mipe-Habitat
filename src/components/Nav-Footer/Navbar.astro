@@ -27,10 +27,19 @@ const liens = [
 
 		],
 	},
-	{ href: 'https://revelhome.app/connexion?slug=' , label: 'Espace client' },
 	{ href: '/realisation', label: 'Nos réalisations'},
-	{ href: '/qualifications', label: 'Qualification' },
-	{ href: '/aides-et-financements', label: 'Aides et financements' },
+	{
+		href: '/ressources',
+		label: 'Ressources',
+		fleche: true,
+
+		sousMenu:[
+			{href : '/qualifications', label: 'Qualification'},
+			{href : '/aides-et-financements', label: 'Aides et financements'},
+			{href : '/professionnels', label: 'Professionnels'},
+		],
+	},
+	{ href: 'https://revelhome.app/connexion?slug=' , label: 'Espace client' },
 	
 ];
 const pageActuelle = Astro.url.pathname;

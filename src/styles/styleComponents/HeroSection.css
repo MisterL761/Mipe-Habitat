@@ -8,10 +8,17 @@
     height: 78vh;
     background-image:
             linear-gradient(to right, #16273BEB 0%, #16273B99 50%, #16273B00 100%),
-            url("../../assets/image/ImageHero.webp");
+            var(--hero-bg);
     background-size: cover;
     background-position: center;
     padding: 2rem;
+}
+
+/* Photo "seule" utilisee uniquement sous 900px (voir media query plus bas) :
+   cachee par defaut, donc invisible sur desktop ou le fond CSS ci-dessus
+   est deja utilise. */
+.photoHeroMobile{
+    display: none;
 }
 
 .hero {
@@ -149,45 +156,63 @@ h1{
     }
 }
 
-/* ===================== Responsive (mobile/tablette) ===================== */
+/* ===================== Responsive (mobile/tablette) =====================
+   Sous 900px, la photo ne sert plus de fond assombri derriere le texte :
+   elle s'affiche seule, pleine largeur, juste au-dessus d'un bloc plein
+   marine qui porte le texte - puis la carte du formulaire en dessous. */
 @media (max-width: 900px){
     .heroSection{
         height: auto;
-        padding: 1rem;
+        padding: 0;
+        background-image: none;
+    }
+    .photoHeroMobile{
+        display: block;
+        width: 100%;
+        height: auto;
     }
     .hero{
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
+        /* Le bleu est pose ici (sur les deux lignes de la grille a la fois)
+           pour qu'il reste continu derriere le texte ET le formulaire, sans
+           coupure entre les deux. */
+        background-color: #16273B;
     }
     .text{
         grid-area: 1 / 1 / 2 / 2;
-        padding: 6%;
+        padding: 2rem 6%;
     }
     .form{
         grid-area: 2 / 1 / 3 / 2;
-        padding: 6%;
+        padding: 1.5rem 6% 2rem 6%;
     }
     h1{
         font-size: 2rem;
     }
+
+    /* Bandeau de chiffres-cles : grille 2x2 avec une ligne de separation
+       fine entre chaque case (une croix) et un trait marine plus marque
+       tout en haut du bandeau. */
     .bandeau{
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto auto;
+        border-top: 3px solid #16273B;
     }
-    .date{ grid-area: 1 / 1 / 2 / 2; }
-    .rge{ grid-area: 1 / 2 / 2 / 3; }
-    .garantie{ grid-area: 2 / 1 / 3 / 2; }
+    .date{ grid-area: 1 / 1 / 2 / 2; border-right: 1px solid #E4E7E2; border-bottom: 1px solid #E4E7E2; }
+    .rge{ grid-area: 1 / 2 / 2 / 3; border-bottom: 1px solid #E4E7E2; }
+    .garantie{ grid-area: 2 / 1 / 3 / 2; border-right: 1px solid #E4E7E2; }
     .localisation{ grid-area: 2 / 2 / 3 / 3; }
     .date, .rge, .garantie, .localisation{
-        padding: 1rem;
+        padding: 1.25rem;
     }
 }
 @media (max-width: 480px){
     .bandeau{
         grid-template-columns: 1fr;
     }
-    .date{ grid-area: 1 / 1 / 2 / 2; }
-    .rge{ grid-area: 2 / 1 / 3 / 2; }
-    .garantie{ grid-area: 3 / 1 / 4 / 2; }
-    .localisation{ grid-area: 4 / 1 / 5 / 2; border-right: none; }
+    .date{ grid-area: 1 / 1 / 2 / 2; border-right: none; }
+    .rge{ grid-area: 2 / 1 / 3 / 2; border-right: none; }
+    .garantie{ grid-area: 3 / 1 / 4 / 2; border-right: none; }
+    .localisation{ grid-area: 4 / 1 / 5 / 2; border-bottom: none; }
 }

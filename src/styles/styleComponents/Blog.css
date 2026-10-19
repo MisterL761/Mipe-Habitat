@@ -11,7 +11,7 @@
 }
 
 .titreBlog{
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: bold;
     margin-top: 0.5rem;
 }
@@ -30,18 +30,23 @@
     gap: 0.6rem;
 }
 
+/* Slider horizontal (meme mecanique que la liste de l'equipe) : defilement
+   natif, les boutons avancent/reculent d'une carte - voir sliderBlog.js. */
 .listeArticles{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     gap: 1.5rem;
     margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .carteArticle{
     display: flex;
     flex-direction: column;
     flex: 0 0 380px;
+    scroll-snap-align: start;
     border : 1px solid #E4E7E2;
     border-radius: 15px;
     overflow: hidden;
@@ -83,7 +88,7 @@
 }
 
 .titreArticle{
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     margin-top: 0.5rem;
 }
@@ -109,10 +114,33 @@
     gap: 0.6rem;
 }
 
+.containerButtonBlog{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+.precedentBlog,
+.suivantBlog{
+    background-color: #6FBE2C;
+    color: #ffffff;
+    border: none;
+    padding: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+.precedentBlog:hover,
+.suivantBlog:hover{
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+}
+
 .boutonBlog{
     display: block;
     width: fit-content;
-    margin: 3rem auto 0 auto;
+    margin: 2rem auto 0 auto;
     background-color: #000000;
     color: #FFFFFF;
     padding: 0.8rem 1.5rem;
@@ -215,11 +243,20 @@
         padding: 2.5rem 1.5rem;
     }
     .titreBlog{
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+    }
+    .carteArticle{
+        flex-basis: 320px;
     }
 }
 @media (max-width: 480px){
+    /* Une carte presque pleine largeur a la fois (avec un petit bout de la
+       suivante visible, pour montrer qu'on peut glisser). */
     .carteArticle{
-        flex: 1 1 100%;
+        flex-basis: 85%;
+    }
+    .precedentBlog,
+    .suivantBlog{
+        padding: 0.8rem;
     }
 }

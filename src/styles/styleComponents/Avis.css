@@ -1,39 +1,107 @@
 .avisContainer{
     background-color: #F7F8F6;
-    padding: 2rem;
-    margin-top: 2rem ;
+    padding: 4rem 2rem;
 }
-.petitTitreAvis{
-    text-align: center;
-    margin-top: 4rem;
+
+/* ===================== Mise en page generale (2 colonnes) ===================== */
+.avisGrille{
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
 }
+
+/* ===================== Bloc de gauche (titre + note recap) ===================== */
 .titreAvis{
-    text-align: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
-    margin-top: 0.5rem;
+    line-height: 1.15;
 }
 
-.avisDefilement{
-    overflow: hidden;
-    margin-top: 2.5rem;
+.descAvis{
+    color: #4A5B6B;
+    margin-top: 1rem;
+    line-height: 1.5;
 }
 
-.avisPiste{
+.recapNoteAvis{
     display: flex;
-    width: max-content;
-    padding-bottom: 1rem;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.grandeNoteAvis{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.etoilesRecap{
+    position: relative;
+    font-size: 1.4rem;
+    line-height: 1;
+    letter-spacing: 2px;
+}
+.etoilesFond{
+    color: #E4E7E2;
+}
+.etoilesRemplies{
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #F5A623;
+}
+
+.nombreAvisGoogle{
+    color: #4A5B6B;
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+}
+
+/* ===================== Bloc de droite (2 colonnes qui defilent) ===================== */
+.avisColonnes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    height: 640px;
+    /* Fondu en haut et en bas de chaque colonne : les cartes semblent
+       apparaitre/disparaitre en douceur plutot que d'etre coupees net. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.colonneAvis{
+    overflow: hidden;
+}
+
+/* Le defilement se met en pause au survol, pour laisser le temps de lire
+   une carte sans qu'elle file sous la souris. */
+.colonneAvis:hover .colonneAvisPiste{
+    animation-play-state: paused;
+}
+
+.colonneAvisPiste{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 }
 
 .carteAvis{
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 320px;
-    margin-right: 1.5rem;
     background-color: #FFFFFF;
     border: 1px solid #E4E7E2;
     border-radius: 15px;
     padding: 1.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.carteAvis:hover{
+    transform: translateY(-3px);
+    border-color: #6FBE2C;
+    box-shadow: 0 10px 24px rgba(22, 39, 59, 0.1);
 }
 
 .etoiles{
@@ -43,7 +111,7 @@
 
 .texteAvis{
     margin-top: 0.8rem;
-    color: #000;
+    color: #16273B;
     font-size: 0.95rem;
     line-height: 1.5;
 }
@@ -55,12 +123,58 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .avisPiste{
-        animation: defilementAvis 40s linear infinite;
+    .colonneMonte .colonneAvisPiste{
+        animation: defilementMonte 26s linear infinite;
+    }
+    .colonneDescend .colonneAvisPiste{
+        animation: defilementDescend 30s linear infinite;
     }
 }
 
-@keyframes defilementAvis {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-6 * (320px + 1.5rem))); }
+@keyframes defilementMonte{
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+}
+@keyframes defilementDescend{
+    from { transform: translateY(-50%); }
+    to   { transform: translateY(0); }
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .avisGrille{
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .enteteAvis{
+        text-align: center;
+    }
+    .recapNoteAvis{
+        justify-content: center;
+    }
+    .avisColonnes{
+        height: 520px;
+    }
+}
+
+@media (max-width: 480px){
+    .avisContainer{
+        padding: 3rem 1rem;
+    }
+    .titreAvis{
+        font-size: 1.6rem;
+    }
+    .avisColonnes{
+        gap: 0.75rem;
+        height: 420px;
+    }
+    .colonneAvisPiste{
+        gap: 0.75rem;
+    }
+    .carteAvis{
+        padding: 1rem;
+    }
+    .texteAvis{
+        font-size: 0.85rem;
+    }
 }

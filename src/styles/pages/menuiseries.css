@@ -82,3 +82,33 @@
     line-height: 1.6;
     margin-top: 1rem;
 }
+
+/* ===================== Section partenaire "Isofrance" ===================== */
+.sectionIsofrance{
+    margin: 1rem 4rem 4rem 4rem;
+    background-color: #F7F8F6;
+    border-radius: 24px;
+    padding: 3rem;
+}
+.containerIsofrance{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3rem;
+    align-items: center;
+}
+.logoIsofranceWrapper img{
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+@media (max-width: 900px){
+    .sectionIsofrance{
+        margin: 1rem 1.5rem 2.5rem 1.5rem;
+        padding: 2rem;
+    }
+    .containerIsofrance{
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
