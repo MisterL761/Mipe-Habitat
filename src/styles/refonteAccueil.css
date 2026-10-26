@@ -89,6 +89,12 @@
     box-shadow: var(--ombre-forte);
 }
 
+/* France Renov et Proeco partagent le meme fond sable (pas de rupture entre les deux) */
+.refonte section:has(> .bandeauFranceRenov){
+    background: var(--sable);
+    padding: 2.5rem 0 0 0;
+}
+
 /* ============================ Proeco : bande sable pleine largeur ============================ */
 .refonte .sectionProeco{
     margin: 0;
@@ -219,7 +225,7 @@
     color: #fff;
 }
 .refonte .lignesValeurs{
-    row-gap: 1.5rem;
+    row-gap: 2rem;
 }
 .refonte .caseValeur{
     position: relative;
@@ -337,6 +343,7 @@
 /* ============================ Avant / Apres ============================ */
 .refonte section:has(> .containerAvantApres){
     background: #fff;
+    padding: 4.5rem 0 3rem 0;
 }
 .refonte .containerAvantApres{
     background: transparent;
@@ -391,45 +398,21 @@
     box-shadow: 0 14px 30px rgba(62, 124, 31, 0.45);
 }
 
-/* ============================ Avis + reseaux : bande verte continue ============================ */
-.refonte .avisContainer{
-    background: linear-gradient(160deg, #3E7C1F 0%, #4F9A24 55%, #5FAE2A 100%);
-    color: #fff;
-}
-/* Le bandeau reseaux prolonge la bande verte des avis : meme couleur que le bas du degrade. */
+/* ============================ Avis + reseaux : meme bande menthe continue ============================ */
+.refonte .avisContainer,
 .refonte .sectionSocial{
-    background: #5FAE2A;
-    color: #fff;
+    background: var(--menthe);
 }
 .refonte .avisContainer{
     position: relative;
     overflow: hidden;
 }
-.refonte .avisContainer::before{
-    content: "";
-    position: absolute;
-    top: -160px;
-    right: -120px;
-    width: 460px;
-    height: 460px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    pointer-events: none;
-}
 .refonte .avisGrille{
     position: relative;
     z-index: 1;
 }
-.refonte h2.titreAvis,
-.refonte .grandeNoteAvis{
-    color: #fff;
-}
-.refonte .descAvis,
-.refonte .nombreAvisGoogle{
-    color: rgba(255, 255, 255, 0.88);
-}
 .refonte .etoilesFond{
-    color: rgba(255, 255, 255, 0.3);
+    color: #cfd8c4;
 }
 .refonte .etoilesRemplies{
     color: var(--jaune);
@@ -437,23 +420,16 @@
 .refonte .carteAvis{
     border: 0;
     border-radius: 18px;
-    box-shadow: 0 14px 34px rgba(10, 40, 5, 0.22);
+    box-shadow: var(--ombre);
 }
 .refonte .carteAvis:hover{
     border: 0;
-}
-
-.refonte .sectionSocial .petitTitre{
-    background: rgba(255, 255, 255, 0.18);
-    color: #fff;
-}
-.refonte .sectionSocial h2.titreSocial{
-    color: #fff;
+    box-shadow: var(--ombre-forte);
 }
 .refonte .bandeauSocial{
     background: transparent;
     border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(62, 124, 31, 0.2);
     border-radius: 0;
     box-shadow: none;
     max-width: 1200px;
@@ -496,7 +472,10 @@
     border-radius: 999px;
 }
 
-/* ============================ FAQ ============================ */
+/* ============================ FAQ : meme fond que le blog ============================ */
+.refonte section:has(> .faqHome){
+    background: var(--sable);
+}
 .refonte section:has(> .faqHome){
     padding: 4rem 5% 4.5rem 5%;
 }
