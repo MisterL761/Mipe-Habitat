@@ -304,7 +304,7 @@
     font-family: var(--police-titre);
     font-weight: 800;
     color: #fff;
-    border-left: 4px solid var(--jaune);
+    border-left: 4px solid var(--vert);
     padding-left: 0.65rem;
 }
 .refonte .cardEquipe .poste{
@@ -330,38 +330,34 @@
     color: rgba(255, 255, 255, 0.82);
 }
 .refonte .cardMetier{
-    position: relative;
     padding: 0;
     overflow: hidden;
     border: 0;
     border-radius: 16px;
-    background: #0E1A2A;
+    background: var(--navy-2);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 .refonte .cardMetier .photoMetier img{
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 16 / 11;
     height: auto;
 }
+/* Le texte est pose dans un bloc plein sous la photo (et non sur la photo) :
+   les cartes d'une meme rangee ont la meme hauteur, le texte demarre au meme
+   endroit dans chacune. */
 .refonte .cardMetier .contenuCardMetier{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 19.2rem;
-    padding: 3rem 1.6rem 1.4rem 1.6rem;
-    background: linear-gradient(to top, rgba(10, 20, 33, 0.96) 0%, rgba(10, 20, 33, 0.9) 72%, rgba(10, 20, 33, 0) 100%);
+    flex: 1;
+    padding: 1.5rem 1.6rem 1.8rem 1.6rem;
+    border-top: 4px solid var(--vert);
 }
 .refonte .cardMetier .titrePrestation{
     color: #fff;
-    border-left: 4px solid var(--jaune);
-    padding-left: 0.75rem;
     margin-top: 0;
     min-height: 2.8em;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 .refonte .cardMetier .descriptionMetier{
-    color: rgba(255, 255, 255, 0.84);
+    color: rgba(255, 255, 255, 0.8);
 }
 .refonte .cardMetier:hover{
     transform: translateY(-8px);
