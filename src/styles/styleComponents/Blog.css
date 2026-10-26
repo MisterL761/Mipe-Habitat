@@ -40,6 +40,12 @@
     gap: 1.5rem;
     margin-top: 2.5rem;
     padding-bottom: 0.5rem;
+    /* "safe center" : centre les cartes quand elles tiennent toutes dans
+       l'ecran (3 articles actuellement), mais repasse automatiquement en
+       alignement normal (a gauche) des qu'elles debordent - un simple
+       "center" couperait alors la premiere carte de facon definitivement
+       inaccessible au scroll (bug connu de Flexbox). */
+    justify-content: safe center;
 }
 
 .carteArticle{
@@ -47,10 +53,16 @@
     flex-direction: column;
     flex: 0 0 380px;
     scroll-snap-align: start;
+    background-color: #ffffff;
     border : 1px solid #E4E7E2;
+    box-shadow: 0 4px 18px rgba(22, 39, 59, 0.04);
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.carteArticle:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(22, 39, 59, 0.08);
 }
 
 .imagePlaceholder{

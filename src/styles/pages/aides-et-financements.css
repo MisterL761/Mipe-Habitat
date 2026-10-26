@@ -27,7 +27,9 @@
 
 /* ---------- Cartes blanches / vertes ---------- */
 .carteAide{
+    background-color: #ffffff;
     border: 1px solid #E4E7E2;
+    box-shadow: 0 4px 18px rgba(22, 39, 59, 0.04);
     border-radius: 16px;
     padding: 2rem;
     margin-top: 2rem;

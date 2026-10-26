@@ -1,15 +1,18 @@
 ---
 import '../styles/styleComponents/AutreMetier.css';
 import '../styles/global.css'
+import { Image } from 'astro:assets';
 
-import { BrickWall,Triangle, TriangleDashed} from '@lucide/astro';
+import photoRavalement from '../assets/image/ravalement.webp';
+import photoCombles from '../assets/image/amenagement-comble.webp';
+import photoToiture from '../assets/image/toiture.webp';
 
 
 
 const autreMetier = [
-    { icone: BrickWall, prestation: 'Ravalement de façade', description: 'Rénovez, protégez et embellissez vos façades pour redonner durablement de la valeur à votre habitation.' },
-    { icone: TriangleDashed, prestation: 'Aménagement des combles', description: 'Transformez vos combles en nouveaux espaces de vie, adaptés à vos besoins et à votre habitation.' },
-    { icone: Triangle, prestation: 'Travaux de toiture', description: 'Entretien, réparation et rénovation pour préserver durablement la couverture et l’étanchéité de votre habitation.' },
+    { photo: photoRavalement, prestation: 'Ravalement de façade', description: 'Rénovez, protégez et embellissez vos façades pour redonner durablement de la valeur à votre habitation.' },
+    { photo: photoCombles, prestation: 'Aménagement des combles', description: 'Transformez vos combles en nouveaux espaces de vie, adaptés à vos besoins et à votre habitation.' },
+    { photo: photoToiture, prestation: 'Travaux de toiture', description: 'Entretien, réparation et rénovation pour préserver durablement la couverture et l’étanchéité de votre habitation.' },
 
 
 
@@ -26,11 +29,13 @@ const autreMetier = [
 
         <div class="autreMetierContainer" >
             {
-                autreMetier.map(({ icone: Icone, prestation, description }) => (
+                autreMetier.map(({ photo, prestation, description }) => (
                         <div class="cardAutreMetier">
-                            <p class="iconeMetier"><Icone size={25} color="#3E7C1F" /></p>
-                            <p class="titrePrestation">{prestation}</p>
-                            <p class="descriptionMetier">{description}</p>
+                            <div class="photoAutreMetier"><Image src={photo} alt={prestation} /></div>
+                            <div class="contenuCardAutreMetier">
+                                <p class="titrePrestationAutreMetier">{prestation}</p>
+                                <p class="descriptionAutreMetier">{description}</p>
+                            </div>
                         </div>
                 ))
             }

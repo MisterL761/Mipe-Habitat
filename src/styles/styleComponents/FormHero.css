@@ -66,6 +66,10 @@ input:not([type="checkbox"]){
     color: #4A5B6B;
     margin-top: 1rem;
 }
+.checkForm a{
+    color: #3E7C1F;
+    font-weight: 600;
+}
 
 /* ===================== Responsive (mobile) ===================== */
 @media (max-width: 420px){

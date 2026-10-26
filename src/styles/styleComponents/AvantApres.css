@@ -1,0 +1,179 @@
+.containerAvantApres{
+	padding: 4rem 2.5rem;
+	max-width: 900px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.titreAvantApres{
+	font-size: 2rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+}
+
+.descAvantApres{
+	color: #4A5B6B;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin-top: 1rem;
+}
+
+.curseurAvantApresContainer{
+	margin-top: 2.5rem;
+}
+
+.imagesAvantApres{
+	position: relative;
+	aspect-ratio: 4 / 3;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 16px 40px rgba(22, 39, 59, 0.15);
+	/* Position du curseur, pilotee en JS (glissement au pointeur, pas
+	   seulement l'input range) a chaque deplacement. */
+	--pos: 50%;
+	cursor: grab;
+	touch-action: pan-y;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.imagesAvantApres.enGlissement{
+	cursor: grabbing;
+}
+
+.imagesAvantApres img{
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	pointer-events: none;
+	user-select: none;
+}
+
+/* La photo "avant" est posee par-dessus celle "apres", puis recadree avec
+   clip-path (relatif a sa propre boite, donc pas affecte par la largeur
+   des autres elements) pour ne montrer que la portion a gauche du curseur.
+   La transition est coupee pendant un glissement actif (suivi 1:1 du
+   pointeur), et active sinon (demo auto, clic pour sauter a un endroit). */
+.imagesAvantApres .imgAvant{
+	clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+	transition: clip-path 0.5s ease;
+}
+
+.imagesAvantApres.enGlissement .imgAvant{
+	transition: none;
+}
+
+.etiquetteAvantApres{
+	position: absolute;
+	top: 1rem;
+	z-index: 2;
+	background: rgba(22, 39, 59, 0.78);
+	color: #fff;
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	padding: 0.35rem 0.75rem;
+	border-radius: 999px;
+	pointer-events: none;
+}
+
+.etiquetteAvant{
+	left: 1rem;
+}
+
+.etiquetteApres{
+	right: 1rem;
+}
+
+.poigneeAvantApres{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--pos);
+	width: 3px;
+	background: #fff;
+	transform: translateX(-50%);
+	z-index: 2;
+	pointer-events: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: left 0.5s ease;
+}
+
+.imagesAvantApres.enGlissement .poigneeAvantApres{
+	transition: none;
+}
+
+.poigneeAvantApres::before{
+	content: '';
+	position: absolute;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 2px 10px rgba(22, 39, 59, 0.35);
+}
+
+.poigneeAvantApres svg{
+	position: relative;
+	color: #6FBE2C;
+	/* .poigneeAvantApres ne fait que 3px de large (la ligne verticale) : en
+	   tant qu'enfant flex, l'icone se faisait comprimer a cette largeur par
+	   defaut (flex-shrink:1) au lieu de deborder visiblement de part et
+	   d'autre, ce qui la rendait quasi invisible quelle que soit sa taille. */
+	flex-shrink: 0;
+}
+
+/* L'input range reste present uniquement pour le clavier (fleches) et les
+   lecteurs d'ecran : le glissement a la souris/au doigt est gere en JS sur
+   le conteneur entier (voir avantApres.js), bien plus fiable qu'un thumb
+   natif invisible de quelques pixels a attraper precisement. */
+.curseurAvantApres{
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.curseurAvantApres:focus-visible ~ .poigneeAvantApres::before{
+	outline: 3px solid #6FBE2C;
+	outline-offset: 2px;
+}
+
+.lienToutesRealisationsAvantApres{
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 2rem;
+	background-color: #6FBE2C;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 600;
+	padding: 0.7rem 1.5rem;
+	border-radius: 999px;
+	transition: background-color 0.2s ease;
+}
+
+.lienToutesRealisationsAvantApres:hover{
+	background-color: #5EA324;
+}
+
+@media (max-width: 800px){
+	.containerAvantApres{
+		padding: 3rem 1.25rem;
+	}
+	.titreAvantApres{
+		font-size: 1.5rem;
+	}
+}

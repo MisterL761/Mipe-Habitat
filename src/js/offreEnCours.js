@@ -28,6 +28,27 @@ if (tab && modal && scrim && fermer) {
 			fermerModal();
 		}
 	});
+
+	// Ouverture automatique a l'arrivee sur le site : une seule fois par
+	// session (pas a chaque navigation interne d'une page a l'autre), pour
+	// rester visible sans devenir agacant si le visiteur circule sur le
+	// site. Un leger delai laisse la page se charger avant d'afficher la
+	// popup. Le marqueur est pose des le declenchement, donc meme si le
+	// visiteur change de page avant la fin du delai, l'ouverture suivante
+	// (sur cette nouvelle page) reste la seule de la session.
+	const CLE_DEJA_VUE = 'offreEnCoursVue';
+	try {
+		if (!sessionStorage.getItem(CLE_DEJA_VUE)) {
+			setTimeout(() => {
+				sessionStorage.setItem(CLE_DEJA_VUE, '1');
+				ouvrir();
+			}, 1500);
+		}
+	} catch (erreur) {
+		// sessionStorage indisponible (navigation privee tres restrictive,
+		// etc.) : on renonce simplement a l'ouverture automatique, l'onglet
+		// reste cliquable normalement.
+	}
 }
 
 if (compteur) {

@@ -1,0 +1,76 @@
+.sectionCGV{
+	padding: 2.5rem 5% 5rem 5%;
+	max-width: 820px;
+	margin: 0 auto;
+}
+
+.heroCGV{
+	margin-top: 3rem;
+	text-align: center;
+}
+
+.titreCGV{
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+}
+
+.contenuCGV{
+	margin-top: 3rem;
+}
+
+.contenuCGV h2{
+	font-size: 1.3rem;
+	font-weight: bold;
+	margin-top: 2.5rem;
+}
+
+.contenuCGV h2:first-child{
+	margin-top: 0;
+}
+
+.contenuCGV h3{
+	font-size: 1.05rem;
+	font-weight: bold;
+	margin-top: 1.5rem;
+}
+
+.contenuCGV p{
+	color: #4A5B6B;
+	line-height: 1.7;
+	margin-top: 0.9rem;
+}
+
+.contenuCGV ul{
+	margin-top: 0.9rem;
+	padding-left: 1.3rem;
+	color: #4A5B6B;
+	line-height: 1.7;
+}
+
+.contenuCGV li{
+	margin-top: 0.4rem;
+}
+
+.contenuCGV a{
+	color: #3E7C1F;
+	word-break: break-word;
+}
+
+.contenuCGV strong{
+	color: #16273B;
+}
+
+.piedCGV{
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid #E4E7E2;
+	font-size: 0.85rem;
+	color: #4A5B6B;
+}
+
+@media (max-width: 800px){
+	.titreCGV{
+		font-size: 1.8rem;
+	}
+}

@@ -9,8 +9,15 @@ const chantiers = JSON.parse(conteneurCarte.dataset.chantiers);
 // zoomControl: false -> on retire les boutons +/- par defaut (coin haut-gauche)
 // pour les remettre nous-meme a droite, car la carte flottante du chantier
 // s'affiche justement dans le coin haut-gauche et les chevauchait.
-const carte = L.map('carte', { scrollWheelZoom: false, zoomControl: false }).setView([siege.lat, siege.lng], 10);
+const carte = L.map('carte', { scrollWheelZoom: false, zoomControl: false });
 L.control.zoom({ position: 'topright' }).addTo(carte);
+
+// On cadre la vue sur le siege + tous les chantiers plutot qu'un zoom fixe,
+// pour que chaque point reste visible automatiquement meme quand de
+// nouveaux chantiers s'ajoutent loin des precedents. maxZoom evite que la
+// carte se retrouve trop "collee" si jamais les points sont tres proches.
+const pointsCarte = [[siege.lat, siege.lng], ...chantiers.map((c) => [c.lat, c.lng])];
+carte.fitBounds(pointsCarte, { padding: [40, 40], maxZoom: 11 });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap',

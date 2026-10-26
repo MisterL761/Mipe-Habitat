@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/politique-de-confidentialite.css';
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<FilAriane items={[{ label: 'Politique de confidentialité' }]} />
+
+		<section class="sectionPolitique">
+			<div class="heroPolitique">
+				<p class="petitTitre">Informations légales</p>
+				<h1 class="titrePolitique">Politique de confidentialité</h1>
+				<p class="descPolitique">Cette page explique quelles données MIPE Habitat collecte sur ce site, pourquoi, combien de temps elles sont conservées, et comment vous pouvez exercer vos droits.</p>
+			</div>
+
+			<div class="contenuPolitique">
+				<h2>Responsable du traitement</h2>
+				<p>Le responsable du traitement des données collectées sur ce site est la société MIPE Habitat, 11 Avenue des Meuniers, Cellule N10, 60330 Le Plessis-Belleville.</p>
+				<p>Pour toute question relative à vos données personnelles, vous pouvez contacter notre délégué à la protection des données, Cédric LAMMERS, à l'adresse <a href="mailto:cedric.lammers@mipe-group.com">cedric.lammers@mipe-group.com</a> ou au 07 62 85 67 32.</p>
+
+				<h2>Données collectées et finalité</h2>
+				<p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la Loi Informatique et Libertés du 6 janvier 1978 modifiée, les données transmises via les formulaires de ce site (nom, prénom, coordonnées postales, numéro de téléphone, adresse électronique, détails de votre projet) ne sont recueillies que dans un but commercial : traiter votre demande de devis ou de contact, et gérer la relation avec vous si vous devenez client.</p>
+				<p>Aucune donnée n'est collectée à votre insu, et aucune information ni donnée personnelle n'est cédée à des tiers en dehors des cas précisés ci-dessous.</p>
+
+				<h2>Durée de conservation</h2>
+				<ul>
+					<li>2 ans à compter de la fin de la relation commerciale, si aucun contrat n'est conclu entre vous et l'entreprise.</li>
+					<li>10 ans pour les données de facturation, en application de l'obligation légale prévue par le Code de commerce.</li>
+					<li>Plus généralement, aussi longtemps que nécessaire à l'exécution d'un contrat en cours et au respect de nos obligations légales et réglementaires.</li>
+				</ul>
+
+				<h2>Qui a accès à vos données</h2>
+				<p>L'accès à vos données personnelles est strictement limité aux employés et préposés de MIPE Habitat habilités à les traiter en raison de leurs fonctions.</p>
+				<p>Elles peuvent être communiquées à des tiers liés à MIPE Habitat par contrat, lorsque cela est nécessaire à l'exécution de tâches sous-traitées (par exemple, un partenaire intervenant sur votre chantier). Ces tiers n'ont qu'un accès limité aux données et sont tenus de les utiliser en conformité avec la réglementation applicable.</p>
+				<p>En dehors de ces cas, MIPE Habitat s'engage à ne jamais vendre, louer ou céder vos données à des tiers sans votre consentement préalable, sauf obligation légale, lutte contre la fraude ou l'abus, ou exercice des droits de la défense.</p>
+
+				<h2>Vos droits</h2>
+				<p>Conformément à la réglementation applicable, vous disposez d'un droit d'accès, de rectification, de portabilité et d'effacement des données vous concernant, ainsi que d'un droit de limitation et d'opposition au traitement, pour des motifs légitimes.</p>
+				<p>Vous pouvez exercer ces droits, sous réserve de la production d'un justificatif d'identité valide :</p>
+				<ul>
+					<li>en contactant Cédric LAMMERS, <a href="mailto:cedric.lammers@mipe-group.com">cedric.lammers@mipe-group.com</a>, 07 62 85 67 32 ;</li>
+					<li>par courrier postal, idéalement en recommandé avec accusé de réception, accompagné d'une copie d'une pièce d'identité ;</li>
+					<li>sur place dans nos locaux, avec présentation d'une pièce d'identité.</li>
+				</ul>
+				<p>Nous disposons d'un délai de réponse maximal de 2 mois à compter de votre demande. Si celle-ci est incomplète, ce délai peut être suspendu le temps d'obtenir les éléments manquants.</p>
+				<p>Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la Commission Nationale de l'Informatique et des Libertés (CNIL) ou à toute autre autorité compétente. Les limites au droit d'accès sont précisées sur le site de la CNIL : <a href="https://www.cnil.fr/fr/respecter-les-droits-des-personnes" target="_blank" rel="noopener">cnil.fr/fr/respecter-les-droits-des-personnes</a>.</p>
+
+				<h2>Prospection commerciale</h2>
+				<p>Si vous ne souhaitez pas recevoir de messages promotionnels ou d'invitations (courriers électroniques, SMS, appels téléphoniques, courriers postaux), vous pouvez l'indiquer directement sur le document matérialisant notre offre, nous contacter aux coordonnées ci-dessus, ou utiliser les liens de désinscription présents dans nos messages SMS ou électroniques.</p>
+				<p>Vous êtes également informé de l'existence de la liste d'opposition au démarchage téléphonique « Bloctel », sur laquelle vous pouvez vous inscrire gratuitement sur <a href="https://conso.bloctel.fr/" target="_blank" rel="noopener">bloctel.fr</a>.</p>
+
+				<h2>Cookies et traceurs</h2>
+				<p>À ce jour, ce site <strong>n'utilise aucun cookie de mesure d'audience, publicitaire ou de réseau social</strong>, et ne dépose aucun traceur nécessitant votre consentement. Il ne fait pas non plus appel à Google Analytics ni à un autre outil de suivi tiers.</p>
+				<p>Le site peut, à terme, être amené à utiliser des cookies strictement nécessaires à son bon fonctionnement technique (par exemple, pour mémoriser un choix que vous avez fait sur une page). Conformément à la réglementation, ce type de cookie ne nécessite pas de consentement préalable.</p>
+				<p>Si nous ajoutions à l'avenir des cookies de mesure d'audience ou publicitaires, un bandeau de consentement vous permettrait de les accepter ou de les refuser avant tout dépôt, et cette page serait mise à jour en conséquence.</p>
+
+				<h2>Avis clients</h2>
+				<p>Les avis clients publiés sur ce site sont collectés via la plateforme du Réseau Proéco Énergies, sur invitation de MIPE Habitat après réalisation d'un chantier. Leur dépôt par un consommateur est libre et ne fait l'objet d'aucune contrepartie. Pour plus de détails sur la gestion des avis clients, consultez nos <a href="/mentions-legales">mentions légales</a>.</p>
+			</div>
+		</section>
+
+		<Footer></Footer>
+	</main>
+</Layout>

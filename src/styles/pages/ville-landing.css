@@ -1,0 +1,478 @@
+/* Pages villes (/renovation-energetique/{ville}) : palette de marque
+   inchangee (vert #6FBE2C, marine #16273B...), plus deux ajouts pour
+   cette famille de pages precisement :
+   - un fond neutre chaud (--creme) qui remplace le blanc pur dans
+     certaines sections, pour un rendu moins clinique ;
+   - un accent terre cuite (--terre), la couleur des tuiles que l'on voit
+     sur presque toutes nos photos de chantier reelles : pas un choix
+     decoratif, mais la couleur du metier, utilisee a un seul endroit
+     (le badge "15 ans" du hero et la forme du bloc final) pour ne pas la
+     diluer.
+   La police "Archivo" (chargee dans Layout.astro) porte les titres et les
+   chiffres ; le corps de texte reste "Outfit", deja utilise partout
+   ailleurs sur le site. */
+
+.reperageVille{
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-family: 'Archivo', sans-serif;
+	font-weight: 700;
+	font-size: 0.8rem;
+	letter-spacing: 0.02em;
+	color: #3E7C1F;
+	text-transform: uppercase;
+}
+
+.reperageVilleCentre{
+	justify-content: center;
+	width: 100%;
+}
+
+.titreSectionVille{
+	font-family: 'Archivo', sans-serif;
+	font-weight: 800;
+	font-size: 2rem;
+	color: #16273B;
+	margin-top: 0.5rem;
+	line-height: 1.15;
+}
+
+/* ===================== Hero ===================== */
+.heroVille{
+	display: grid;
+	grid-template-columns: 1fr 1.05fr;
+	gap: 3.5rem;
+	align-items: center;
+	max-width: 1300px;
+	margin: 1.5rem auto 0 auto;
+	padding: 2rem 5% 5rem 5%;
+}
+
+.titreHeroVille{
+	font-family: 'Archivo', sans-serif;
+	font-weight: 800;
+	font-size: clamp(2.3rem, 3.6vw, 3.25rem);
+	line-height: 1.08;
+	letter-spacing: -0.01em;
+	color: #16273B;
+}
+
+.descHeroVille{
+	color: #4A5B6B;
+	font-size: 1.05rem;
+	line-height: 1.6;
+	margin-top: 1.25rem;
+	max-width: 480px;
+}
+
+.checksHeroVille{
+	list-style: none;
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.65rem;
+}
+
+.checksHeroVille li{
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	color: #16273B;
+	font-weight: 500;
+	font-size: 0.95rem;
+}
+
+.btnDevisVille{
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 2rem;
+	background-color: #6FBE2C;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 600;
+	padding: 0.85rem 1.75rem;
+	border-radius: 999px;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btnDevisVille:hover{
+	background-color: #5EA324;
+	transform: translateY(-2px);
+}
+
+.heroVillePhoto{
+	position: relative;
+}
+
+/* Le hero reutilise le composant avant/apres (AvantApres.css) : on y
+   applique juste la meme forme/taille que l'ancienne photo fixe, pour
+   garder la composition du hero inchangee. */
+.imagesAvantApresHero{
+	aspect-ratio: 4 / 3.15;
+	border-radius: 28px;
+	box-shadow: 0 24px 60px rgba(22, 39, 59, 0.18);
+}
+
+.photoSeuleHeroVille img{
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3.15;
+	object-fit: cover;
+	border-radius: 28px;
+	box-shadow: 0 24px 60px rgba(22, 39, 59, 0.18);
+}
+
+.legendeHeroVille{
+	margin-top: 1rem;
+	text-align: center;
+	color: #4A5B6B;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+@media (max-width: 900px){
+	.heroVille{
+		grid-template-columns: 1fr;
+		padding: 1.5rem 6% 4rem 6%;
+		gap: 2.5rem;
+	}
+}
+
+/* ===================== Metiers (cartes photo) ===================== */
+.sectionMetiersVille{
+	background-color: #F6F3EC;
+	padding: 5rem 5%;
+}
+
+.enteteMetiersVille{
+	text-align: center;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.grilleMetiersVille{
+	max-width: 1300px;
+	margin: 3rem auto 0 auto;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+}
+
+.carteMetierVille{
+	display: block;
+	text-decoration: none;
+	background: #fff;
+	border-radius: 18px;
+	overflow: hidden;
+	box-shadow: 0 10px 30px rgba(22, 39, 59, 0.08);
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carteMetierVille:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 18px 40px rgba(22, 39, 59, 0.14);
+}
+
+.photoMetierVille{
+	position: relative;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+}
+
+.photoMetierVille img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.4s ease;
+}
+
+.carteMetierVille:hover .photoMetierVille img{
+	transform: scale(1.06);
+}
+
+.photoMetierVille::after{
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgba(22, 39, 59, 0.88) 0%, rgba(22, 39, 59, 0) 58%);
+}
+
+.titrePhotoMetierVille{
+	position: absolute;
+	left: 1rem;
+	right: 1rem;
+	bottom: 0.85rem;
+	color: #fff;
+	font-weight: 700;
+	font-size: 0.92rem;
+	line-height: 1.25;
+	z-index: 1;
+}
+
+.corpsCarteMetierVille{
+	padding: 1.1rem 1.25rem 1.25rem 1.25rem;
+}
+
+.corpsCarteMetierVille p{
+	color: #4A5B6B;
+	font-size: 0.85rem;
+	line-height: 1.5;
+}
+
+.lienCarteMetierVille{
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	margin-top: 0.75rem;
+	color: #3E7C1F;
+	font-weight: 600;
+	font-size: 0.85rem;
+}
+
+/* ===================== Infos (realisations + zone) ===================== */
+.sectionInfosVille{
+	max-width: 1300px;
+	margin: 5rem auto 0 auto;
+	padding: 0 5%;
+}
+
+.grilleInfosVille{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.5rem;
+}
+
+.carteInfoVille{
+	background-color: #ffffff;
+	border: 1px solid #E4E7E2;
+	border-radius: 20px;
+	padding: 2rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carteInfoVille:hover{
+	transform: translateY(-4px);
+	box-shadow: 0 16px 36px rgba(22, 39, 59, 0.1);
+}
+
+.iconeInfoVille{
+	width: 52px;
+	height: 52px;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #6FBE2C, #3E7C1F);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1.1rem;
+	box-shadow: 0 8px 20px rgba(111, 190, 44, 0.3);
+}
+
+.carteInfoVille h3{
+	font-family: 'Archivo', sans-serif;
+	font-weight: 800;
+	font-size: 1.1rem;
+	color: #16273B;
+}
+
+.carteInfoVille p{
+	color: #4A5B6B;
+	line-height: 1.6;
+	margin-top: 0.75rem;
+}
+
+.lienCarteInfoVille{
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 1.25rem;
+	color: #3E7C1F;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.lienCarteInfoVille:hover{
+	text-decoration: underline;
+}
+
+/* ===================== FAQ ===================== */
+.sectionFaqVille{
+	max-width: 1300px;
+	margin: 5rem auto 0 auto;
+	padding: 0 5%;
+	display: flex;
+	gap: 3rem;
+	align-items: flex-start;
+}
+
+.faqVilleTexte{
+	width: 35%;
+	flex-shrink: 0;
+}
+
+.faqVilleListe{
+	flex: 1;
+}
+
+.faqVilleItem{
+	border-top: 1px solid #E4E7E2;
+	padding: 1.25rem 0;
+}
+
+.faqVilleItem:last-child{
+	border-bottom: 1px solid #E4E7E2;
+}
+
+.questionFaqVille{
+	font-weight: 700;
+	cursor: pointer;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	color: #16273B;
+}
+
+.questionFaqVille::-webkit-details-marker{
+	display: none;
+}
+
+.questionFaqVille::after{
+	content: '+';
+	flex-shrink: 0;
+	font-size: 1.3rem;
+	color: #3E7C1F;
+}
+
+.faqVilleItem[open] .questionFaqVille::after{
+	content: '−';
+}
+
+.reponseFaqVille{
+	color: #4A5B6B;
+	line-height: 1.6;
+	margin-top: 1rem;
+}
+
+/* ===================== CTA final ===================== */
+.sectionCtaVille{
+	position: relative;
+	overflow: hidden;
+	max-width: 1300px;
+	margin: 5rem 5% 6rem 5%;
+	background-color: #16273B;
+	border-radius: 28px;
+	padding: 4rem 2rem;
+	text-align: center;
+}
+
+.formeCtaVille{
+	position: absolute;
+	width: 440px;
+	height: 440px;
+	background: radial-gradient(circle, rgba(178, 85, 46, 0.35) 0%, rgba(178, 85, 46, 0) 70%);
+	top: -140px;
+	right: -100px;
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.contenuCtaVille{
+	position: relative;
+	z-index: 1;
+}
+
+.sectionCtaVille h2{
+	font-family: 'Archivo', sans-serif;
+	font-weight: 800;
+	color: #fff;
+	font-size: 2rem;
+}
+
+.sectionCtaVille p{
+	color: #C9D2DA;
+	margin-top: 0.75rem;
+}
+
+.boutonsCtaVille{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 2rem;
+	flex-wrap: wrap;
+}
+
+.btnDevisVilleClair{
+	margin-top: 0;
+}
+
+.btnAppelVille{
+	display: inline-flex;
+	align-items: center;
+	color: #fff;
+	font-weight: 600;
+	padding: 0.85rem 1.75rem;
+	border-radius: 999px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	text-decoration: none;
+	transition: background-color 0.2s ease;
+}
+
+.btnAppelVille:hover{
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 1000px){
+	.grilleMetiersVille{
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 900px){
+	.heroVille{
+		grid-template-columns: 1fr;
+		padding: 1.5rem 6% 4rem 6%;
+		gap: 2.5rem;
+	}
+
+	.sectionMetiersVille{
+		padding: 3.5rem 6%;
+	}
+
+	.sectionInfosVille{
+		padding: 0 6%;
+	}
+	.grilleInfosVille{
+		grid-template-columns: 1fr;
+	}
+
+	.sectionFaqVille{
+		flex-direction: column;
+		padding: 0 6%;
+		gap: 1.5rem;
+	}
+	.faqVilleTexte{
+		width: 100%;
+	}
+
+	.sectionCtaVille{
+		margin: 4rem 6% 5rem 6%;
+		padding: 3rem 1.5rem;
+	}
+}
+
+@media (max-width: 560px){
+	.titreHeroVille{
+		font-size: 1.9rem;
+	}
+	.grilleMetiersVille{
+		grid-template-columns: 1fr;
+	}
+	.sectionCtaVille h2{
+		font-size: 1.6rem;
+	}
+}

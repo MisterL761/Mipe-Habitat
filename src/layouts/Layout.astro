@@ -2,30 +2,69 @@
 import '../styles/global.css';
 import BulleSimulation from '../components/BulleSimulation.astro';
 import OffreEnCours from '../components/OffreEnCours.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+// Valeurs par defaut pour les pages qui ne precisent pas encore title/description
+// (remplacent l'ancien "Astro Basics" fige sur toutes les pages).
+const {
+	title = 'MIPE Habitat',
+	description = "MIPE Habitat, votre partenaire de rénovation énergétique dans l'Oise et en Île-de-France : isolation, menuiseries, ravalement, toiture.",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<!-- Lien relatif (pas de domaine en dur) : "site" n'est pas encore
+		     defini dans astro.config.mjs, donc Astro.url.origin renverrait un
+		     domaine de developpement au lieu du vrai domaine de production. -->
+		<link rel="canonical" href={Astro.url.pathname} />
+		<!-- "Outfit" est deja utilise partout en CSS (global.css) mais n'etait
+		     jamais charge nulle part : sans cette balise, tout le site
+		     s'affichait en police systeme par defaut. "Archivo" est une police
+		     d'accent (titres/chiffres marquants) utilisee sur les pages villes. -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet" />
 	</head>
-	<body>
-		<slot />
-		<BulleSimulation></BulleSimulation>
-		<OffreEnCours></OffreEnCours>
+	<body class="site-body">
+		<div class="site-contenu">
+			<slot />
+			<BulleSimulation></BulleSimulation>
+			<OffreEnCours></OffreEnCours>
+		</div>
+
 		<script src="../js/scrollReveal.js"></script>
+		<script src="../js/bulleSimulationVisibilite.js"></script>
 	</body>
 </html>
 
 <style>
-	html,
+	html {
+		margin: 0;
+		width: 100%;
+		min-height: 100%;
+	}
 	body {
 		margin: 0;
+		width: 100%;
+		min-height: 100%;
+		position: relative;
+	}
+	.site-contenu {
+		position: relative;
+		z-index: 1;
 		width: 100%;
 		min-height: 100%;
 	}

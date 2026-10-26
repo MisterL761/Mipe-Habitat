@@ -1,0 +1,236 @@
+/* Le hero (.containerParentImageDroite) est une classe globale partagee
+   avec d'autres pages metier, sans marge haute : elle touchait directement
+   la navbar. On ajoute la marge ici, scopee a cette page uniquement. */
+.containerImageDroite .containerParentImageDroite{
+    margin-top: 3rem;
+}
+
+/* ===================== "Nos solutions" (2 cartes) ===================== */
+.sectionSolutionsEnergie{
+    background-color: #EEF6E7;
+    padding: 4rem;
+    text-align: center;
+}
+.petitTitreEnergie{
+    text-align: center;
+}
+.titreSolutionsEnergie{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+.grilleSolutionsEnergie{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.carteSolutionEnergie{
+    position: relative;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 2.25rem 2rem 2rem 2rem;
+    box-shadow: 0 10px 30px rgba(22, 39, 59, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+.carteSolutionEnergie::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #6FBE2C, #8FE05C);
+}
+.carteSolutionEnergie:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(22, 39, 59, 0.14);
+}
+.iconeSolutionEnergie{
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6FBE2C, #3E7C1F);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 8px 20px rgba(111, 190, 44, 0.3);
+}
+.titreCarteEnergie{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.listePointsEnergie{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.listePointsEnergie li{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #4A5B6B;
+}
+
+/* ===================== Section partenaire BT2C ===================== */
+.sectionPartenaireEnergie{
+    background-color: #16273B;
+    padding: 4rem;
+}
+.containerPartenaireEnergie{
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+.sectionPartenaireEnergie .petitTitre{
+    color: #8FE05C;
+}
+.titrePartenaireEnergie{
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+.statExperienceEnergie{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 1.25rem 0;
+}
+.grandChiffreExperience{
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #8FE05C;
+    line-height: 1;
+}
+.labelExperienceEnergie{
+    color: #C7D0D9;
+    font-size: 1.1rem;
+}
+
+.descPartenaireEnergie{
+    color: #C7D0D9;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.listeCertifEnergie{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+}
+.badgeCertifEnergie{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+}
+.lienPartenaireEnergie{
+    display: inline-flex;
+    align-items: center;
+    background-color: #6FBE2C;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+.lienPartenaireEnergie:hover{
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+}
+
+/* ===================== FAQ ===================== */
+.sectionFaqEnergie{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 4rem;
+    align-items: flex-start;
+}
+.faqEnergieTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqEnergie{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqEnergieListe{
+    flex: 1;
+}
+.faqEnergieItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqEnergieItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqEnergie{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqEnergie::-webkit-details-marker{
+    display: none;
+}
+.questionFaqEnergie::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqEnergieItem[open] .questionFaqEnergie::after{
+    content: '−';
+}
+.reponseFaqEnergie{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .sectionSolutionsEnergie,
+    .sectionPartenaireEnergie{
+        padding: 3rem 1.5rem;
+    }
+    .grilleSolutionsEnergie{
+        grid-template-columns: 1fr;
+    }
+    .titreSolutionsEnergie,
+    .titrePartenaireEnergie{
+        font-size: 1.5rem;
+    }
+    .sectionFaqEnergie{
+        flex-direction: column;
+        margin: 3rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .faqEnergieTexte{
+        width: 100%;
+    }
+    .grandChiffreExperience{
+        font-size: 2.5rem;
+    }
+}

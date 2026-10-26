@@ -7,10 +7,12 @@ import Navbar from "../components/Nav-Footer/Navbar.astro";
 import FormDemandeDevis from '../components/FormDemandeDevis.astro';
 import '../styles/pages/demander-un-devis.css';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
 ---
 
 <Layout>
     <Navbar></Navbar>
+    <FilAriane items={[{ label: 'Demander un devis' }]} />
 
     <div class="containerDemandeDevis">
         <p class="petitTitre">Contact</p>

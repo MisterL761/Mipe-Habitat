@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/energie-chauffage-ventilation.css';
+import { Check, Flame, Snowflake, ShieldCheck } from '@lucide/astro';
+import { Image } from 'astro:assets';
+
+import photoClim from '../assets/image/pompe.jpeg';
+
+const solutions = [
+	{
+		Icone: Flame,
+		titre: 'Chauffage',
+		points: [
+			'Pompes à chaleur air/air, air/eau et eau/eau',
+			'Chaudières gaz à condensation',
+			'Marques installées : Saunier Duval, e.l.m. leblanc, De Dietrich',
+		],
+	},
+	{
+		Icone: Snowflake,
+		titre: 'Climatisation',
+		points: [
+			'Systèmes mono-split et multi-split',
+			'Climatisation gainable et cassettes',
+			'Solutions réversibles (chaud/froid)',
+		],
+	},
+];
+
+const certifications = ['RGE', 'QualiPAC', 'Chauffage +', 'Qualigaz', 'SOCOTEC'];
+
+// Calcule automatiquement le nombre d'annees depuis la creation de BT2C
+// (fevrier 2007), pour ne pas avoir un chiffre fige a corriger chaque annee.
+const anneesExperienceBT2C = new Date().getFullYear() - 2007;
+
+const faqEnergie = [
+	{ question: 'Qui installe les équipements de chauffage et de climatisation ?', reponse: "L'installation est assurée par notre partenaire qualifié Bouvry Technique Chauffage et Climatisation (BT2C), chauffagiste-climaticien certifié RGE basé dans l'Oise.", ouvert: true },
+	{ question: 'Une pompe à chaleur est-elle éligible aux aides ?', reponse: "Selon votre projet et votre éligibilité, le remplacement d'un système de chauffage par une pompe à chaleur peut être concerné par certaines aides (MaPrimeRénov', CEE...). Nos équipes étudient votre situation pour vous orienter.", ouvert: false },
+	{ question: 'Quelle différence entre une PAC air/air et air/eau ?', reponse: "Une PAC air/air diffuse de l'air chaud ou froid directement dans les pièces (idéale en climatisation réversible). Une PAC air/eau alimente un circuit de chauffage central (radiateurs, plancher chauffant) et peut aussi produire l'eau chaude sanitaire.", ouvert: false },
+	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller étudie vos besoins et vous propose un devis gratuit et sans engagement.', ouvert: false },
+];
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Énergie, chauffage & ventilation' }]} />
+
+		<section class="containerImageDroite">
+			<div class="containerParentImageDroite">
+				<div class="textImageDroite">
+					<p class="petitTitre">Énergie, chauffage & ventilation</p>
+					<h1 class="titreImage">Des solutions de chauffage et de climatisation performantes</h1>
+					<p class="descImage">Pompes à chaleur, chaudières, climatisation réversible : MIPE Habitat s'appuie sur son partenaire qualifié Bouvry Technique Chauffage et Climatisation (BT2C) pour vous proposer des solutions énergétiques adaptées à votre logement.</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Pompes à chaleur air/air, air/eau et eau/eau</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Chaudières gaz et climatisation réversible</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Installation par un partenaire certifié RGE</p>
+				</div>
+				<div class="imageDroite">
+					<Image src={photoClim} alt="Installation de climatisation / pompe à chaleur" />
+				</div>
+			</div>
+		</section>
+
+		<section class="sectionSolutionsEnergie reveal">
+			<p class="petitTitre petitTitreEnergie">Nos solutions</p>
+			<h2 class="titreSolutionsEnergie">Chauffage et climatisation, une offre complète</h2>
+			<div class="grilleSolutionsEnergie">
+				{
+					solutions.map(({ Icone, titre, points }) => (
+						<div class="carteSolutionEnergie reveal">
+							<div class="iconeSolutionEnergie"><Icone size={26} color="#ffffff" /></div>
+							<p class="titreCarteEnergie">{titre}</p>
+							<ul class="listePointsEnergie">
+								{points.map((point) => (
+									<li>
+										<Check size={15} color="#8FE05C" />
+										<span>{point}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sectionPartenaireEnergie reveal">
+			<div class="containerPartenaireEnergie">
+				<div class="texteePartenaireEnergie">
+					<p class="petitTitre">Notre partenaire</p>
+					<h2 class="titrePartenaireEnergie">Bouvry Technique Chauffage et Climatisation (BT2C)</h2>
+					<div class="statExperienceEnergie">
+						<span class="grandChiffreExperience" id="chiffreExperienceBT2C" data-cible={anneesExperienceBT2C}>0</span>
+						<span class="labelExperienceEnergie">ans d'expérience</span>
+					</div>
+					<p class="descPartenaireEnergie">Chauffagiste-climaticien basé dans l'Oise depuis 2007, BT2C intervient notamment autour de Dammartin-en-Goële, Lagny-le-Sec, Chamant, Senlis et Pont-Sainte-Maxence. Un partenaire de confiance pour l'installation et l'entretien de vos équipements de chauffage et de climatisation.</p>
+					<div class="listeCertifEnergie">
+						{
+							certifications.map((certif) => (
+								<span class="badgeCertifEnergie"><ShieldCheck size={14} color="#6FBE2C" />{certif}</span>
+							))
+						}
+					</div>
+					<a href="https://www.bouvry-technique-chauffage-climatisation.fr" target="_blank" rel="noopener noreferrer" class="lienPartenaireEnergie">Découvrir BT2C</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="sectionFaqEnergie">
+			<div class="faqEnergieTexte">
+				<p class="petitTitre">Questions fréquentes</p>
+				<h2 class="titreFaqEnergie">Vos questions sur le chauffage et la climatisation</h2>
+			</div>
+			<div class="faqEnergieListe">
+				{
+					faqEnergie.map(({ question, reponse, ouvert }) => (
+						<details class="faqEnergieItem" open={ouvert}>
+							<summary class="questionFaqEnergie">{question}</summary>
+							<p class="reponseFaqEnergie">{reponse}</p>
+						</details>
+					))
+				}
+			</div>
+		</section>
+
+		<Footer></Footer>
+	</main>
+</Layout>
+
+<script src="../js/compteurExperienceEnergie.js"></script>

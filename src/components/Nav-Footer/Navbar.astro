@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../../assets/logo-mipe-habitat.jpeg';
-import { ChevronDown, Menu, X } from '@lucide/astro';
+import {ChevronDown, Menu, X, CalendarClock, Check} from '@lucide/astro';
 import '../../styles/styleComponents/Nav-Footer/Navbar.css';
 import '../../styles/global.css';
 
@@ -21,9 +21,12 @@ const liens = [
 			{href : '/nos-metiers', label: 'Tous nos métiers'},
 			{href : '/isolation-thermique-exterieur', label: 'Isolation thermique extérieure'},
 			{href : '/isolation-thermique-interieur', label: 'Isolation thermique intérieure'},
+			{href : '/menuiseries', label: 'Menuiserie'},
 			{href : '/isolation-des-combles', label: 'Isolation des combles'},
 			{href : '/ravalement-de-facade', label: 'Ravalement de façade'},
-			{href : '/menuiseries', label: 'Menuiserie'},
+			{href : '/entretien-toiture', label: 'Nettoyage & entretien de toiture'},
+			{href : '/amenagement-combles', label: 'Aménagement des combles'},
+			{href : '/energie-chauffage-ventilation', label: 'Énergie, chauffage & ventilation'},
 
 		],
 	},
@@ -37,6 +40,7 @@ const liens = [
 			{href : '/qualifications', label: 'Qualification'},
 			{href : '/aides-et-financements', label: 'Aides et financements'},
 			{href : '/professionnels', label: 'Professionnels'},
+			{href : '/nos-secteurs-intervention', label: 'Nos secteurs d\'intervention'},
 		],
 	},
 	{ href: 'https://revelhome.app/connexion?slug=' , label: 'Espace client' },
@@ -79,7 +83,7 @@ const pageActuelle = Astro.url.pathname;
 
 	<div class="contact">
 		<a class="telephone" href="tel:0375190160">03 75 19 01 60</a>
-		<a class="bouton-devis" href="/demander-un-devis">Demander un devis</a>
+		<a class="bouton-devis" href="/demander-un-devis"><CalendarClock class="calendar" size={20} color="#fff"/>Prendre RDV</a>
 	</div>
 </header>
 

@@ -28,11 +28,17 @@
 }
 .cardMetiers{
     width: 25%;
+    background-color: #ffffff;
     border: 1px solid #E4E7E2;
+    box-shadow: 0 4px 18px rgba(22, 39, 59, 0.04);
     border-radius: 15px;
-
     display: flex;
     flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cardMetiers:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(22, 39, 59, 0.08);
 }
 .imageCard{
     width: 100%;

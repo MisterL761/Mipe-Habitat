@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/entretien-toiture.css';
+import { Check, Sparkles, Search, Wrench } from '@lucide/astro';
+import { Image } from 'astro:assets';
+
+import photoToiture from '../assets/image/toiture.webp';
+
+const interventions = [
+	{
+		Icone: Sparkles,
+		titre: 'Démoussage & nettoyage',
+		description: "Mousses, lichens et salissures peuvent fragiliser les matériaux et favoriser les infiltrations d'eau. Un nettoyage adapté à votre type de couverture préserve votre toiture et sa valeur.",
+	},
+	{
+		Icone: Search,
+		titre: 'Inspection & gouttières',
+		description: "Une inspection régulière et le contrôle des gouttières permettent de détecter les signes d'usure à temps et de maintenir votre toiture en bon état.",
+	},
+	{
+		Icone: Wrench,
+		titre: 'Réparation & étanchéité',
+		description: 'Tuiles déplacées, petites fuites, points faibles identifiés lors de l’inspection : nos équipes interviennent pour préserver l’étanchéité de votre toiture.',
+	},
+];
+
+const faqToiture = [
+	{ question: 'Pourquoi nettoyer sa toiture régulièrement ?', reponse: "Les mousses, lichens et salissures retiennent l'humidité et peuvent fragiliser les matériaux à la longue, favorisant les infiltrations d'eau. Un entretien régulier préserve l'état de votre toiture et prolonge sa durée de vie.", ouvert: true },
+	{ question: 'À quelle fréquence faut-il entretenir sa toiture ?', reponse: "Cela dépend de l'exposition de votre logement (environnement boisé, humidité, orientation) et du type de couverture. Une inspection périodique permet d'évaluer si un démoussage ou un entretien est nécessaire.", ouvert: false },
+	{ question: 'Intervenez-vous sur tous types de toiture ?', reponse: "La méthode de nettoyage et d'entretien est adaptée à votre type de couverture (tuiles, ardoises...) pour ne pas endommager les matériaux. Nos équipes étudient votre toiture avant toute intervention.", ouvert: false },
+	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller étudie vos besoins et vous propose un devis gratuit et sans engagement.', ouvert: false },
+];
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Nettoyage & entretien de toiture' }]} />
+
+		<section class="containerImageDroite">
+			<div class="containerParentImageDroite">
+				<div class="textImageDroite">
+					<p class="petitTitre">Toiture</p>
+					<h1 class="titreImage">Entretenez votre toiture pour protéger durablement votre maison</h1>
+					<p class="descImage">Un entretien régulier de votre toiture permet de préserver son état, d’éviter les infiltrations et de prolonger sa durée de vie. MIPE Habitat vous accompagne dans le nettoyage et l’entretien de votre couverture.</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Démoussage et nettoyage adaptés aux matériaux</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Inspection et contrôle des gouttières</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Protection contre les infiltrations d’eau</p>
+				</div>
+				<div class="imageDroite">
+					<Image src={photoToiture} alt="Nettoyage et entretien de toiture" />
+				</div>
+			</div>
+		</section>
+
+		<section class="sectionInterventionsToiture reveal">
+			<p class="petitTitre petitTitreToiture">Nos interventions</p>
+			<h2 class="titreInterventionsToiture">Un entretien complet de votre couverture</h2>
+			<div class="grilleInterventionsToiture">
+				{
+					interventions.map(({ Icone, titre, description }) => (
+						<div class="carteInterventionToiture reveal">
+							<div class="iconeInterventionToiture"><Icone size={26} color="#ffffff" /></div>
+							<p class="titreCarteToiture">{titre}</p>
+							<p class="descCarteToiture">{description}</p>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sectionFaqToiture">
+			<div class="faqToitureTexte">
+				<p class="petitTitre">Questions fréquentes</p>
+				<h2 class="titreFaqToiture">Vos questions sur l’entretien de toiture</h2>
+			</div>
+			<div class="faqToitureListe">
+				{
+					faqToiture.map(({ question, reponse, ouvert }) => (
+						<details class="faqToitureItem" open={ouvert}>
+							<summary class="questionFaqToiture">{question}</summary>
+							<p class="reponseFaqToiture">{reponse}</p>
+						</details>
+					))
+				}
+			</div>
+		</section>
+
+		<Footer></Footer>
+	</main>
+</Layout>

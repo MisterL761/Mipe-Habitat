@@ -102,6 +102,80 @@
     border-radius: 15px;
 }
 
+/* ===================== Bloc "Usine en France" (dans sectionIsofrance) =====================
+   Met en avant la fabrication francaise d'Isofrance (groupe AT Partner) :
+   un petit badge drapeau bleu-blanc-rouge, puis les 2 usines reelles qui
+   fabriquent les menuiseries (PVC a Chateauroux, aluminium a La Bresse). */
+.blocUsineFrance{
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #E4E7E2;
+}
+.badgeUsineFrance{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: #ffffff;
+    border: 1px solid #E4E7E2;
+    border-radius: 999px;
+    padding: 0.5rem 1rem 0.5rem 0.6rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #16273B;
+}
+/* Petit drapeau francais : 3 bandes verticales bleu-blanc-rouge, en CSS pur
+   (pas besoin d'image) - couleurs officielles du drapeau. */
+.drapeauFrance{
+    display: inline-block;
+    width: 22px;
+    height: 15px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #0055A4 0% 33.33%, #ffffff 33.33% 66.66%, #EF4135 66.66% 100%);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+}
+.introUsineFrance{
+    margin-top: 1.25rem;
+    color: #4A5B6B;
+    font-size: 1rem;
+    max-width: 640px;
+}
+.grilleUsines{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.carteUsine{
+    background-color: #ffffff;
+    border: 1px solid #E4E7E2;
+    border-radius: 18px;
+    padding: 1.75rem;
+}
+.iconeUsine{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #8FE05C, #6FBE2C);
+    margin-bottom: 1rem;
+}
+.villeUsine{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: #16273B;
+}
+.descUsine{
+    margin-top: 0.6rem;
+    color: #4A5B6B;
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
 @media (max-width: 900px){
     .sectionIsofrance{
         margin: 1rem 1.5rem 2.5rem 1.5rem;
@@ -110,5 +184,8 @@
     .containerIsofrance{
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+    .grilleUsines{
+        grid-template-columns: 1fr;
     }
 }

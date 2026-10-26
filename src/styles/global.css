@@ -23,6 +23,35 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Fil d'Ariane, utilise par le composant FilAriane.astro sur la quasi
+   totalite des pages (sauf l'accueil). */
+.filAriane{
+  max-width: 1300px;
+  margin: 1.25rem auto 0 auto;
+  padding: 0 5%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: #4A5B6B;
+}
+
+.filAriane a{
+  color: #4A5B6B;
+  text-decoration: none;
+}
+
+.filAriane a:hover{
+  color: #3E7C1F;
+  text-decoration: underline;
+}
+
+.filAriane span[aria-current]{
+  color: #16273B;
+  font-weight: 600;
+}
 .containerParentImageDroite {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
@@ -68,10 +97,17 @@
 }
 
 .cardAtout{
+  background-color: #ffffff;
   border: 1px solid #E4E7E2;
+  box-shadow: 0 4px 18px rgba(22, 39, 59, 0.04);
   width: 25%;
   padding: 1.5rem;
   border-radius: 15px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cardAtout:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(22, 39, 59, 0.08);
 }
 .titreAtout{
   font-size: 1.2rem;

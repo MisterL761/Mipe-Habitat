@@ -1,24 +1,44 @@
 ---
+import 'leaflet/dist/leaflet.css';
 import '../styles/global.css';
 import '../styles/styleComponents/ZoneIntervention.css';
+
+// Les deux implantations de MIPE Habitat, chacune avec son propre rayon
+// d'intervention (en metres) affiche comme un cercle sur la carte.
+const agences = [
+	{ nom: 'Le Plessis-Belleville · Siège', lat: 49.1167, lng: 2.7667, rayon: 40000 },
+	{ nom: 'Plaisir · Agence', lat: 48.817, lng: 1.948, rayon: 40000 },
+];
+
+// Quelques grandes villes citees autour de chaque zone, pour rendre la
+// carte parlante au premier coup d'oeil.
+const villes = [
+	{ nom: 'Senlis', lat: 49.2049, lng: 2.5835 },
+	{ nom: 'Meaux', lat: 48.959, lng: 2.888 },
+	{ nom: 'Villers-Cotterêts', lat: 49.2548, lng: 3.091 },
+	{ nom: 'Saint-Denis', lat: 48.9333, lng: 2.3583 },
+	{ nom: 'Versailles', lat: 48.807, lng: 2.137 },
+	{ nom: 'Nanterre', lat: 48.891, lng: 2.209 },
+	{ nom: 'Créteil', lat: 48.793, lng: 2.461 },
+	{ nom: 'Cergy-Pontoise', lat: 49.0333, lng: 2.087 },
+];
 ---
 
-<section class="reveal">
+<section class="reveal" id="zone-intervention">
 	<div class="zoneContainer">
 		<div class="texteZone">
 			<p class="petitTitre">Zone d'intervention</p>
 			<h2 class="titreZone">Présents à vos côtés en Île-de-France et dans l'Oise</h2>
 			<p class="descZone">Depuis notre agence du Plessis-Belleville, MIPE Habitat intervient principalement dans l’Oise (60), la Seine-et-Marne (77), l’Aisne (02) et la Seine-Saint-Denis (93). Notre implantation secondaire dans les Yvelines (78) nous permet également d’accompagner vos projets dans l’ouest francilien, ainsi que dans les Hauts-de-Seine (92), le Val-de-Marne (94) et le Val-d’Oise (95).</p>
 			<p class="descZone">Deux implantations pour une zone d’intervention élargie et toujours plus de proximité avec nos clients.</p>
+			<a href="/nos-secteurs-intervention" class="lienSecteursZone">Voir le détail de nos secteurs d'intervention</a>
 		</div>
 
 		<div class="carteZone">
-			<iframe
-				src="https://www.google.com/maps?q=11+Avenue+des+Meuniers,+60330+Le+Plessis-Belleville&output=embed&z=11"
-				loading="lazy"
-				referrerpolicy="no-referrer-when-downgrade"
-				title="Localisation de MIPE Habitat au Plessis-Belleville"
-			></iframe>
+			<div id="carteZone" data-agences={JSON.stringify(agences)} data-villes={JSON.stringify(villes)}></div>
+			<span class="legendeCarteZone">Carte de la zone d'intervention</span>
 		</div>
 	</div>
 </section>
+
+<script src="../js/zoneIntervention.js"></script>

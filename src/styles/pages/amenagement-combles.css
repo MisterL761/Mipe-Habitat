@@ -1,0 +1,140 @@
+.containerImageDroite .containerParentImageDroite{
+    margin-top: 3rem;
+}
+
+/* ===================== "Nos interventions" (3 cartes) ===================== */
+.sectionInterventionsCombles{
+    background-color: #EEF6E7;
+    padding: 4rem;
+    text-align: center;
+}
+.petitTitreCombles{
+    text-align: center;
+}
+.titreInterventionsCombles{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+.grilleInterventionsCombles{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.carteInterventionCombles{
+    position: relative;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 2.25rem 2rem 2rem 2rem;
+    box-shadow: 0 10px 30px rgba(22, 39, 59, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+.carteInterventionCombles::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #6FBE2C, #8FE05C);
+}
+.carteInterventionCombles:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(22, 39, 59, 0.14);
+}
+.iconeInterventionCombles{
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6FBE2C, #3E7C1F);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 8px 20px rgba(111, 190, 44, 0.3);
+}
+.titreCarteCombles{
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+.descCarteCombles{
+    color: #4A5B6B;
+    line-height: 1.5;
+}
+
+/* ===================== FAQ ===================== */
+.sectionFaqCombles{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 4rem;
+    align-items: flex-start;
+}
+.faqComblesTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqCombles{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqComblesListe{
+    flex: 1;
+}
+.faqComblesItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqComblesItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqCombles{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqCombles::-webkit-details-marker{
+    display: none;
+}
+.questionFaqCombles::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqComblesItem[open] .questionFaqCombles::after{
+    content: '−';
+}
+.reponseFaqCombles{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .sectionInterventionsCombles{
+        padding: 3rem 1.5rem;
+    }
+    .grilleInterventionsCombles{
+        grid-template-columns: 1fr;
+    }
+    .titreInterventionsCombles{
+        font-size: 1.5rem;
+    }
+    .sectionFaqCombles{
+        flex-direction: column;
+        margin: 3rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .faqComblesTexte{
+        width: 100%;
+    }
+}

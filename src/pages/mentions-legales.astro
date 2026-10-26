@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/mentions-legales.css';
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<FilAriane items={[{ label: 'Mentions légales' }]} />
+
+		<section class="sectionMentionsLegales">
+			<div class="heroMentionsLegales">
+				<p class="petitTitre">Informations légales</p>
+				<h1 class="titreMentionsLegales">Mentions légales</h1>
+			</div>
+
+			<div class="containerMentionsLegales">
+				<aside class="encartEditeur">
+					<h2 class="titreEncartEditeur">MIPE Habitat</h2>
+					<p>11 Avenue des Meuniers, Cellule N10<br />60330 Le Plessis-Belleville<br />Téléphone : 03 75 19 01 60</p>
+					<hr />
+					<p>Directeur/trice de publication : Giorgiana SPENDEA</p>
+					<hr />
+					<p>SIRET : 53936477800040<br />Capital social : 10 000 €<br />TVA : FR01539364778</p>
+					<hr />
+					<p class="siteWebEncart">
+						Site web<br />
+						Création et hébergement : <a href="https://www.reseau-proeco-energies.fr/" target="_blank" rel="noopener">Réseau Proéco Énergies</a>
+					</p>
+				</aside>
+
+				<div class="contenuMentionsLegales">
+					<h2>Propriété et droits</h2>
+					<p>
+						L'utilisation de ce site est réservée à un usage strictement personnel. Le contenu et la structure du présent site est protégé par le droit d'auteur et les droits de propriété intellectuelle. Toute reproduction ou représentation, en tout ou partie, de tout document présent sur le site concerné (notamment tout texte, image, représentation iconographique ou photographique, logo) à d'autres fins sur un quelconque support est interdite. Le non-respect de cette interdiction constitue une contrefaçon pouvant engager la responsabilité civile et pénale du contrefacteur. Les informations contenues dans le site sont non contractuelles et sujettes à modification sans préavis.
+					</p>
+
+					<h2>Politique de confidentialité</h2>
+					<h3>Protection des données personnelles sur le site</h3>
+					<p>Conformément au Règlement Général sur la Protection des Données (RGPD) du 14 avril 2016, et à la Loi Informatique et Libertés du 6 janvier 1978 modifiée, nous vous informons que :</p>
+					<ul>
+						<li>Les informations transmises par le formulaire de notre site ne sont recueillies que pour un traitement commercial.</li>
+						<li>Elles ne sont conservées que dans le but unique de recontacter les personnes ayant volontairement laissé leurs coordonnées.</li>
+						<li>Aucune information ni donnée personnelle n'est cédée à des tiers.</li>
+						<li>Les données personnelles collectées sont conservées pour une durée de 2 ans à compter de la fin de la relation commerciale si aucun contrat n'est conclu entre le client et l'entreprise, et pour une durée de 10 ans (obligation légale en application du Code de commerce) pour les données de facturation.</li>
+						<li>Conformément à la loi « informatique et libertés », vous pouvez exercer votre droit d'accès aux données vous concernant et les faire supprimer ou rectifier en nous contactant.</li>
+					</ul>
+
+					<h3>Droit d'accès à vos données personnelles</h3>
+					<p>Vous disposez d'un droit d'accès, de modification et/ou de suppression des données vous concernant à tout moment :</p>
+					<ul>
+						<li>Par courrier, par voie postale, accompagné d'une copie d'une pièce d'identité. Idéalement, en recommandé avec accusé de réception.</li>
+						<li>Sur place, dans nos locaux, avec présentation d'une pièce d'identité. La CNIL précise : « Il est possible de se faire accompagner par la personne de son choix. La consultation doit durer suffisamment longtemps pour prendre note commodément et complètement. Il est possible de demander une copie des données ».</li>
+					</ul>
+					<p>Le responsable du fichier dispose d'un délai de réponse maximal de 2 mois à compter de la demande, qu'elle ait été exercée par voie postale ou sur place. La CNIL précise : « Si la demande est incomplète (absence de la pièce d'identité par exemple), le responsable du fichier est en droit de demander des compléments : le délai est alors suspendu et court à nouveau une fois ces éléments fournis ».</p>
+					<p>Les limites au droit d'accès sont précisées sur le site de la CNIL et consultables ici : <a href="https://www.cnil.fr/fr/respecter-les-droits-des-personnes" target="_blank" rel="noopener">https://www.cnil.fr/fr/respecter-les-droits-des-personnes</a>.</p>
+
+					<h2>Gestion des avis clients</h2>
+					<p>
+						Les avis clients sont collectés à partir de la plateforme du <a href="https://www.reseau-proeco-energies.fr/" target="_blank" rel="noopener">Réseau Proéco Énergies</a> sur invitation de l'entreprise ayant réalisé les travaux, à travers un formulaire en ligne qui reprend la fiche résumant le chantier effectué. Ces avis clients sont ensuite diffusés sur le site du Réseau Proéco Énergies et sur le présent site Internet de la société MIPE Habitat.
+					</p>
+					<p>
+						Conformément au Décret n°2017-1436 du 29 septembre 2017 relatif aux obligations d'information relatives aux avis en ligne de consommateurs et à l'Ordonnance n° 2021-1734 du 22 décembre 2021 transposant la directive 2019/2161 du Parlement européen et du Conseil du 27 novembre 2019 et relative à une meilleure application et une modernisation des règles de l'Union en matière de protection des consommateurs, nous précisons que le Réseau Proéco Énergies ne réalise pas de contrôle des avis collectés sur sa plateforme. Le Réseau Proéco Énergies a toutefois mis en place un système de suivi et de traçabilité et, en cas de besoin, tous les chantiers rattachés à des avis clients pourront être présentés par notre entreprise, preuve de notre engagement dans une politique de qualité, responsable et de transparence.
+					</p>
+					<p>Le dépôt d'avis client par un consommateur est libre et ne fait l'objet d'aucune contrepartie de la part du Réseau Proéco Énergies ou de l'une de ses entreprises adhérentes.</p>
+					<p>En cas de constat de fausse déclaration, que ce soit de chantier ou d'avis client, le Réseau Proéco Énergies saisira immédiatement son Collège Éthique qui enquêtera et pourra être amené à exclure l'entreprise concernée en cas de faute avérée.</p>
+					<p>Le délai maximum de publication des avis déposés sur le site du Réseau Proéco Énergies et sur le présent site Web est de 48h, tous les avis sont relus par un modérateur.</p>
+					<p>La durée de conservation des chantiers publiés et des avis clients associés est considérée comme permanente tant que l'entreprise concernée est adhérente du Réseau Proéco Énergies. En cas d'arrêt de partenariat, l'ensemble des données de l'entreprise et donc ses avis clients sont effacées.</p>
+					<p>Le Réseau Proéco Énergies s'autorise à ne pas publier l'avis client si celui-ci fait état de propos injurieux, déplacés, incohérents, mensongers. Dans ce cas de figure, le Réseau Proéco Énergies informera l'auteur de cet avis en indiquant le motif du refus.</p>
+
+					<h3>Politique de cookies</h3>
+					<p><strong>Utilisation des cookies</strong><br />Notre site utilise des cookies pour améliorer votre expérience de navigation et recueillir des données statistiques anonymes. En continuant à utiliser notre site, vous acceptez notre utilisation de cookies conformément à notre politique de confidentialité.</p>
+					<p><strong>Types de cookies utilisés</strong></p>
+					<ul>
+						<li>Cookies techniques : indispensables au fonctionnement du site (par exemple, pour la gestion des sessions ou la mémorisation de vos préférences).</li>
+						<li>Cookies analytiques : ces cookies nous permettent de mesurer l'audience du site, d'analyser le comportement de navigation des utilisateurs de manière anonyme et d'optimiser la qualité de nos services.</li>
+					</ul>
+					<p><strong>Durée de conservation</strong><br />Les cookies utilisés sur ce site peuvent être des cookies de session (qui expirent à la fermeture de votre navigateur) ou des cookies persistants (conservés pendant une durée déterminée, par exemple 30 jours ou plus, selon leur finalité).</p>
+					<p><strong>Gestion de vos cookies</strong><br />Lors de votre première visite, un bandeau vous permet de gérer vos préférences en matière de cookies. Vous pouvez à tout moment modifier ou retirer votre consentement via le gestionnaire de cookies accessible sur notre site. Pour plus d'informations sur la gestion des cookies, vous pouvez consulter le site de la CNIL afin de connaître <a href="https://www.cnil.fr/fr/mes-demarches/les-droits-pour-maitriser-vos-donnees-personnelles" target="_blank" rel="noopener">vos droits Informatique et Libertés</a> et la façon de les exercer.</p>
+
+					<h2>Médiateur de la consommation</h2>
+					<p>
+						Selon l'article L.612-1 du Code de la consommation, il est rappelé que « tout consommateur a le droit de recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable du litige qui l'oppose à un professionnel. À cet effet, le professionnel garantit au consommateur le recours effectif à un dispositif de médiation de la consommation ». À ce titre, l'entreprise <strong>MIPE Habitat</strong> propose à ses Clients Consommateurs, dans le cadre de litiges qui n'auraient pas trouvé résolution de manière amiable, la médiation d'un médiateur de la consommation : <strong>Médiation de la Consommation &amp; Patrimoine</strong>, 12 square Desnouettes, 75015 Paris. Site internet : <a href="https://mcpmediation.org/" target="_blank" rel="noopener nofollow">mcpmediation.org</a>.
+					</p>
+					<p>Il est rappelé que la médiation n'est pas obligatoire mais uniquement proposée afin de résoudre les litiges en évitant un recours à la justice. Pour régler vos litiges, dans un premier temps vous devez nous adresser une réclamation écrite à : MIPE Habitat, 11 Avenue des Meuniers, Cellule N10, 60330 Le Plessis-Belleville.</p>
+				</div>
+			</div>
+		</section>
+
+		<Footer></Footer>
+	</main>
+</Layout>

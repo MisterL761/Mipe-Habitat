@@ -45,10 +45,12 @@
     background-color: #16273B;
     color: #ffffff;
     width: 100%;
-    /* Hauteur fixee a 20% de la carte avant : pour certaines personnes, le
-       poste passe sur 2 lignes (ex: "Responsable administrative et
-       financier") et le texte se faisait couper. La hauteur s'adapte
-       maintenant au contenu (padding), quel que soit le nombre de lignes. */
+    /* Meme hauteur pour toutes les cartes (mesuree sur le poste le plus
+       long une fois passe sur 2 lignes, ex: "Responsable administrative et
+       financier"), pour que tous les bandeaux bleu/vert soient alignes -
+       sans quoi un poste court laisse un bandeau plus bas qu'un poste sur
+       2 lignes. Le contenu reste centre verticalement dedans. */
+    height: 108px;
     padding: 0.75rem 0.5rem;
     border-top : 3px solid #6FBE2C;
     display: flex;
@@ -112,6 +114,9 @@
     .cardEquipe{
         height: 280px;
         flex: 0 0 180px;
+    }
+    .containerInfo{
+        height: 98px;
     }
     .nomPresonne{
         font-size: 1rem;

@@ -1,19 +1,24 @@
 ---
 import '../styles/styleComponents/Metier.css';
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 
-import { BrickWall, Grid2x2, Triangle, DoorOpen, HousePlug} from '@lucide/astro';
+import photoIte from '../assets/image/iso-ext.webp';
+import photoIti from '../assets/image/iti.webp';
+import photoCombles from '../assets/image/comble.webp';
+import photoMenuiseries from '../assets/image/menuiserie.webp';
+import photoEnergie from '../assets/image/clim.webp';
 
 const metier = [
-    { icone: BrickWall, prestation: 'Isolation thermique extérieure (ITE)', description: 'Une solution performante pour isoler les murs par l’extérieur et limiter durablement les déperditions de chaleur.' },
-    { icone: Grid2x2, prestation: 'Isolation thermique intérieure (ITI)', description: 'Une alternative efficace pour améliorer l’isolation de votre logement lorsque l’ITE n’est pas adaptée.' },
-    { icone: Triangle, prestation: 'Isolation des combles & rampants', description: 'Combles perdus ou toiture en rampant : améliorez l’isolation de votre toiture pour limiter les déperditions de chaleur et gagner en confort toute l’année.' }
+    { photo: photoIte, prestation: 'Isolation thermique extérieure (ITE)', description: 'Une solution performante pour isoler les murs par l’extérieur et limiter durablement les déperditions de chaleur.' },
+    { photo: photoIti, prestation: 'Isolation thermique intérieure (ITI)', description: 'Une alternative efficace pour améliorer l’isolation de votre logement lorsque l’ITE n’est pas adaptée.' },
+    { photo: photoCombles, prestation: 'Isolation des combles & rampants', description: 'Combles perdus ou toiture en rampant : améliorez l’isolation de votre toiture pour limiter les déperditions de chaleur et gagner en confort toute l’année.' }
 
 
 ];
 const metier2 = [
-    { icone: DoorOpen, prestation: 'Menuiseries extérieures', description: 'Fenêtres et portes performantes pour renforcer l’isolation et le confort de votre habitat.' },
-    { icone: HousePlug, prestation: 'Énergie, chauffage & ventilation', description: 'Pompes à chaleur, solutions de chauffage et systèmes de ventilation performants, installés par notre réseau de partenaires qualifiés pour améliorer le confort et la performance énergétique de votre logement.' }
+    { photo: photoMenuiseries, prestation: 'Menuiseries extérieures', description: 'Fenêtres et portes performantes pour renforcer l’isolation et le confort de votre habitat.' },
+    { photo: photoEnergie, prestation: 'Énergie, chauffage & ventilation', description: 'Pompes à chaleur, solutions de chauffage et systèmes de ventilation performants, installés par notre réseau de partenaires qualifiés pour améliorer le confort et la performance énergétique de votre logement.' }
 ];
 
 
@@ -27,11 +32,13 @@ const metier2 = [
 
             <div class="metierContainerCard" >
                 {
-                    metier.map(({ icone: Icone, prestation, description }) => (
+                    metier.map(({ photo, prestation, description }) => (
                             <div class="cardMetier">
-                                <p class="iconeMetier"><Icone size={25} color="#3E7C1F" /></p>
-                                <p class="titrePrestation">{prestation}</p>
-                                <p class="descriptionMetier">{description}</p>
+                                <div class="photoMetier"><Image src={photo} alt={prestation} /></div>
+                                <div class="contenuCardMetier">
+                                    <p class="titrePrestation">{prestation}</p>
+                                    <p class="descriptionMetier">{description}</p>
+                                </div>
                             </div>
                     ))
                 }
@@ -39,11 +46,13 @@ const metier2 = [
 
         <div class="metierContainerCard" >
             {
-                metier2.map(({ icone: Icone, prestation, description }) => (
+                metier2.map(({ photo, prestation, description }) => (
                         <div class="cardMetier">
-                            <p class="iconeMetier"><Icone size={25} color="#3E7C1F" /></p>
-                            <p class="titrePrestation">{prestation}</p>
-                            <p class="descriptionMetier">{description}</p>
+                            <div class="photoMetier"><Image src={photo} alt={prestation} /></div>
+                            <div class="contenuCardMetier">
+                                <p class="titrePrestation">{prestation}</p>
+                                <p class="descriptionMetier">{description}</p>
+                            </div>
                         </div>
                 ))
             }

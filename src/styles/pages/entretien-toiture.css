@@ -1,0 +1,140 @@
+.containerImageDroite .containerParentImageDroite{
+    margin-top: 3rem;
+}
+
+/* ===================== "Nos interventions" (3 cartes) ===================== */
+.sectionInterventionsToiture{
+    background-color: #EEF6E7;
+    padding: 4rem;
+    text-align: center;
+}
+.petitTitreToiture{
+    text-align: center;
+}
+.titreInterventionsToiture{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+.grilleInterventionsToiture{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.carteInterventionToiture{
+    position: relative;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 2.25rem 2rem 2rem 2rem;
+    box-shadow: 0 10px 30px rgba(22, 39, 59, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+.carteInterventionToiture::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #6FBE2C, #8FE05C);
+}
+.carteInterventionToiture:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(22, 39, 59, 0.14);
+}
+.iconeInterventionToiture{
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6FBE2C, #3E7C1F);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 8px 20px rgba(111, 190, 44, 0.3);
+}
+.titreCarteToiture{
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+.descCarteToiture{
+    color: #4A5B6B;
+    line-height: 1.5;
+}
+
+/* ===================== FAQ ===================== */
+.sectionFaqToiture{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 4rem;
+    align-items: flex-start;
+}
+.faqToitureTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqToiture{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqToitureListe{
+    flex: 1;
+}
+.faqToitureItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqToitureItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqToiture{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqToiture::-webkit-details-marker{
+    display: none;
+}
+.questionFaqToiture::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqToitureItem[open] .questionFaqToiture::after{
+    content: '−';
+}
+.reponseFaqToiture{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .sectionInterventionsToiture{
+        padding: 3rem 1.5rem;
+    }
+    .grilleInterventionsToiture{
+        grid-template-columns: 1fr;
+    }
+    .titreInterventionsToiture{
+        font-size: 1.5rem;
+    }
+    .sectionFaqToiture{
+        flex-direction: column;
+        margin: 3rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .faqToitureTexte{
+        width: 100%;
+    }
+}

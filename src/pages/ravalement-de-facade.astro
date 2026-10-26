@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css'
 import '../styles/pages/ravalement-de-facade.css';
 import {Check} from "@lucide/astro";
@@ -44,6 +45,7 @@ const faqRavalement = [
 <Layout>
     <main>
         <Navbar></Navbar>
+        <FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Ravalement de façade' }]} />
         <section class="containerImageDroite">
 
             <br>

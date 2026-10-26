@@ -16,23 +16,33 @@
     text-align: center;
     margin-bottom: 2rem;
 }
+/* Grille plutot que flex a largeurs fixes (30% x3) : avec l'ajout d'une
+   4e carte, un pourcentage fixe calcule pour 3 ne rentre plus sur une seule
+   ligne. "auto-fit, minmax(260px,1fr)" s'adapte automatiquement au nombre
+   de cartes et a la largeur disponible, 3, 4 ou plus. */
 .qualificationsContainer{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .qualificationCard{
+    background-color: #ffffff;
     border : 1px solid #E4E7E2 ;
-    width: 30%;
+    box-shadow: 0 4px 18px rgba(22, 39, 59, 0.04);
     padding: 2rem;
     border-radius: 15px;
     margin-bottom: 5rem;
-    /* 1) On transforme la carte en conteneur flex vertical : ses enfants
-       (image, titre, description, lien) s'empilent comme avant, mais on
-       peut maintenant controler leur taille individuellement. */
     display: flex;
     flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.qualificationCard:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(22, 39, 59, 0.08);
 }
 .imageQualif{
     /* 2) Hauteur fixe + object-fit: contain -> chaque logo occupe exactement
@@ -78,11 +88,8 @@
 /* ===================== Responsive (mobile/tablette) ===================== */
 @media (max-width: 900px){
     .qualificationsContainer{
-        flex-wrap: wrap;
+        grid-template-columns: 1fr;
         padding: 0 1.5rem;
-    }
-    .qualificationCard{
-        width: 100%;
     }
     .titreQualification{
         font-size: 1.6rem;

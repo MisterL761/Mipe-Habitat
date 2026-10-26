@@ -1,5 +1,7 @@
 .formDevis{
+    background-color: #ffffff;
     border : 1px solid #E4E7E2;
+    box-shadow: 0 8px 30px rgba(22, 39, 59, 0.05);
     width: 90%;
     padding: 2rem;
     border-radius: 15px;
@@ -70,6 +72,10 @@ select{
 .checkText{
     color: #4A5B6B;
 }
+.checkText a{
+    color: #3E7C1F;
+    font-weight: 600;
+}
 
 .cardCord{
     background-color: #16273B;
@@ -107,7 +113,9 @@ select{
 }
 
 .cardHoraire{
+    background-color: #ffffff;
     border: 1px solid #E4E7E2;
+    box-shadow: 0 4px 18px rgba(22, 39, 59, 0.04);
     width: 90%;
     padding: 2rem;
     border-radius: 15px;

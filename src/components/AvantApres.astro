@@ -1,0 +1,45 @@
+---
+import { ChevronsLeftRight, ArrowRight } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import '../styles/styleComponents/AvantApres.css';
+
+// Attention, piege : sur le disque, le fichier nomme "avant.webp" montre en
+// realite la maison DEJA renovee (enduit propre, toiture nettoyee), et
+// "apres.webp" montre son etat D'ORIGINE (facade sale, volets abimes,
+// materiel de chantier au sol) - les deux noms sont inverses par rapport a
+// leur contenu reel. On les importe donc ici sous des noms qui decrivent
+// ce qu'ils montrent vraiment, pas le nom du fichier source.
+import photoEtatOrigine from '../assets/image/apres.webp';
+import photoRenovee from '../assets/image/avant.webp';
+---
+
+<section class="reveal">
+	<div class="containerAvantApres">
+		<p class="petitTitre">Avant / Après</p>
+		<h2 class="titreAvantApres">Le résultat, vu par vous-même</h2>
+		<p class="descAvantApres">Faites glisser le curseur pour comparer l'état d'origine de cette maison et le résultat après notre intervention.</p>
+
+		<div class="curseurAvantApresContainer">
+			<div class="imagesAvantApres" id="imagesAvantApres">
+				<Image src={photoRenovee} alt="Façade après la rénovation par MIPE Habitat" class="imgApres" />
+				<Image src={photoEtatOrigine} alt="Façade avant intervention de MIPE Habitat" class="imgAvant" />
+
+				<span class="etiquetteAvantApres etiquetteAvant">Avant</span>
+				<span class="etiquetteAvantApres etiquetteApres">Après</span>
+
+				<input type="range" min="0" max="100" value="50" class="curseurAvantApres" id="curseurAvantApres" aria-label="Curseur de comparaison avant/après" />
+
+				<div class="poigneeAvantApres" aria-hidden="true">
+					<ChevronsLeftRight size={36} strokeWidth={2.75} />
+				</div>
+			</div>
+		</div>
+
+		<a href="/realisation" class="lienToutesRealisationsAvantApres">
+			Voir toutes nos réalisations
+			<ArrowRight size={18} />
+		</a>
+	</div>
+</section>
+
+<script src="../js/avantApres.js"></script>

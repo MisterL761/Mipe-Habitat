@@ -32,27 +32,43 @@
     display: flex;
     flex-direction: column;
     flex: 0 0 340px;
-    padding: 2rem;
+    overflow: hidden;
     background-color: #FFFFFF;
     border-radius: 15px;
+    box-shadow: 0 4px 18px rgba(22, 39, 59, 0.05);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Photo de chantier en haut de chaque carte, a la place de l'ancienne
+   petite icone generique - plus parlant pour une entreprise du batiment. */
+.photoMetier{
+    width: 100%;
+    overflow: hidden;
+}
+.photoMetier img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.cardMetier:hover .photoMetier img{
+    transform: scale(1.05);
+}
+
+.contenuCardMetier{
+    padding: 1.5rem 2rem 2rem 2rem;
 }
 
 .titrePrestation{
     font-size: 1.2rem;
     font-weight: bold;
-    margin-top: 1rem;
 }
 .descriptionMetier{
     font-size: 1rem;
     color: #4A5B6B;
     margin-top: 0.8rem;
-}
-.iconeMetier{
-    padding: 0.5rem;
-    background-color: #EEF6E7;
-    width: 40px;
-    border-radius: 25%;
 }
 
 .cardMetier:hover{

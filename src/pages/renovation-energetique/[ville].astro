@@ -1,0 +1,308 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Nav-Footer/Navbar.astro';
+import Footer from '../../components/Nav-Footer/Footer.astro';
+import FilAriane from '../../components/FilAriane.astro';
+import { Image } from 'astro:assets';
+import { ArrowRight, Check, ChevronsLeftRight, Images, MapPin } from '@lucide/astro';
+import '../../styles/global.css';
+import '../../styles/styleComponents/AvantApres.css';
+import '../../styles/pages/ville-landing.css';
+
+// Photos generiques (meme paire que la section avant/apres de la page
+// d'accueil), utilisees pour les villes qui n'ont pas encore de chantier
+// documente : "apres.webp" montre en realite l'etat D'ORIGINE de la maison
+// et "avant.webp" la maison RENOVEE (noms de fichiers inverses par rapport
+// a leur contenu, deja corrige ailleurs sur le site - voir AvantApres.astro).
+import photoGeneriqueOrigine from '../../assets/image/apres.webp';
+import photoGeneriqueRenovee from '../../assets/image/avant.webp';
+
+// Photos reelles de nos chantiers (memes fichiers sources que
+// CarteRealisations.astro) : la photo "apres" (ou la plus aboutie) et une
+// photo "avant" ou "pendant" par ville qui a deja un chantier documente,
+// pour que le curseur du hero montre une vraie transformation plutot
+// qu'une image generique.
+import othisApres1 from '../../assets/realisation/othis/gaudry-othis1.webp';
+import othisPendant1 from '../../assets/realisation/othis/gaudry-othis3.webp';
+import boullarreApres1 from '../../assets/realisation/boullard/agricola-boullard4.webp';
+import boullarrePendant1 from '../../assets/realisation/boullard/agricola-boullard2.webp';
+import penchardApres1 from '../../assets/realisation/penchard/ampiot-penchard4.webp';
+import penchardPendant1 from '../../assets/realisation/penchard/ampiot-penchard1.webp';
+import pathusApres1 from '../../assets/realisation/saint-pathus/armande-saint-pathus4.webp';
+import pathusPendant1 from '../../assets/realisation/saint-pathus/armande-saint-pathus1.webp';
+import fresnoyApres1 from '../../assets/realisation/boissy-fesnoy/artiguelongue-boissy-fesnoy4.webp';
+import fresnoyPendant1 from '../../assets/realisation/boissy-fesnoy/artiguelongue-boissy-fesnoy1.webp';
+import dammartinPhoto from '../../assets/realisation/dammartin-en-goele/aubry-dammartin-en-goele4.webp';
+import torcyApres1 from '../../assets/realisation/torcy/axel-torcy4.webp';
+import torcyPendant1 from '../../assets/realisation/torcy/axel-torcy1.webp';
+import fleurinesApres1 from '../../assets/realisation/fleurines/bauque-fleurines1.webp';
+import fleurinesPendant1 from '../../assets/realisation/fleurines/bauque-fleurines3.webp';
+import rueilApres1 from '../../assets/realisation/rueil-malmaison/beaud-rueil-malmaison4.webp';
+import rueilAvant1 from '../../assets/realisation/rueil-malmaison/beaud-rueil-malmaison1.webp';
+import cregyApres1 from '../../assets/realisation/cergy-les-meaux/ben-brahim-cergy-les-meaux4.webp';
+import cregyAvant1 from '../../assets/realisation/cergy-les-meaux/ben-brahim-cergy-les-meaux1.webp';
+import cachanApres1 from '../../assets/realisation/cachan/benoit-cachan4.webp';
+import cachanAvant1 from '../../assets/realisation/cachan/benoit-cachan1.webp';
+import crepyApres1 from '../../assets/realisation/crepy-en-valois/bock-crepy-en-valois4.webp';
+import crepyAvant1 from '../../assets/realisation/crepy-en-valois/bock-crepy-en-valois1.webp';
+import betzApres1 from '../../assets/realisation/betz/bonnefoy-betz1.webp';
+import betzPendant1 from '../../assets/realisation/betz/bonnefoy-betz2.webp';
+
+// Photos des 8 metiers, memes fichiers que sur /nos-metiers, reutilisees
+// ici pour que les cartes montrent du vrai travail plutot que des icones.
+import photoIte from '../../assets/image/ite.jpeg';
+import photoIti from '../../assets/image/iti.webp';
+import photoCombles from '../../assets/image/comble.webp';
+import photoMenuiseries from '../../assets/image/coulissant.webp';
+import photoRavalement from '../../assets/image/ravalement.webp';
+import photoToiture from '../../assets/image/toiture.webp';
+import photoAmenagement from '../../assets/image/amenagement-comble.webp';
+import photoEnergie from '../../assets/image/clim.webp';
+
+// Les 8 metiers reels du site (memes titres, descriptions et liens que sur
+// la page /nos-metiers), reutilises tels quels pour rester coherents.
+const metiers = [
+	{ photo: photoIte, titre: 'Isolation thermique extérieure', description: 'Améliorez la performance de vos murs tout en préservant votre surface habitable.', href: '/isolation-thermique-exterieur' },
+	{ photo: photoIti, titre: 'Isolation thermique intérieure', description: "Une solution performante lorsque l'isolation par l'extérieur n'est pas adaptée.", href: '/isolation-thermique-interieur' },
+	{ photo: photoCombles, titre: 'Isolation des combles & rampants', description: 'Limitez les déperditions par la toiture, combles perdus ou aménagés.', href: '/isolation-des-combles' },
+	{ photo: photoMenuiseries, titre: 'Menuiseries extérieures', description: 'Fenêtres, portes et baies performantes pour plus de confort.', href: '/menuiseries' },
+	{ photo: photoRavalement, titre: 'Ravalement de façade', description: 'Rénovation et protection durable des murs extérieurs.', href: '/ravalement-de-facade' },
+	{ photo: photoToiture, titre: 'Nettoyage & entretien de toiture', description: 'Préservez votre couverture grâce à un entretien adapté.', href: '/entretien-toiture' },
+	{ photo: photoAmenagement, titre: 'Aménagement des combles', description: 'Transformez vos combles en nouveaux espaces de vie.', href: '/amenagement-combles' },
+	{ photo: photoEnergie, titre: 'Énergie, chauffage & ventilation', description: 'Des solutions proposées avec notre réseau de partenaires qualifiés.', href: '/energie-chauffage-ventilation' },
+];
+
+// FAQ reprise telle quelle de /nos-metiers (memes questions/reponses deja
+// validees sur le site), moins la question sur les equipes internes, moins
+// pertinente ici.
+const faq = [
+	{ question: 'Par quels travaux commencer ?', reponse: "Chaque logement est différent. Isolation des combles ou des murs, menuiseries, ventilation, chauffage... les priorités dépendent de l'état et des performances de votre habitation. Une étude du projet permet d'identifier les travaux les plus pertinents et leur ordre de réalisation.", ouvert: true },
+	{ question: 'Mes travaux sont-ils éligibles aux aides ?', reponse: "Cela dépend de la nature des travaux et de votre situation. CEE, MaPrimeRénov' Rénovation d'ampleur, éco-PTZ, TVA à taux réduit ou aides locales peuvent être mobilisables selon votre projet. Nous vous orientons vers les dispositifs adaptés.", ouvert: false },
+	{ question: 'Dans quelle zone intervenez-vous ?', reponse: "MIPE Habitat intervient principalement dans l'Oise (60), la Seine-et-Marne (77), l'Aisne (02) et la Seine-Saint-Denis (93), ainsi qu'autour de notre implantation dans les Yvelines (78).", ouvert: false },
+];
+
+// Les 21 villes ciblees. Pour chaque ville avec chantier : photoApres (la
+// plus aboutie) + photoAvant (vrai "avant" quand on en a un documente,
+// sinon une photo "pendant" qui montre un etat nettement moins avance -
+// avantReel=false dans ce cas, pour pouvoir etiqueter honnetement "En
+// chantier" plutot que "Avant"). "comparaison:false" (Dammartin) signale
+// une ville ou les deux photos disponibles ne montrent pas le meme angle
+// et ne se pretent pas a un glissement avant/apres : on affiche alors une
+// seule photo, sans curseur.
+export const villes = [
+	{ nom: 'Othis', slug: 'othis', cp: '77', agence: 'plessis', realisation: { photoApres: othisApres1, photoAvant: othisPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Boullarre', slug: 'boullarre', cp: '60', agence: 'plessis', realisation: { photoApres: boullarreApres1, photoAvant: boullarrePendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2021' } },
+	{ nom: 'Penchard', slug: 'penchard', cp: '77', agence: 'plessis', realisation: { photoApres: penchardApres1, photoAvant: penchardPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2025' } },
+	{ nom: 'Saint-Pathus', slug: 'saint-pathus', cp: '77', agence: 'plessis', realisation: { photoApres: pathusApres1, photoAvant: pathusPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2026' } },
+	{ nom: 'Boissy-Fresnoy', slug: 'boissy-fresnoy', cp: '60', agence: 'plessis', realisation: { photoApres: fresnoyApres1, photoAvant: fresnoyPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Dammartin-en-Goële', slug: 'dammartin-en-goele', cp: '77', agence: 'plessis', realisation: { photoApres: dammartinPhoto, photoAvant: null, avantReel: false, comparaison: false, titre: 'Isolation des combles perdus', annee: '2024' } },
+	{ nom: 'Torcy', slug: 'torcy', cp: '77', agence: 'plessis', realisation: { photoApres: torcyApres1, photoAvant: torcyPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Fleurines', slug: 'fleurines', cp: '60', agence: 'plessis', realisation: { photoApres: fleurinesApres1, photoAvant: fleurinesPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Rueil-Malmaison', slug: 'rueil-malmaison', cp: '92', agence: 'plaisir', realisation: { photoApres: rueilApres1, photoAvant: rueilAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2026' } },
+	{ nom: 'Crégy-lès-Meaux', slug: 'cregy-les-meaux', cp: '77', agence: 'plessis', realisation: { photoApres: cregyApres1, photoAvant: cregyAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Cachan', slug: 'cachan', cp: '94', agence: 'plaisir', realisation: { photoApres: cachanApres1, photoAvant: cachanAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2024' } },
+	{ nom: 'Crépy-en-Valois', slug: 'crepy-en-valois', cp: '60', agence: 'plessis', realisation: { photoApres: crepyApres1, photoAvant: crepyAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Betz', slug: 'betz', cp: '60', agence: 'plessis', realisation: { photoApres: betzApres1, photoAvant: betzPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2021' } },
+	{ nom: 'Senlis', slug: 'senlis', cp: '60', agence: 'plessis', realisation: null },
+	{ nom: 'Meaux', slug: 'meaux', cp: '77', agence: 'plessis', realisation: null },
+	{ nom: 'Villers-Cotterêts', slug: 'villers-cotterets', cp: '02', agence: 'plessis', realisation: null },
+	{ nom: 'Saint-Denis', slug: 'saint-denis', cp: '93', agence: 'plessis', realisation: null },
+	{ nom: 'Versailles', slug: 'versailles', cp: '78', agence: 'plaisir', realisation: null },
+	{ nom: 'Nanterre', slug: 'nanterre', cp: '92', agence: 'plaisir', realisation: null },
+	{ nom: 'Créteil', slug: 'creteil', cp: '94', agence: 'plaisir', realisation: null },
+	{ nom: 'Cergy-Pontoise', slug: 'cergy-pontoise', cp: '95', agence: 'plaisir', realisation: null },
+];
+
+export function getStaticPaths() {
+	return villes.map((ville) => ({
+		params: { ville: ville.slug },
+		props: { ville },
+	}));
+}
+
+const { ville } = Astro.props;
+
+// Meme texte de zone de couverture que la section "Zone d'intervention" de
+// la page d'accueil, adapte a l'agence la plus proche de cette ville.
+const texteZone =
+	ville.agence === 'plessis'
+		? `Depuis notre agence du Plessis-Belleville, MIPE Habitat intervient principalement dans l'Oise (60), la Seine-et-Marne (77), l'Aisne (02) et la Seine-Saint-Denis (93) — un secteur qui couvre ${ville.nom} (${ville.cp}).`
+		: `Notre implantation secondaire de Plaisir (78) nous permet d'accompagner vos projets dans l'ouest francilien, notamment dans les Hauts-de-Seine (92), le Val-de-Marne (94) et le Val-d'Oise (95) — un secteur qui couvre ${ville.nom} (${ville.cp}).`;
+
+const nomAgence = ville.agence === 'plessis' ? 'Le Plessis-Belleville' : 'Plaisir';
+
+// Determine ce qu'affiche le hero : un curseur avant/apres (avec les
+// vraies photos locales si on en a, sinon un exemple general honnete), ou
+// une simple photo quand les deux photos disponibles ne forment pas une
+// vraie paire avant/apres comparable (cas de Dammartin-en-Goele).
+const aChantierLocal = !!ville.realisation;
+const montreComparaison = !ville.realisation || ville.realisation.comparaison;
+const photoApres = ville.realisation ? ville.realisation.photoApres : photoGeneriqueRenovee;
+const photoAvant = ville.realisation ? ville.realisation.photoAvant : photoGeneriqueOrigine;
+const labelAvant = !aChantierLocal || ville.realisation.avantReel ? 'Avant' : 'En chantier';
+const labelApres = !aChantierLocal || ville.realisation.avantReel ? 'Après' : 'Terminé';
+const legendeHero = aChantierLocal
+	? `${ville.realisation.titre} — ${ville.realisation.annee} · ${ville.nom}`
+	: "Exemple d'une rénovation réalisée par nos équipes";
+
+const titrePage = `Rénovation énergétique à ${ville.nom} (${ville.cp}) | MIPE Habitat`;
+const descriptionPage = `MIPE Habitat réalise vos travaux d'isolation, de menuiseries, de ravalement et de toiture à ${ville.nom} (${ville.cp}). Devis gratuit, intervention locale depuis notre agence de ${nomAgence}.`;
+
+// Donnees structurees (JSON-LD) : aide Google a comprendre qu'il s'agit
+// d'une entreprise du batiment intervenant dans cette ville precise, et
+// permet un affichage enrichi pour la FAQ. Les informations reprennent
+// exactement les donnees reelles deja utilisees dans les mentions legales.
+// Pas de domaine en dur dans "url"/"image" : le nom de domaine final de ce
+// site n'est pas encore confirme (voir astro.config.mjs, "site" n'est pas
+// defini) ; on les omet plutot que de deviner une adresse qui pourrait
+// etre fausse.
+const jsonLdEntreprise = {
+	'@context': 'https://schema.org',
+	'@type': 'HomeAndConstructionBusiness',
+	name: 'MIPE Habitat',
+	telephone: '+33375190160',
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: '11 Avenue des Meuniers',
+		postalCode: '60330',
+		addressLocality: 'Le Plessis-Belleville',
+		addressCountry: 'FR',
+	},
+	areaServed: {
+		'@type': 'City',
+		name: ville.nom,
+	},
+};
+
+const jsonLdFaq = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faq.map(({ question, reponse }) => ({
+		'@type': 'Question',
+		name: question,
+		acceptedAnswer: { '@type': 'Answer', text: reponse },
+	})),
+};
+---
+
+<Layout title={titrePage} description={descriptionPage}>
+	<main>
+		<Navbar></Navbar>
+
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLdEntreprise)} />
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLdFaq)} />
+
+		<FilAriane items={[{ label: "Nos secteurs d'intervention", href: '/nos-secteurs-intervention' }, { label: ville.nom }]} />
+
+		<section class="heroVille">
+			<div class="heroVilleTexte">
+				<h1 class="titreHeroVille">Rénovation énergétique à {ville.nom}</h1>
+				<p class="descHeroVille">MIPE Habitat accompagne vos travaux d'isolation, de menuiseries, de ravalement et de toiture à {ville.nom} et dans tout le secteur du {ville.cp}, depuis notre agence de {nomAgence}.</p>
+				<ul class="checksHeroVille">
+					<li><Check size={16} color="#6FBE2C" />15 ans d'expérience en rénovation énergétique</li>
+					<li><Check size={16} color="#6FBE2C" />Isolation, menuiseries, ravalement et toiture</li>
+					<li><Check size={16} color="#6FBE2C" />Devis gratuit et sans engagement</li>
+				</ul>
+				<a href="/demander-un-devis" class="btnDevisVille">Demander un devis gratuit <ArrowRight size={16} /></a>
+			</div>
+			<div class="heroVillePhoto">
+				{
+					montreComparaison ? (
+						<div class="imagesAvantApres imagesAvantApresHero">
+							<Image src={photoApres} class="imgApres" alt={aChantierLocal ? `${ville.realisation.titre} terminée, réalisée par MIPE Habitat à ${ville.nom}` : 'Façade rénovée par MIPE Habitat'} />
+							<Image src={photoAvant} class="imgAvant" alt={aChantierLocal ? `Chantier en cours à ${ville.nom}` : "Façade avant l'intervention de MIPE Habitat"} />
+							<span class="etiquetteAvantApres etiquetteAvant">{labelAvant}</span>
+							<span class="etiquetteAvantApres etiquetteApres">{labelApres}</span>
+							<input type="range" min="0" max="100" value="50" class="curseurAvantApres" aria-label={`Curseur de comparaison ${labelAvant}/${labelApres}`} />
+							<div class="poigneeAvantApres" aria-hidden="true">
+								<ChevronsLeftRight size={30} strokeWidth={2.75} />
+							</div>
+						</div>
+					) : (
+						<div class="photoSeuleHeroVille">
+							<Image src={photoApres} alt={`${ville.realisation.titre} réalisée par MIPE Habitat à ${ville.nom}`} />
+						</div>
+					)
+				}
+				<p class="legendeHeroVille">{legendeHero}</p>
+			</div>
+		</section>
+
+		<section class="sectionMetiersVille reveal">
+			<div class="enteteMetiersVille">
+				<p class="reperageVille reperageVilleCentre">Nos savoir-faire</p>
+				<h2 class="titreSectionVille">Nos métiers à {ville.nom}</h2>
+			</div>
+			<div class="grilleMetiersVille">
+				{
+					metiers.map(({ photo, titre, description, href }) => (
+						<a href={href} class="carteMetierVille">
+							<div class="photoMetierVille">
+								<Image src={photo} alt={titre} />
+								<span class="titrePhotoMetierVille">{titre}</span>
+							</div>
+							<div class="corpsCarteMetierVille">
+								<p>{description}</p>
+								<span class="lienCarteMetierVille">En savoir plus</span>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sectionInfosVille reveal">
+			<div class="grilleInfosVille">
+				<div class="carteInfoVille">
+					<div class="iconeInfoVille"><Images size={22} color="#ffffff" /></div>
+					<h3>Nos réalisations</h3>
+					<p>
+						{aChantierLocal
+							? `Découvrez d'autres chantiers menés par nos équipes dans le secteur, avec photos avant/après.`
+							: `Nous intervenons régulièrement autour de ${ville.nom}. Découvrez des exemples de chantiers menés dans le secteur, avec photos avant/après.`}
+					</p>
+					<a href="/realisation" class="lienCarteInfoVille">Voir nos réalisations <ArrowRight size={14} /></a>
+				</div>
+				<div class="carteInfoVille">
+					<div class="iconeInfoVille"><MapPin size={22} color="#ffffff" /></div>
+					<h3>Notre zone d'intervention</h3>
+					<p>{texteZone}</p>
+					<a href="/nos-secteurs-intervention" class="lienCarteInfoVille">Voir tous nos secteurs <ArrowRight size={14} /></a>
+				</div>
+			</div>
+		</section>
+
+		<section class="sectionFaqVille reveal">
+			<div class="faqVilleTexte">
+				<p class="reperageVille">Questions fréquentes</p>
+				<h2 class="titreSectionVille">Vos questions sur nos travaux à {ville.nom}</h2>
+			</div>
+			<div class="faqVilleListe">
+				{
+					faq.map(({ question, reponse, ouvert }) => (
+						<details class="faqVilleItem" open={ouvert}>
+							<summary class="questionFaqVille">{question}</summary>
+							<p class="reponseFaqVille">{reponse}</p>
+						</details>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sectionCtaVille reveal">
+			<div class="formeCtaVille" aria-hidden="true"></div>
+			<div class="contenuCtaVille">
+				<h2>Un projet à {ville.nom} ?</h2>
+				<p>Demandez votre devis gratuit, nos équipes vous répondent sous 48h ouvrées.</p>
+				<div class="boutonsCtaVille">
+					<a href="/demander-un-devis" class="btnDevisVille btnDevisVilleClair">Demander un devis gratuit <ArrowRight size={16} /></a>
+					<a href="tel:0375190160" class="btnAppelVille">03 75 19 01 60</a>
+				</div>
+			</div>
+		</section>
+
+		<Footer></Footer>
+	</main>
+</Layout>
+
+<script src="../../js/avantApres.js"></script>

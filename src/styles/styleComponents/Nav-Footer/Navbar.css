@@ -3,11 +3,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 0.5rem;
-    border-bottom: 1px solid rgb(204 204 204 / 0.8);
+    border-bottom: 1px solid rgba(22, 39, 59, 0.08);
     position: sticky;
     top: 0;
     z-index: 100;
     background-color: white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 14px rgba(22, 39, 59, 0.03);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .logo {
@@ -115,7 +119,9 @@ nav a,
 }
 
 .bouton-devis {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.5rem 1.25rem;
     border-radius: 999px;
     background: #6FBE2C;
@@ -123,6 +129,9 @@ nav a,
     font-weight: bold;
     transition: transform 0.2s ease, filter 0.2s ease;
     animation: pulseDevis 2.6s ease-in-out infinite;
+}
+.calendar{
+    font-weight: bold;
 }
 
 .bouton-devis:hover{

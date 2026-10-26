@@ -12,6 +12,18 @@
     margin-top: 0.5rem;
 }
 
+.lienSecteursZone{
+    display: inline-block;
+    margin-top: 1.25rem;
+    color: #3E7C1F;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.lienSecteursZone:hover{
+    text-decoration: underline;
+}
+
 .descZone{
     color: #4A5B6B;
     font-size: 1rem;
@@ -20,17 +32,82 @@
 }
 
 .carteZone{
+    position: relative;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid #E4E7E2;
     aspect-ratio: 4 / 3;
 }
 
-.carteZone iframe{
+.carteZone #carteZone{
     width: 100%;
     height: 100%;
-    border: 0;
+}
+
+.legendeCarteZone{
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    z-index: 1000;
+    background: rgba(22, 39, 59, 0.85);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Marqueurs de la carte (agences + grandes villes) : un point + une
+   etiquette en forme de pilule, positionnes ensemble via un leger
+   decalage pour que le point reste bien ancre sur les coordonnees. */
+.marqueurZone{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    transform: translate(-8px, -8px);
+}
+
+.pointZone{
     display: block;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(22, 39, 59, 0.35);
+    flex-shrink: 0;
+}
+
+.labelZone{
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(22, 39, 59, 0.18);
+}
+
+.marqueurZone--agence .pointZone{
+    width: 16px;
+    height: 16px;
+    background: #16273B;
+}
+
+.marqueurZone--agence .labelZone{
+    background: #16273B;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+}
+
+.marqueurZone--ville .pointZone{
+    width: 12px;
+    height: 12px;
+    background: #6FBE2C;
+}
+
+.marqueurZone--ville .labelZone{
+    background: #fff;
+    color: #16273B;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.65rem;
 }
 
 @media (max-width: 800px) {

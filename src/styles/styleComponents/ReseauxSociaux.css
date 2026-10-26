@@ -5,39 +5,69 @@
 
 .bandeauSocial{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    text-align: center;
     gap: 1.5rem;
     background-color: #FFFFFF;
     border: 1px solid #E4E7E2;
+    box-shadow: 0 4px 20px rgba(22, 39, 59, 0.05);
     border-radius: 20px;
-    padding: 2rem 2.5rem;
+    padding: 2.5rem;
 }
 
 .titreSocial{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: bold;
     margin-top: 0.3rem;
 }
 
 .iconesSocial{
     display: flex;
-    gap: 0.75rem;
+    justify-content: center;
+    gap: 1.25rem;
 }
 
+/* Chaque reseau garde sa vraie couleur de marque (et pas une seule couleur
+   neutre partagee) : c'est elle qui rend le logo reconnaissable au premier
+   coup d'oeil, bien plus qu'un simple contour. */
 .lienSocial{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    background-color: #16273B;
-    color: #FFFFFF;
-    transition: background-color 0.2s;
+    box-shadow: 0 8px 20px rgba(22, 39, 59, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .lienSocial:hover{
-    background-color: #3E7C1F;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 28px rgba(22, 39, 59, 0.22);
+}
+
+.lienSocialFacebook{
+    background-color: #1877F2;
+}
+
+.lienSocialInstagram{
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+.lienSocialTiktok{
+    background-color: #000000;
+}
+
+.lienSocialLinkedin{
+    background-color: #0A66C2;
+}
+
+@media (min-width: 700px){
+    .bandeauSocial{
+        flex-direction: row;
+        justify-content: center;
+        text-align: left;
+        gap: 3rem;
+    }
 }

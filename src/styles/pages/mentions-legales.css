@@ -1,0 +1,114 @@
+.sectionMentionsLegales{
+	padding: 2.5rem 5% 5rem 5%;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.heroMentionsLegales{
+	margin-top: 3rem;
+	text-align: center;
+}
+
+.titreMentionsLegales{
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+}
+
+.containerMentionsLegales{
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 3rem;
+	margin-top: 3rem;
+	align-items: start;
+}
+
+.encartEditeur{
+	position: sticky;
+	top: 1.5rem;
+	border: 1px solid #E4E7E2;
+	border-radius: 15px;
+	padding: 1.5rem;
+	background-color: #F8FAF6;
+}
+
+.titreEncartEditeur{
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+.encartEditeur p{
+	font-size: 0.9rem;
+	color: #4A5B6B;
+	line-height: 1.6;
+	margin-top: 0.75rem;
+}
+
+.encartEditeur hr{
+	border: none;
+	border-top: 1px solid #E4E7E2;
+	margin: 1rem 0;
+}
+
+.encartEditeur a{
+	color: #3E7C1F;
+	font-weight: 600;
+}
+
+.siteWebEncart{
+	margin-top: 0 !important;
+}
+
+.contenuMentionsLegales h2{
+	font-size: 1.3rem;
+	font-weight: bold;
+	margin-top: 2.5rem;
+}
+
+.contenuMentionsLegales h2:first-child{
+	margin-top: 0;
+}
+
+.contenuMentionsLegales h3{
+	font-size: 1.05rem;
+	font-weight: bold;
+	margin-top: 1.5rem;
+}
+
+.contenuMentionsLegales p{
+	color: #4A5B6B;
+	line-height: 1.7;
+	margin-top: 0.9rem;
+}
+
+.contenuMentionsLegales ul{
+	margin-top: 0.9rem;
+	padding-left: 1.3rem;
+	color: #4A5B6B;
+	line-height: 1.7;
+}
+
+.contenuMentionsLegales li{
+	margin-top: 0.4rem;
+}
+
+.contenuMentionsLegales a{
+	color: #3E7C1F;
+	word-break: break-word;
+}
+
+.contenuMentionsLegales strong{
+	color: #16273B;
+}
+
+@media (max-width: 800px){
+	.containerMentionsLegales{
+		grid-template-columns: 1fr;
+	}
+	.encartEditeur{
+		position: static;
+	}
+	.titreMentionsLegales{
+		font-size: 1.8rem;
+	}
+}

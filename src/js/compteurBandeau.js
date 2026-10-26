@@ -1,10 +1,9 @@
-// Fait compter le chiffre "15 ans d'experience" de 0 jusqu'a sa valeur
-// cible, une seule fois, des que le bandeau de chiffres-cles entre dans
-// l'ecran.
-const chiffre = document.querySelector('.chiffreAnime');
+// Fait compter chaque chiffre-cle du bandeau (15 ans d'experience, 2
+// agences) de 0 jusqu'a sa valeur cible, une seule fois chacun, des qu'il
+// entre dans l'ecran.
 const reduitMouvement = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (chiffre) {
+document.querySelectorAll('.chiffreAnime').forEach((chiffre) => {
 	const cible = parseInt(chiffre.dataset.cible, 10);
 
 	if (reduitMouvement) {
@@ -26,7 +25,7 @@ if (chiffre) {
 	} else {
 		chiffre.textContent = cible;
 	}
-}
+});
 
 function compter(element, cible) {
 	const duree = 1200; // ms

@@ -1,0 +1,72 @@
+.sectionPolitique{
+	padding: 2.5rem 5% 5rem 5%;
+	max-width: 820px;
+	margin: 0 auto;
+}
+
+.heroPolitique{
+	margin-top: 3rem;
+	text-align: center;
+}
+
+.titrePolitique{
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+}
+
+.descPolitique{
+	color: #4A5B6B;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin-top: 1rem;
+	max-width: 620px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.contenuPolitique{
+	margin-top: 3rem;
+}
+
+.contenuPolitique h2{
+	font-size: 1.3rem;
+	font-weight: bold;
+	margin-top: 2.5rem;
+}
+
+.contenuPolitique h2:first-child{
+	margin-top: 0;
+}
+
+.contenuPolitique p{
+	color: #4A5B6B;
+	line-height: 1.7;
+	margin-top: 0.9rem;
+}
+
+.contenuPolitique ul{
+	margin-top: 0.9rem;
+	padding-left: 1.3rem;
+	color: #4A5B6B;
+	line-height: 1.7;
+}
+
+.contenuPolitique li{
+	margin-top: 0.4rem;
+}
+
+.contenuPolitique a{
+	color: #3E7C1F;
+	word-break: break-word;
+}
+
+.contenuPolitique strong{
+	color: #16273B;
+}
+
+@media (max-width: 800px){
+	.titrePolitique{
+		font-size: 1.8rem;
+	}
+}

@@ -2,18 +2,23 @@
    superposees exactement au meme endroit, et jamais recadrees ni zoomees
    (le bloc a le meme ratio que les photos : 2201/1228, donc la hauteur suit
    toujours la largeur naturellement). Une seule photo est visible a la fois
-   a l'ecran : le JS (friseFondu.js) "epingle" ce bloc a l'ecran (position
-   fixed) pendant qu'on scrolle la frise, et fait un fondu enchaine entre
-   les 3 photos - donc jamais de repetition visible, juste une
-   transformation continue du debut a la toute fin de la frise. */
+   a l'ecran : "position: sticky" epingle nativement ce bloc en haut de
+   l'ecran pendant qu'on scrolle la frise (gere par le navigateur, donc
+   parfaitement fluide meme en scroll rapide - l'ancienne version recalculait
+   "top" en JS a chaque frame de scroll, ce qui provoquait des saccades).
+   friseFondu.js se charge uniquement du fondu enchaine entre les 3 photos. */
+/* Pas de "overflow: hidden" ici : ca empeche "position: sticky" de
+   s'activer sur .friseFond (l'element colle alors "comme si de rien
+   n'etait", sans jamais s'epingler - verifie en pratique). isolation:
+   isolate suffit a garder .friseFond (z-index:-1) derriere le reste du
+   contenu de la frise, sans avoir besoin de couper le debordement. */
 .frise{
     position: relative;
-    overflow: hidden;
     isolation: isolate;
 }
 
 .friseFond{
-    position: absolute; /* le JS recalcule "top" a chaque scroll pour simuler un epinglage */
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;

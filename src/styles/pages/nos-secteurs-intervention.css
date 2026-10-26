@@ -1,0 +1,126 @@
+.sectionSecteurs{
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 2.5rem 5% 5rem 5%;
+}
+
+.heroSecteurs{
+	margin-top: 3rem;
+	text-align: center;
+}
+
+.titreSecteurs{
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+}
+
+.descSecteurs{
+	color: #4A5B6B;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin-top: 1rem;
+	max-width: 680px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.groupeSecteurs{
+	margin-top: 3.5rem;
+}
+
+.titreGroupeSecteurs{
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.grilleSecteurs{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.85rem;
+	margin-top: 1.25rem;
+}
+
+.carteSecteur{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #ffffff;
+	border: 1px solid #E4E7E2;
+	box-shadow: 0 2px 8px rgba(22, 39, 59, 0.03);
+	border-radius: 12px;
+	padding: 0.85rem 1.1rem;
+	text-decoration: none;
+	transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carteSecteur:hover{
+	border-color: #6FBE2C;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 18px rgba(22, 39, 59, 0.07);
+}
+
+.nomSecteur{
+	font-weight: 600;
+	color: #16273B;
+}
+
+.cpSecteur{
+	font-size: 0.8rem;
+	color: #4A5B6B;
+	background-color: #F0F1EF;
+	border-radius: 999px;
+	padding: 0.15rem 0.5rem;
+}
+
+.sectionCtaSecteurs{
+	margin-top: 4rem;
+	text-align: center;
+	background-color: #16273B;
+	border-radius: 20px;
+	padding: 3rem 2rem;
+}
+
+.sectionCtaSecteurs h2{
+	color: #fff;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.sectionCtaSecteurs p{
+	color: #C9D2DA;
+	margin-top: 0.75rem;
+}
+
+.btnDevisSecteurs{
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 1.5rem;
+	background-color: #6FBE2C;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 600;
+	padding: 0.75rem 1.5rem;
+	border-radius: 999px;
+	transition: background-color 0.2s ease;
+}
+
+.btnDevisSecteurs:hover{
+	background-color: #5EA324;
+}
+
+@media (max-width: 900px){
+	.grilleSecteurs{
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 560px){
+	.titreSecteurs{
+		font-size: 1.8rem;
+	}
+	.grilleSecteurs{
+		grid-template-columns: 1fr;
+	}
+}

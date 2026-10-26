@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/amenagement-combles.css';
+import { Check, Ruler, Layers, Sun } from '@lucide/astro';
+import { Image } from 'astro:assets';
+
+import photoCombles from '../assets/image/amenagement-comble.webp';
+
+const interventions = [
+	{
+		Icone: Ruler,
+		titre: 'Étude de faisabilité',
+		description: 'Hauteur sous plafond, charpente, accès : nos équipes étudient la configuration de vos combles pour définir le potentiel d’aménagement de votre projet.',
+	},
+	{
+		Icone: Layers,
+		titre: 'Isolation & finitions',
+		description: 'Isolation des rampants, pose de cloisons, sol et plafond : votre nouvel espace est aménagé pour être confortable été comme hiver.',
+	},
+	{
+		Icone: Sun,
+		titre: 'Ouvertures & lumière',
+		description: "Fenêtres de toit ou velux : nous étudions les ouvertures adaptées pour apporter la lumière naturelle dans votre nouvel espace de vie.",
+	},
+];
+
+const faqCombles = [
+	{ question: 'Quelle hauteur sous plafond pour aménager ses combles ?', reponse: "Une hauteur sous plafond d'au moins 1,80 m sur une partie suffisante de la surface est généralement nécessaire pour un aménagement confortable. Nos équipes étudient la configuration exacte de votre charpente lors de la visite technique.", ouvert: true },
+	{ question: 'Faut-il isoler avant d’aménager ses combles ?', reponse: "L'isolation des rampants fait partie intégrante de l'aménagement de combles habitables, pour garantir le confort thermique de la nouvelle pièce. Si vos combles sont déjà isolés, nous adaptons le projet en conséquence.", ouvert: false },
+	{ question: 'Quelles démarches administratives pour aménager ses combles ?', reponse: "Selon l'ampleur du projet (création d'ouvertures, modification de la surface habitable...), une déclaration préalable de travaux peut être nécessaire auprès de votre mairie. Nous vous accompagnons pour identifier les démarches applicables à votre projet.", ouvert: false },
+	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller se déplace pour étudier vos combles et vous propose un devis gratuit et sans engagement.', ouvert: false },
+];
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Aménagement des combles' }]} />
+
+		<section class="containerImageDroite">
+			<div class="containerParentImageDroite">
+				<div class="textImageDroite">
+					<p class="petitTitre">Aménagement des combles</p>
+					<h1 class="titreImage">Transformez vos combles en un nouvel espace de vie</h1>
+					<p class="descImage">Chambre, bureau, salle de jeux... Vos combles perdus peuvent devenir une pièce à vivre à part entière. MIPE Habitat vous accompagne dans l’aménagement complet de votre espace sous toiture.</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Gain de surface habitable sans agrandir votre maison</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Isolation, sol, cloisons et finitions</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Ouvertures pour la lumière naturelle</p>
+				</div>
+				<div class="imageDroite">
+					<Image src={photoCombles} alt="Aménagement de combles en espace de vie" />
+				</div>
+			</div>
+		</section>
+
+		<section class="sectionInterventionsCombles reveal">
+			<p class="petitTitre petitTitreCombles">Nos interventions</p>
+			<h2 class="titreInterventionsCombles">De l’étude à la pièce finie</h2>
+			<div class="grilleInterventionsCombles">
+				{
+					interventions.map(({ Icone, titre, description }) => (
+						<div class="carteInterventionCombles reveal">
+							<div class="iconeInterventionCombles"><Icone size={26} color="#ffffff" /></div>
+							<p class="titreCarteCombles">{titre}</p>
+							<p class="descCarteCombles">{description}</p>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sectionFaqCombles">
+			<div class="faqComblesTexte">
+				<p class="petitTitre">Questions fréquentes</p>
+				<h2 class="titreFaqCombles">Vos questions sur l’aménagement des combles</h2>
+			</div>
+			<div class="faqComblesListe">
+				{
+					faqCombles.map(({ question, reponse, ouvert }) => (
+						<details class="faqComblesItem" open={ouvert}>
+							<summary class="questionFaqCombles">{question}</summary>
+							<p class="reponseFaqCombles">{reponse}</p>
+						</details>
+					))
+				}
+			</div>
+		</section>
+
+		<Footer></Footer>
+	</main>
+</Layout>

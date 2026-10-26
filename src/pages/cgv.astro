@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/cgv.css';
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<FilAriane items={[{ label: 'CGV' }]} />
+
+		<section class="sectionCGV">
+			<div class="heroCGV">
+				<p class="petitTitre">Informations légales</p>
+				<h1 class="titreCGV">Conditions générales de ventes</h1>
+			</div>
+
+			<div class="contenuCGV">
+				<h2>1. Objet et domaine d'application</h2>
+				<p>Les présentes conditions générales prévalent sur toutes autres conditions générales qui pourraient leur être opposées.</p>
+				<p>Les présentes conditions générales ne peuvent en aucun cas relever des dispositions légales afférentes aux contrats « hors établissement ».</p>
+				<p>L'entreprise peut sous-traiter tout ou partie de son marché.</p>
+
+				<h2>2. Conclusion du marché</h2>
+				<p><strong>Établissement de l'offre :</strong> Les chargés d'affaires MIPE HABITAT effectuent des visites techniques chez les maîtres d'ouvrages (clients) afin de relever des détails techniques des travaux à réaliser. Les devis sont établis a posteriori et ils sont, ensuite, transmis par mail ou par voie postale aux maîtres d'ouvrages (clients). Ces derniers valident les devis et les envoient par courrier ou par mail à MIPE HABITAT.</p>
+				<p><strong>L'offre :</strong> L'offre de MIPE HABITAT a une validité de 30 jours à compter de sa date d'établissement. Au-delà de cette période, MIPE HABITAT n'est plus tenue par les termes de son offre.</p>
+				<p><strong>Acceptation de l'offre :</strong> La commande est réputée définitive à la double condition :</p>
+				<ul>
+					<li>Retour d'un exemplaire de l'offre non modifiée et signée par le maître de l'ouvrage (client) et accompagné de l'acompte tel que prévu à l'article 8.1 des présentes conditions générales accompagnée des documents obligatoires stipulés dans les conditions particulières.</li>
+					<li>Envoi par MIPE HABITAT d'un accusé de réception de commande confirmant l'exactitude des mentions au devis et de la réception de l'ensemble des documents obligatoires.</li>
+				</ul>
+				<p><strong>Demande de prêt :</strong> Le maître de l'ouvrage indique, avant conclusion du marché, à MIPE HABITAT par lettre recommandée, avec accusé de réception, s'il entend demander un prêt pour payer en totalité ou en partie les travaux, faute de quoi, il est réputé ne pas emprunter et perd le bénéfice des dispositions du code de la consommation sur le crédit immobilier et le crédit à la consommation.</p>
+
+				<h2>3. Conditions d'exécution des travaux</h2>
+				<p><strong>Assurance :</strong> MIPE HABITAT est assurée pour la couverture de risques mettant en jeu sa responsabilité.</p>
+				<p><strong>Délai d'exécution :</strong> Le délai de réalisation des travaux sera convenu entre la maîtrise de l'ouvrage (client) et MIPE HABITAT en fonction des contraintes de l'ensemble des parties (réception de l'acompte, obtention de permis de construire, délais de commande de matériels…). Une date théorique de travaux sera indiquée dans le devis d'un commun accord entre les parties.</p>
+				<p><strong>Condition de travaux :</strong> L'eau, l'électricité, les accès, les aires de stockage et d'installation nécessaires à la réalisation des travaux seront mis à la disposition de l'entreprise en quantités suffisantes, gratuitement et à proximité des travaux.</p>
+
+				<h2>4. Rémunération de l'entrepreneur</h2>
+				<p><strong>La facturation :</strong> La facturation définitive correspondra au montant du décompte définitif établi par l'entreprise prenant en compte les travaux réellement exécutés, y compris les éventuels travaux supplémentaires.</p>
+
+				<h2>5. Travaux supplémentaires, urgents ou imprévisibles</h2>
+				<p><strong>Travaux supplémentaires :</strong> Tous travaux non prévus explicitement dans l'offre seront considérés comme travaux supplémentaires ; ils donneront lieu à la signature d'un avenant avant leur exécution.</p>
+				<p><strong>Dispositions conservatoires :</strong> L'entrepreneur est habilité à prendre, en cas d'urgence, toutes dispositions conservatoires nécessaires, sous réserve d'en informer le maître de l'ouvrage.</p>
+
+				<h2>6. Hygiène et sécurité</h2>
+				<p><strong>Conditions de travail :</strong> Des locaux décents à usage de vestiaires, réfectoire et WC devront être mis à la disposition du personnel de MIPE HABITAT par les soins du maître d'ouvrage (client) en quantités suffisantes, gratuitement et à proximité des travaux.</p>
+				<p>Le chantier devra être équipé d'un branchement d'eau potable et d'une arrivée de courant électrique. En cas d'impossibilité ou d'insuffisance, les installations nécessaires seront facturées au maître de l'ouvrage.</p>
+				<p><strong>Prévention des risques :</strong> MIPE HABITAT ne peut être tenu d'effectuer des travaux dont l'exécution présenterait un caractère dangereux, sans que soient mis en place les systèmes de prévention réglementaires.</p>
+
+				<h2>7. Réception des travaux</h2>
+				<p><strong>Réception des travaux :</strong> La réception des travaux a lieu dès leur achèvement. Elle est prononcée à la demande de MIPE HABITAT, par le maître de l'ouvrage (client), avec ou sans réserve.</p>
+				<p>La réception libère MIPE HABITAT de toutes les obligations contractuelles autres que les garanties légales.</p>
+				<p><strong>Demande de réception :</strong> Dans un délai maximum de 8 jours à compter de la demande de réception par MIPE HABITAT, faite par lettre simple remise en main propre contre récépissé ou par lettre recommandée avec accusé de réception, le maître d'ouvrage doit faire connaître à l'entrepreneur la date de visite contradictoire de réception. Cette date ne peut être fixée à plus de 10 jours à compter de la demande de réception.</p>
+				<p>À défaut d'une réception expresse par le maître d'ouvrage (client) dans le délai de 10 jours susmentionné, la réception est réputée acquise à MIPE HABITAT.</p>
+				<p>Cette réception est considérée comme étant :</p>
+				<ul>
+					<li>avec des réserves, si le maître d'ouvrage (client) a formulé des réserves notifiées par lettre recommandée avec avis de réception adressée à MIPE HABITAT, dans le délai de 10 jours,</li>
+					<li>sans réserve dans le cas contraire.</li>
+				</ul>
+				<p><strong>Réserves motivées :</strong> Dans le cas où il serait fait état de réserves motivées, MIPE HABITAT dispose d'un délai de 30 jours, sauf accord express entre les parties sur un délai différent, ou bien la nécessité d'un autre délai pour des raisons techniques, pour y remédier. La levée de réserve doit donner lieu à un procès-verbal de la levée de réserve.</p>
+				<p>En cas d'inertie du maître d'ouvrage (client), la procédure de « demande de réception » s'applique dans les mêmes conditions.</p>
+				<p><strong>Réception judiciaire :</strong> Si la réception doit se faire judiciairement, les frais correspondants seront à la charge du maître de l'ouvrage (client).</p>
+
+				<h2>8. Paiements</h2>
+				<p><strong>Acompte :</strong> Il est demandé un acompte de 40 % du montant du marché à la commande et avant tout début d'exécution des travaux, sauf conditions particulières indiquées dans le devis. En fin de travaux, MIPE HABITAT facturera le solde des travaux dans les conditions prévues à l'article 4.</p>
+				<p><strong>Retenue de garantie :</strong> Aucune retenue de garantie ne s'applique aux marchés de l'entreprise.</p>
+				<p><strong>Délais de paiement :</strong> Les conditions de paiement sont mentionnées sur chaque devis et varient en fonction du type de chantier.</p>
+				<p>MIPE HABITAT pourra demander le paiement d'acomptes mensuels (situations de travaux) au prorata de l'avancement pour tous travaux d'une durée supérieure à 10 jours.</p>
+				<p><strong>Escompte :</strong> Aucun escompte ne sera accordé pour un paiement anticipé.</p>
+				<p><strong>Moyens de paiement :</strong> Pour les particuliers, les moyens de paiement acceptés par MIPE HABITAT sont les virements bancaires ou les chèques. Pour les professionnels, les moyens de paiement acceptés par MIPE HABITAT sont les virements bancaires ou les LCR (lettre de change).</p>
+				<p><strong>Retard de paiement — Cas général :</strong> En cas de non-paiement à la date portée sur la facture, des pénalités de retard de 3 fois le taux de l'intérêt légal seront dues à MIPE HABITAT.</p>
+				<p><strong>Conditions pour les professionnels :</strong> Pour les seuls clients professionnels ressortissant aux dispositions de l'article L. 441-6 du code de commerce, tout retard de paiement ouvre droit, à l'égard du créancier, à une indemnité forfaitaire pour frais de recouvrement de 40 euros. Lorsque les frais de recouvrement exposés sont supérieurs à ce montant, MIPE HABITAT peut demander une indemnisation complémentaire, sur justification.</p>
+				<p>En cas de non-paiement à échéance, MIPE HABITAT pourra suspendre les travaux dans un délai de 8 jours, après mise en demeure préalable au maître de l'ouvrage (client) restée infructueuse.</p>
+
+				<h2>9. Communication sur internet</h2>
+				<p>MIPE HABITAT diffuse les photos de chantier avant/après afin de promouvoir son entreprise et son savoir-faire sur internet (site, réseaux sociaux…). En cas de désaccord avec cette action, le maître d'ouvrage (client) devra annoncer à MIPE HABITAT, par mail ou par téléphone, la non-diffusion des photos de son chantier. Si jamais elles étaient déjà publiées avant la manifestation du maître d'ouvrage (client), MIPE HABITAT supprimera les photos mises en ligne.</p>
+
+				<h2>10. Résiliation unilatérale</h2>
+				<p>En cas de résiliation unilatérale du fait du maître de l'ouvrage (client) avant le démarrage des travaux, et sauf cas de force majeure, le montant des acomptes versés sera conservé par MIPE HABITAT à titre d'indemnisation, sans préjudice des frais supplémentaires qui pourraient être dus, sur justificatif, tels que le coût des matériaux et matériels commandés ou fabriqués.</p>
+
+				<h2>11. Propriété intellectuelle</h2>
+				<p>Les études, devis, plans et documents de toutes natures remis ou envoyés par MIPE HABITAT restent toujours son entière propriété ; ils doivent être rendus sur sa demande.</p>
+				<p>Ils ne peuvent être communiqués, ni reproduits, ni exécutés par un tiers, sans autorisation écrite de l'entreprise.</p>
+
+				<h2>12. Protection des données personnelles</h2>
+				<p>Les données personnelles collectées par MIPE HABITAT (principalement nom, prénom, coordonnées postales, numéro de téléphone, adresse électronique, coordonnées bancaires, etc.) sont enregistrées dans son fichier client. L'ensemble des informations collectées sont nécessaires à la conclusion et à l'exécution du contrat et seront principalement utilisées pour la bonne gestion des relations avec le maître de l'ouvrage (client), le traitement des commandes et la promotion des services de l'entreprise.</p>
+				<p>Les informations personnelles collectées seront conservées aussi longtemps que nécessaire à l'exécution du contrat, à l'accomplissement par MIPE HABITAT de ses obligations légales et réglementaires ou encore à l'exercice des prérogatives lui étant reconnues par la loi et la jurisprudence.</p>
+				<p>L'accès aux données personnelles est strictement limité aux employés et préposés de MIPE HABITAT, habilités à les traiter en raison de leurs fonctions. Les informations recueillies pourront éventuellement être communiquées à des tiers liés à MIPE HABITAT par contrat pour l'exécution de tâches sous-traitées nécessaires à la gestion des commandes, sans qu'une autorisation du maître de l'ouvrage (client) soit nécessaire. Il est précisé que, dans le cadre de l'exécution de leurs prestations, les tiers n'ont qu'un accès limité aux données et ont l'obligation de les utiliser en conformité avec les dispositions de la législation applicable en matière de protection des données personnelles.</p>
+				<p>En dehors des cas énoncés ci-dessus, MIPE HABITAT s'engage à ne pas vendre, louer, céder ou donner accès à des tiers aux données sans consentement préalable du maître de l'ouvrage (client), à moins d'y être contraint en raison d'un motif légitime (obligation légale, lutte contre la fraude ou l'abus, exercice des droits de la défense, etc.).</p>
+				<p>Conformément aux dispositions légales et réglementaires applicables, le maître de l'ouvrage (client) bénéficie d'un droit d'accès, de rectification, de portabilité et d'effacement de ses données, ou encore de limitation du traitement. Il peut également, pour des motifs légitimes, s'opposer au traitement des données le concernant.</p>
+				<p>Le maître de l'ouvrage (client) peut, sous réserve de la production d'un justificatif d'identité valide, exercer ses droits en contactant Cédric LAMMERS, <a href="mailto:cedric.lammers@mipe-group.com">cedric.lammers@mipe-group.com</a>, 07 62 85 67 32.</p>
+				<p>Dans le cas où le maître de l'ouvrage (client) ne souhaiterait pas recevoir de messages promotionnels et invitations via courriers électroniques, messages SMS, appels téléphoniques et courriers postaux, celui-ci a la possibilité d'indiquer son choix dans le cadre du document matérialisant l'offre de MIPE HABITAT, de modifier son choix en contactant MIPE HABITAT dans les conditions évoquées ci-avant ou en utilisant les liens de désinscription prévus dans les messages SMS ou électroniques. Ce droit vaut également pour les personnes dont les données (notamment leur identité et leurs coordonnées) auraient été transmises, avec leur autorisation, à MIPE HABITAT par des tiers, à des fins de prospection commerciale.</p>
+				<p>En cas de difficulté en lien avec la gestion de ses données personnelles, le maître de l'ouvrage (client) peut adresser une réclamation auprès du délégué à la protection des données personnelles de MIPE HABITAT (Cédric LAMMERS, <a href="mailto:cedric.lammers@mipe-group.com">cedric.lammers@mipe-group.com</a>, 07 62 85 67 32), de la Commission Nationale de l'Informatique et des Libertés ou de toute autre autorité compétente.</p>
+				<p>Enfin, le maître de l'ouvrage consommateur est informé de l'existence de la liste d'opposition au démarchage téléphonique « Bloctel », sur laquelle il peut s'inscrire.</p>
+
+				<h2>13. Contestations</h2>
+				<p><strong>Mise en demeure :</strong> Lorsqu'une des parties ne se conforme pas aux conditions du marché, l'autre partie la met en demeure d'y satisfaire par lettre recommandée avec accusé de réception.</p>
+				<h3>Règlement amiable des litiges — Médiation de la consommation</h3>
+				<p>Conformément aux dispositions des articles L 611-1 et R 612-1 et suivants du Code de la Consommation concernant le règlement amiable des litiges : lorsque le consommateur a adressé une réclamation écrite et qu'il n'a pas obtenu satisfaction ou de réponse dans un délai de deux mois, il peut soumettre gratuitement sa réclamation au médiateur de la consommation. Le médiateur doit être saisi dans le délai maximal d'un an à compter de la réclamation initiale.</p>
+				<p>Le médiateur MCP Médiation peut être saisi directement en ligne à l'adresse suivante : <a href="https://www.mcpmediation.org/" target="_blank" rel="noopener nofollow">www.mcpmediation.org</a> ou par courrier.</p>
+				<p>Médiation de la Consommation et Patrimoine — 12 Square Desnouettes, 75015 Paris.</p>
+				<p><strong>Juridiction compétente :</strong> Le demandeur peut saisir à son choix, outre la juridiction du lieu où demeure le défendeur :</p>
+				<ul>
+					<li>en matière contractuelle, la juridiction du lieu de la livraison effective de la chose ou du lieu d'exécution de la prestation de service,</li>
+					<li>en matière délictuelle, la juridiction du lieu du fait dommageable ou dans le ressort de laquelle le dommage a été subi.</li>
+				</ul>
+
+				<p class="piedCGV">MIPE Habitat — 11 Avenue des Meuniers, 60330 Le Plessis-Belleville<br />Capital social 10 000 euros — SIRET 539 364 778 00040 RCS Compiègne — TVA Intracommunautaire FR 01 539 364 778</p>
+			</div>
+		</section>
+
+		<Footer></Footer>
+	</main>
+</Layout>

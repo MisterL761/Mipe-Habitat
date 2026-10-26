@@ -2,9 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/menuiseries.css';
-import { Check } from '@lucide/astro';
+import { Check, Factory, MapPin } from '@lucide/astro';
 import { Image } from 'astro:assets';
 
 import menuiserie from '../assets/image/menuiserie.webp';
@@ -35,10 +36,14 @@ const atout = [
 ];
 ---
 
-<Layout>
+<Layout
+	title="Menuiseries Isofrance : fenêtres, portes et baies vitrées | MIPE Habitat"
+	description="Fenêtres, portes-fenêtres, baies vitrées et portes d'entrée Isofrance, fabriquées en France à Châteauroux et La Bresse, posées par MIPE Habitat dans l'Oise et en Île-de-France."
+>
 
     <main>
         <Navbar></Navbar>
+        <FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Menuiseries extérieures' }]} />
         <section class="containerImageDroite">
 
             <br>
@@ -106,6 +111,26 @@ const atout = [
                     <p class="check"><Check size={15} color="#8FE05C"/>Produits sélectionnés pour leur performance thermique</p>
                     <p class="check"><Check size={15} color="#8FE05C"/>Pose assurée par nos équipes qualifiées</p>
                     <p class="check"><Check size={15} color="#8FE05C"/>Garanties fabricant sur vos menuiseries</p>
+                </div>
+            </div>
+
+            <div class="blocUsineFrance">
+                <div class="badgeUsineFrance">
+                    <span class="drapeauFrance" aria-hidden="true"></span>
+                    Usine en France
+                </div>
+                <p class="introUsineFrance">Les menuiseries Isofrance sont fabriquées en France, au sein du groupe AT Partner, dans deux usines dédiées :</p>
+                <div class="grilleUsines">
+                    <div class="carteUsine">
+                        <div class="iconeUsine"><Factory size={20} color="#ffffff" /></div>
+                        <p class="villeUsine"><MapPin size={14} color="#6FBE2C" />Châteauroux (Indre)</p>
+                        <p class="descUsine">Site historique fondé en 1947, spécialisé dans la fabrication de fenêtres, portes-fenêtres et portes d'entrée sur mesure en PVC. L'usine fait l'objet d'un plan de modernisation de plusieurs millions d'euros pour accroître ses cadences.</p>
+                    </div>
+                    <div class="carteUsine">
+                        <div class="iconeUsine"><Factory size={20} color="#ffffff" /></div>
+                        <p class="villeUsine"><MapPin size={14} color="#6FBE2C" />La Bresse (Vosges)</p>
+                        <p class="descUsine">Site SNM, entièrement dédié à la fabrication de menuiseries en aluminium, sous les marques AMCC, AMGO et Closy.</p>
+                    </div>
                 </div>
             </div>
         </section>

@@ -4,7 +4,7 @@ import '../styles/styleComponents/FormHero.css';
 
 <section>
     <form class="formHero">
-        <p class="titreForm">Être rappelé par un conseiller</p>
+        <p class="titreForm">Être rappelé par un chargé d'affaire</p>
         <p class="textForm" >Parlons de votre projet. Nous vous recontactons sous 48h ouvrées</p>
 
         <select>
@@ -14,6 +14,7 @@ import '../styles/styleComponents/FormHero.css';
             <option>Isolation des combles</option>
             <option>Ravalement de façade</option>
             <option>Menuiserie</option>
+            <option>Autre</option>
         </select>
 
         <div class="containerNp">
@@ -28,8 +29,8 @@ import '../styles/styleComponents/FormHero.css';
         <input type="email" placeholder="Email" />
 
         <div class="checkForm">
-            <input type="checkbox"/>
-            <label>J'accepte que mes données soient utilisées pour traiter ma demande.</label>
+            <input type="checkbox" required id="consentementHero"/>
+            <label for="consentementHero">J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
         </div>
 
         <button class="boutonForm">Envoyer</button>

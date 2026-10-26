@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/professionnels.css';
 import { Check, ArrowRight, Phone, BuildingComplex, KeyRound, Users, HardHat } from '@lucide/astro';
@@ -23,6 +24,7 @@ const etapes = [
 <Layout>
 	<main>
 		<Navbar></Navbar>
+		<FilAriane items={[{ label: 'Professionnels' }]} />
 
 		<section class="heroPro reveal">
 			<div class="heroProContenu">

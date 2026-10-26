@@ -1,0 +1,21 @@
+---
+// Premiere ebauche d'une section presentant le Reseau Proeco-Energies sur
+// l'accueil (deplace depuis la page qualifications, a la demande du client).
+import { Image } from 'astro:assets';
+import logoProeco from '../assets/image/logo_reseau-proeco-energies_green.svg';
+import '../styles/styleComponents/Proeco.css';
+---
+
+<section class="sectionProeco reveal">
+	<div class="containerProeco">
+		<div class="logoProecoWrapper">
+			<Image src={logoProeco} alt="Logo du Réseau Proéco-Énergies" width={280} height={110} />
+		</div>
+		<div class="texteProeco">
+			<p class="petitTitre">Notre réseau</p>
+			<h2 class="titreProeco">Membre du Réseau Proéco-Énergies</h2>
+			<p class="descProeco">MIPE Habitat est membre du Réseau Proéco-Énergies, un regroupement national d'artisans et d'entreprises du bâtiment engagés pour la performance énergétique de l'habitat. Le réseau réunit des professionnels indépendants partout en France, sélectionnés pour leur expertise et leur fiabilité.</p>
+			<a href="https://www.reseau-proeco-energies.fr" target="_blank" rel="noopener" class="lienProeco">Découvrir le réseau</a>
+		</div>
+	</div>
+</section>
