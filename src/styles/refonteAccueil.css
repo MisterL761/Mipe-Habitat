@@ -1,0 +1,532 @@
+/* ==========================================================================
+   Refonte visuelle de la page d'accueil (hors hero et frise, inchangees)
+   --------------------------------------------------------------------------
+   Tout est place sous la classe .refonte (voir index.astro) : cette feuille
+   ne fait que surcharger l'apparence des composants, sans toucher a leur
+   structure ni aux composants eux-memes (ils restent utilises tels quels
+   sur les autres pages).
+
+   RETOUR A L'ANCIENNE VERSION : retirer l'import de cette feuille et la
+   classe "refonte" dans index.astro, ou `git checkout avant-refonte-accueil`.
+
+   Palette tiree du logo : bleu nuit, vert, touche de jaune/orange solaire,
+   et des fonds creme/sable pour la chaleur.
+   ========================================================================== */
+
+.refonte{
+    --navy: #16273B;
+    --navy-2: #1F3550;
+    --vert: #6FBE2C;
+    --vert-fonce: #3E7C1F;
+    --lime: #8FE05C;
+    --solaire: #D9652F;
+    --jaune: #F5B83D;
+    --creme: #FBF8F1;
+    --sable: #F3EDDF;
+    --menthe: #EAF4DF;
+    --texte: #2B3A4A;
+    --texte-doux: #5A6B7B;
+    --ombre: 0 1px 2px rgba(22, 39, 59, 0.05), 0 12px 32px rgba(22, 39, 59, 0.08);
+    --ombre-forte: 0 2px 4px rgba(22, 39, 59, 0.06), 0 22px 48px rgba(22, 39, 59, 0.14);
+    --police-titre: 'Archivo', 'Outfit', sans-serif;
+
+    color: var(--texte);
+}
+
+/* ============================ Typographie ============================ */
+.refonte h2:not(.titreTimeLine){
+    font-family: var(--police-titre);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    color: var(--navy);
+    font-size: clamp(1.9rem, 3.3vw, 2.9rem);
+}
+
+/* Titres dont le composant impose sa propre taille */
+.refonte .valeurContainer h2,
+.refonte .equipeContainer h2,
+.refonte .simulateurSection h2,
+.refonte .enteteBlog h2{
+    font-size: clamp(1.9rem, 3.3vw, 2.9rem);
+}
+
+/* Petits libelles de section : pastille verte discrete */
+.refonte .petitTitre,
+.refonte .petitTitreMetier,
+.refonte .petitTitreAutreMetier,
+.refonte .petitTitreFinancement{
+    display: table;
+    width: fit-content;
+    margin: 0 0 1rem 0;
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(111, 190, 44, 0.16);
+    color: var(--vert-fonce);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+/* Libelles centres */
+.refonte .petitTitreMetier,
+.refonte .petitTitreAutreMetier,
+.refonte .petitTitreFinancement,
+.refonte .containerAvantApres > .petitTitre{
+    margin: 0 auto 1rem auto;
+}
+
+/* ============================ Bandeau France Renov ============================ */
+.refonte .bandeauFranceRenov{
+    background: #fff;
+    border: 0;
+    border-radius: 18px;
+    box-shadow: var(--ombre);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.refonte .bandeauFranceRenov:hover{
+    transform: translateY(-3px);
+    box-shadow: var(--ombre-forte);
+}
+
+/* ============================ Proeco : bande sable pleine largeur ============================ */
+.refonte .sectionProeco{
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--sable);
+    padding: 4.5rem 6%;
+}
+.refonte .containerProeco{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.refonte .lienProeco{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.refonte .lienProeco:hover{
+    background: var(--vert-fonce);
+    transform: translateY(-2px);
+}
+.refonte .logoProecoWrapper{
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: var(--ombre);
+}
+
+/* ============================ Simulateur : bleu nuit + formes vertes ============================ */
+.refonte .simulateurSection{
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+    margin-top: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.refonte .simulateurSection::before{
+    content: "";
+    position: absolute;
+    top: -180px;
+    right: -140px;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(143, 224, 92, 0.28), rgba(111, 190, 44, 0.06));
+    pointer-events: none;
+}
+.refonte .simulateurSection::after{
+    content: "";
+    position: absolute;
+    bottom: -120px;
+    left: -90px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 2px solid rgba(143, 224, 92, 0.35);
+    pointer-events: none;
+}
+.refonte .SimulateurContainer{
+    position: relative;
+    z-index: 1;
+}
+.refonte .simulateurSection h2{
+    color: #fff;
+}
+.refonte .btnSimulation{
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--lime), var(--vert));
+    color: var(--navy);
+    font-weight: 700;
+    box-shadow: 0 10px 26px rgba(111, 190, 44, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.refonte .btnSimulation:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(111, 190, 44, 0.55);
+}
+
+/* ============================ Societe : creme + photos decalees ============================ */
+.refonte .societeContainer{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.refonte .boutonSociete{
+    border-radius: 999px;
+    background: var(--navy);
+    color: #fff;
+    padding: 0.9rem 1.9rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.refonte .boutonSociete:hover{
+    background: var(--vert-fonce);
+    transform: translateY(-2px);
+}
+.refonte .imageExterieur,
+.refonte .imageInterieur{
+    border-radius: 22px;
+    box-shadow: var(--ombre-forte);
+}
+.refonte .imageExterieur img,
+.refonte .imageInterieur img{
+    border-radius: 22px;
+}
+
+/* La frise reste strictement comme avant : fond blanc (sa photo se fond dans le blanc sur les bords). */
+.refonte .frise{
+    background: #fff;
+}
+
+/* ============================ Valeurs : bleu nuit, chiffres en relief ============================ */
+.refonte .valeurSection{
+    background:
+        radial-gradient(ellipse 60% 80% at 100% 0%, rgba(111, 190, 44, 0.2), transparent 60%),
+        radial-gradient(ellipse 50% 70% at 0% 100%, rgba(217, 101, 47, 0.14), transparent 60%),
+        var(--navy);
+}
+.refonte .valeurSection h2{
+    color: #fff;
+}
+.refonte .lignesValeurs{
+    row-gap: 1.5rem;
+}
+.refonte .caseValeur{
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid var(--vert);
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.refonte .caseValeur:hover{
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.09);
+}
+.refonte .numVal{
+    font-family: var(--police-titre);
+    font-weight: 900;
+    font-size: 3rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--lime);
+}
+.refonte .val{
+    color: #fff;
+    letter-spacing: 0.04em;
+}
+.refonte .descVal{
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* ============================ Equipe : creme ============================ */
+.refonte .equipeContainer{
+    background: var(--creme);
+}
+.refonte .cardEquipe{
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--ombre);
+}
+.refonte .containerInfo{
+    background: var(--navy);
+    border-top: 3px solid var(--vert);
+}
+
+/* ============================ Metiers : bande menthe pleine largeur ============================ */
+.refonte .metierContainer{
+    position: relative;
+    overflow: hidden;
+    background: var(--menthe);
+    padding: 5rem 5% 5.5rem 5%;
+}
+.refonte .metierContainer::before{
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: -120px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(143, 224, 92, 0.45), rgba(111, 190, 44, 0.1));
+    pointer-events: none;
+}
+.refonte .metierContainer::after{
+    content: "";
+    position: absolute;
+    bottom: -160px;
+    right: -100px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 3px solid rgba(62, 124, 31, 0.25);
+    pointer-events: none;
+}
+.refonte .metierContainer > *{
+    position: relative;
+    z-index: 1;
+}
+.refonte .titreMetier,
+.refonte .titreAutreMetier,
+.refonte .titreFinancement{
+    font-size: clamp(1.9rem, 3.3vw, 2.9rem);
+}
+.refonte .cardMetier,
+.refonte .cardAutreMetier,
+.refonte .cardFinancement{
+    background: #fff;
+    border: 0;
+    border-radius: 20px;
+    box-shadow: var(--ombre);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.refonte .cardMetier:hover,
+.refonte .cardAutreMetier:hover,
+.refonte .cardFinancement:hover{
+    transform: translateY(-8px);
+    box-shadow: var(--ombre-forte);
+}
+.refonte .titrePrestation,
+.refonte .titrePrestationAutreMetier,
+.refonte .titreFinancementCard{
+    font-family: var(--police-titre);
+    font-weight: 800;
+    color: var(--navy);
+}
+
+/* ============================ Autres metiers : creme ============================ */
+.refonte .petitTitreAutreMetier{
+    margin-top: 4.5rem;
+}
+.refonte .autreMetierContainer{
+    position: relative;
+    padding-bottom: 4.5rem;
+}
+
+/* ============================ Avant / Apres ============================ */
+.refonte section:has(> .containerAvantApres){
+    background: #fff;
+}
+.refonte .containerAvantApres{
+    background: transparent;
+}
+.refonte .imagesAvantApres{
+    border-radius: 22px;
+    box-shadow: var(--ombre-forte);
+    outline: 6px solid var(--menthe);
+}
+.refonte .etiquetteAvantApres{
+    border-radius: 999px;
+    font-weight: 700;
+}
+.refonte .lienToutesRealisationsAvantApres{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.7rem;
+    border-radius: 999px;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.refonte .lienToutesRealisationsAvantApres:hover{
+    background: var(--vert-fonce);
+    transform: translateY(-2px);
+}
+
+/* ============================ Financement : sable ============================ */
+.refonte .financementSection{
+    background: var(--sable);
+    padding: 1rem 5% 4.5rem 5%;
+}
+.refonte .iconeFinancement{
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: var(--menthe);
+}
+.refonte .boutonFinancement{
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--vert), var(--vert-fonce));
+    box-shadow: 0 10px 24px rgba(62, 124, 31, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.refonte .boutonFinancement:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(62, 124, 31, 0.45);
+}
+
+/* ============================ Avis + reseaux : bande verte continue ============================ */
+.refonte .avisContainer{
+    background: linear-gradient(160deg, #3E7C1F 0%, #4F9A24 55%, #5FAE2A 100%);
+    color: #fff;
+}
+/* Le bandeau reseaux prolonge la bande verte des avis : meme couleur que le bas du degrade. */
+.refonte .sectionSocial{
+    background: #5FAE2A;
+    color: #fff;
+}
+.refonte .avisContainer{
+    position: relative;
+    overflow: hidden;
+}
+.refonte .avisContainer::before{
+    content: "";
+    position: absolute;
+    top: -160px;
+    right: -120px;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+.refonte .avisGrille{
+    position: relative;
+    z-index: 1;
+}
+.refonte h2.titreAvis,
+.refonte .grandeNoteAvis{
+    color: #fff;
+}
+.refonte .descAvis,
+.refonte .nombreAvisGoogle{
+    color: rgba(255, 255, 255, 0.88);
+}
+.refonte .etoilesFond{
+    color: rgba(255, 255, 255, 0.3);
+}
+.refonte .etoilesRemplies{
+    color: var(--jaune);
+}
+.refonte .carteAvis{
+    border: 0;
+    border-radius: 18px;
+    box-shadow: 0 14px 34px rgba(10, 40, 5, 0.22);
+}
+.refonte .carteAvis:hover{
+    border: 0;
+}
+
+.refonte .sectionSocial .petitTitre{
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+}
+.refonte .sectionSocial h2.titreSocial{
+    color: #fff;
+}
+.refonte .bandeauSocial{
+    background: transparent;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============================ Zone d'intervention : creme ============================ */
+.refonte .zoneContainer{
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.refonte .carteZone{
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: var(--ombre-forte);
+}
+.refonte .lienSecteursZone{
+    color: var(--vert-fonce);
+    font-weight: 600;
+}
+
+/* ============================ Blog ============================ */
+.refonte .blogContainer{
+    background: var(--sable);
+}
+.refonte .carteArticle{
+    border: 0;
+    border-radius: 20px;
+    box-shadow: var(--ombre);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.refonte .carteArticle:hover{
+    transform: translateY(-6px);
+    box-shadow: var(--ombre-forte);
+}
+.refonte .listeArticles{
+    padding-bottom: 1.5rem;
+}
+.refonte .tagArticle{
+    border-radius: 999px;
+}
+
+/* ============================ FAQ ============================ */
+.refonte section:has(> .faqHome){
+    padding: 4rem 5% 4.5rem 5%;
+}
+.refonte .faqHome{
+    border: 0;
+    border-radius: 16px;
+    box-shadow: var(--ombre);
+}
+.refonte .questionFaqHome{
+    font-family: var(--police-titre);
+    font-weight: 700;
+    color: var(--navy);
+}
+
+/* ============================ Fond general des sections claires ============================ */
+.refonte{
+    background: var(--creme);
+}
+
+@media (max-width: 900px){
+    .refonte .sectionProeco{
+        padding: 3rem 6%;
+    }
+    .refonte .metierContainer{
+        padding: 3.5rem 5% 4rem 5%;
+    }
+    .refonte .simulateurSection::before,
+    .refonte .metierContainer::before,
+    .refonte .avisContainer::before{
+        width: 260px;
+        height: 260px;
+    }
+}

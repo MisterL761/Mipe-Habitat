@@ -8,6 +8,7 @@ import Simulateur from '../components/Simulateur.astro';
 import Societe from '../components/Societe.astro';
 import TimeLine from '../components/TimeLine.astro';
 import '../styles/global.css';
+import '../styles/refonteAccueil.css';
 import '../styles/styleComponents/Nav-Footer/Navbar.css' ;
 import Valeur from '../components/Valeur.astro';
 import Equipe from '../components/Equipe.astro';
@@ -29,6 +30,7 @@ import FaqHome from '../components/FaqHome.astro';
 <Layout>
     <Navbar></Navbar>
     <HeroSection></HeroSection>
+    <main class="refonte">
     <BandeauFrancRenov></BandeauFrancRenov>
     <Proeco></Proeco>
     <Simulateur></Simulateur>
@@ -45,6 +47,7 @@ import FaqHome from '../components/FaqHome.astro';
     <ZoneIntervention></ZoneIntervention>
     <Blog></Blog>
     <FaqHome></FaqHome>
+    </main>
 
 
 
