@@ -214,6 +214,54 @@
     background: #fff;
 }
 
+/* Formes decoratives douces sur les bandes creme */
+.refonte section:has(> .societeContainer),
+.refonte #zone-intervention{
+    position: relative;
+    overflow: hidden;
+}
+.refonte section:has(> .societeContainer)::before{
+    content: "";
+    position: absolute;
+    top: -120px;
+    left: -140px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(143, 224, 92, 0.28), rgba(111, 190, 44, 0.05));
+    pointer-events: none;
+    animation: formeFlotte 12s ease-in-out infinite;
+}
+.refonte #zone-intervention::after{
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(245, 184, 61, 0.3), rgba(217, 101, 47, 0.08));
+    pointer-events: none;
+    animation: formeFlotte 13s ease-in-out infinite reverse;
+}
+.refonte section:has(> .societeContainer) > *,
+.refonte #zone-intervention > *{
+    position: relative;
+    z-index: 1;
+}
+
+/* Les formes flottent tres lentement */
+@keyframes formeFlotte{
+    0%, 100%{ transform: translateY(0); }
+    50%{ transform: translateY(-18px); }
+}
+@media (prefers-reduced-motion: reduce){
+    .refonte *::before,
+    .refonte *::after{
+        animation: none !important;
+    }
+}
+
 /* ============================ Valeurs : bleu nuit, chiffres en relief ============================ */
 .refonte .valeurSection{
     background:
@@ -376,8 +424,38 @@
 
 /* ============================ Financement : sable ============================ */
 .refonte .financementSection{
-    background: var(--sable);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #FFF5DE 0%, #FFE9C4 55%, #FFDDB0 100%);
     padding: 1rem 5% 4.5rem 5%;
+}
+.refonte .financementSection::before{
+    content: "";
+    position: absolute;
+    top: -150px;
+    right: -110px;
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(245, 184, 61, 0.55), rgba(217, 101, 47, 0.25));
+    pointer-events: none;
+    animation: formeFlotte 11s ease-in-out infinite;
+}
+.refonte .financementSection::after{
+    content: "";
+    position: absolute;
+    bottom: -140px;
+    left: -90px;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    border: 3px solid rgba(62, 124, 31, 0.3);
+    pointer-events: none;
+    animation: formeFlotte 13s ease-in-out infinite reverse;
+}
+.refonte .financementSection > *{
+    position: relative;
+    z-index: 1;
 }
 .refonte .iconeFinancement{
     display: grid;
@@ -398,21 +476,47 @@
     box-shadow: 0 14px 30px rgba(62, 124, 31, 0.45);
 }
 
-/* ============================ Avis + reseaux : meme bande menthe continue ============================ */
+/* ============================ Avis + reseaux : bande bleu nuit continue ============================ */
 .refonte .avisContainer,
 .refonte .sectionSocial{
-    background: var(--menthe);
+    background:
+        radial-gradient(ellipse 55% 70% at 100% 0%, rgba(111, 190, 44, 0.28), transparent 65%),
+        var(--navy);
+}
+.refonte .sectionSocial{
+    background: var(--navy);
+    margin-top: -1px;
 }
 .refonte .avisContainer{
     position: relative;
     overflow: hidden;
 }
+.refonte .avisContainer::before{
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: -120px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 2px solid rgba(143, 224, 92, 0.3);
+    pointer-events: none;
+    animation: formeFlotte 12s ease-in-out infinite;
+}
 .refonte .avisGrille{
     position: relative;
     z-index: 1;
 }
+.refonte h2.titreAvis,
+.refonte .grandeNoteAvis{
+    color: #fff;
+}
+.refonte .descAvis,
+.refonte .nombreAvisGoogle{
+    color: rgba(255, 255, 255, 0.82);
+}
 .refonte .etoilesFond{
-    color: #cfd8c4;
+    color: rgba(255, 255, 255, 0.25);
 }
 .refonte .etoilesRemplies{
     color: var(--jaune);
@@ -420,16 +524,22 @@
 .refonte .carteAvis{
     border: 0;
     border-radius: 18px;
-    box-shadow: var(--ombre);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
 }
 .refonte .carteAvis:hover{
     border: 0;
-    box-shadow: var(--ombre-forte);
+}
+.refonte .sectionSocial .petitTitre{
+    background: rgba(255, 255, 255, 0.14);
+    color: var(--lime);
+}
+.refonte .sectionSocial h2.titreSocial{
+    color: #fff;
 }
 .refonte .bandeauSocial{
     background: transparent;
     border: 0;
-    border-top: 1px solid rgba(62, 124, 31, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 0;
     box-shadow: none;
     max-width: 1200px;
@@ -453,10 +563,28 @@
 
 /* ============================ Blog ============================ */
 .refonte .blogContainer{
-    background: var(--sable);
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+.refonte .blogContainer::before{
+    content: "";
+    position: absolute;
+    top: -170px;
+    right: -120px;
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(143, 224, 92, 0.3), rgba(111, 190, 44, 0.06));
+    pointer-events: none;
+    animation: formeFlotte 12s ease-in-out infinite;
+}
+.refonte .blogContainer > *{
+    position: relative;
+    z-index: 1;
 }
 .refonte .carteArticle{
-    border: 0;
+    border: 1px solid #E8ECE2;
     border-radius: 20px;
     box-shadow: var(--ombre);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -472,15 +600,33 @@
     border-radius: 999px;
 }
 
-/* ============================ FAQ : meme fond que le blog ============================ */
+/* ============================ FAQ : blanc, dans la continuite du blog ============================ */
 .refonte section:has(> .faqHome){
-    background: var(--sable);
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+.refonte section:has(> .faqHome)::after{
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    left: -110px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 3px solid rgba(217, 101, 47, 0.3);
+    pointer-events: none;
+    animation: formeFlotte 14s ease-in-out infinite reverse;
+}
+.refonte .faqHome{
+    position: relative;
+    z-index: 1;
 }
 .refonte section:has(> .faqHome){
     padding: 4rem 5% 4.5rem 5%;
 }
 .refonte .faqHome{
-    border: 0;
+    border: 1px solid #E3E8DC;
     border-radius: 16px;
     box-shadow: var(--ombre);
 }
