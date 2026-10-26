@@ -11,9 +11,11 @@
    sans avoir a scroller pour decouvrir le bandeau. .hero (texte/formulaire)
    prend l'espace restant une fois le bandeau pose en bas (flex:1). */
 .heroSection{
-    height: calc(100vh - var(--hauteur-navbar, 85px));
-    height: calc(100svh - var(--hauteur-navbar, 85px));
-    min-height: 560px;
+    /* min-height (et non height) : sur un ecran plus bas que prevu, la hero
+       grandit avec son contenu au lieu de laisser le bandeau de chiffres
+       chevaucher le texte et le formulaire. */
+    min-height: max(560px, calc(100vh - var(--hauteur-navbar, 85px)));
+    min-height: max(560px, calc(100svh - var(--hauteur-navbar, 85px)));
     display: flex;
     flex-direction: column;
     background-image:
