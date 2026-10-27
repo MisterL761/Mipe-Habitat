@@ -365,20 +365,43 @@
     width: min(420px, 92%);
 }
 
-/* Liaison entre deux etapes : memes elements (point, trait, point) mais plus
-   marques, avec un contour blanc pour rester lisibles sur la photo. */
-.refonte .traitLiaison{
-    width: 4px;
-    border-radius: 2px;
-    background: linear-gradient(to bottom, var(--vert), var(--lime));
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.75);
+/* Liaison entre deux etapes : simple ligne pointillee verte qui se termine
+   par un petit chevron vers la carte suivante (plus de points). */
+.refonte .liaisonFrise{
+    height: 72px;
 }
 .refonte .pointLiaison{
-    width: 20px;
-    height: 20px;
-    background: #fff;
-    border: 5px solid var(--vert);
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.75);
+    display: none;
+}
+.refonte .traitLiaison{
+    width: 3px;
+    border-radius: 0;
+    background: repeating-linear-gradient(to bottom, var(--vert) 0 8px, transparent 8px 15px);
+    box-shadow: none;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.9));
+}
+.refonte .liaisonFrise::after{
+    content: "";
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+    margin-top: -9px;
+    border-right: 4px solid var(--vert);
+    border-bottom: 4px solid var(--vert);
+    border-radius: 2px;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.95));
+    opacity: 0;
+    transition: opacity 0.3s ease 0.4s;
+}
+.refonte .liaisonFrise.est-visible::after{
+    opacity: 1;
+}
+@media (prefers-reduced-motion: reduce){
+    .refonte .liaisonFrise::after{
+        opacity: 1;
+        transition: none;
+    }
 }
 
 /* ============================ Valeurs : bleu nuit, chiffres en relief ============================ */
