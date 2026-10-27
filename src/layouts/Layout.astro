@@ -29,7 +29,7 @@ const {
 		<!-- Lien relatif (pas de domaine en dur) : "site" n'est pas encore
 		     defini dans astro.config.mjs, donc Astro.url.origin renverrait un
 		     domaine de developpement au lieu du vrai domaine de production. -->
-		<link rel="canonical" href={Astro.url.pathname} />
+		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
 		<!-- "Outfit" est deja utilise partout en CSS (global.css) mais n'etait
 		     jamais charge nulle part : sans cette balise, tout le site
 		     s'affichait en police systeme par defaut. "Archivo" est une police
