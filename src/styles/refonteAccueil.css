@@ -475,9 +475,26 @@
 }
 
 /* ============================ Metiers : bleu nuit, cartes photo plein cadre ============================ */
+/* Fondu doux en haut et en bas de la bande bleue : le bleu se dissout
+   progressivement vers le blanc (section Equipe au-dessus) et vers le creme
+   (section en dessous), comme un halo de chaleur, sans bord net. */
 .refonte .metierContainer{
-    background: var(--navy);
-    padding: 5.5rem 5% 6rem 5%;
+    background: linear-gradient(to bottom,
+        #fff 0,
+        var(--navy) 120px,
+        var(--navy) calc(100% - 120px),
+        #FBF8F1 100%);
+    padding: 9rem 5% 9.5rem 5%;
+}
+@media (max-width: 900px){
+    .refonte .metierContainer{
+        background: linear-gradient(to bottom,
+            #fff 0,
+            var(--navy) 80px,
+            var(--navy) calc(100% - 80px),
+            #FBF8F1 100%);
+        padding: 6.5rem 5% 7rem 5%;
+    }
 }
 .refonte .metierContainer .petitTitreMetier{
     background: rgba(255, 255, 255, 0.12);
