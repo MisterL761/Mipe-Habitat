@@ -308,6 +308,79 @@
     }
 }
 
+/* ==========================================================================
+   FRISE "Notre histoire" : nouveau design des cartes et des liaisons.
+   Les etapes se repartissent de part et d'autre d'une ligne centrale (la
+   "colonne vertebrale" de la frise) ; chaque carte y est reliee par un
+   petit embranchement avec un noeud vert. Les cartes sont en verre depoli
+   pour laisser deviner la photo du village derriere. Le fond (photos et
+   fondu) n'est pas modifie.
+   ========================================================================== */
+.refonte .etapeFrise{
+    width: min(380px, 92%);
+    max-width: none;
+    padding: 1.5rem 1.7rem 1.6rem 1.7rem;
+    background: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    backdrop-filter: blur(10px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(22, 39, 59, 0.18);
+    text-align: left;
+}
+.refonte .chronologie{
+    font-family: var(--police-titre);
+    font-weight: 900;
+    font-size: 2.6rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-align: left;
+    padding: 0 0 0.9rem 0;
+    margin-bottom: 0.9rem;
+    border-bottom: 3px solid var(--vert);
+    width: fit-content;
+    padding-right: 1.4rem;
+}
+.refonte .histoire{
+    text-align: left;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--texte);
+}
+@keyframes anneeRefonte{
+    0%   { transform: translateY(12px); opacity: 0; color: #6FBE2C; }
+    100% { transform: translateY(0); opacity: 1; color: #16273B; }
+}
+.refonte .etapeFrise.est-visible .chronologie{
+    animation: anneeRefonte 0.5s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Cartes centrees, dans l'axe de la route de la photo */
+.refonte .titreTimeLine{
+    margin-bottom: 1rem;
+}
+.refonte .etapeFrise{
+    margin-left: auto;
+    margin-right: auto;
+    width: min(420px, 92%);
+}
+
+/* Liaison entre deux etapes : memes elements (point, trait, point) mais plus
+   marques, avec un contour blanc pour rester lisibles sur la photo. */
+.refonte .traitLiaison{
+    width: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, var(--vert), var(--lime));
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.75);
+}
+.refonte .pointLiaison{
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 5px solid var(--vert);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.75);
+}
+
 /* ============================ Valeurs : bleu nuit, chiffres en relief ============================ */
 .refonte .valeurSection{
     background:
