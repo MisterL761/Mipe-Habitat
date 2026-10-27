@@ -129,7 +129,7 @@ nav a,
     padding: 0.5rem 1.25rem;
     border-radius: 999px;
     background: #6FBE2C;
-    color: #16273B;
+    color: white;
     font-weight: bold;
     transition: transform 0.2s ease, filter 0.2s ease;
     animation: pulseDevis 2.6s ease-in-out infinite;

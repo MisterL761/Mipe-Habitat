@@ -45,7 +45,7 @@ input:not([type="checkbox"]){
 .boutonForm{
     background-color: #6FBE2C;
     width: 100%;
-    color: #16273B;
+    color: white;
     border-radius: 999px;
     font-weight: bold;
     margin-top: 1rem;
