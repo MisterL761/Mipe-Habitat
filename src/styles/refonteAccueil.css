@@ -215,9 +215,11 @@
     transform: translateY(14px);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
+/* "none" (et non translateY(0)) : un element transforme casse background-attachment: fixed
+   (fonds illustres des bandes Valeurs et Metiers). */
 .refonte .reveal.est-visible{
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 /* Frise : annee, trait et points enchaines plus vite (memes animations, delais reduits) */
 .refonte .etapeFrise.est-visible .chronologie{
