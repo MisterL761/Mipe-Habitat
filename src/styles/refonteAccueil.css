@@ -365,43 +365,13 @@
     width: min(420px, 92%);
 }
 
-/* Liaison entre deux etapes : simple ligne pointillee verte qui se termine
-   par un petit chevron vers la carte suivante (plus de points). */
+/* Pas de liaison entre les etapes : les cartes sont simplement espacees
+   (les elements .liaisonFrise restent dans le HTML mais ne s'affichent pas). */
 .refonte .liaisonFrise{
-    height: 72px;
-}
-.refonte .pointLiaison{
     display: none;
 }
-.refonte .traitLiaison{
-    width: 3px;
-    border-radius: 0;
-    background: repeating-linear-gradient(to bottom, var(--vert) 0 8px, transparent 8px 15px);
-    box-shadow: none;
-    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.9));
-}
-.refonte .liaisonFrise::after{
-    content: "";
-    flex-shrink: 0;
-    width: 13px;
-    height: 13px;
-    margin-top: -9px;
-    border-right: 4px solid var(--vert);
-    border-bottom: 4px solid var(--vert);
-    border-radius: 2px;
-    transform: rotate(45deg);
-    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.95));
-    opacity: 0;
-    transition: opacity 0.3s ease 0.4s;
-}
-.refonte .liaisonFrise.est-visible::after{
-    opacity: 1;
-}
-@media (prefers-reduced-motion: reduce){
-    .refonte .liaisonFrise::after{
-        opacity: 1;
-        transition: none;
-    }
+.refonte .etapeFrise{
+    margin-bottom: 1.75rem;
 }
 
 /* ============================ Valeurs : bleu nuit, chiffres en relief ============================ */
