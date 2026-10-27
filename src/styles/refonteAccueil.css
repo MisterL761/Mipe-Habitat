@@ -375,11 +375,20 @@
 }
 
 /* ============================ Valeurs : bleu nuit, chiffres en relief ============================ */
+/* Meme fond que la bande Metiers : illustration fond.webp sous voile bleu nuit, en fond fixe. */
 .refonte .valeurSection{
-    background:
-        radial-gradient(ellipse 60% 80% at 100% 0%, rgba(111, 190, 44, 0.2), transparent 60%),
-        radial-gradient(ellipse 50% 70% at 0% 100%, rgba(217, 101, 47, 0.14), transparent 60%),
-        var(--navy);
+    background-color: var(--navy);
+    background-image:
+        linear-gradient(rgba(22, 39, 59, 0.84), rgba(22, 39, 59, 0.84)),
+        url('../assets/image/fond.webp');
+    background-size: auto, cover;
+    background-position: center, center;
+    background-attachment: scroll, fixed;
+}
+@media (max-width: 900px){
+    .refonte .valeurSection{
+        background-attachment: scroll, scroll;
+    }
 }
 .refonte .valeurSection h2{
     color: #fff;
