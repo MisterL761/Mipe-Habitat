@@ -579,31 +579,10 @@
     color: var(--navy);
 }
 
-/* ============================ Avant / Apres : bleu nuit illustre, texte clair ============================ */
+/* ============================ Avant / Apres : gris froid, curseur sobre ============================ */
 .refonte section:has(> .containerAvantApres){
-    background-color: var(--navy);
-    background-image:
-        linear-gradient(rgba(22, 39, 59, 0.84), rgba(22, 39, 59, 0.84)),
-        url('../assets/image/fond.webp');
-    background-size: auto, cover;
-    background-position: center, center;
-    background-attachment: scroll, fixed;
+    background: var(--gris-froid);
     padding: 5rem 0 4.5rem 0;
-}
-@media (max-width: 900px){
-    .refonte section:has(> .containerAvantApres){
-        background-image: none;
-    }
-}
-.refonte .containerAvantApres .petitTitre{
-    background: rgba(255, 255, 255, 0.12);
-    color: var(--lime);
-}
-.refonte .containerAvantApres h2.titreAvantApres{
-    color: #fff;
-}
-.refonte .containerAvantApres .descAvantApres{
-    color: rgba(255, 255, 255, 0.85);
 }
 .refonte .containerAvantApres{
     background: transparent;
@@ -623,14 +602,14 @@
     gap: 0.5rem;
     padding: 0.85rem 1.7rem;
     border-radius: 999px;
-    background: #fff;
-    color: var(--navy);
+    background: var(--navy);
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .refonte .lienToutesRealisationsAvantApres:hover{
-    background: var(--lime);
+    background: var(--vert-fonce);
     transform: translateY(-2px);
 }
 
