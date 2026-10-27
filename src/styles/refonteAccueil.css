@@ -580,9 +580,32 @@
 }
 
 /* ============================ Avant / Apres : gris froid, curseur sobre ============================ */
+/* Fond : la photo "apres" du chantier de Saint-Pathus (isolation thermique
+   exterieure, page Realisations), sous le voile bleu nuit habituel, en fond fixe. */
 .refonte section:has(> .containerAvantApres){
-    background: var(--gris-froid);
+    background-color: var(--navy);
+    background-image:
+        linear-gradient(rgba(22, 39, 59, 0.82), rgba(22, 39, 59, 0.82)),
+        url('../assets/realisation/saint-pathus/armande-saint-pathus4.webp');
+    background-size: auto, cover;
+    background-position: center, center;
+    background-attachment: scroll, fixed;
     padding: 5rem 0 4.5rem 0;
+}
+@media (max-width: 900px){
+    .refonte section:has(> .containerAvantApres){
+        background-image: none;
+    }
+}
+.refonte .containerAvantApres .petitTitre{
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--lime);
+}
+.refonte .containerAvantApres h2.titreAvantApres{
+    color: #fff;
+}
+.refonte .containerAvantApres .descAvantApres{
+    color: rgba(255, 255, 255, 0.86);
 }
 .refonte .containerAvantApres{
     background: transparent;
@@ -602,14 +625,14 @@
     gap: 0.5rem;
     padding: 0.85rem 1.7rem;
     border-radius: 999px;
-    background: var(--navy);
-    color: #fff;
+    background: #fff;
+    color: var(--navy);
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .refonte .lienToutesRealisationsAvantApres:hover{
-    background: var(--vert-fonce);
+    background: var(--lime);
     transform: translateY(-2px);
 }
 
