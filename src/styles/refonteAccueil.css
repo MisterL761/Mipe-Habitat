@@ -475,9 +475,23 @@
 }
 
 /* ============================ Metiers : bleu nuit, cartes photo plein cadre ============================ */
+/* Fond de la bande : l'illustration du site (fond.webp : maisons en renovation,
+   fleches de chaleur, panneaux solaires) sous un voile bleu nuit, en fond fixe :
+   elle reste en place pendant que la page defile par-dessus. */
 .refonte .metierContainer{
-    background: var(--navy);
+    background-color: var(--navy);
+    background-image:
+        linear-gradient(rgba(22, 39, 59, 0.84), rgba(22, 39, 59, 0.84)),
+        url('../assets/image/fond.webp');
+    background-size: auto, cover;
+    background-position: center, center;
+    background-attachment: scroll, fixed;
     padding: 5.5rem 5% 6rem 5%;
+}
+@media (max-width: 900px){
+    .refonte .metierContainer{
+        background-attachment: scroll, scroll;
+    }
 }
 .refonte .metierContainer .petitTitreMetier{
     background: rgba(255, 255, 255, 0.12);
