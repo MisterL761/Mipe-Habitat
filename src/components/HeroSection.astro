@@ -14,7 +14,10 @@ import logoProeco from '../assets/image/logo_reseau-proeco-energies_green.svg';
 // CSS desktop + balise <img> mobile) : en utilisant <Image> ET un
 // background-image url() separement sur la meme source, Astro finissait par
 // n'ecrire qu'un seul des deux fichiers, laissant l'autre reference en 404.
-const heroImg = await getImage({ src: heroImgSrc, width: 1920 });
+const heroImg = await getImage({ src: heroImgSrc, width: 1920, quality: 72 });
+// Versions plus legeres de la meme photo pour la balise <img> (mobile/tablette)
+const heroPetite = await getImage({ src: heroImgSrc, width: 640, quality: 72 });
+const heroMoyenne = await getImage({ src: heroImgSrc, width: 1100, quality: 72 });
 ---
 
 <section class="heroSection" data-masque-bulle style={`--hero-bg:url(${heroImg.src})`}>
@@ -22,7 +25,7 @@ const heroImg = await getImage({ src: heroImgSrc, width: 1920 });
          dessus) au-dessus du bloc texte, au lieu de lui servir de fond :
          voir HeroSection.css. Invisible sur desktop (le fond CSS existant
          reste utilisé la). -->
-    <img class="photoHeroMobile" src={heroImg.src} alt="Maison rénovée par MIPE Habitat" />
+    <img class="photoHeroMobile" src={heroMoyenne.src} srcset={`${heroPetite.src} 640w, ${heroMoyenne.src} 1100w, ${heroImg.src} 1920w`} sizes="100vw" width={heroImg.attributes.width} height={heroImg.attributes.height} alt="Maison rénovée par MIPE Habitat" fetchpriority="high" loading="eager" decoding="async" />
     <div class="hero">
         <div class="text">
             <span class="miniTitre" >Rénovation énergétique . Oise</span>
@@ -36,13 +39,13 @@ const heroImg = await getImage({ src: heroImgSrc, width: 1920 });
 
                 <div class="certifsHero">
                     <a href="/qualifications" class="badgeCertifHero" aria-label="Voir nos qualifications RGE Qualibat">
-                        <Image src={logoRge} alt="RGE Qualibat" />
+                        <Image src={logoRge} alt="RGE Qualibat" width={160} />
                     </a>
                     <a href="/qualifications" class="badgeCertifHero" aria-label="Voir nos qualifications RGE Certibat">
-                        <Image src={logoCertibat} alt="RGE Certibat" />
+                        <Image src={logoCertibat} alt="RGE Certibat" width={160} />
                     </a>
                     <a href="https://www.ffbatiment.fr" target="_blank" rel="noopener" class="badgeCertifHero" aria-label="MIPE Habitat, adhérent de la Fédération Française du Bâtiment">
-                        <Image src={logoFfb} alt="FFB, Fédération Française du Bâtiment" />
+                        <Image src={logoFfb} alt="FFB, Fédération Française du Bâtiment" width={160} />
                     </a>
                     <a href="https://www.reseau-proeco-energies.fr" target="_blank" rel="noopener" class="badgeCertifHero" aria-label="MIPE Habitat, membre du réseau proéco-énergies">
                         <Image src={logoProeco} alt="Réseau proéco-énergies" width={295} height={116} />

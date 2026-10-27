@@ -389,7 +389,7 @@
 }
 @media (max-width: 900px){
     .refonte .valeurSection{
-        background-attachment: scroll, scroll;
+        background-image: none;
     }
 }
 .refonte .valeurSection h2{
@@ -500,8 +500,9 @@
     padding: 5.5rem 5% 6rem 5%;
 }
 @media (max-width: 900px){
+    /* Sur mobile/tablette : fond bleu uni (l'illustration de 170 Ko n'est pas telechargee) */
     .refonte .metierContainer{
-        background-attachment: scroll, scroll;
+        background-image: none;
     }
 }
 .refonte .metierContainer .petitTitreMetier{

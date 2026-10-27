@@ -1,6 +1,9 @@
-import L from 'leaflet';
-
+// Leaflet (JS, ~150 Ko) n'est charge que lorsque la carte approche de l'ecran :
+// le reste de la page n'attend plus ce poids au chargement. (Son CSS est integre
+// a la page via ZoneIntervention.astro.)
 const conteneurCarte = document.getElementById('carteZone');
+async function initialiserCarte() {
+const { default: L } = await import('leaflet');
 const agences = JSON.parse(conteneurCarte.dataset.agences);
 const villes = JSON.parse(conteneurCarte.dataset.villes);
 
@@ -96,3 +99,12 @@ villes.forEach((ville) => {
 });
 
 carte.fitBounds(pointsCarte, { padding: [24, 24] });
+}
+
+const observateur = new IntersectionObserver((entrees) => {
+	if (entrees.some((entree) => entree.isIntersecting)) {
+		observateur.disconnect();
+		initialiserCarte();
+	}
+}, { rootMargin: '600px 0px' });
+observateur.observe(conteneurCarte);
