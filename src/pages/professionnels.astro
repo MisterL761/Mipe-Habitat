@@ -14,6 +14,8 @@ import photoAgence from '../assets/image/ravalement.webp';
 import photoArchitecte from '../assets/image/choixIso.webp';
 import photoPrescripteur from '../assets/image/etudeComble.webp';
 import logoIsofrance from '../assets/image/logo-isofrance.webp';
+import logoMeo from '../assets/image/logo_meo.png';
+import logoBaumit from '../assets/image/baumit-logo-rogne.jpg';
 
 // Une carte par profession : photo, titre, description (et points cles le cas echeant).
 // Pour changer une photo : remplacer l'import correspondant ci-dessus.
@@ -52,8 +54,6 @@ const atouts = [
 	{ Icone: ClipboardCheck, titre: 'Suivi des chantiers', description: 'Une organisation technique et administrative pour accompagner les projets.' },
 	{ Icone: MapPin, titre: 'Proximité', description: "Une présence locale et une connaissance des spécificités des territoires d'intervention." },
 ];
-
-const partenaires = ['MéO', 'Baumit'];
 
 const etapes = [
 	{ numero: '01', titre: 'Premier échange', description: "Identification du besoin et des attentes du professionnel." },
@@ -126,7 +126,8 @@ const etapes = [
 			<h2 class="titreSectionPro">Nos partenaires techniques et fabricants</h2>
 			<ul class="listePartenairesPro">
 				<li class="partenairePro partenaireProLogo"><Image src={logoIsofrance} alt="ISOFRANCE, Fenêtres & Énergies" width={520} /></li>
-				{partenaires.map((nom) => <li class="partenairePro"><span>{nom}</span></li>)}
+				<li class="partenairePro partenaireProImage"><Image src={logoMeo} alt="MéO, la fenêtre émotion" height={180} quality={80} /></li>
+				<li class="partenairePro partenaireProImage"><Image src={logoBaumit} alt="Baumit" height={180} quality={80} /></li>
 			</ul>
 		</section>
 

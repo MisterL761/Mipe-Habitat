@@ -228,7 +228,7 @@
     list-style: none;
     margin: 0 auto;
     padding: 0;
-    max-width: 900px;
+    max-width: 1120px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -251,6 +251,20 @@
     color: #16273B;
     box-shadow: 0 1px 2px rgba(22, 39, 59, 0.05), 0 12px 32px rgba(22, 39, 59, 0.07);
 }
+/* Logos MeO et Baumit : hauteur commune, centres dans la tuile blanche */
+.partenaireProImage{
+    flex: 1 1 320px;
+    max-width: 340px;
+    padding: 1.1rem 1.5rem;
+}
+.partenaireProImage img{
+    display: block;
+    width: auto;
+    height: 100px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
 /* Le logo ISOFRANCE a son propre fond (brun) : la tuile prend cette couleur et
    le logo la remplit entierement, sans marge, pour qu'il se voie en grand. */
 .partenaireProLogo{
