@@ -96,7 +96,7 @@
     margin-top: 2rem;
 }
 
-/* ===================== Professions : lignes photo + texte en alternance ===================== */
+/* ===================== Professions : 4 cartes photo en grille 2 x 2 ===================== */
 .sectionPublicsPro{
     padding: 5rem 4rem;
     text-align: center;
@@ -111,57 +111,61 @@
     margin-top: 0.4rem;
     margin-bottom: 3rem;
 }
-.listeProfessions{
+.grilleProfessions{
     max-width: 1150px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
     text-align: left;
 }
-.ligneProfession{
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    align-items: center;
-    gap: 3.5rem;
+/* meme principe que les cartes "metiers" de l'accueil : photo en haut, bloc
+   de texte plein dessous (le texte n'est jamais pose sur la photo) */
+.carteProfession{
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #1E3450;
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.08), 0 20px 44px rgba(22, 39, 59, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.ligneProfession:nth-child(even){
-    grid-template-columns: 1fr 1.05fr;
-}
-.ligneProfession:nth-child(even) .photoProfession{
-    order: 2;
+.carteProfession:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.1), 0 28px 56px rgba(22, 39, 59, 0.3);
 }
 .photoProfession{
-    border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.06), 0 22px 48px rgba(22, 39, 59, 0.16);
 }
 .photoProfession img{
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
     transition: transform 0.6s ease;
 }
-.ligneProfession:hover .photoProfession img{
-    transform: scale(1.04);
+.carteProfession:hover .photoProfession img{
+    transform: scale(1.05);
+}
+.texteProfession{
+    flex: 1;
+    padding: 1.6rem 1.9rem 2rem 1.9rem;
+    border-top: 4px solid #6FBE2C;
 }
 .titreProfession{
     font-family: 'Archivo', 'Outfit', sans-serif;
     font-weight: 800;
-    font-size: clamp(1.5rem, 2.4vw, 2rem);
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    color: #16273B;
-    padding-left: 1rem;
-    border-left: 5px solid #6FBE2C;
-    margin-bottom: 1.1rem;
+    font-size: 1.4rem;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: #ffffff;
+    margin-bottom: 0.7rem;
 }
 .descProfession{
-    color: #4A5B6B;
-    font-size: 1.08rem;
-    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1rem;
+    line-height: 1.65;
 }
 
 /* ===================== Pourquoi choisir MIPE Habitat ? ===================== */
@@ -344,16 +348,8 @@
     .sectionEtapesPro{
         background-image: none;
     }
-    .ligneProfession,
-    .ligneProfession:nth-child(even){
+    .grilleProfessions{
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    .ligneProfession:nth-child(even) .photoProfession{
-        order: 0;
-    }
-    .listeProfessions{
-        gap: 3rem;
     }
     .grilleAtoutsPro,
     .grilleEtapesPro{

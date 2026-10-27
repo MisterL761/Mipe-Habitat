@@ -90,12 +90,12 @@ const etapes = [
 		<section class="sectionPublicsPro reveal">
 			<p class="petitTitre">Vous êtes</p>
 			<h2 class="titreSectionPro">À chaque profession, son accompagnement</h2>
-			<div class="listeProfessions">
+			<div class="grilleProfessions">
 				{
 					professions.map(({ photo, alt, titre, description }) => (
-						<article class="ligneProfession reveal">
+						<article class="carteProfession reveal">
 							<div class="photoProfession">
-								<Image src={photo} alt={alt} width={900} quality={72} />
+								<Image src={photo} alt={alt} width={800} quality={72} />
 							</div>
 							<div class="texteProfession">
 								<h3 class="titreProfession">{titre}</h3>
