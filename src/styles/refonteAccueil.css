@@ -209,6 +209,14 @@
     border-radius: 22px;
 }
 
+/* La frise (3000 px de haut) apparait tout de suite : son bloc exterieur ne
+   fait plus de fondu, seules ses etapes (cartes) s'animent a leur arrivee. */
+.refonte section.reveal:has(> #frise){
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
 /* La frise reste strictement comme avant : fond blanc (sa photo se fond dans le blanc sur les bords). */
 .refonte .frise{
     background: #fff;
