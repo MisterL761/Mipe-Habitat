@@ -56,36 +56,123 @@
     color: #ffffff;
 }
 
-/* ===================== "Vous êtes" (4 cartes) ===================== */
+/* ===================== "Vous etes" : une carte photo par profession ===================== */
 .sectionPublicsPro{
-    padding: 4rem;
+    padding: 4.5rem 4rem;
     text-align: center;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 .titreSectionPro{
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-family: 'Archivo', 'Outfit', sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: #16273B;
     margin-top: 0.5rem;
     margin-bottom: 2.5rem;
 }
 .grillePublicsPro{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
     text-align: left;
 }
 .cartePublicPro{
-    border: 1px solid #E4E7E2;
-    border-radius: 15px;
-    padding: 1.75rem;
-    transition: border-color 0.25s ease, transform 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #E3E7EC;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(22, 39, 59, 0.05), 0 12px 32px rgba(22, 39, 59, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .cartePublicPro:hover{
-    border-color: #6FBE2C;
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.06), 0 22px 48px rgba(22, 39, 59, 0.14);
 }
-.iconePublicPro{
-    width: 44px;
-    height: 44px;
+.photoPublicPro{
+    overflow: hidden;
+    border-bottom: 4px solid #6FBE2C;
+}
+.photoPublicPro img{
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.cartePublicPro:hover .photoPublicPro img{
+    transform: scale(1.04);
+}
+.contenuPublicPro{
+    padding: 1.5rem 1.75rem 1.9rem 1.75rem;
+}
+.titreCartePro{
+    font-family: 'Archivo', 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #16273B;
+    margin-bottom: 0.6rem;
+}
+.descCartePro{
+    color: #4A5B6B;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+.pointsCartePro{
+    list-style: none;
+    margin: 1rem 0 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1rem;
+}
+.pointsCartePro li{
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #16273B;
+}
+.pointsCartePro li svg{
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+/* ===================== "Pourquoi choisir MIPE Habitat ?" ===================== */
+.sectionAtoutsPro{
+    background-color: #F1F3F6;
+    padding: 4.5rem 4rem;
+    text-align: center;
+}
+.grilleAtoutsPro{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+}
+.carteAtoutPro{
+    background: #fff;
+    border: 1px solid #E3E7EC;
+    border-top: 4px solid #6FBE2C;
+    border-radius: 14px;
+    padding: 1.6rem 1.7rem 1.8rem 1.7rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.carteAtoutPro:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(22, 39, 59, 0.1);
+}
+.iconeAtoutPro{
+    width: 48px;
+    height: 48px;
     border-radius: 12px;
     background-color: #EEF6E7;
     display: flex;
@@ -93,69 +180,101 @@
     justify-content: center;
     margin-bottom: 1rem;
 }
-.titreCartePro{
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+.titreAtoutPro{
+    font-family: 'Archivo', 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #16273B;
+    margin-bottom: 0.45rem;
 }
-.descCartePro{
+.descAtoutPro{
     color: #4A5B6B;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.55;
 }
 
-/* ===================== "Pourquoi MIPE Habitat" ===================== */
-.sectionAtoutsPro{
-    background-color: #F7F8F6;
-    padding: 4rem;
-}
-.texteAtoutsPro{
-    max-width: 640px;
-    margin: 0 auto;
+/* ===================== Partenaires techniques ===================== */
+.sectionPartenairesPro{
+    padding: 4.5rem 4rem 3.5rem 4rem;
     text-align: center;
 }
-.sectionAtoutsPro .checkContainer{
-    text-align: left;
-    display: inline-flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+.listePartenairesPro{
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.25rem;
 }
-.sectionAtoutsPro .check{
+.partenairePro{
+    flex: 1 1 220px;
+    max-width: 260px;
+    min-height: 96px;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #E3E7EC;
+    border-radius: 14px;
+    padding: 1rem 1.5rem;
+    font-family: 'Archivo', 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 0.01em;
+    color: #16273B;
+}
+.partenaireProLogo img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: 56px;
+    width: auto;
 }
 
-/* ===================== "Comment ça marche" (3 etapes) ===================== */
+/* ===================== "Notre accompagnement" : 6 etapes ===================== */
 .sectionEtapesPro{
-    padding: 4rem;
+    padding: 4.5rem 4rem;
     text-align: center;
 }
 .grilleEtapesPro{
+    list-style: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     text-align: left;
 }
 .carteEtapePro{
-    border: 1px solid #E4E7E2;
-    border-radius: 15px;
-    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid #E3E7EC;
+    border-radius: 14px;
+    padding: 1.6rem 1.7rem 1.8rem 1.7rem;
 }
 .numeroEtapePro{
-    color: #6FBE2C;
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Archivo', 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #6FBE2C;
+    margin-bottom: 0.7rem;
 }
 .titreEtapePro{
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    font-family: 'Archivo', 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #16273B;
+    margin-bottom: 0.4rem;
 }
 .descEtapePro{
     color: #4A5B6B;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.55;
 }
 
 /* ===================== CTA finale ===================== */
@@ -195,6 +314,7 @@
     .heroPro,
     .sectionPublicsPro,
     .sectionAtoutsPro,
+    .sectionPartenairesPro,
     .sectionEtapesPro,
     .ctaFinalePro{
         padding: 3rem 1.5rem;
@@ -203,15 +323,18 @@
         font-size: 1.8rem;
     }
     .grillePublicsPro{
-        grid-template-columns: 1fr 1fr;
-    }
-    .grilleEtapesPro{
         grid-template-columns: 1fr;
+    }
+    .grilleAtoutsPro,
+    .grilleEtapesPro{
+        grid-template-columns: 1fr 1fr;
     }
 }
 
 @media (max-width: 560px){
-    .grillePublicsPro{
+    .grilleAtoutsPro,
+    .grilleEtapesPro,
+    .pointsCartePro{
         grid-template-columns: 1fr;
     }
     .ctaPro,
