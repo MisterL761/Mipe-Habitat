@@ -366,7 +366,7 @@
 
 /* ============================ Autres metiers : blanc, cartes filaires ============================ */
 .refonte section:has(> .autreMetierContainer){
-    background: #fff;
+    background: transparent;
 }
 .refonte .petitTitreAutreMetier{
     margin-top: 5rem;
