@@ -214,6 +214,61 @@
     background: #fff;
 }
 
+/* Fleche en vague : part du bas-droite du texte "Une entreprise a votre
+   service" et pointe vers la frise juste en dessous. */
+.refonte .flecheFrise{
+    display: block;
+    position: absolute;
+    z-index: 3;
+    right: -5rem;
+    bottom: -8.2rem;
+    width: 110px;
+    height: auto;
+    overflow: visible;
+    pointer-events: none;
+}
+.refonte .flecheFrise path{
+    stroke: var(--vert);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.refonte .flecheFriseTrait{
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+.refonte .flecheFrisePointe{
+    opacity: 0;
+    transition: opacity 0.4s ease 1.7s;
+}
+.refonte .est-visible .flecheFriseTrait{
+    stroke-dashoffset: 0;
+}
+.refonte .est-visible .flecheFrisePointe{
+    opacity: 1;
+}
+/* la section passe au-dessus de la frise pour que la pointe de la fleche reste visible */
+.refonte section:has(> .societeContainer){
+    position: relative;
+    z-index: 2;
+}
+@media (max-width: 900px){
+    .refonte .flecheFrise{
+        display: none;
+    }
+}
+@media (prefers-reduced-motion: reduce){
+    .refonte .flecheFriseTrait{
+        stroke-dashoffset: 0;
+        transition: none;
+    }
+    .refonte .flecheFrisePointe{
+        opacity: 1;
+        transition: none;
+    }
+}
+
 /* ============================ Valeurs : bleu nuit, chiffres en relief ============================ */
 .refonte .valeurSection{
     background:
