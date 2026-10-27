@@ -17,7 +17,7 @@ if (!reduitMouvement && 'IntersectionObserver' in window) {
 				}
 			});
 		},
-		{ threshold: [0, 0.02, 0.05, 0.1, 0.15], rootMargin: '0px 0px -60px 0px' }
+		{ threshold: [0, 0.02, 0.05, 0.1, 0.15], rootMargin: '0px 0px -30px 0px' }
 	);
 
 	document.querySelectorAll('.reveal').forEach((element) => observateur.observe(element));

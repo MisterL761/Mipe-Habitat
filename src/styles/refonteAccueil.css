@@ -209,6 +209,37 @@
     border-radius: 22px;
 }
 
+/* Apparitions plus rapides : fondu court, glissement reduit (les cartes
+   arrivent des que l'on s'en approche, sans attente). */
+.refonte .reveal{
+    transform: translateY(14px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+.refonte .reveal.est-visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Frise : annee, trait et points enchaines plus vite (memes animations, delais reduits) */
+.refonte .etapeFrise.est-visible .chronologie{
+    animation: tamponAnnee 0.45s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.refonte .liaisonFrise.est-visible .traitLiaison{
+    transition-delay: 0.08s;
+}
+.refonte .liaisonFrise.est-visible .pointBas{
+    transition-delay: 0.4s;
+}
+@media (prefers-reduced-motion: reduce){
+    .refonte .reveal{
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .refonte .etapeFrise.est-visible .chronologie{
+        animation: none;
+    }
+}
+
 /* La frise (3000 px de haut) apparait tout de suite : son bloc exterieur ne
    fait plus de fondu, seules ses etapes (cartes) s'animent a leur arrivee. */
 .refonte section.reveal:has(> #frise){
