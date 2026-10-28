@@ -1487,3 +1487,12 @@
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+
+/* Boutons "Decouvrir" de la page Nos metiers : texte blanc lisible (la regle des cartes
+   cliquables les rendait bleu nuit sur bleu nuit) */
+.refonte .pageNosMetiers .cardMetiers .lienDecouvrirCardMetiers{
+    color: #fff;
+}
+.refonte .pageNosMetiers .bandeMetiersMenthe .cardMetiers .lienDecouvrirCardMetiers:hover{
+    color: var(--navy);
+}
