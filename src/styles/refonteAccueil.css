@@ -1096,3 +1096,122 @@
     margin-top: 0;
     padding-top: 3rem;
 }
+
+/* ==========================================================================
+   Page Nos metiers : sections de cartes avec du pep
+   - bande 1 : bleu nuit en degrade, cartes photo + bloc sombre
+   - bande 2 : blanc, cartes photo + liseré vert epais, gros relief
+   ========================================================================== */
+.pageNosMetiers .containerCardMetiers{
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.pageNosMetiers .cardMetiers{
+    width: auto;
+    flex: 1 1 0;
+    border: 0;
+    border-radius: 18px;
+    overflow: hidden;
+}
+.pageNosMetiers .imageCard{
+    border-radius: 0;
+    aspect-ratio: 4 / 3;
+    transition: transform 0.6s ease;
+}
+.pageNosMetiers .cardMetiers:hover .imageCard{
+    transform: scale(1.06);
+}
+/* la photo zoome dans son cadre : on coupe le debordement */
+.pageNosMetiers .cardMetiers{
+    isolation: isolate;
+}
+.pageNosMetiers .contenuCardMetiers{
+    padding: 1.4rem 1.5rem 1.7rem 1.5rem;
+    position: relative;
+    background: inherit;
+}
+.pageNosMetiers .titreCardMetiers{
+    font-family: var(--police-titre);
+    font-weight: 800;
+    font-size: 1.12rem;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0.55rem;
+}
+.pageNosMetiers .descriptionCardMetiers{
+    font-size: 0.93rem;
+    line-height: 1.55;
+}
+.pageNosMetiers .lienDecouvrirCardMetiers{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, gap 0.2s ease;
+}
+.pageNosMetiers .lienDecouvrirCardMetiers::after{
+    content: "→";
+}
+.pageNosMetiers .cardMetiers:hover .lienDecouvrirCardMetiers{
+    gap: 0.7rem;
+}
+
+/* ---- Bande 1 : bleu nuit illustre ---- */
+.pageNosMetiers .bandeMetiersMenthe{
+    /* pas d'illustration ici : la hero juste au-dessus l'a deja */
+    background: linear-gradient(170deg, #1F3550 0%, var(--navy) 70%);
+}
+.pageNosMetiers .bandeMetiersMenthe :is(h2, .renovationEnergetiqueMetiers h2){
+    color: #fff;
+}
+.pageNosMetiers .bandeMetiersMenthe .petitTitre{
+    background: rgba(255, 255, 255, 0.14);
+    color: #8FE05C;
+}
+.pageNosMetiers .bandeMetiersMenthe .cardMetiers{
+    background: #1E3450;
+    border-top: 4px solid #6FBE2C;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+.pageNosMetiers .bandeMetiersMenthe .cardMetiers:hover{
+    background: #254061;
+    box-shadow: 0 26px 50px rgba(0, 0, 0, 0.45);
+}
+.pageNosMetiers .bandeMetiersMenthe .titreCardMetiers{
+    color: #fff;
+}
+.pageNosMetiers .bandeMetiersMenthe .descriptionCardMetiers{
+    color: rgba(255, 255, 255, 0.82);
+}
+.pageNosMetiers .bandeMetiersMenthe .lienDecouvrirCardMetiers{
+    background: #6FBE2C;
+    color: #fff;
+}
+.pageNosMetiers .bandeMetiersMenthe .lienDecouvrirCardMetiers:hover{
+    background: #8FE05C;
+    color: var(--navy);
+}
+
+/* ---- Bande 2 : blanc, cartes a gros liseré vert et relief ---- */
+.pageNosMetiers .bandeMetiersBlanche .cardMetiers{
+    background: #fff;
+    border-top: 6px solid #6FBE2C;
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.06), 0 20px 44px rgba(22, 39, 59, 0.16);
+}
+.pageNosMetiers .bandeMetiersBlanche .cardMetiers:hover{
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.08), 0 30px 56px rgba(22, 39, 59, 0.24);
+}
+.pageNosMetiers .bandeMetiersBlanche .titreCardMetiers{
+    color: var(--navy);
+}
+.pageNosMetiers .bandeMetiersBlanche .lienDecouvrirCardMetiers{
+    background: var(--navy);
+    color: #fff;
+}
+.pageNosMetiers .bandeMetiersBlanche .lienDecouvrirCardMetiers:hover{
+    background: var(--vert-fonce);
+}
