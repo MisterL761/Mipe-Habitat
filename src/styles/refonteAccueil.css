@@ -1215,3 +1215,8 @@
 .pageNosMetiers .bandeMetiersBlanche .lienDecouvrirCardMetiers:hover{
     background: var(--vert-fonce);
 }
+
+.refonte .texteePartenaireEnergie .petitTitre{
+    margin-left: auto;
+    margin-right: auto;
+}

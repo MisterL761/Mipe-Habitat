@@ -34,12 +34,8 @@ const solutions = [
 
 const certifications = ['RGE', 'QualiPAC', 'Chauffage +', 'Qualigaz', 'SOCOTEC'];
 
-// Calcule automatiquement le nombre d'annees depuis la creation de BT2C
-// (fevrier 2007), pour ne pas avoir un chiffre fige a corriger chaque annee.
-const anneesExperienceBT2C = new Date().getFullYear() - 2007;
-
 const faqEnergie = [
-	{ question: 'Qui installe les équipements de chauffage et de climatisation ?', reponse: "L'installation est assurée par notre partenaire qualifié Bouvry Technique Chauffage et Climatisation (BT2C), chauffagiste-climaticien certifié RGE basé dans l'Oise.", ouvert: true },
+	{ question: 'Qui installe les équipements de chauffage et de climatisation ?', reponse: "L'installation est assurée par des professionnels qualifiés et certifiés RGE, sous la coordination de MIPE Habitat, votre interlocuteur unique du début à la fin du projet.", ouvert: true },
 	{ question: 'Une pompe à chaleur est-elle éligible aux aides ?', reponse: "Selon votre projet et votre éligibilité, le remplacement d'un système de chauffage par une pompe à chaleur peut être concerné par certaines aides (MaPrimeRénov', CEE...). Nos équipes étudient votre situation pour vous orienter.", ouvert: false },
 	{ question: 'Quelle différence entre une PAC air/air et air/eau ?', reponse: "Une PAC air/air diffuse de l'air chaud ou froid directement dans les pièces (idéale en climatisation réversible). Une PAC air/eau alimente un circuit de chauffage central (radiateurs, plancher chauffant) et peut aussi produire l'eau chaude sanitaire.", ouvert: false },
 	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller étudie vos besoins et vous propose un devis gratuit et sans engagement.', ouvert: false },
@@ -57,10 +53,10 @@ const faqEnergie = [
 				<div class="textImageDroite">
 					<p class="petitTitre">Énergie, chauffage & ventilation</p>
 					<h1 class="titreImage">Des solutions de chauffage et de climatisation performantes</h1>
-					<p class="descImage">Pompes à chaleur, chaudières, climatisation réversible : MIPE Habitat s'appuie sur son partenaire qualifié Bouvry Technique Chauffage et Climatisation (BT2C) pour vous proposer des solutions énergétiques adaptées à votre logement.</p>
+					<p class="descImage">Pompes à chaleur, chaudières, climatisation réversible : MIPE Habitat vous propose des solutions énergétiques adaptées à votre logement, avec des installateurs qualifiés et un seul interlocuteur.</p>
 					<p class="check"><Check size={15} color="#8FE05C" />Pompes à chaleur air/air, air/eau et eau/eau</p>
 					<p class="check"><Check size={15} color="#8FE05C" />Chaudières gaz et climatisation réversible</p>
-					<p class="check"><Check size={15} color="#8FE05C" />Installation par un partenaire certifié RGE</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Installation par des professionnels certifiés RGE</p>
 				</div>
 				<div class="imageDroite">
 					<Image src={photoClim} alt="Installation de climatisation / pompe à chaleur" />
@@ -94,13 +90,9 @@ const faqEnergie = [
 		<section class="sectionPartenaireEnergie reveal">
 			<div class="containerPartenaireEnergie">
 				<div class="texteePartenaireEnergie">
-					<p class="petitTitre">Notre partenaire</p>
-					<h2 class="titrePartenaireEnergie">Bouvry Technique Chauffage et Climatisation (BT2C)</h2>
-					<div class="statExperienceEnergie">
-						<span class="grandChiffreExperience" id="chiffreExperienceBT2C" data-cible={anneesExperienceBT2C}>0</span>
-						<span class="labelExperienceEnergie">ans d'expérience</span>
-					</div>
-					<p class="descPartenaireEnergie">Chauffagiste-climaticien basé dans l'Oise depuis 2007, BT2C intervient notamment autour de Dammartin-en-Goële, Lagny-le-Sec, Chamant, Senlis et Pont-Sainte-Maxence. Un partenaire de confiance pour l'installation et l'entretien de vos équipements de chauffage et de climatisation.</p>
+					<p class="petitTitre">Installation</p>
+					<h2 class="titrePartenaireEnergie">Des installations réalisées par des professionnels certifiés</h2>
+					<p class="descPartenaireEnergie">MIPE Habitat coordonne votre projet de chauffage et de climatisation : étude, devis, installation et suivi. Les équipements sont posés par des professionnels qualifiés, avec un interlocuteur unique pour toutes vos questions.</p>
 					<div class="listeCertifEnergie">
 						{
 							certifications.map((certif) => (
@@ -108,7 +100,7 @@ const faqEnergie = [
 							))
 						}
 					</div>
-					<a href="https://www.bouvry-technique-chauffage-climatisation.fr" target="_blank" rel="noopener noreferrer" class="lienPartenaireEnergie">Découvrir BT2C</a>
+					<a href="/demander-un-devis" class="lienPartenaireEnergie">Demander un devis gratuit</a>
 				</div>
 			</div>
 		</section>
@@ -135,4 +127,3 @@ const faqEnergie = [
 	</main>
 </Layout>
 
-<script src="../js/compteurExperienceEnergie.js"></script>
