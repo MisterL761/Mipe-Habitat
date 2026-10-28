@@ -1220,3 +1220,176 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/* ==========================================================================
+   PAGES METIERS (isolation, menuiseries, ravalement, toiture, combles, energie)
+   Memes bandes pleine largeur que l'accueil et Nos metiers, sans toucher au HTML :
+   hero bleu nuit illustre, bandes menthe / blanc / bleu nuit / gris en alternance.
+   Les bandes sont des fonds "pleine largeur" poses derriere chaque section.
+   ========================================================================== */
+.refonte > section:is(.containerImageDroite, .containerImageGauche, .containerAtout, .sectionInterventionsToiture, .sectionInterventionsCombles, .sectionSolutionsEnergie, .sectionAnticiper, .sectionFinitions, .sectionAutresMenuiseries),
+.refonte > section:has(> .deroulementProjetContainer){
+    position: relative;
+    isolation: isolate;
+}
+.refonte > section:is(.containerImageDroite, .containerImageGauche, .sectionInterventionsToiture, .sectionInterventionsCombles, .sectionSolutionsEnergie, .sectionFinitions)::before,
+.refonte > section:has(> .deroulementProjetContainer)::before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    background: transparent;
+}
+
+/* ---- Hero : bande bleu nuit illustree (fond fixe), photo mise en valeur ---- */
+.refonte > section.containerImageDroite:first-of-type::before{
+    background-color: #16273B;
+    background-image:
+        linear-gradient(rgba(22, 39, 59, 0.86), rgba(22, 39, 59, 0.86)),
+        url('../assets/image/fond.webp');
+    background-size: auto, cover;
+    background-position: center, center;
+    background-attachment: scroll, fixed;
+}
+.refonte > section.containerImageDroite:first-of-type{
+    padding: 3rem 0 4rem 0;
+}
+.refonte > section.containerImageDroite:first-of-type > br{
+    display: none;
+}
+.refonte > section.containerImageDroite:first-of-type :is(.titreImage, h1){
+    color: #fff;
+    font-family: var(--police-titre);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+}
+.refonte > section.containerImageDroite:first-of-type .descImage{
+    color: rgba(255, 255, 255, 0.86);
+}
+.refonte > section.containerImageDroite:first-of-type .check{
+    color: #fff;
+}
+.refonte > section.containerImageDroite:first-of-type .petitTitre{
+    background: rgba(255, 255, 255, 0.14);
+    color: #8FE05C;
+}
+.refonte > section.containerImageDroite:first-of-type .imageDroite img{
+    border-radius: 22px;
+    box-shadow: 14px 14px 0 #6FBE2C, 0 24px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Cartes d'atouts : liseré vert, relief ---- */
+.refonte :is(.cardAtout){
+    border: 0;
+    border-top: 5px solid #6FBE2C;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.06), 0 16px 36px rgba(22, 39, 59, 0.12);
+}
+.refonte .cardAtout:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.08), 0 26px 48px rgba(22, 39, 59, 0.2);
+}
+.refonte .titreAtout{
+    font-family: var(--police-titre);
+    font-weight: 800;
+    color: var(--navy);
+}
+.refonte > section.containerAtout{
+    padding: 0 0 3rem 0;
+}
+/* premiere rangee d'atouts : remonte sur la hero pour un effet de chevauchement */
+.refonte > section.containerImageDroite:first-of-type + section.containerAtout{
+    margin-top: -2.5rem;
+    z-index: 2;
+}
+
+/* ---- Sections alternees : bande menthe ---- */
+.refonte > section.containerImageGauche::before,
+.refonte > section:is(.sectionInterventionsToiture, .sectionInterventionsCombles, .sectionSolutionsEnergie)::before{
+    background: var(--menthe);
+}
+.refonte > section.containerImageGauche,
+.refonte > section:is(.sectionInterventionsToiture, .sectionInterventionsCombles, .sectionSolutionsEnergie){
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-top: 1rem;
+}
+.refonte > section.containerImageGauche .imageGauche img{
+    border-radius: 22px;
+    box-shadow: -14px 14px 0 #6FBE2C, 0 24px 50px rgba(22, 39, 59, 0.2);
+}
+.refonte > section.containerImageDroite:not(:first-of-type) .imageDroite img{
+    border-radius: 22px;
+    box-shadow: 14px 14px 0 #6FBE2C, 0 24px 50px rgba(22, 39, 59, 0.2);
+}
+
+/* ---- Deroulement du chantier : bande bleu nuit, numeros en contour ---- */
+.refonte > section:has(> .deroulementProjetContainer)::before{
+    background: linear-gradient(160deg, #1F3550 0%, var(--navy) 65%);
+}
+.refonte > section:has(> .deroulementProjetContainer){
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-top: 1.5rem;
+}
+.refonte .deroulementProjetContainer :is(h2, .titreImage){
+    color: #fff;
+}
+.refonte .deroulementProjetContainer .petitTitre{
+    background: rgba(255, 255, 255, 0.14);
+    color: #8FE05C;
+}
+.refonte .deroulementProjetCard{
+    background: #1E3450;
+    border: 1px solid #2D4663;
+    border-top: 4px solid #6FBE2C;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.refonte .deroulementProjetCard:hover{
+    transform: translateY(-5px);
+    background: #254061;
+}
+.refonte .deroulementProjetCard .numero{
+    font-family: var(--police-titre);
+    font-weight: 900;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #8FE05C;
+}
+.refonte .deroulementProjetCard .titre{
+    color: #fff;
+}
+.refonte .deroulementProjetCard .description{
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* ---- Mobile : fonds simples, pas de photo fixe ---- */
+@media (max-width: 900px){
+    .refonte > section.containerImageDroite:first-of-type::before{
+        background-image: none;
+    }
+    .refonte > section.containerImageDroite:first-of-type .imageDroite img,
+    .refonte > section.containerImageGauche .imageGauche img,
+    .refonte > section.containerImageDroite:not(:first-of-type) .imageDroite img{
+        box-shadow: 8px 8px 0 #6FBE2C;
+    }
+    .refonte > section.containerImageDroite:first-of-type + section.containerAtout{
+        margin-top: 0;
+    }
+}
+.refonte > section.containerImageGauche + section.containerAtout{
+    margin-top: 2.5rem;
+}
+.refonte :is(.sectionInterventionsToiture, .sectionInterventionsCombles, .sectionSolutionsEnergie) > .petitTitre,
+.refonte :is(.sectionInterventionsToiture, .sectionInterventionsCombles, .sectionSolutionsEnergie) > div > .petitTitre{
+    margin-left: auto;
+    margin-right: auto;
+}
