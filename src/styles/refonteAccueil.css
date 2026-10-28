@@ -1078,3 +1078,24 @@
 .refonte :has(> :is(.heroPage, .heroSecteurs, .heroCGV, .heroPolitique, .heroMentionsLegales):first-child){
     padding-top: 0;
 }
+
+/* ---- Devis : hero sur la photo "fond devis" (isolant en rouleaux sur un chantier) ---- */
+.refonte .containerDemandeDevis .heroPage{
+    background-image:
+        linear-gradient(rgba(22, 39, 59, 0.74), rgba(22, 39, 59, 0.74)),
+        url('../assets/image/fondDevis.webp');
+    background-position: center, center 45%;
+}
+
+/* ---- Toutes les images de hero sont fixes : la photo reste en place, la page defile par-dessus ---- */
+@media (min-width: 901px){
+    .refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales){
+        background-attachment: scroll, fixed;
+    }
+}
+/* mobile : pas de photo (performance, fonds fixes peu fiables) */
+@media (max-width: 900px){
+    .refonte :is(.containerRealisations, .containerDemandeDevis) .heroPage{
+        background-image: none;
+    }
+}
