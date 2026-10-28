@@ -1393,3 +1393,35 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/* ==========================================================================
+   Plus de petites bandes blanches : les marges des derniers blocs ne "sortent"
+   plus du conteneur (sinon le blanc du body apparait au-dessus du footer), les
+   bandes colorees se touchent, et le dernier bloc se colle au footer.
+   ========================================================================== */
+.refonte{
+    display: flow-root;
+}
+.refonte > :last-child,
+.refonte > :last-child > :last-child,
+.refonte :is(.sectionFaqMetiers, .sectionFaqIte, .sectionFaqIti, .sectionFaqMenuiseries, .sectionFaqVille, .sectionFaqCombles, .sectionFaqToiture, .sectionFaqRavalement, .sectionFaqEnergie){
+    margin-bottom: 0;
+}
+/* les bandes ne laissent plus d'espace blanc entre elles */
+.refonte > section:is(.containerImageGauche, .sectionInterventionsToiture, .sectionInterventionsCombles, .sectionSolutionsEnergie, .sectionFinitions),
+.refonte > section:has(> .deroulementProjetContainer){
+    margin-top: 0;
+}
+/* fin de page : la FAQ (ou le dernier bloc) a son propre retrait bas, sous la bande grise */
+.refonte :is(.sectionFaqIte, .sectionFaqIti, .sectionFaqMenuiseries, .sectionFaqCombles, .sectionFaqToiture, .sectionFaqRavalement, .sectionFaqEnergie){
+    padding-bottom: 3rem;
+}
+.refonte :is(.sectionCtaVille){
+    margin-bottom: 3rem;
+}
+.refonte .containerDemandeDevis{
+    padding-bottom: 3rem;
+}
+.refonte .heroVille .boutonRdv{
+    margin-top: 1.25rem;
+}
