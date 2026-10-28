@@ -209,14 +209,8 @@
     white-space: nowrap;
 }
 .logoPagesJaunes{
-    display: inline-flex;
-    align-items: center;
+    display: block;
+    width: 34px;
     height: 34px;
-    padding: 0 0.8rem;
     border-radius: 8px;
-    background: #FFE600;
-    color: #000;
-    font-weight: 800;
-    font-size: 0.95rem;
-    letter-spacing: -0.01em;
 }

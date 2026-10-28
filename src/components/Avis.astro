@@ -2,6 +2,8 @@
 import { Star } from '@lucide/astro';
 import '../styles/styleComponents/Avis.css';
 import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoPagesJaunes from '../assets/image/pageJaune.png';
 
 const avis = [
 	{ note: 5, texte: "Isolation extérieure réalisée rapidement et proprement, avec un suivi de chantier clair jusqu'à la fin des travaux.", zone: 'Yvelines', cp: '78' },
@@ -47,7 +49,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 					</div>
 
 					<div class="sourceAvis">
-						<span class="logoPagesJaunes" role="img" aria-label="PagesJaunes">PagesJaunes</span>
+						<Image class="logoPagesJaunes" src={logoPagesJaunes} alt="PagesJaunes" width={68} height={68} />
 						<div class="recapNoteAvis">
 							<span class="grandeNoteAvis">4,0</span>
 							<div class="etoilesRecap" aria-hidden="true">
