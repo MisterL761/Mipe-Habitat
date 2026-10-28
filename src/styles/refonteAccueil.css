@@ -897,7 +897,7 @@
     margin-right: auto;
 }
 .refonte .petitTitreQualification{
-    margin-top: 3rem;
+    margin-top: 0;
     font-size: 0.78rem;
 }
 
@@ -988,17 +988,6 @@
 }
 
 /* ---- Fil d'Ariane : colle a la navbar (plus de bande blanche) et a la hero ---- */
-.refonte > .filAriane,
-.refonte > main > .filAriane{
-    margin-top: 0;
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-    max-width: none;
-    padding-left: 6%;
-    padding-right: 6%;
-    background: #fff;
-    border-bottom: 1px solid #E8ECE2;
-}
 .refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales){
     margin-top: 0;
 }
@@ -1100,4 +1089,10 @@
     .refonte :is(.containerRealisations, .containerDemandeDevis) .heroPage{
         background-image: none;
     }
+}
+
+/* ---- Meme ecart sous le fil d'Ariane sur les pages sans bandeau (metiers, villes) ---- */
+.refonte .heroVille{
+    margin-top: 0;
+    padding-top: 3rem;
 }

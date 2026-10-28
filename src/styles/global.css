@@ -28,9 +28,16 @@
    totalite des pages (sauf l'accueil). Liste de "puces" : icone maison,
    chevrons, page actuelle sur une pastille bleu nuit. */
 .filAriane{
-  max-width: 1300px;
-  margin: 1.25rem auto 0 auto;
-  padding: 0 5%;
+  /* meme barre sur toutes les pages : collee a la navbar, blanche, hauteur fixe */
+  max-width: none;
+  margin: 0;
+  padding: 0 6%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background: #fff;
+  border-bottom: 1px solid #E8ECE2;
 }
 .filArianeListe{
   list-style: none;
@@ -50,6 +57,7 @@
 .filArianeLien{
   display: inline-flex;
   align-items: center;
+  line-height: 1;
   gap: 0.4rem;
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
@@ -70,14 +78,17 @@
   color: #9AA7B3;
   flex-shrink: 0;
 }
+.filArianeLien svg,
+.filArianeSep{
+  display: block;
+}
 .filArianePage{
   display: inline-flex;
   align-items: center;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  background-color: #16273B;
-  color: #ffffff;
-  font-weight: 600;
+  line-height: 1;
+  padding: 0.4rem 0.8rem;
+  color: #16273B;
+  font-weight: 700;
 }
 @media (max-width: 560px){
   .filArianeAccueil span{
