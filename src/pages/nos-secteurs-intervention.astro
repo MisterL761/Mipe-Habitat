@@ -1,4 +1,5 @@
 ---
+import Logo3D from '../components/Logo3D.astro';
 import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
@@ -21,6 +22,7 @@ const villesPlaisir = villes.filter((v) => v.agence === 'plaisir');
 
 		<section class="sectionSecteurs">
 			<div class="heroSecteurs">
+<Logo3D position="milieu-droite" taille={160} />
 				<p class="petitTitre">Zone d'intervention</p>
 				<h1 class="titreSecteurs">Nos secteurs d'intervention</h1>
 				<p class="descSecteurs">MIPE Habitat intervient dans l'Oise, la Seine-et-Marne, l'Aisne et la Seine-Saint-Denis depuis son agence du Plessis-Belleville, ainsi que dans les Yvelines, les Hauts-de-Seine, le Val-de-Marne et le Val-d'Oise depuis son implantation de Plaisir. Retrouvez votre ville ci-dessous.</p>

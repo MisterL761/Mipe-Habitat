@@ -1,4 +1,5 @@
 ---
+import Logo3D from './Logo3D.astro';
 // Premiere ebauche d'une section presentant le Reseau Proeco-Energies sur
 // l'accueil (deplace depuis la page qualifications, a la demande du client).
 import { Image } from 'astro:assets';
@@ -7,6 +8,7 @@ import '../styles/styleComponents/Proeco.css';
 ---
 
 <section class="sectionProeco reveal">
+    <Logo3D position="bas-droite" taille={120} />
 	<div class="containerProeco">
 		<div class="logoProecoWrapper">
 			<Image src={logoProeco} alt="Logo du Réseau Proéco-Énergies" width={280} height={110} />

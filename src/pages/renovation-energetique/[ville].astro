@@ -1,4 +1,5 @@
 ---
+import Logo3D from '../../components/Logo3D.astro';
 import '../../styles/refonteAccueil.css';
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Nav-Footer/Navbar.astro';
@@ -292,6 +293,7 @@ const jsonLdFaq = {
 		</section>
 
 		<section class="sectionCtaVille reveal">
+<Logo3D position="bas-droite" taille={120} />
 			<div class="formeCtaVille" aria-hidden="true"></div>
 			<div class="contenuCtaVille">
 				<h2>Un projet à {ville.nom} ?</h2>
