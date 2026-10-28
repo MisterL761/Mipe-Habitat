@@ -5,6 +5,7 @@
     pointer-events: auto;
 }
 .logo3d model-viewer{
+    animation: apparition3d 0.6s ease-out both;
     width: 100%;
     height: 100%;
     background: transparent;
@@ -41,4 +42,9 @@
     .logo3d--milieu-droite{
         display: none;
     }
+}
+
+@keyframes apparition3d{
+    from{ opacity: 0; transform: scale(0.85); }
+    to{ opacity: 1; transform: scale(1); }
 }

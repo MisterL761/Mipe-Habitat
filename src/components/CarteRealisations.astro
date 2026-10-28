@@ -1,5 +1,4 @@
 ---
-import Logo3D from './Logo3D.astro';
 import { Image as ImageIcon, X } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import 'leaflet/dist/leaflet.css';
@@ -284,7 +283,6 @@ const chantiersPourCarte = chantiers.map((chantier) => ({
 <section class="reveal">
 	<div class="containerRealisations">
 		<div class="heroPage">
-<Logo3D position="milieu-droite" taille={160} />
 		<p class="petitTitre">Nos réalisations</p>
 		<h1 class="titreRealisations">Des chantiers menés dans tout le secteur</h1>
 		<p class="textRealisations">Cliquez sur un point de la carte pour découvrir le chantier réalisé par nos équipes.</p>

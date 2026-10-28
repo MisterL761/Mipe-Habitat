@@ -2,6 +2,10 @@
 // faire pivoter a la souris / au doigt. Chaque emplacement est un
 // <div class="logo3d" data-modele="..."> (voir Logo3D.astro).
 //
+// Demarrage : la librairie et le modele commencent a se charger des que l'emplacement
+// est a ~1400 px de l'ecran (donc bien avant qu'on l'atteigne), pour que le cube
+// tourne deja quand il apparait.
+//
 // Performance : la librairie (~900 Ko) et le modele ne sont charges que
 // lorsqu'un emplacement approche de l'ecran ; le rendu WebGL n'existe que tant
 // que l'emplacement est visible (un contexte WebGL par cube, on les libere en
@@ -37,13 +41,15 @@ if (emplacements.length && peutAfficher && 'IntersectionObserver' in window) {
 					viewer.setAttribute('min-camera-orbit', 'auto 40deg auto');
 					viewer.setAttribute('max-camera-orbit', 'auto 100deg auto');
 					viewer.setAttribute('touch-action', 'pan-y');
+					viewer.setAttribute('loading', 'eager');
+					viewer.setAttribute('reveal', 'auto');
 					zone.appendChild(viewer);
 				} else {
 					zone.querySelector('model-viewer')?.remove();
 				}
 			});
 		},
-		{ rootMargin: '200px 0px' }
+		{ rootMargin: '1400px 0px' }
 	);
 	emplacements.forEach((zone) => observateur.observe(zone));
 }
