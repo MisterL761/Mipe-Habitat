@@ -1,4 +1,5 @@
 ---
+import { Home, ChevronRight } from '@lucide/astro';
 // Fil d'Ariane reutilisable : "items" est la liste des etapes apres
 // "Accueil" (toujours ajoute automatiquement en premier). Chaque etape a
 // un "href" (lien cliquable) sauf la derniere, qui represente la page
@@ -11,13 +12,17 @@ const { items } = Astro.props;
 ---
 
 <nav class="filAriane" aria-label="Fil d'Ariane">
-	<a href="/">Accueil</a>
-	{
-		items.map(({ label, href }) => (
-			<>
-				<span>/</span>
-				{href ? <a href={href}>{label}</a> : <span aria-current="page">{label}</span>}
-			</>
-		))
-	}
+	<ol class="filArianeListe">
+		<li>
+			<a href="/" class="filArianeLien filArianeAccueil"><Home size={15} aria-hidden="true" /><span>Accueil</span></a>
+		</li>
+		{
+			items.map(({ label, href }) => (
+				<li>
+					<ChevronRight class="filArianeSep" size={15} aria-hidden="true" />
+					{href ? <a href={href} class="filArianeLien">{label}</a> : <span class="filArianePage" aria-current="page">{label}</span>}
+				</li>
+			))
+		}
+	</ol>
 </nav>

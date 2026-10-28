@@ -25,33 +25,72 @@
 }
 
 /* Fil d'Ariane, utilise par le composant FilAriane.astro sur la quasi
-   totalite des pages (sauf l'accueil). */
+   totalite des pages (sauf l'accueil). Liste de "puces" : icone maison,
+   chevrons, page actuelle sur une pastille bleu nuit. */
 .filAriane{
   max-width: 1300px;
   margin: 1.25rem auto 0 auto;
   padding: 0 5%;
+}
+.filArianeListe{
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.8rem;
-  color: #4A5B6B;
+  gap: 0.35rem;
+  font-size: 0.9rem;
 }
-
-.filAriane a{
+.filArianeListe li{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.filArianeLien{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
   color: #4A5B6B;
+  font-weight: 500;
   text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
-
-.filAriane a:hover{
-  color: #3E7C1F;
-  text-decoration: underline;
+.filArianeLien:hover{
+  background-color: rgba(111, 190, 44, 0.16);
+  color: #2F6B17;
 }
-
-.filAriane span[aria-current]{
-  color: #16273B;
+.filArianeLien:focus-visible{
+  outline: 2px solid #3E7C1F;
+  outline-offset: 2px;
+}
+.filArianeSep{
+  color: #9AA7B3;
+  flex-shrink: 0;
+}
+.filArianePage{
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background-color: #16273B;
+  color: #ffffff;
   font-weight: 600;
 }
+@media (max-width: 560px){
+  .filArianeAccueil span{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .filArianeListe{ font-size: 0.82rem; }
+}
+
 .containerParentImageDroite {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
