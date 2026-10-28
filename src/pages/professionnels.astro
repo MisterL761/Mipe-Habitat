@@ -1,4 +1,5 @@
 ---
+import BoutonRdv from '../components/BoutonRdv.astro';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
@@ -81,7 +82,7 @@ const etapes = [
 				<p class="descPro">MIPE Habitat accompagne les syndics de copropriété, agences immobilières, architectes, gestionnaires de patrimoine et prescripteurs dans leurs projets de rénovation, d'amélioration énergétique et de valorisation immobilière.</p>
 				<p class="descPro">De l'étude technique à la réalisation des travaux, nous mettons notre expertise et notre réseau de partenaires au service de vos projets.</p>
 				<div class="ctaPro">
-					<a href="/demander-un-devis" class="boutonPro boutonProPlein">Nous contacter <ArrowRight size={16} /></a>
+					<BoutonRdv />
 					<a href="tel:0375190160" class="boutonPro boutonProContourBlanc"><Phone size={16} /> 03 75 19 01 60</a>
 				</div>
 			</div>
@@ -150,7 +151,7 @@ const etapes = [
 			<h2>Un projet pour votre copropriété ou votre parc immobilier ?</h2>
 			<p>Contactez notre équipe pour échanger sur votre projet.</p>
 			<div class="ctaFinaleProBoutons">
-				<a href="/demander-un-devis" class="boutonPro boutonProPlein">Demander un devis <ArrowRight size={16} /></a>
+				<BoutonRdv />
 				<a href="tel:0375190160" class="boutonPro boutonProContour"><Phone size={16} /> 03 75 19 01 60</a>
 			</div>
 		</section>

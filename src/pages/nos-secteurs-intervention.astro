@@ -1,10 +1,10 @@
 ---
+import BoutonRdv from '../components/BoutonRdv.astro';
 import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FilAriane from '../components/FilAriane.astro';
-import { ArrowRight } from '@lucide/astro';
 import '../styles/global.css';
 import '../styles/pages/nos-secteurs-intervention.css';
 import { villes } from './renovation-energetique/[ville].astro';
@@ -57,7 +57,7 @@ const villesPlaisir = villes.filter((v) => v.agence === 'plaisir');
 			<div class="sectionCtaSecteurs">
 				<h2>Votre ville n'apparaît pas dans la liste ?</h2>
 				<p>Contactez-nous : nous intervenons dans tout le secteur autour de nos deux agences.</p>
-				<a href="/demander-un-devis" class="btnDevisSecteurs">Demander un devis gratuit <ArrowRight size={16} /></a>
+				<BoutonRdv />
 			</div>
 		</section>
 

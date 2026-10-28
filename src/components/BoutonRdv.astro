@@ -1,0 +1,14 @@
+---
+import { CalendarClock } from '@lucide/astro';
+import '../styles/styleComponents/BoutonRdv.css';
+
+// Bouton "Prendre RDV" identique a celui de la navbar (pastille verte, icone
+// calendrier, halo qui respire). A utiliser partout ou l'on invitait a
+// demander un devis : il mene toujours au formulaire de rendez-vous.
+interface Props {
+	class?: string;
+}
+const { class: classe = '' } = Astro.props;
+---
+
+<a class:list={['boutonRdv', classe]} href="/demander-un-devis"><CalendarClock size={20} color="#fff" aria-hidden="true" />Prendre RDV</a>
