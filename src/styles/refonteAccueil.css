@@ -1425,3 +1425,32 @@
 .refonte .heroVille .boutonRdv{
     margin-top: 1.25rem;
 }
+
+/* ==========================================================================
+   Fonds fixes (parallaxe) : un parent avec "transform" (l'animation d'apparition
+   .reveal fait glisser la section de 14 px) casse background-attachment: fixed
+   pendant l'animation, puis l'image "saute" a la fin. Les sections qui portent
+   un fond fixe n'ont donc plus de glissement : seulement un fondu.
+   ========================================================================== */
+.refonte .reveal:is(
+        .valeurSection,
+        .heroPro,
+        .sectionEtapesPro,
+        :has(> .metierContainer),
+        :has(> .containerAvantApres),
+        :has(.heroPage),
+        :has(.heroSecteurs),
+        :has(.heroNosMetiers),
+        :has(.heroCGV)
+    ),
+.refonte .reveal:is(
+        .valeurSection,
+        .heroPro,
+        .sectionEtapesPro,
+        :has(> .metierContainer),
+        :has(> .containerAvantApres),
+        :has(.heroPage)
+    ).est-visible{
+    transform: none;
+    transition: opacity 0.4s ease-out;
+}
