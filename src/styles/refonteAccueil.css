@@ -1127,7 +1127,6 @@
 }
 .pageNosMetiers .contenuCardMetiers{
     padding: 1.4rem 1.5rem 1.7rem 1.5rem;
-    position: relative;
     background: inherit;
 }
 .pageNosMetiers .titreCardMetiers{
@@ -1453,4 +1452,38 @@
     ).est-visible{
     transform: none;
     transition: opacity 0.4s ease-out;
+}
+
+/* ==========================================================================
+   Cartes metiers cliquables : le lien du titre (ou "Decouvrir") s'etend sur toute
+   la carte (pseudo-element), sans changer le HTML ni le texte lu au clavier.
+   ========================================================================== */
+.refonte :is(.cardMetier, .cardAutreMetier, .cardMetiers){
+    position: relative;
+    cursor: pointer;
+}
+.refonte :is(.cardMetier, .cardAutreMetier) .lienCarte,
+.refonte .cardMetiers .lienDecouvrirCardMetiers{
+    color: inherit;
+    text-decoration: none;
+}
+.refonte :is(.cardMetier, .cardAutreMetier) .lienCarte::after,
+.refonte .cardMetiers .lienDecouvrirCardMetiers::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+.refonte :is(.cardMetier, .cardAutreMetier) .lienCarte:focus-visible{
+    outline: none;
+}
+.refonte :is(.cardMetier, .cardAutreMetier):has(.lienCarte:focus-visible),
+.refonte .cardMetiers:has(.lienDecouvrirCardMetiers:focus-visible){
+    outline: 3px solid #6FBE2C;
+    outline-offset: 3px;
+}
+.refonte :is(.cardMetier, .cardAutreMetier):hover .lienCarte{
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }

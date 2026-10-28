@@ -10,15 +10,15 @@ import photoMenuiseries from '../assets/image/menuiserie.webp';
 import photoEnergie from '../assets/image/clim.webp';
 
 const metier = [
-    { photo: photoIte, prestation: 'Isolation thermique extérieure (ITE)', description: 'Une solution performante pour isoler les murs par l’extérieur et limiter durablement les déperditions de chaleur.' },
-    { photo: photoIti, prestation: 'Isolation thermique intérieure (ITI)', description: 'Une alternative efficace pour améliorer l’isolation de votre logement lorsque l’ITE n’est pas adaptée.' },
-    { photo: photoCombles, prestation: 'Isolation des combles & rampants', description: 'Combles perdus ou toiture en rampant : améliorez l’isolation de votre toiture pour limiter les déperditions de chaleur et gagner en confort toute l’année.' }
+    { photo: photoIte, prestation: 'Isolation thermique extérieure (ITE)', href: '/isolation-thermique-exterieur', description: 'Une solution performante pour isoler les murs par l’extérieur et limiter durablement les déperditions de chaleur.' },
+    { photo: photoIti, prestation: 'Isolation thermique intérieure (ITI)', href: '/isolation-thermique-interieur', description: 'Une alternative efficace pour améliorer l’isolation de votre logement lorsque l’ITE n’est pas adaptée.' },
+    { photo: photoCombles, prestation: 'Isolation des combles & rampants', href: '/isolation-des-combles', description: 'Combles perdus ou toiture en rampant : améliorez l’isolation de votre toiture pour limiter les déperditions de chaleur et gagner en confort toute l’année.' }
 
 
 ];
 const metier2 = [
-    { photo: photoMenuiseries, prestation: 'Menuiseries extérieures', description: 'Fenêtres et portes performantes pour renforcer l’isolation et le confort de votre habitat.' },
-    { photo: photoEnergie, prestation: 'Énergie, chauffage & ventilation', description: 'Pompes à chaleur, solutions de chauffage et systèmes de ventilation performants, installés par notre réseau de partenaires qualifiés pour améliorer le confort et la performance énergétique de votre logement.' }
+    { photo: photoMenuiseries, prestation: 'Menuiseries extérieures', href: '/menuiseries', description: 'Fenêtres et portes performantes pour renforcer l’isolation et le confort de votre habitat.' },
+    { photo: photoEnergie, prestation: 'Énergie, chauffage & ventilation', href: '/energie-chauffage-ventilation', description: 'Pompes à chaleur, solutions de chauffage et systèmes de ventilation performants, installés par notre réseau de partenaires qualifiés pour améliorer le confort et la performance énergétique de votre logement.' }
 ];
 
 
@@ -32,11 +32,11 @@ const metier2 = [
 
             <div class="metierContainerCard" >
                 {
-                    metier.map(({ photo, prestation, description }) => (
+                    metier.map(({ photo, prestation, description, href }) => (
                             <div class="cardMetier">
                                 <div class="photoMetier"><Image src={photo} alt={prestation} /></div>
                                 <div class="contenuCardMetier">
-                                    <p class="titrePrestation">{prestation}</p>
+                                    <p class="titrePrestation"><a href={href} class="lienCarte">{prestation}</a></p>
                                     <p class="descriptionMetier">{description}</p>
                                 </div>
                             </div>
@@ -46,11 +46,11 @@ const metier2 = [
 
         <div class="metierContainerCard" >
             {
-                metier2.map(({ photo, prestation, description }) => (
+                metier2.map(({ photo, prestation, description, href }) => (
                         <div class="cardMetier">
                             <div class="photoMetier"><Image src={photo} alt={prestation} /></div>
                             <div class="contenuCardMetier">
-                                <p class="titrePrestation">{prestation}</p>
+                                <p class="titrePrestation"><a href={href} class="lienCarte">{prestation}</a></p>
                                 <p class="descriptionMetier">{description}</p>
                             </div>
                         </div>

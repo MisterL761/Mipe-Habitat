@@ -10,9 +10,9 @@ import photoToiture from '../assets/image/toiture.webp';
 
 
 const autreMetier = [
-    { photo: photoRavalement, prestation: 'Ravalement de façade', description: 'Rénovez, protégez et embellissez vos façades pour redonner durablement de la valeur à votre habitation.' },
-    { photo: photoCombles, prestation: 'Aménagement des combles', description: 'Transformez vos combles en nouveaux espaces de vie, adaptés à vos besoins et à votre habitation.' },
-    { photo: photoToiture, prestation: 'Travaux de toiture', description: 'Entretien, réparation et rénovation pour préserver durablement la couverture et l’étanchéité de votre habitation.' },
+    { photo: photoRavalement, prestation: 'Ravalement de façade', href: '/ravalement-de-facade', description: 'Rénovez, protégez et embellissez vos façades pour redonner durablement de la valeur à votre habitation.' },
+    { photo: photoCombles, prestation: 'Aménagement des combles', href: '/amenagement-combles', description: 'Transformez vos combles en nouveaux espaces de vie, adaptés à vos besoins et à votre habitation.' },
+    { photo: photoToiture, prestation: 'Travaux de toiture', href: '/entretien-toiture', description: 'Entretien, réparation et rénovation pour préserver durablement la couverture et l’étanchéité de votre habitation.' },
 
 
 
@@ -29,11 +29,11 @@ const autreMetier = [
 
         <div class="autreMetierContainer" >
             {
-                autreMetier.map(({ photo, prestation, description }) => (
+                autreMetier.map(({ photo, prestation, description, href }) => (
                         <div class="cardAutreMetier">
                             <div class="photoAutreMetier"><Image src={photo} alt={prestation} /></div>
                             <div class="contenuCardAutreMetier">
-                                <p class="titrePrestationAutreMetier">{prestation}</p>
+                                <p class="titrePrestationAutreMetier"><a href={href} class="lienCarte">{prestation}</a></p>
                                 <p class="descriptionAutreMetier">{description}</p>
                             </div>
                         </div>
