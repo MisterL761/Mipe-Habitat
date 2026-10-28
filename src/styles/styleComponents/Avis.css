@@ -180,3 +180,43 @@
         font-size: 0.85rem;
     }
 }
+
+/* ===================== Sources des notes (Google, PagesJaunes) ===================== */
+.sourcesAvis{
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.sourceAvis{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1rem 1.25rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.08);
+}
+.sourceAvis .recapNoteAvis{
+    margin-top: 0;
+}
+.sourceAvis .grandeNoteAvis{
+    font-size: 2rem;
+}
+.sourceAvis .nombreAvisGoogle{
+    margin-top: 0;
+    white-space: nowrap;
+}
+.logoPagesJaunes{
+    display: inline-flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 0.8rem;
+    border-radius: 8px;
+    background: #FFE600;
+    color: #000;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+}
