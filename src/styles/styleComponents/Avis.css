@@ -82,12 +82,6 @@
 .colonneDescend{ grid-column: 3; grid-row: 1; }
 .enteteAvis .recapNoteAvis{ justify-content: center; }
 
-/* Le defilement se met en pause au survol, pour laisser le temps de lire
-   une carte sans qu'elle file sous la souris. */
-.colonneAvis:hover .colonneAvisPiste{
-    animation-play-state: paused;
-}
-
 .colonneAvisPiste{
     display: flex;
     flex-direction: column;
