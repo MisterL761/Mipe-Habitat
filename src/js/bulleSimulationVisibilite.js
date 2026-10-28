@@ -1,22 +1,33 @@
-// La bulle "Faire une simulation" (fixed, en bas a droite) reste cachee
-// tant qu'une zone marquee data-masque-bulle est a l'ecran - sur l'accueil,
-// c'est la hero section, qui a deja ses propres appels a l'action (bouton
-// "Prendre RDV" de la navbar, formulaire) et dont le bandeau de chiffres-cles
-// se termine pile au bord bas de l'ecran : la bulle flottante le cacherait
-// sinon en permanence des l'arrivee sur le site. Des que l'utilisateur
-// scrolle au-dela, la bulle reapparait normalement. N'a aucun effet sur les
-// pages sans zone marquee.
+// La bulle "Faire une simulation" (fixed, en bas a droite) est masquee :
+//  - tant qu'une zone marquee data-masque-bulle est a l'ecran : sur l'accueil,
+//    c'est la hero section, qui a deja ses propres appels a l'action (bouton
+//    "Prendre RDV" de la navbar, formulaire) et dont le bandeau de chiffres-cles
+//    se termine pile au bord bas de l'ecran ;
+//  - des que le pied de page (footer) apparait a l'ecran, sur toutes les pages :
+//    la bulle ne doit pas masquer ses liens et ses coordonnees.
+// Elle reapparait des qu'on quitte ces zones.
 const bulle = document.querySelector('.bulleSimulation');
-const zonesMasquantes = document.querySelectorAll('[data-masque-bulle]');
 
-if (bulle && zonesMasquantes.length > 0 && 'IntersectionObserver' in window) {
-	const observateur = new IntersectionObserver(
-		(entrees) => {
-			entrees.forEach((entree) => {
-				bulle.classList.toggle('bulleSimulationCachee', entree.isIntersecting);
-			});
-		},
-		{ threshold: 0.55 }
-	);
-	zonesMasquantes.forEach((zone) => observateur.observe(zone));
+if (bulle && 'IntersectionObserver' in window) {
+	const zonesVisibles = new Set();
+	const majBulle = () => bulle.classList.toggle('bulleSimulationCachee', zonesVisibles.size > 0);
+
+	const observer = (zones, seuil) => {
+		if (!zones.length) return;
+		const obs = new IntersectionObserver(
+			(entrees) => {
+				entrees.forEach((entree) => {
+					if (entree.isIntersecting) zonesVisibles.add(entree.target);
+					else zonesVisibles.delete(entree.target);
+				});
+				majBulle();
+			},
+			{ threshold: seuil }
+		);
+		zones.forEach((zone) => obs.observe(zone));
+	};
+
+	observer([...document.querySelectorAll('[data-masque-bulle]')], 0.55);
+	// seuil 0 : des le premier pixel du footer qui entre dans l'ecran
+	observer([...document.querySelectorAll('.footer-section')], 0);
 }
