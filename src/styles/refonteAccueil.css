@@ -951,7 +951,7 @@
 }
 
 /* ---- Rythme des fonds : FAQ et blocs de comparaison sur gris froid ---- */
-.refonte :is(.sectionFaqMetiers, .sectionFaqIte, .sectionFaqIti, .sectionFaqMenuiseries, .sectionFaqVille){
+.refonte :is(.sectionFaqIte, .sectionFaqIti, .sectionFaqMenuiseries, .sectionFaqVille){
     position: relative;
     isolation: isolate;
 }
@@ -985,4 +985,82 @@
 .refonte :is(.sectionCGV, .sectionPolitique, .sectionMentionsLegales) h2{
     font-size: 1.55rem;
     margin-top: 2.2rem;
+}
+
+/* ---- Fil d'Ariane : colle a la navbar (plus de bande blanche) et a la hero ---- */
+.refonte > .filAriane,
+.refonte > main > .filAriane{
+    margin-top: 0;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    max-width: none;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+.refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales){
+    margin-top: 0;
+}
+.refonte > .filAriane + :is(.heroNosMetiers, .heroSecteurs){
+    margin-top: 0;
+}
+
+/* ---- Page Nos metiers : bandes alternees ---- */
+.pageNosMetiers .bandeMetiers{
+    padding: 4.5rem 6%;
+}
+.pageNosMetiers .bandeMetiersMenthe{
+    background: var(--menthe);
+}
+.pageNosMetiers .bandeMetiersBlanche{
+    background: #fff;
+}
+.pageNosMetiers .bandeMetiersSombre{
+    background: linear-gradient(160deg, #1F3550 0%, var(--navy) 60%);
+}
+.pageNosMetiers .bandeMetiersFaq{
+    background: #F1F3F6;
+}
+.pageNosMetiers .renoAmelioration{
+    margin-bottom: 1.5rem;
+}
+/* titres et textes de la bande sombre */
+.pageNosMetiers .bandeMetiersSombre :is(h2, h3){
+    color: #fff;
+}
+.pageNosMetiers .bandeMetiersSombre .petitTitre{
+    background: rgba(255, 255, 255, 0.14);
+    color: #8FE05C;
+}
+.pageNosMetiers .bandeMetiersSombre .descCombinaison{
+    color: rgba(255, 255, 255, 0.84);
+}
+.pageNosMetiers .bandeMetiersSombre .carteCombinaison{
+    background: #1E3450;
+    border: 1px solid #2D4663;
+    border-left: 4px solid #6FBE2C;
+    border-radius: 14px;
+}
+.pageNosMetiers .bandeMetiersSombre .descCarteCombinaison{
+    color: rgba(255, 255, 255, 0.82);
+}
+.pageNosMetiers .bandeMetiersSombre .titreCarteCombinaison{
+    color: #fff;
+}
+.pageNosMetiers .sectionCombinaison,
+.pageNosMetiers .sectionFaqMetiers{
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pageNosMetiers .containerCardMetiers{
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 900px){
+    .pageNosMetiers .bandeMetiers{
+        padding: 3rem 5%;
+    }
 }

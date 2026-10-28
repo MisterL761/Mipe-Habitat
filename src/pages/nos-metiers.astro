@@ -53,13 +53,14 @@ const prestaCard2 = [
         <div class="refonte">
         <FilAriane items={[{ label: 'Nos métiers' }]} />
 
-        <section class="sectionNosMetiers">
             <div class="heroNosMetiers">
                 <p class="petitTitre">Nos métiers</p>
                 <h1 class="titreNosMetiers">Tous vos travaux de rénovation, un seul interlocuteur</h1>
                 <p class="descriptionNosMetiers">De l’isolation aux menuiseries, MIPE Habitat vous accompagne dans vos projets de rénovation énergétique et d’amélioration de l’habitat, dans l’Oise et en Île-de-France.</p>
             </div>
 
+        <div class="pageNosMetiers">
+        <section class="bandeMetiers bandeMetiersMenthe">
             <div class="renovationEnergetiqueMetiers">
                 <p class="petitTitre">Rénovation énérgétique</p>
                 <h2>L'isolation, notre cœur de métier</h2>
@@ -79,6 +80,9 @@ const prestaCard2 = [
                 }
             </div>
 
+        </section>
+
+        <section class="bandeMetiers bandeMetiersBlanche">
             <h2 class="renoAmelioration">Rénovation & Amélioration de l’habitat</h2>
 
             <div class="containerCardMetiers">
@@ -96,7 +100,10 @@ const prestaCard2 = [
                 }
             </div>
 
-            <section class="sectionCombinaison">
+        </section>
+
+        <section class="bandeMetiers bandeMetiersSombre">
+            <div class="sectionCombinaison">
                 <div class="combinaisonTexte">
                     <p class="petitTitre">Rénovation énergétique</p>
                     <h2 class="titreCombinaison">Associer les bons travaux pour gagner en performance</h2>
@@ -112,9 +119,11 @@ const prestaCard2 = [
                         ))
                     }
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="sectionFaqMetiers">
+        <section class="bandeMetiers bandeMetiersFaq">
+            <div class="sectionFaqMetiers">
                 <div class="faqMetiersTexte">
                     <p class="petitTitre">Questions fréquentes</p>
                     <h2 class="titreFaqMetiers">Vos questions sur nos métiers</h2>
@@ -129,9 +138,9 @@ const prestaCard2 = [
                         ))
                     }
                 </div>
-            </section>
-
+            </div>
         </section>
+        </div>
         </div>
         <Footer></Footer>
     </main>
