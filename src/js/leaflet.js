@@ -4,9 +4,7 @@ const conteneurCarte = document.getElementById('carte');
 const siege = JSON.parse(conteneurCarte.dataset.siege);
 const chantiers = JSON.parse(conteneurCarte.dataset.chantiers);
 
-// scrollWheelZoom: false -> la molette fait defiler la page normalement,
 // au lieu d'etre captee par la carte pour zoomer (ce qui bloquait le scroll).
-// zoomControl: false -> on retire les boutons +/- par defaut (coin haut-gauche)
 // pour les remettre nous-meme a droite, car la carte flottante du chantier
 // s'affiche justement dans le coin haut-gauche et les chevauchait.
 const carte = L.map('carte', { scrollWheelZoom: false, zoomControl: false });
