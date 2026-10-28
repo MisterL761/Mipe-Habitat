@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import BoutonRdv from '../components/BoutonRdv.astro';
+import { Image } from 'astro:assets';
+import { Image as ImageIcon, ArrowRight } from '@lucide/astro';
+import '../styles/refonteAccueil.css';
+import '../styles/global.css';
+import '../styles/styleComponents/Blog.css';
+import '../styles/pages/blog.css';
+import { articles } from '../data/articlesBlog.js';
+---
+
+<Layout
+	title="Blog : conseils et actualités rénovation énergétique | MIPE Habitat"
+	description="Conseils et actualités de MIPE Habitat : aides à la rénovation, isolation, menuiseries, entretien de toiture. Tous nos articles pour préparer votre projet."
+>
+	<main>
+		<Navbar></Navbar>
+		<div class="refonte">
+			<FilAriane items={[{ label: 'Blog' }]} />
+
+			<section class="heroPage reveal">
+				<p class="petitTitre">Le blog</p>
+				<h1 class="titreBlogPage">Conseils et actualités pour votre rénovation</h1>
+				<p class="descBlogPage">Aides, isolation, menuiseries, toiture : nos articles pour comprendre les solutions et préparer votre projet.</p>
+			</section>
+
+			<section class="sectionArticlesBlog">
+				<div class="grilleArticlesBlog">
+					{
+						articles.map(({ tag, titre, image, contenu }) => (
+							<article class="carteArticle carteArticleBlog reveal">
+								{image ? (
+									<div class="imageArticle"><Image src={image} alt={titre} /></div>
+								) : (
+									<div class="imagePlaceholder"><ImageIcon size={28} color="#A9B2BA" /></div>
+								)}
+								<div class="contenuArticle">
+									<p class="tagArticle">{tag}</p>
+									<h2 class="titreArticle">{titre}</h2>
+									<button
+										type="button"
+										class="lirePlus"
+										data-tag={tag}
+										data-titre={titre}
+										data-image={image ? image.src : ''}
+										data-contenu={JSON.stringify(contenu)}
+									>
+										Lire plus <ArrowRight size={14} color="#3E7C1F" />
+									</button>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="ctaBlogPage">
+				<h2>Un projet de rénovation ?</h2>
+				<p>Nos équipes vous conseillent et étudient votre projet.</p>
+				<BoutonRdv />
+			</section>
+
+			<dialog class="modaleArticle" id="modaleArticle">
+				<div class="imageModale" id="imageModale">
+					<span id="iconeModalePlaceholder"><ImageIcon size={32} color="#A9B2BA" /></span>
+					<img id="photoModale" alt="" hidden />
+				</div>
+				<div class="contenuModale">
+					<p class="tagModale" id="modaleTag"></p>
+					<h3 class="titreModale" id="modaleTitre"></h3>
+					<div class="texteModale" id="modaleTexte"></div>
+					<button type="button" class="boutonFermer" id="modaleFermer">Fermer</button>
+				</div>
+			</dialog>
+		</div>
+
+		<Footer></Footer>
+	</main>
+</Layout>
+
+<script src="../js/modaleBlog.js"></script>

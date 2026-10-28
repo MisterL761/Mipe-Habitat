@@ -1,0 +1,52 @@
+/* Page Blog : bandeau (voir .heroPage dans refonteAccueil.css) + grille d'articles */
+.titreBlogPage{
+    color: #fff;
+}
+.descBlogPage{
+    color: rgba(255, 255, 255, 0.86);
+}
+.sectionArticlesBlog{
+    padding: 4.5rem 6% 5rem 6%;
+    background: #fff;
+}
+.grilleArticlesBlog{
+    max-width: 1250px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+.carteArticleBlog{
+    flex: none;
+    width: auto;
+}
+.refonte .carteArticleBlog h2.titreArticle{
+    font-size: 1.1rem;
+    letter-spacing: 0;
+    line-height: 1.35;
+    font-weight: 700;
+}
+.ctaBlogPage{
+    background: #FBF8F1;
+    text-align: center;
+    padding: 4.5rem 6% 5rem 6%;
+}
+.ctaBlogPage h2{
+    font-family: 'Archivo', 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    color: #16273B;
+    margin-bottom: 0.7rem;
+}
+.ctaBlogPage p{
+    color: #4A5B6B;
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+}
+@media (max-width: 1000px){
+    .grilleArticlesBlog{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px){
+    .grilleArticlesBlog{ grid-template-columns: 1fr; }
+    .sectionArticlesBlog, .ctaBlogPage{ padding: 3rem 5%; }
+}
