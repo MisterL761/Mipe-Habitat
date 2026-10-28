@@ -1064,3 +1064,17 @@
         padding: 3rem 5%;
     }
 }
+
+/* ---- Page Realisations : hero sur une photo de chantier (ITE en cours, Boullard) ---- */
+.refonte .containerRealisations .heroPage{
+    background-image:
+        linear-gradient(rgba(22, 39, 59, 0.78), rgba(22, 39, 59, 0.78)),
+        url('../assets/realisation/boullard/agricola-boullard2.webp');
+    background-position: center, center 40%;
+}
+
+/* Hero en tete d'un conteneur : on retire le retrait haut du conteneur pour que la hero
+   se colle au fil d'Ariane (sinon une bande vide les separe). */
+.refonte :has(> :is(.heroPage, .heroSecteurs, .heroCGV, .heroPolitique, .heroMentionsLegales):first-child){
+    padding-top: 0;
+}
