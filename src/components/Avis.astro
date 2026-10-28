@@ -5,6 +5,13 @@ import '../styles/global.css';
 import { Image } from 'astro:assets';
 import logoPagesJaunes from '../assets/image/pageJaune.png';
 
+// Liens des fiches d'avis. A REMPLACER par les liens directs de tes fiches :
+//  - Google : bouton "Partager" de ta fiche Google Business (lien g.page / maps.app.goo.gl)
+//  - PagesJaunes : adresse de ta fiche sur pagesjaunes.fr
+// En attendant, ils ouvrent une recherche "MIPE Habitat" qui affiche les fiches et leurs avis.
+const lienAvisGoogle = 'https://www.google.com/search?q=MIPE+Habitat+Le+Plessis-Belleville+avis';
+const lienAvisPagesJaunes = 'https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=MIPE+Habitat&ou=Le+Plessis-Belleville';
+
 const avis = [
 	{ note: 5, texte: "Isolation extérieure réalisée rapidement et proprement, avec un suivi de chantier clair jusqu'à la fin des travaux.", zone: 'Yvelines', cp: '78' },
 	{ note: 5, texte: 'Une équipe de pose sérieuse et minutieuse, un chantier toujours propre du premier jour au dernier.', zone: 'Oise', cp: '60' },
@@ -31,7 +38,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<p class="descAvis">La confiance se construit chantier après chantier. Voici quelques retours, parmi des centaines.</p>
 
 				<div class="sourcesAvis">
-					<div class="sourceAvis">
+					<a class="sourceAvis" href={lienAvisGoogle} target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur Google (nouvel onglet)">
 						<svg class="logoGoogleAvis" viewBox="0 0 48 48" width="34" height="34" role="img" aria-label="Google">
 							<path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
 							<path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
@@ -46,9 +53,9 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 							</div>
 						</div>
 						<p class="nombreAvisGoogle">+ de 250 avis Google</p>
-					</div>
+					</a>
 
-					<div class="sourceAvis">
+					<a class="sourceAvis" href={lienAvisPagesJaunes} target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur PagesJaunes (nouvel onglet)">
 						<Image class="logoPagesJaunes" src={logoPagesJaunes} alt="PagesJaunes" width={68} height={68} />
 						<div class="recapNoteAvis">
 							<span class="grandeNoteAvis" data-cible="4,0">0,0</span>
@@ -58,7 +65,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 							</div>
 						</div>
 						<p class="nombreAvisGoogle">+ de 40 avis PagesJaunes</p>
-					</div>
+					</a>
 				</div>
 			</div>
 

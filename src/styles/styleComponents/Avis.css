@@ -192,6 +192,10 @@
     margin-top: 2rem;
 }
 .sourceAvis{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.25s ease, background-color 0.25s ease;
     min-width: 240px;
     display: flex;
     flex-direction: column;
@@ -219,4 +223,13 @@
     width: 34px;
     height: 34px;
     border-radius: 8px;
+}
+
+.sourceAvis:hover{
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.14);
+}
+.sourceAvis:focus-visible{
+    outline: 3px solid #6FBE2C;
+    outline-offset: 3px;
 }
