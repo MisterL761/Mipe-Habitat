@@ -1,4 +1,5 @@
 ---
+import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
@@ -10,6 +11,7 @@ import '../styles/pages/politique-de-confidentialite.css';
 <Layout>
 	<main>
 		<Navbar></Navbar>
+		<div class="refonte">
 		<FilAriane items={[{ label: 'Politique de confidentialité' }]} />
 
 		<section class="sectionPolitique">
@@ -65,6 +67,7 @@ import '../styles/pages/politique-de-confidentialite.css';
 			</div>
 		</section>
 
+		</div>
 		<Footer></Footer>
 	</main>
 </Layout>

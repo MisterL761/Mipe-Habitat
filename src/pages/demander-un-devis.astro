@@ -1,4 +1,5 @@
 ---
+import '../styles/refonteAccueil.css';
 import '../layouts/Layout.astro';
 import '../styles/global.css';
 import '../components/Nav-Footer/Navbar.astro'
@@ -12,14 +13,18 @@ import FilAriane from '../components/FilAriane.astro';
 
 <Layout>
     <Navbar></Navbar>
+    <div class="refonte">
     <FilAriane items={[{ label: 'Demander un devis' }]} />
 
     <div class="containerDemandeDevis">
+        <div class="heroPage">
         <p class="petitTitre">Contact</p>
         <h1 class="titreDemandeDevis">Parlons de votre projet</h1>
         <p>Un projet de façade, d’isolation ou de rénovation ? Nos équipes sont à votre <br> écoute pour vous conseiller et étudier votre projet.</p>
+        </div>
 
         <FormDemandeDevis></FormDemandeDevis>
+    </div>
     </div>
     <Footer></Footer>
 </Layout>

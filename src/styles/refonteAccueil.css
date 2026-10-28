@@ -857,3 +857,132 @@
         padding: 3.5rem 5% 4rem 5%;
     }
 }
+
+/* ==========================================================================
+   PAGES INTERIEURES (toutes les pages hors accueil)
+   Generalisation du style de l'accueil : textes lisibles dans les blocs
+   sombres, hero en bande bleu nuit illustree, pastilles centrees, rythme
+   des fonds, cartes arrondies a l'ombre douce.
+   ========================================================================== */
+
+/* Pas de debordement horizontal (les bandes pleine largeur depassent du conteneur) */
+.refonte{
+    overflow-x: clip;
+}
+
+/* ---- Blocs sombres : titres, textes et pastilles clairs ---- */
+.refonte :is(.carteAideSombre, .carteAidesCombles, .carteAidesIte, .carteAidesIti, .sectionPartenaireEnergie, .sectionCtaSecteurs, .sectionCtaVille, .carteFinitions, .cardCord, .heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) :is(h1, h2, h3, h4){
+    color: #fff;
+}
+.refonte :is(.carteAideSombre, .carteAidesCombles, .carteAidesIte, .carteAidesIti, .sectionPartenaireEnergie, .sectionCtaSecteurs, .sectionCtaVille, .carteFinitions, .heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) .petitTitre{
+    background: rgba(255, 255, 255, 0.14);
+    color: #8FE05C;
+}
+.refonte :is(.carteAideSombre, .carteAidesCombles, .carteAidesIte, .carteAidesIti, .sectionPartenaireEnergie, .sectionCtaSecteurs, .sectionCtaVille, .carteFinitions) p{
+    color: rgba(255, 255, 255, 0.86);
+}
+
+/* titres des heros : toujours blancs */
+.refonte :is(.heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) :is(h1, .titreQualification, .titreAides, .titreDemandeDevis, .titreRealisations){
+    color: #fff;
+}
+.refonte .heroPage .noteDiscrete{
+    color: rgba(255, 255, 255, 0.62);
+}
+
+/* ---- Pastilles centrees quand le titre l'est ---- */
+.refonte :is(.petitTitreQualification, .petitTitreMetier, .petitTitreAutreMetier, .petitTitreFinancement, .heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) .petitTitre,
+.refonte .petitTitreQualification{
+    margin-left: auto;
+    margin-right: auto;
+}
+.refonte .petitTitreQualification{
+    margin-top: 3rem;
+    font-size: 0.78rem;
+}
+
+/* Dans le contenu, un peu d'air sous le fil d'Ariane */
+.refonte .filAriane{
+    padding-bottom: 0.4rem;
+}
+
+/* ---- Hero des pages : bande bleu nuit illustree, pleine largeur ---- */
+.refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales){
+    /* pleine largeur de l'ecran, quel que soit le conteneur (centre) */
+    width: auto;
+    max-width: none;
+    margin: 0.75rem calc(50% - 50vw) 0 calc(50% - 50vw);
+    text-align: center;
+    padding: 4rem 6% 4.5rem 6%;
+    color: rgba(255, 255, 255, 0.86);
+    background-color: #16273B;
+    background-image:
+        linear-gradient(rgba(22, 39, 59, 0.84), rgba(22, 39, 59, 0.84)),
+        url('../assets/image/fond.webp');
+    background-size: auto, cover;
+    background-position: center, center;
+}
+.refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) h1,
+.refonte :is(.heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) :is(.titreQualification, .titreAides, .titreDemandeDevis, .titreRealisations, .titreCGV){
+    font-family: var(--police-titre);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    font-size: clamp(2rem, 4vw, 3rem);
+    max-width: 860px;
+    margin: 0.4rem auto 1.1rem auto;
+}
+.refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) :is(p:not(.petitTitre), .descQualification, .texteAides){
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.1rem;
+    line-height: 1.65;
+}
+.refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales) .petitTitre{
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 900px){
+    .refonte :is(.heroNosMetiers, .heroSecteurs, .heroPage, .heroCGV, .heroPolitique, .heroMentionsLegales){
+        background-image: none;
+    }
+}
+
+/* ---- Rythme des fonds : FAQ et blocs de comparaison sur gris froid ---- */
+.refonte :is(.sectionFaqMetiers, .sectionFaqIte, .sectionFaqIti, .sectionFaqMenuiseries, .sectionFaqVille){
+    position: relative;
+    isolation: isolate;
+}
+.refonte :is(.sectionFaqMetiers, .sectionFaqIte, .sectionFaqIti, .sectionFaqMenuiseries, .sectionFaqVille)::before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    background: #F1F3F6;
+}
+
+/* ---- Cartes : coins arrondis, ombre douce, relief au survol ---- */
+.refonte :is(.cardMetiers, .carteAtoutPage, .carteQualification, .carteInfoVille, .cardCord, .carteAideClaire, .carteMetierVille){
+    border-radius: 18px;
+}
+.refonte :is(.cardMetiers){
+    border: 0;
+    box-shadow: var(--ombre);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.refonte :is(.cardMetiers):hover{
+    transform: translateY(-6px);
+    box-shadow: var(--ombre-forte);
+}
+
+/* Pages legales : titres de rubriques de taille raisonnable pour un long texte */
+.refonte :is(.sectionCGV, .sectionPolitique, .sectionMentionsLegales) h2{
+    font-size: 1.55rem;
+    margin-top: 2.2rem;
+}

@@ -1,4 +1,5 @@
 ---
+import '../styles/refonteAccueil.css';
 import Layout from "../layouts/Layout.astro";
 import '../styles/global.css';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
@@ -49,6 +50,7 @@ const prestaCard2 = [
 <Layout>
     <main>
         <Navbar></Navbar>
+        <div class="refonte">
         <FilAriane items={[{ label: 'Nos métiers' }]} />
 
         <section class="sectionNosMetiers">
@@ -130,6 +132,7 @@ const prestaCard2 = [
             </section>
 
         </section>
+        </div>
         <Footer></Footer>
     </main>
 
