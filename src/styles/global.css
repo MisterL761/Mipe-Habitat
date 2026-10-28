@@ -82,6 +82,11 @@
 .filArianeSep{
   display: block;
 }
+/* centre optique : le texte (sans jambage) est plus haut que la boite de l'icone */
+.filArianeAccueil svg{
+  position: relative;
+  top: -1.5px;
+}
 .filArianePage{
   display: inline-flex;
   align-items: center;
