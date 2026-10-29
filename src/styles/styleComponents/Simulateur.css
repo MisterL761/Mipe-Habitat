@@ -74,8 +74,8 @@
     clip-path: polygon(0 0, calc(100% - 1.4rem) 0, 100% 50%, calc(100% - 1.4rem) 100%, 0 100%);
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 1.6rem;
+    justify-content: space-between;
+    padding: 0 1.6rem 0 1rem;
 
     /* on recouvre le fondu/glissement par defaut de ".reveal" par une
        croissance depuis la gauche, plus parlante pour une echelle */
@@ -95,6 +95,27 @@
     }
 }
 
+.valeurDpe{
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+.valeurDpe small{
+    font-weight: 500;
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+/* bandes claires (jaune, vert clair) : texte fonce pour rester lisible */
+.bandeDpe--clair .valeurDpe,
+.bandeDpe--clair .lettreDpe{
+    color: #16273B;
+}
+.noteDpe{
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.72);
+}
 .lettreDpe{
     color: #ffffff;
     font-weight: bold;
@@ -118,5 +139,11 @@
     }
     .lettreDpe{
         font-size: 1.1rem;
+    }
+    .valeurDpe{
+        font-size: 0.85rem;
+    }
+    .valeurDpe small{
+        display: none;
     }
 }

@@ -7,14 +7,15 @@ import '../styles/global.css'
 // construite ici en CSS (plus une image) pour pouvoir l'animer : chaque
 // bande "pousse" depuis la gauche quand on arrive sur la section, dans
 // l'ordre G -> A (voir le style "--delai" plus bas et Simulateur.css).
+// "valeur" : seuils officiels du DPE, en kWh d'energie primaire par m² et par an.
 const classesDpe = [
-	{ lettre: 'A', couleur: '#00923F', largeur: 46 },
-	{ lettre: 'B', couleur: '#4CAF1C', largeur: 55 },
-	{ lettre: 'C', couleur: '#9DCB3B', largeur: 64 },
-	{ lettre: 'D', couleur: '#FFDE00', largeur: 73 },
-	{ lettre: 'E', couleur: '#FBA919', largeur: 82 },
-	{ lettre: 'F', couleur: '#F3701C', largeur: 91 },
-	{ lettre: 'G', couleur: '#E30613', largeur: 100 },
+	{ lettre: 'A', valeur: '≤ 70', couleur: '#00923F', largeur: 46 },
+	{ lettre: 'B', valeur: '71 à 110', couleur: '#4CAF1C', largeur: 55 },
+	{ lettre: 'C', valeur: '111 à 180', couleur: '#9DCB3B', largeur: 64 },
+	{ lettre: 'D', valeur: '181 à 250', couleur: '#FFDE00', largeur: 73 },
+	{ lettre: 'E', valeur: '251 à 330', couleur: '#FBA919', largeur: 82 },
+	{ lettre: 'F', valeur: '331 à 420', couleur: '#F3701C', largeur: 91 },
+	{ lettre: 'G', valeur: '> 420', couleur: '#E30613', largeur: 100 },
 ];
 ---
 
@@ -46,16 +47,18 @@ const classesDpe = [
         <div class="imageSimulateur">
             <div class="echelleDpe" role="img" aria-label="Échelle des classes énergétiques, de A à G">
                 {
-                    classesDpe.map(({ lettre, couleur, largeur }, index) => (
+                    classesDpe.map(({ lettre, valeur, couleur, largeur }, index) => (
                         <div
-                            class="bandeDpe reveal"
+                            class:list={['bandeDpe', 'reveal', ['C', 'D'].includes(lettre) && 'bandeDpe--clair']}
                             style={`--couleur-bande:${couleur}; --largeur-bande:${largeur}%; transition-delay:${(classesDpe.length - 1 - index) * 0.12}s;`}
                         >
+                            <span class="valeurDpe">{valeur} <small>kWh/m²/an</small></span>
                             <span class="lettreDpe">{lettre}</span>
                         </div>
                     ))
                 }
             </div>
+            <p class="noteDpe">Consommation d'énergie primaire du logement, en kWh par m² et par an.</p>
         </div>
     </div>
 
