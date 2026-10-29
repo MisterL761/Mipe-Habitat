@@ -3,7 +3,6 @@ import { Star } from '@lucide/astro';
 import '../styles/styleComponents/Avis.css';
 import '../styles/global.css';
 import { Image } from 'astro:assets';
-import { noteGoogle } from '../utils/noteGoogle.js';
 import logoPagesJaunes from '../assets/image/pageJaune.png';
 
 // Liens des fiches d'avis. A REMPLACER par les liens directs de tes fiches :
@@ -67,13 +66,13 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 							<path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
 						</svg>
 						<div class="recapNoteAvis">
-							<span class="grandeNoteAvis" data-cible={noteGoogle.moyenneTexte}>0,0</span>
+							<span class="grandeNoteAvis" data-cible="4,8">0,0</span>
 							<div class="etoilesRecap" aria-hidden="true">
 								<div class="etoilesFond">★★★★★</div>
-								<div class="etoilesRemplies" data-largeur-cible={noteGoogle.largeurEtoiles} style="width: 0%">★★★★★</div>
+								<div class="etoilesRemplies" data-largeur-cible="96" style="width: 0%">★★★★★</div>
 							</div>
 						</div>
-						<p class="nombreAvisGoogle">{noteGoogle.libelle}</p>
+						<p class="nombreAvisGoogle">+ de 250 avis Google</p>
 					</a>
 
 					<a class="sourceAvis" href={lienAvisPagesJaunes} target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur PagesJaunes (nouvel onglet)">
