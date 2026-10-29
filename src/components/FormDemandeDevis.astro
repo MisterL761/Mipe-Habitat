@@ -3,7 +3,7 @@ import '../styles/styleComponents/FormDemandeDevis.css';
 import '../styles/global.css';
 import { Image, getImage } from 'astro:assets';
 import Logo3D from './Logo3D.astro';
-import { Check, Warehouse, Wind, Zap, CalendarClock, CalendarRange, Hourglass, ShieldCheck, Clock, BadgeCheck } from '@lucide/astro';
+import { Check, Warehouse, Wind, Zap, CalendarClock, CalendarRange, Hourglass, ShieldCheck, Clock, BadgeCheck, Star } from '@lucide/astro';
 
 import imgIte from '../assets/image/ite.jpeg';
 import imgIti from '../assets/image/iti.webp';
@@ -46,30 +46,66 @@ const delais = [
 	{ titre: 'Sous 6 mois ou plus', detail: 'Pas de contrainte de délai', Icone: Hourglass },
 ];
 
+// Avis Google reels (src/data/avis-google.json) : le panneau affiche celui qui
+// correspond au projet choisi, ou un avis general. Sans fichier, pas de bloc avis.
+const fichiersAvis = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
+const donneesAvis = Object.values(fichiersAvis)[0];
+const sansAccent = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const nomPublic = (nom) => {
+	const [prenom, ...reste] = (nom || '').trim().split(/\s+/);
+	return reste.length ? `${prenom} ${reste[reste.length - 1][0]}.` : prenom || 'Client';
+};
+const candidats = (donneesAvis?.avis ?? [])
+	.filter((a) => a.note === 5 && a.commentaire && a.commentaire.length >= 70 && a.commentaire.length <= 240 && !a.commentaire.includes('\n'))
+	.sort((a, b) => new Date(b.date) - new Date(a.date));
+const motsCles = {
+	'Isolation thermique extérieure': /isolation (thermique )?(par l'|exterieure)|\bite\b/,
+	'Isolation des combles': /combles/,
+	'Aménagement des combles': /combles/,
+	'Porte de garage et portail': /garage|portail/,
+	'Volets et motorisation': /volet/,
+};
+const versAvis = (a) => ({ texte: a.commentaire, auteur: nomPublic(a.auteur) });
+const avisParProduit = Object.fromEntries(
+	Object.entries(motsCles).flatMap(([produit, re]) => {
+		const trouve = candidats.find((a) => re.test(sansAccent(a.commentaire)));
+		return trouve ? [[produit, versAvis(trouve)]] : [];
+	})
+);
+// avis general : le plus recent qui ne parle d'aucun produit en particulier
+const generaux = candidats.filter((a) => !Object.values(motsCles).some((re) => re.test(sansAccent(a.commentaire))));
+const avisParDefaut = (generaux[0] ?? candidats[0]) ? versAvis(generaux[0] ?? candidats[0]) : null;
+const donneesPanneau = JSON.stringify({ parProduit: avisParProduit, defaut: avisParDefaut });
+const noteTexte = donneesAvis?.moyenne ? String(donneesAvis.moyenne).replace('.', ',') : '4,8';
+
 const etapes = ['Vos travaux', 'Votre délai', 'Vos coordonnées', 'Confirmation'];
 ---
 
 <div class="parcoursDevisWrap">
 
 	<!-- Panneau de gauche : avancement, recapitulatif en direct, garanties -->
-	<aside class="panneauDevis">
-		<Logo3D variante="centre" taille={150} />
-		<p class="titrePanneauDevis">Votre devis gratuit en 4 étapes</p>
-
-		<ol class="etapesDevis" id="etapesDevis">
-			{ etapes.map((nom, i) => (
-				<li class="etapeListeDevis" data-liste={i + 1}>
-					<span class="pastilleEtapeDevis"><span class="chiffreEtapeDevis">{i + 1}</span><Check size={14} class="cocheEtapeDevis" /></span>
-					<span class="nomEtapeDevis">{nom}</span>
-				</li>
-			)) }
-		</ol>
+	<aside class="panneauDevis" data-avis={donneesPanneau}>
+		<Logo3D variante="centre" taille={100} />
+		<div>
+			<p class="titrePanneauDevis">Votre devis gratuit en 4 étapes</p>
+			<p class="dureeDevis"><Clock size={15} /> Moins de 2 minutes</p>
+		</div>
 
 		<div class="votreProjetDevis" id="votreProjetDevis" hidden>
 			<p class="titreVotreProjet">Votre projet</p>
 			<ul class="listeVotreProjet" id="listeVotreProjet"></ul>
 			<p class="delaiVotreProjet" id="delaiVotreProjet" hidden></p>
 		</div>
+
+		{ avisParDefaut && (
+			<figure class="avisPanneauDevis" id="avisPanneauDevis">
+				<div class="etoilesPanneauDevis" aria-label="5 étoiles sur 5">
+					{ [0, 1, 2, 3, 4].map(() => <Star size={15} fill="#F5B83D" color="#F5B83D" />) }
+				</div>
+				<blockquote class="texteAvisPanneau" id="texteAvisPanneau">« {avisParDefaut.texte} »</blockquote>
+				<figcaption class="auteurAvisPanneau"><span id="auteurAvisPanneau">{avisParDefaut.auteur}</span>, avis Google</figcaption>
+			</figure>
+		) }
 
 		<ul class="garantiesDevis">
 			<li><BadgeCheck size={18} /> Devis gratuit et sans engagement</li>
@@ -80,6 +116,15 @@ const etapes = ['Vos travaux', 'Votre délai', 'Vos coordonnées', 'Confirmation
 
 	<!-- Parcours : l'envoi se branche via data-endpoint (vide = pas encore active) -->
 	<form class="parcoursDevis" id="parcoursDevis" data-endpoint="" novalidate>
+
+		<ol class="etapesDevis" id="etapesDevis" aria-label="Étapes du devis">
+			{ etapes.map((nom, i) => (
+				<li class="etapeListeDevis" data-liste={i + 1}>
+					<span class="pastilleEtapeDevis"><span class="chiffreEtapeDevis">{i + 1}</span><Check size={14} class="cocheEtapeDevis" /></span>
+					<span class="nomEtapeDevis">{nom}</span>
+				</li>
+			)) }
+		</ol>
 
 		<div class="progressionDevis" aria-live="polite">
 			<p class="etapeDevis" id="etapeDevis">Étape 1 sur 4</p>
