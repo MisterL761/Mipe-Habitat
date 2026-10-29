@@ -50,11 +50,6 @@ const photosChantier = [
 			</div>
 		</div>
 
-		<button type="button" class="boutonVoirChantier" id="boutonVoirChantier" aria-haspopup="dialog">
-			<Images size={18} />
-			Voir le chantier en photos
-		</button>
-
 		<dialog class="popupChantier" id="popupChantier" aria-labelledby="titrePopupChantier">
 			<div class="enteteChantier">
 				<div>
@@ -77,10 +72,16 @@ const photosChantier = [
 			</div>
 		</dialog>
 
-		<a href="/realisation" class="lienToutesRealisationsAvantApres">
-			Voir toutes nos réalisations
-			<ArrowRight size={18} />
+		<div class="boutonsAvantApres">
+			<button type="button" class="boutonVoirChantier" id="boutonVoirChantier" aria-haspopup="dialog">
+				<Images size={18} />
+				Voir le chantier en photos
+			</button>
+			<a href="/realisation" class="lienToutesRealisationsAvantApres">
+				Voir toutes nos réalisations
+				<ArrowRight size={18} />
 		</a>
+		</div>
 	</div>
 </section>
 
