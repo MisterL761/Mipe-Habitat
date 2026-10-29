@@ -249,37 +249,91 @@
 	cursor: pointer;
 }
 .fermerPopupChantier:hover{ background: #E1E5DD; }
-.grillePopupChantier{
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0.75rem;
+.carrouselChantier{
+	position: relative;
 }
+.pisteChantier{
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	border-radius: 14px;
+	outline-offset: 3px;
+}
+.pisteChantier::-webkit-scrollbar{ display: none; }
 .photoPopupChantier{
 	position: relative;
+	flex: 0 0 100%;
+	scroll-snap-align: center;
+	scroll-snap-stop: always;
 	margin: 0;
-	border-radius: 14px;
-	overflow: hidden;
-	aspect-ratio: 3 / 2;
+	/* hauteur bornee par la fenetre : photo + points + titre doivent tenir a l'ecran */
+	height: min(560px, calc(100vh - 250px));
+	min-height: 220px;
 	background: #16273B;
 }
 .photoPopupChantier img{ width: 100%; height: 100%; object-fit: cover; display: block; }
 .photoPopupChantier figcaption{
 	position: absolute;
-	left: 0.7rem;
-	bottom: 0.7rem;
-	padding: 0.25rem 0.8rem;
+	left: 0.9rem;
+	bottom: 0.9rem;
+	padding: 0.3rem 1rem;
 	border-radius: 999px;
 	background: rgba(22, 39, 59, 0.85);
 	color: #ffffff;
 	font-weight: 600;
+}
+.flecheChantier{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 46px;
+	height: 46px;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.92);
+	color: #16273B;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 6px 18px rgba(22, 39, 59, 0.3);
+	transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+.flecheChantier:hover:not(:disabled){ background: #6FBE2C; }
+.flecheChantier:disabled{ opacity: 0.35; cursor: default; }
+.flecheChantierPrec{ left: 0.8rem; }
+.flecheChantierSuiv{ right: 0.8rem; }
+.pointsChantier{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.55rem;
+	margin-top: 1rem;
+}
+.pointChantier{
+	width: 10px;
+	height: 10px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #CDD5CB;
+	cursor: pointer;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.pointChantier.actif{ background: #6FBE2C; transform: scale(1.3); }
+.compteurChantier{
+	margin-left: 0.8rem;
+	color: #4A5B6B;
 	font-size: 0.9rem;
+	font-weight: 600;
 }
 /* page figee derriere la popup */
 html.popupChantierOuverte{ overflow: hidden; }
 
 @media (max-width: 560px){
-	.grillePopupChantier{ grid-template-columns: 1fr; }
 	.popupChantier{ padding: 1rem; }
+	.flecheChantier{ width: 40px; height: 40px; }
 }
 @media (prefers-reduced-motion: reduce){
 	.popupChantier[open]{ animation: none; }

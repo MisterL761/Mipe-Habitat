@@ -1,5 +1,5 @@
 ---
-import { ChevronsLeftRight, ArrowRight, Images, X } from '@lucide/astro';
+import { ChevronsLeftRight, ArrowRight, Images, X, ChevronLeft, ChevronRight } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import '../styles/styleComponents/AvantApres.css';
 
@@ -60,15 +60,23 @@ const photosChantier = [
 					<X size={20} />
 				</button>
 			</div>
-			<div class="grillePopupChantier">
-				{
-					photosChantier.map(({ photo, etiquette, alt }) => (
-						<figure class="photoPopupChantier">
-							<Image src={photo} alt={alt} width={900} />
-							<figcaption>{etiquette}</figcaption>
-						</figure>
-					))
-				}
+			<div class="carrouselChantier" aria-roledescription="carrousel">
+				<div class="pisteChantier" id="pisteChantier" tabindex="0" aria-label="Photos du chantier">
+					{
+						photosChantier.map(({ photo, etiquette, alt }, i) => (
+							<figure class="photoPopupChantier" aria-roledescription="diapositive" aria-label={`Photo ${i + 1} sur ${photosChantier.length}`}>
+								<Image src={photo} alt={alt} width={1100} />
+								<figcaption>{etiquette}</figcaption>
+							</figure>
+						))
+					}
+				</div>
+				<button type="button" class="flecheChantier flecheChantierPrec" id="flechePrecChantier" aria-label="Photo précédente"><ChevronLeft size={26} /></button>
+				<button type="button" class="flecheChantier flecheChantierSuiv" id="flecheSuivChantier" aria-label="Photo suivante"><ChevronRight size={26} /></button>
+			</div>
+			<div class="pointsChantier" id="pointsChantier">
+				{ photosChantier.map(({ etiquette }, i) => <button type="button" class="pointChantier" data-index={i} aria-label={`Photo ${i + 1} : ${etiquette}`}></button>) }
+				<span class="compteurChantier" id="compteurChantier">1 / {photosChantier.length}</span>
 			</div>
 		</dialog>
 
