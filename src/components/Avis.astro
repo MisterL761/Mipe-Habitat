@@ -2,6 +2,15 @@
 import { Star } from '@lucide/astro';
 import '../styles/styleComponents/Avis.css';
 import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoPagesJaunes from '../assets/image/pageJaune.png';
+
+// Liens des fiches d'avis. A REMPLACER par les liens directs de tes fiches :
+//  - Google : bouton "Partager" de ta fiche Google Business (lien g.page / maps.app.goo.gl)
+//  - PagesJaunes : adresse de ta fiche sur pagesjaunes.fr
+// En attendant, ils ouvrent une recherche "MIPE Habitat" qui affiche les fiches et leurs avis.
+const lienAvisGoogle = 'https://www.google.com/search?q=MIPE+Habitat+Le+Plessis-Belleville+avis';
+const lienAvisPagesJaunes = 'https://www.pagesjaunes.fr/annuaire/chercherlespros?quoiqui=MIPE+Habitat&ou=Le+Plessis-Belleville';
 
 const avis = [
 	{ note: 5, texte: "Isolation extérieure réalisée rapidement et proprement, avec un suivi de chantier clair jusqu'à la fin des travaux.", zone: 'Yvelines', cp: '78' },
@@ -28,14 +37,36 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<h2 class="titreAvis">Ce qu’en disent nos clients</h2>
 				<p class="descAvis">La confiance se construit chantier après chantier. Voici quelques retours, parmi des centaines.</p>
 
-				<div class="recapNoteAvis">
-					<span class="grandeNoteAvis" data-cible="4,8">0,0</span>
-					<div class="etoilesRecap" aria-hidden="true">
-						<div class="etoilesFond">★★★★★</div>
-						<div class="etoilesRemplies" data-largeur-cible="96" style="width: 0%">★★★★★</div>
-					</div>
+				<div class="sourcesAvis">
+					<a class="sourceAvis" href={lienAvisGoogle} target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur Google (nouvel onglet)">
+						<svg class="logoGoogleAvis" viewBox="0 0 48 48" width="34" height="34" role="img" aria-label="Google">
+							<path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+							<path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+							<path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+							<path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+						</svg>
+						<div class="recapNoteAvis">
+							<span class="grandeNoteAvis" data-cible="4,8">0,0</span>
+							<div class="etoilesRecap" aria-hidden="true">
+								<div class="etoilesFond">★★★★★</div>
+								<div class="etoilesRemplies" data-largeur-cible="96" style="width: 0%">★★★★★</div>
+							</div>
+						</div>
+						<p class="nombreAvisGoogle">+ de 250 avis Google</p>
+					</a>
+
+					<a class="sourceAvis" href={lienAvisPagesJaunes} target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur PagesJaunes (nouvel onglet)">
+						<Image class="logoPagesJaunes" src={logoPagesJaunes} alt="PagesJaunes" width={68} height={68} />
+						<div class="recapNoteAvis">
+							<span class="grandeNoteAvis" data-cible="4,0">0,0</span>
+							<div class="etoilesRecap" aria-hidden="true">
+								<div class="etoilesFond">★★★★★</div>
+								<div class="etoilesRemplies" data-largeur-cible="80" style="width: 0%">★★★★★</div>
+							</div>
+						</div>
+						<p class="nombreAvisGoogle">+ de 40 avis PagesJaunes</p>
+					</a>
 				</div>
-				<p class="nombreAvisGoogle">+ de 250 avis Google</p>
 			</div>
 
 			<div class="avisColonnes">

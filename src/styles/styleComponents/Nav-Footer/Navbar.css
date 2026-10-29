@@ -116,6 +116,10 @@ nav a,
 
 .telephone {
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.5rem;
 }
 
 .bouton-devis {

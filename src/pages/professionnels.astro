@@ -1,97 +1,162 @@
 ---
+import BoutonRdv from '../components/BoutonRdv.astro';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FilAriane from '../components/FilAriane.astro';
+import { Image } from 'astro:assets';
 import '../styles/global.css';
+import '../styles/refonteAccueil.css';
 import '../styles/pages/professionnels.css';
-import { Check, ArrowRight, Phone, BuildingComplex, KeyRound, Users, HardHat } from '@lucide/astro';
+import { Check, ArrowRight, Phone, BadgeCheck, Award, Layers, UserRound, ClipboardCheck, MapPin } from '@lucide/astro';
 
-const publics = [
-	{ Icone: BuildingComplex, titre: 'Syndics de copropriété', description: "Travaux d'isolation, de ravalement ou de menuiseries pour vos parties communes et vos immeubles en copropriété." },
-	{ Icone: KeyRound, titre: 'Agences immobilières', description: 'Valorisez les biens de votre portefeuille grâce à des travaux de rénovation énergétique ciblés.' },
-	{ Icone: Users, titre: 'Bailleurs sociaux', description: 'Un accompagnement sur vos programmes de rénovation énergétique, à l’échelle de votre parc locatif.' },
-	{ Icone: HardHat, titre: 'Promoteurs immobiliers', description: 'Un partenaire technique pour vos opérations de rénovation et de réhabilitation.' },
+import photoSyndic from '../assets/image/maisonRavalement.webp';
+import photoAgence from '../assets/image/ravalement.webp';
+import photoArchitecte from '../assets/image/choixIso.webp';
+import photoPrescripteur from '../assets/image/etudeComble.webp';
+import logoIsofrance from '../assets/image/logo-isofrance.webp';
+import logoMeo from '../assets/image/logo_meo.png';
+import logoBaumit from '../assets/image/baumit-logo-rogne.jpg';
+
+// Une carte par profession : photo, titre, description (et points cles le cas echeant).
+// Pour changer une photo : remplacer l'import correspondant ci-dessus.
+const professions = [
+	{
+		photo: photoSyndic,
+		alt: "Immeuble en cours de ravalement, échafaudages installés",
+		titre: 'Syndics de copropriété',
+		description: "Un accompagnement dans vos projets d'entretien, de rénovation et de valorisation des immeubles : ravalement de façade, isolation thermique extérieure, menuiseries et amélioration énergétique.",
+	},
+	{
+		photo: photoAgence,
+		alt: 'Maison en cours de ravalement de façade',
+		titre: 'Agences immobilières',
+		description: "Accompagnez vos transactions avec des estimations de travaux avant vente ou acquisition, des solutions d'amélioration du DPE et des projets de rénovation qui valorisent les biens immobiliers.",
+	},
+	{
+		photo: photoArchitecte,
+		alt: "Technicien MIPE Habitat présentant des échantillons d'isolants",
+		titre: "Architectes et maîtres d'œuvre",
+		description: "MIPE Habitat, partenaire technique pour la réalisation des travaux de rénovation de l'enveloppe du bâtiment : façades, isolation, menuiseries et toiture.",
+	},
+	{
+		photo: photoPrescripteur,
+		alt: "Technicien MIPE Habitat réalisant une étude sur une charpente",
+		titre: "Prescripteurs et apporteurs d'affaires",
+		description: "Une offre pensée pour les courtiers, diagnostiqueurs immobiliers, professionnels du bâtiment et autres acteurs en contact avec des propriétaires ayant des projets de rénovation.",
+	},
+];
+
+const atouts = [
+	{ Icone: BadgeCheck, titre: 'Expertise technique', description: "Une connaissance des solutions de rénovation et de l'enveloppe du bâtiment." },
+	{ Icone: Award, titre: 'Qualifications reconnues', description: 'Nos qualifications RGE et nos partenariats avec des fabricants.' },
+	{ Icone: Layers, titre: 'Offre multitravaux', description: 'Isolation extérieure, ravalement, menuiseries, toiture et isolation.' },
+	{ Icone: UserRound, titre: 'Accompagnement personnalisé', description: 'Un interlocuteur identifié pour faciliter les échanges.' },
+	{ Icone: ClipboardCheck, titre: 'Suivi des chantiers', description: 'Une organisation technique et administrative pour accompagner les projets.' },
+	{ Icone: MapPin, titre: 'Proximité', description: "Une présence locale et une connaissance des spécificités des territoires d'intervention." },
 ];
 
 const etapes = [
-	{ numero: '01', titre: 'Premier contact', description: 'Vous nous présentez votre projet ou votre parc immobilier, et nous échangeons sur vos besoins.' },
-	{ numero: '02', titre: 'Étude technique', description: 'Nos équipes étudient le projet et vous proposent un devis détaillé, avec les aides mobilisables.' },
-	{ numero: '03', titre: 'Réalisation et suivi', description: 'Nos équipes qualifiées réalisent les travaux, avec un suivi de chantier régulier jusqu’à la réception.' },
+	{ numero: '01', titre: 'Premier échange', description: "Identification du besoin et des attentes du professionnel." },
+	{ numero: '02', titre: 'Visite technique', description: "Étude du bâtiment et analyse des travaux à envisager." },
+	{ numero: '03', titre: 'Proposition détaillée', description: "Préconisations techniques et chiffrage adapté." },
+	{ numero: '04', titre: 'Préparation du chantier', description: "Organisation, commandes et planification." },
+	{ numero: '05', titre: 'Réalisation et suivi', description: "Coordination des interventions et communication sur l'avancement." },
+	{ numero: '06', titre: 'Réception des travaux', description: "Vérification et clôture du chantier." },
 ];
 ---
 
-<Layout>
+<Layout
+	title="Professionnels de l'immobilier et du bâtiment | MIPE Habitat"
+	description="MIPE Habitat accompagne les syndics, agences immobilières, architectes et prescripteurs dans leurs projets de rénovation, d'amélioration énergétique et de valorisation immobilière."
+>
 	<main>
 		<Navbar></Navbar>
 		<FilAriane items={[{ label: 'Professionnels' }]} />
 
+		<div class="refonte pagePro">
 		<section class="heroPro reveal">
 			<div class="heroProContenu">
 				<p class="petitTitre">Professionnels</p>
-				<h1 class="titrePro">Un partenaire de confiance pour vos projets de rénovation énergétique</h1>
-				<p class="descPro">Syndic de copropriété, agence immobilière, bailleur social ou promoteur : MIPE Habitat accompagne les professionnels de l’immobilier dans leurs projets de rénovation énergétique, avec un interlocuteur dédié du premier contact jusqu’à la réception des travaux.</p>
+				<h1 class="titrePro">Professionnels de l'immobilier et du bâtiment, donnons de la valeur à vos projets.</h1>
+				<p class="descPro">MIPE Habitat accompagne les syndics de copropriété, agences immobilières, architectes, gestionnaires de patrimoine et prescripteurs dans leurs projets de rénovation, d'amélioration énergétique et de valorisation immobilière.</p>
+				<p class="descPro">De l'étude technique à la réalisation des travaux, nous mettons notre expertise et notre réseau de partenaires au service de vos projets.</p>
 				<div class="ctaPro">
-					<a href="/demander-un-devis" class="boutonPro boutonProPlein">Nous contacter <ArrowRight size={16} /></a>
-					<a href="tel:0375190160" class="boutonPro boutonProContour"><Phone size={16} /> 03 75 19 01 60</a>
+					<BoutonRdv />
+					<a href="tel:0375190160" class="boutonPro boutonProContourBlanc"><Phone size={16} /> 03 75 19 01 60</a>
 				</div>
 			</div>
 		</section>
 
 		<section class="sectionPublicsPro reveal">
 			<p class="petitTitre">Vous êtes</p>
-			<h2 class="titreSectionPro">Un professionnel de l’immobilier ?</h2>
-			<div class="grillePublicsPro">
+			<h2 class="titreSectionPro">À chaque profession, son accompagnement</h2>
+			<div class="grilleProfessions">
 				{
-					publics.map(({ Icone, titre, description }) => (
-						<div class="cartePublicPro reveal">
-							<div class="iconePublicPro"><Icone size={22} color="#6FBE2C" /></div>
-							<p class="titreCartePro">{titre}</p>
-							<p class="descCartePro">{description}</p>
-						</div>
+					professions.map(({ photo, alt, titre, description }) => (
+						<article class="carteProfession reveal">
+							<div class="photoProfession">
+								<Image src={photo} alt={alt} width={800} quality={72} />
+							</div>
+							<div class="texteProfession">
+								<h3 class="titreProfession">{titre}</h3>
+								<p class="descProfession">{description}</p>
+							</div>
+						</article>
 					))
 				}
 			</div>
 		</section>
 
 		<section class="sectionAtoutsPro reveal">
-			<div class="texteAtoutsPro">
-				<p class="petitTitre">Pourquoi MIPE Habitat</p>
-				<h2 class="titreSectionPro">Un savoir-faire reconnu, une relation de confiance</h2>
-				<div class="checkContainer">
-					<p class="check"><Check size={15} color="#8FE05C" />Certifiés RGE Qualibat pour nos travaux d’isolation</p>
-					<p class="check"><Check size={15} color="#8FE05C" />Une entreprise basée dans l’Oise depuis 2011</p>
-					<p class="check"><Check size={15} color="#8FE05C" />Intervention dans l’Oise et en Île-de-France</p>
-					<p class="check"><Check size={15} color="#8FE05C" />Un interlocuteur dédié pour le suivi de vos projets</p>
-					<p class="check"><Check size={15} color="#8FE05C" />Accompagnement dans les démarches d’aides pour vos clients</p>
-				</div>
-			</div>
-		</section>
-
-		<section class="sectionEtapesPro reveal">
-			<p class="petitTitre">Notre accompagnement</p>
-			<h2 class="titreSectionPro">Comment ça marche</h2>
-			<div class="grilleEtapesPro">
+			<h2 class="titreSectionPro">Pourquoi choisir MIPE Habitat ?</h2>
+			<div class="grilleAtoutsPro">
 				{
-					etapes.map(({ numero, titre, description }) => (
-						<div class="carteEtapePro reveal">
-							<p class="numeroEtapePro">{numero}</p>
-							<p class="titreEtapePro">{titre}</p>
-							<p class="descEtapePro">{description}</p>
+					atouts.map(({ Icone, titre, description }) => (
+						<div class="carteAtoutPro reveal">
+							<div class="iconeAtoutPro"><Icone size={22} color="#3E7C1F" /></div>
+							<h3 class="titreAtoutPro">{titre}</h3>
+							<p class="descAtoutPro">{description}</p>
 						</div>
 					))
 				}
 			</div>
 		</section>
 
+		<section class="sectionPartenairesPro reveal">
+			<h2 class="titreSectionPro">Nos partenaires techniques et fabricants</h2>
+			<ul class="listePartenairesPro">
+				<li class="partenairePro partenaireProLogo"><Image src={logoIsofrance} alt="ISOFRANCE, Fenêtres & Énergies" width={520} /></li>
+				<li class="partenairePro partenaireProImage"><Image src={logoMeo} alt="MéO, la fenêtre émotion" height={180} quality={80} /></li>
+				<li class="partenairePro partenaireProImage"><Image src={logoBaumit} alt="Baumit" height={180} quality={80} /></li>
+			</ul>
+		</section>
+
+		<section class="sectionEtapesPro reveal">
+			<h2 class="titreSectionPro">Notre accompagnement</h2>
+			<ol class="grilleEtapesPro">
+				{
+					etapes.map(({ numero, titre, description }) => (
+						<li class="carteEtapePro reveal">
+							<p class="numeroEtapePro">{numero}</p>
+							<h3 class="titreEtapePro">{titre}</h3>
+							<p class="descEtapePro">{description}</p>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
 		<section class="ctaFinalePro reveal">
 			<h2>Un projet pour votre copropriété ou votre parc immobilier ?</h2>
 			<p>Contactez notre équipe pour échanger sur votre projet.</p>
 			<div class="ctaFinaleProBoutons">
-				<a href="/demander-un-devis" class="boutonPro boutonProPlein">Demander un devis <ArrowRight size={16} /></a>
-				<a href="tel:0375190160" class="boutonPro boutonProContourBlanc"><Phone size={16} /> 03 75 19 01 60</a>
+				<BoutonRdv />
+				<a href="tel:0375190160" class="boutonPro boutonProContour"><Phone size={16} /> 03 75 19 01 60</a>
 			</div>
 		</section>
+
+		</div>
 
 		<Footer></Footer>
 	</main>

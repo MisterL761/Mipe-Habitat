@@ -1,0 +1,18 @@
+---
+import modele from '../assets/3d/logo-3d-mipe.glb?url';
+import '../styles/styleComponents/Logo3D.css';
+
+// Petit logo 3D decoratif (voir js/logo3d.js).
+// variante : "flottant" (pose en coin d'une section, ne prend pas de place)
+//            "centre"   (insere dans le flux, centre)
+interface Props {
+	variante?: 'flottant' | 'centre';
+	position?: 'haut-droite' | 'haut-gauche' | 'bas-droite' | 'bas-gauche' | 'milieu-droite';
+	taille?: number;
+	class?: string;
+}
+const { variante = 'flottant', position = 'haut-droite', taille = 150, class: classe = '' } = Astro.props;
+---
+
+<div class:list={['logo3d', `logo3d--${variante}`, variante === 'flottant' && `logo3d--${position}`, classe]} data-modele={modele} style={`--taille-3d:${taille}px`} aria-hidden="true"></div>
+<script src="../js/logo3d.js"></script>

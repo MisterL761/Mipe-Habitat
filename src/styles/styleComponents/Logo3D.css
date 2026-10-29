@@ -1,0 +1,50 @@
+/* Emplacement du logo 3D : purement decoratif, jamais cliquable en dehors de la rotation. */
+.logo3d{
+    width: var(--taille-3d, 150px);
+    height: var(--taille-3d, 150px);
+    pointer-events: auto;
+}
+.logo3d model-viewer{
+    animation: apparition3d 0.6s ease-out both;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    --poster-color: transparent;
+    outline: none;
+}
+.logo3d--flottant{
+    position: absolute;
+    z-index: 3;
+}
+.logo3d--haut-droite{ top: 1.5rem; right: 5%; }
+.logo3d--haut-gauche{ top: 1.5rem; left: 5%; }
+.logo3d--bas-droite{ bottom: 1.5rem; right: 5%; }
+.logo3d--bas-gauche{ bottom: 1.5rem; left: 5%; }
+.logo3d--milieu-droite{ top: 50%; right: 5%; transform: translateY(-50%); }
+.logo3d--centre{
+    margin: 0 auto;
+}
+@media (max-width: 900px){
+    .logo3d{
+        display: none;
+    }
+}
+
+/* Parents des cubes flottants : reperes de positionnement */
+.heroNosMetiers, .heroSecteurs, .heroPage, .heroPro, .ctaFinalePro,
+.sectionCtaVille, .valeurSection, .financementSection, .sectionProeco,
+.sectionFaqCombles, .sectionFaqToiture, .sectionFaqIti, .sectionFaqEnergie,
+.sectionFaqRavalement, .sectionFaqIte, .sectionFaqMenuiseries{
+    position: relative;
+}
+/* Entre 900 et 1200 px, le cube de hero chevaucherait le texte centre */
+@media (max-width: 1200px){
+    .logo3d--milieu-droite{
+        display: none;
+    }
+}
+
+@keyframes apparition3d{
+    from{ opacity: 0; transform: scale(0.85); }
+    to{ opacity: 1; transform: scale(1); }
+}

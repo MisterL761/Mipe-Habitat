@@ -1,4 +1,5 @@
 ---
+import '../styles/refonteAccueil.css';
 import Layout from "../layouts/Layout.astro";
 import '../styles/global.css';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
@@ -32,7 +33,7 @@ const prestaCard = [
 
     { image: ite, alt: 'image chantier isolation thermique extèrieur' , titre:'Isolation thermique extérieure', description:'Améliorez la performance de vos murs tout en préservant votre surface habitable.', href: '/isolation-thermique-exterieur' },
     { image: iti, alt: 'image chantier isolation thermique extèrieur' , titre:'Isolation thermique intérieure', description:'Une solution performante pour isoler vos murs lorsque l’isolation par l’extérieur n’est pas adaptée.', href: '/isolation-thermique-interieur' },
-    { image: comble, alt: 'image chantier isolation thermique extèrieur' , titre:'Isolation des combles & rampants', description:'Limitez les déperditions par la toiture grâce à une isolation adaptée aux combles perdus ou aménagés.', href: '/isolation-des-combles' },
+    { image: comble, alt: 'image chantier isolation thermique extèrieur' , titre:'Isolation des combles et rampants', description:'Limitez les déperditions par la toiture grâce à une isolation adaptée aux combles perdus ou aménagés.', href: '/isolation-des-combles' },
     { image: coulissant, alt: 'image chantier isolation thermique extèrieur' , titre:'Menuiseries extérieures', description:'Fenêtres, portes et baies performantes pour améliorer l’isolation thermique et le confort de votre logement.', href: '/menuiseries' },
 
 
@@ -40,8 +41,8 @@ const prestaCard = [
 const prestaCard2 = [
 
     { image: ravalement, alt: 'image chantier isolation thermique extèrieur' , titre:'Ravalement de façade', description:'Rénovation et protection durable des murs extérieurs.', href: '/ravalement-de-facade' },
-    { image: clim, alt: 'image chantier isolation thermique extèrieur' , titre:'Énergie, chauffage & ventilation', description:'Des solutions performantes proposées avec notre réseau de partenaires qualifiés pour compléter votre projet de rénovation énergétique.', href: '/energie-chauffage-ventilation' },
-    { image: toiture, alt: 'image chantier isolation thermique extèrieur' , titre:'Nettoyage & entretien de toiture', description:'Préservez votre couverture grâce à un entretien adapté et régulier.', href: '/entretien-toiture' },
+    { image: clim, alt: 'image chantier isolation thermique extèrieur' , titre:'Énergie, chauffage et ventilation', description:'Des solutions performantes proposées avec notre réseau de partenaires qualifiés pour compléter votre projet de rénovation énergétique.', href: '/energie-chauffage-ventilation' },
+    { image: toiture, alt: 'image chantier isolation thermique extèrieur' , titre:'Nettoyage et entretien de toiture', description:'Préservez votre couverture grâce à un entretien adapté et régulier.', href: '/entretien-toiture' },
     { image: amenagement, alt: 'image chantier isolation thermique extèrieur' , titre:'Aménagement des combles', description:'Transformez vos combles en nouveaux espaces de vie confortables et fonctionnels.', href: '/amenagement-combles' },
 
 ];
@@ -49,15 +50,17 @@ const prestaCard2 = [
 <Layout>
     <main>
         <Navbar></Navbar>
+        <div class="refonte">
         <FilAriane items={[{ label: 'Nos métiers' }]} />
 
-        <section class="sectionNosMetiers">
             <div class="heroNosMetiers">
                 <p class="petitTitre">Nos métiers</p>
                 <h1 class="titreNosMetiers">Tous vos travaux de rénovation, un seul interlocuteur</h1>
                 <p class="descriptionNosMetiers">De l’isolation aux menuiseries, MIPE Habitat vous accompagne dans vos projets de rénovation énergétique et d’amélioration de l’habitat, dans l’Oise et en Île-de-France.</p>
             </div>
 
+        <div class="pageNosMetiers">
+        <section class="bandeMetiers bandeMetiersMenthe">
             <div class="renovationEnergetiqueMetiers">
                 <p class="petitTitre">Rénovation énérgétique</p>
                 <h2>L'isolation, notre cœur de métier</h2>
@@ -77,7 +80,10 @@ const prestaCard2 = [
                 }
             </div>
 
-            <h2 class="renoAmelioration">Rénovation & Amélioration de l’habitat</h2>
+        </section>
+
+        <section class="bandeMetiers bandeMetiersBlanche">
+            <h2 class="renoAmelioration">Rénovation et Amélioration de l’habitat</h2>
 
             <div class="containerCardMetiers">
                 {
@@ -94,7 +100,10 @@ const prestaCard2 = [
                 }
             </div>
 
-            <section class="sectionCombinaison">
+        </section>
+
+        <section class="bandeMetiers bandeMetiersSombre">
+            <div class="sectionCombinaison">
                 <div class="combinaisonTexte">
                     <p class="petitTitre">Rénovation énergétique</p>
                     <h2 class="titreCombinaison">Associer les bons travaux pour gagner en performance</h2>
@@ -110,9 +119,11 @@ const prestaCard2 = [
                         ))
                     }
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="sectionFaqMetiers">
+        <section class="bandeMetiers bandeMetiersFaq">
+            <div class="sectionFaqMetiers">
                 <div class="faqMetiersTexte">
                     <p class="petitTitre">Questions fréquentes</p>
                     <h2 class="titreFaqMetiers">Vos questions sur nos métiers</h2>
@@ -127,10 +138,10 @@ const prestaCard2 = [
                         ))
                     }
                 </div>
-            </section>
-
+            </div>
         </section>
+        </div>
+        </div>
         <Footer></Footer>
     </main>
-
 </Layout>

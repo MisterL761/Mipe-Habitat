@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getImage } from 'astro:assets';
+import heroImgSrc from '../assets/image/ImageHero.webp';
 import Navbar from "../components/Nav-Footer/Navbar.astro";
 import HeroSection from '../components/HeroSection.astro';
 import BandeauFrancRenov from '../components/BandeauFrancRenov.astro';
@@ -8,6 +10,7 @@ import Simulateur from '../components/Simulateur.astro';
 import Societe from '../components/Societe.astro';
 import TimeLine from '../components/TimeLine.astro';
 import '../styles/global.css';
+import '../styles/refonteAccueil.css';
 import '../styles/styleComponents/Nav-Footer/Navbar.css' ;
 import Valeur from '../components/Valeur.astro';
 import Equipe from '../components/Equipe.astro';
@@ -24,11 +27,15 @@ import FaqHome from '../components/FaqHome.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const heroImg = await getImage({ src: heroImgSrc, width: 1920, quality: 72 });
 ---
 
 <Layout>
+    <!-- Photo de la hero (ordinateur) : telechargee en priorite, des le debut -->
+    <link slot="head" rel="preload" as="image" href={heroImg.src} fetchpriority="high" media="(min-width: 901px)" />
     <Navbar></Navbar>
     <HeroSection></HeroSection>
+    <main class="refonte">
     <BandeauFrancRenov></BandeauFrancRenov>
     <Proeco></Proeco>
     <Simulateur></Simulateur>
@@ -45,6 +52,7 @@ import FaqHome from '../components/FaqHome.astro';
     <ZoneIntervention></ZoneIntervention>
     <Blog></Blog>
     <FaqHome></FaqHome>
+    </main>
 
 
 

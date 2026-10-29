@@ -7,6 +7,12 @@
 }
 .textSociete {
     padding: 0;
+    position: relative;
+}
+
+/* Fleche vers la frise : masquee par defaut, affichee par la refonte de l'accueil */
+.flecheFrise{
+    display: none;
 }
 
 .titreSociete{

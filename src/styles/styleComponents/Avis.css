@@ -6,8 +6,9 @@
 /* ===================== Mise en page generale (2 colonnes) ===================== */
 .avisGrille{
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 3rem;
+    /* bande d'avis a gauche | titre et note au centre | bande d'avis a droite */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 2.5rem;
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
@@ -64,25 +65,22 @@
 
 /* ===================== Bloc de droite (2 colonnes qui defilent) ===================== */
 .avisColonnes{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    /* le conteneur disparait : les deux colonnes deviennent des cellules de la grille */
+    display: contents;
+}
+
+.colonneAvis{
+    overflow: hidden;
     height: 640px;
     /* Fondu en haut et en bas de chaque colonne : les cartes semblent
        apparaitre/disparaitre en douceur plutot que d'etre coupees net. */
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
-
-.colonneAvis{
-    overflow: hidden;
-}
-
-/* Le defilement se met en pause au survol, pour laisser le temps de lire
-   une carte sans qu'elle file sous la souris. */
-.colonneAvis:hover .colonneAvisPiste{
-    animation-play-state: paused;
-}
+.colonneMonte{ grid-column: 1; grid-row: 1; }
+.enteteAvis{ grid-column: 2; grid-row: 1; text-align: center; }
+.colonneDescend{ grid-column: 3; grid-row: 1; }
+.enteteAvis .recapNoteAvis{ justify-content: center; }
 
 .colonneAvisPiste{
     display: flex;
@@ -141,18 +139,20 @@
 }
 
 /* ===================== Responsive (mobile/tablette) ===================== */
-@media (max-width: 900px){
+@media (max-width: 1000px){
+    /* tablette / mobile : le titre au-dessus, les deux bandes cote a cote dessous */
     .avisGrille{
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
     }
     .enteteAvis{
-        text-align: center;
+        grid-column: 1 / -1;
+        grid-row: 1;
+        margin-bottom: 0.5rem;
     }
-    .recapNoteAvis{
-        justify-content: center;
-    }
-    .avisColonnes{
+    .colonneMonte{ grid-column: 1; grid-row: 2; }
+    .colonneDescend{ grid-column: 2; grid-row: 2; }
+    .colonneAvis{
         height: 520px;
     }
 }
@@ -164,8 +164,10 @@
     .titreAvis{
         font-size: 1.6rem;
     }
-    .avisColonnes{
+    .avisGrille{
         gap: 0.75rem;
+    }
+    .colonneAvis{
         height: 420px;
     }
     .colonneAvisPiste{
@@ -177,4 +179,57 @@
     .texteAvis{
         font-size: 0.85rem;
     }
+}
+
+/* ===================== Sources des notes (Google, PagesJaunes) ===================== */
+.sourcesAvis{
+    /* toujours empiles : en ligne avec retour automatique, les blocs changeaient de
+       place pendant l'animation du chiffre (leur largeur varie de "0,0" a "4,8") */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.sourceAvis{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1rem 1.25rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.08);
+}
+.sourceAvis .recapNoteAvis{
+    margin-top: 0;
+}
+.sourceAvis .grandeNoteAvis{
+    font-size: 2rem;
+    /* largeur fixe : evite que les etoiles bougent quand les chiffres changent */
+    min-width: 2.6ch;
+    font-variant-numeric: tabular-nums;
+}
+.sourceAvis .nombreAvisGoogle{
+    margin-top: 0;
+    white-space: nowrap;
+}
+.logoPagesJaunes{
+    display: block;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+}
+
+.sourceAvis:hover{
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.14);
+}
+.sourceAvis:focus-visible{
+    outline: 3px solid #6FBE2C;
+    outline-offset: 3px;
 }

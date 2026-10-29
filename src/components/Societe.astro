@@ -23,6 +23,11 @@ import exterieur from '../assets/image/exterieur.webp'
             </div>
 
             <button class="boutonSociete">Nous contacter</button>
+            <!-- Fleche decorative en vague qui part du texte et pointe vers la frise juste en dessous -->
+            <svg class="flecheFrise" viewBox="0 0 120 250" fill="none" aria-hidden="true" focusable="false">
+                <path class="flecheFriseTrait" pathLength="1" d="M26 6 C96 30 -6 76 62 118 C112 150 22 186 66 236" />
+                <path class="flecheFrisePointe" d="M66 236 L46 214 M66 236 L92 220" />
+            </svg>
 
 
         </div>
@@ -31,14 +36,14 @@ import exterieur from '../assets/image/exterieur.webp'
                 <Image
                         src={exterieur}
                         alt="Vue d'exterieur de MIPE Habitat"
-                        width={700}
+                        width={640} quality={70}
                 />
             </div>
             <div class="imageInterieur">
                 <Image
                         src={interieur}
                         alt="Intérieur des locaux de MIPE Habitat"
-                        width={500}
+                        width={420} quality={70}
                 />
             </div>
         </div>
