@@ -1,63 +1,145 @@
 ---
 import '../styles/styleComponents/FormDemandeDevis.css';
 import '../styles/global.css';
----
+import { Image } from 'astro:assets';
+import { Check, Warehouse, Wind } from '@lucide/astro';
 
+import imgIte from '../assets/image/ite.jpeg';
+import imgIti from '../assets/image/iti.webp';
+import imgComble from '../assets/image/comble.webp';
+import imgAmenagement from '../assets/image/amenagement-comble.webp';
+import imgFenetre from '../assets/image/menuiserie.webp';
+import imgPorteEntree from '../assets/image/pe.webp';
+import imgVolet from '../assets/image/voletR.webp';
+import imgEnergie from '../assets/image/clim.webp';
+import imgVelux from '../assets/image/velux.webp';
+import imgToiture from '../assets/image/toiture.webp';
+
+// Etape 1 : les 12 produits. "image" = photo ; "Icone" = en attendant une
+// photo (porte de garage / portail et ventilation n'en ont pas encore).
+const produits = [
+	{ titre: 'Isolation thermique extérieure', image: imgIte },
+	{ titre: 'Isolation thermique intérieure', image: imgIti },
+	{ titre: 'Isolation des combles', image: imgComble },
+	{ titre: 'Aménagement des combles', image: imgAmenagement },
+	{ titre: 'Fenêtres', image: imgFenetre },
+	{ titre: "Porte d'entrée", image: imgPorteEntree },
+	{ titre: 'Porte de garage et portail', Icone: Warehouse },
+	{ titre: 'Volets et motorisation', image: imgVolet },
+	{ titre: 'Énergie et chauffage', image: imgEnergie },
+	{ titre: 'Velux', image: imgVelux },
+	{ titre: 'Nettoyage et entretien de toiture', image: imgToiture },
+	{ titre: 'Ventilation', Icone: Wind },
+];
+
+// Etape 2 : delai du projet
+const delais = [
+	{ titre: 'Immédiat', detail: 'Dans les prochains jours' },
+	{ titre: 'Sous 1 mois', detail: 'Ce mois-ci' },
+	{ titre: 'Sous 3 mois', detail: 'Ce trimestre' },
+	{ titre: 'Sous 6 mois ou plus', detail: 'Pas de contrainte de délai' },
+];
+---
 
 <div class="containerFormDevis">
 
-        <div class="fromContainerDevis">
+	<div class="fromContainerDevis">
 
-            <form class="formDevis">
+		<!-- Parcours en 3 etapes : produits, delai, coordonnees (voir devisParcours.js).
+		     L'envoi se branche via data-endpoint (vide = pas encore active). -->
+		<form class="formDevis parcoursDevis" id="parcoursDevis" data-endpoint="" novalidate>
 
-                <div class="containerNpDevis">
-                    <input type="text" placeholder="Nom" />
-                    <input type="text" placeholder="Prénom" />
-                </div>
-                <div class="containerTcDevis">
-                    <input type="number" placeholder="Code postal" />
-                    <input type="number" placeholder="Téléphone" />
-                </div>
+			<div class="progressionDevis" aria-live="polite">
+				<p class="etapeDevis" id="etapeDevis">Étape 1 sur 3</p>
+				<div class="barreDevis"><span class="barreDevisRemplie" id="barreDevis"></span></div>
+			</div>
 
-                <input type="email" placeholder="Email" />
+			<!-- Etape 1 -->
+			<fieldset class="etapeParcours" data-etape="1">
+				<legend class="titreEtapeDevis">Quels travaux envisagez-vous ?</legend>
+				<p class="sousTitreEtapeDevis">Sélectionnez un ou plusieurs projets.</p>
+				<div class="grilleProduitsDevis">
+					{
+						produits.map(({ titre, image, Icone }) => (
+							<label class="optionDevis carteProduitDevis">
+								<input type="checkbox" name="travaux" value={titre} />
+								<span class="visuelProduitDevis">
+									{image ? <Image src={image} alt="" width={320} /> : <Icone size={36} color="#16273B" />}
+									<span class="coche"><Check size={14} color="#ffffff" /></span>
+								</span>
+								<span class="titreProduitDevis">{titre}</span>
+							</label>
+						))
+					}
+				</div>
+			</fieldset>
 
-                <select aria-label="Type de projet">
-                    <option class="selection" value="" disabled selected >Type de projet</option>
-                    <option>Isolation thermique extérieure</option>
-                    <option>Isolation thermique intérieure</option>
-                    <option>Isolation des combles</option>
-                    <option>Ravalement de façade</option>
-                    <option>Menuiserie</option>
-                </select>
+			<!-- Etape 2 -->
+			<fieldset class="etapeParcours" data-etape="2" hidden>
+				<legend class="titreEtapeDevis">Sous quel délai ?</legend>
+				<p class="sousTitreEtapeDevis">Cela nous aide à organiser notre visite technique.</p>
+				<div class="grilleDelaisDevis">
+					{
+						delais.map(({ titre, detail }) => (
+							<label class="optionDevis carteDelaiDevis">
+								<input type="radio" name="delai" value={titre} />
+								<span class="titreDelaiDevis">{titre}</span>
+								<span class="detailDelaiDevis">{detail}</span>
+							</label>
+						))
+					}
+				</div>
+			</fieldset>
 
-                <textarea class="grandTextFormDevis" placeholder="Votre projet en quelques mots" rows="6"></textarea>
+			<!-- Etape 3 -->
+			<fieldset class="etapeParcours" data-etape="3" hidden>
+				<legend class="titreEtapeDevis">Vos coordonnées</legend>
+				<p class="sousTitreEtapeDevis">Un conseiller vous recontacte sous 48h ouvrées.</p>
 
-                <div class="checkFormDevis">
-                    <input type="checkbox" required id="consentementDevis"/>
-                    <label class="checkText" for="consentementDevis"> J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
-                </div>
+				<div class="containerNpDevis">
+					<input type="text" name="nom" placeholder="Nom" autocomplete="family-name" required />
+					<input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" required />
+				</div>
+				<div class="containerTcDevis">
+					<input type="text" name="codePostal" placeholder="Code postal" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required />
+					<input type="tel" name="telephone" placeholder="Téléphone" autocomplete="tel" required />
+				</div>
+				<input type="email" name="email" placeholder="Email" autocomplete="email" required />
+				<textarea class="grandTextFormDevis" name="message" placeholder="Votre projet en quelques mots (facultatif)" rows="4"></textarea>
 
-                <button class="boutonFormDevis">Envoyer ma demande</button>
+				<div class="checkFormDevis">
+					<input type="checkbox" required id="consentementDevis" name="consentement" />
+					<label class="checkText" for="consentementDevis"> J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
+				</div>
+			</fieldset>
 
-            </form>
-        </div>
-        <div class="coordonneDevis">
+			<p class="messageDevis" id="messageDevis" role="alert" hidden></p>
 
-            <div class="cardCord">
-                <p class="titreCord">Coordonnées</p>
-                <p class="addressCord">11 Avenue des Meuniers, 60330 Le Plessis-Belleville</p>
-                <p class="numCord">03 75 19 01 60</p>
-                <p class="emailCord">contact@mipe-group.com</p>
-            </div>
+			<div class="actionsDevis">
+				<button type="button" class="boutonRetourDevis" id="retourDevis" hidden>Retour</button>
+				<button type="button" class="boutonFormDevis" id="suivantDevis" disabled>Continuer</button>
+				<button type="submit" class="boutonFormDevis" id="envoyerDevis" hidden>Envoyer ma demande</button>
+			</div>
 
-            <div class="cardHoraire">
-                <p class="titreHoraire">Horaires</p>
-                <p class="horaireSemaine">Lundi – Vendredi : 9h00 – 12h30, 13h30 – 17h00</p>
-                <p class="HoraireWeekEnd">Samedi – Dimanche : fermé</p>
-            </div>
+		</form>
+	</div>
 
+	<div class="coordonneDevis">
 
-        </div>
+		<div class="cardCord">
+			<p class="titreCord">Coordonnées</p>
+			<p class="addressCord">11 Avenue des Meuniers, 60330 Le Plessis-Belleville</p>
+			<p class="numCord">03 75 19 01 60</p>
+			<p class="emailCord">contact@mipe-group.com</p>
+		</div>
+
+		<div class="cardHoraire">
+			<p class="titreHoraire">Horaires</p>
+			<p class="horaireSemaine">Lundi – Vendredi : 9h00 – 12h30, 13h30 – 17h00</p>
+			<p class="HoraireWeekEnd">Samedi – Dimanche : fermé</p>
+		</div>
+
+	</div>
 </div>
 
-
+<script src="../js/devisParcours.js"></script>
