@@ -1,6 +1,6 @@
 <?php
-// Tâche cron : récupère tous les avis Google de la fiche et les écrit dans src/data/avis-google.json (lu par le site au build).
-// Cron : 0 4 * * * /usr/bin/php /chemin/sync_reviews.php >> /chemin/sync.log 2>&1
+// À lancer à la main quand tu veux mettre les avis à jour (pas de cron) : récupère tous les avis Google de la fiche et les écrit dans src/data/avis-google.json (lu par le site au build).
+// Usage : php avis-google/sync_reviews.php, puis commit de src/data/avis-google.json et redéploiement.
 // Option : php sync_reviews.php --list-accounts  (affiche les comptes pour trouver account_id)
 require __DIR__ . '/vendor/autoload.php';
 $config = require __DIR__ . '/config.php';

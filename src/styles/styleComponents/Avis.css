@@ -233,3 +233,13 @@
     outline: 3px solid #6FBE2C;
     outline-offset: 3px;
 }
+
+.voirTousAvis{
+	text-align: center;
+	margin: 1.5rem 0;
+}
+.voirTousAvis a{
+	font-weight: bold;
+	text-decoration: underline;
+	color: #16273B;
+}

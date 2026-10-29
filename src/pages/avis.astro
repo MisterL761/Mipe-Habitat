@@ -1,0 +1,75 @@
+---
+import '../styles/refonteAccueil.css';
+import '../styles/pages/avis.css';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import { Star } from '@lucide/astro';
+import { noteGoogle } from '../utils/noteGoogle.js';
+
+// Tous les avis Google : fichier genere a la main par avis-google/sync_reviews.php
+const fichiers = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
+const donnees = Object.values(fichiers)[0];
+
+const nomPublic = (nom) => {
+	const [prenom, ...reste] = (nom || '').trim().split(/\s+/);
+	return reste.length ? `${prenom} ${reste[reste.length - 1][0]}.` : prenom || 'Client';
+};
+const formatDate = (iso) => iso ? new Date(iso).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) : '';
+
+const avis = (donnees?.avis ?? [])
+	.filter((a) => a.commentaire)
+	.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+const PAR_LOT = 12;
+const lienAvisGoogle = 'https://www.google.com/search?q=MIPE+Habitat+Le+Plessis-Belleville+avis';
+---
+<Layout title="Tous nos avis clients | MIPE Habitat" description="Découvrez tous les avis Google de nos clients sur les chantiers MIPE Habitat.">
+	<Navbar></Navbar>
+	<div class="refonte">
+	<FilAriane items={[{ label: 'Avis clients' }]} />
+	<section class="pageAvis">
+		<div class="heroPage">
+			<p class="petitTitre">Avis clients</p>
+			<h1>Ce que nos clients disent de nous</h1>
+			<p>{noteGoogle.moyenneTexte} / 5 · {noteGoogle.libelle}</p>
+		</div>
+
+		{avis.length === 0 ? (
+			<p class="avisVide">Les avis sont à découvrir directement sur notre <a href={lienAvisGoogle} target="_blank" rel="noopener noreferrer">fiche Google</a>.</p>
+		) : (
+			<>
+				<div class="listeAvisPage" id="listeAvisPage" data-lot={PAR_LOT}>
+					{avis.map((a, i) => (
+						<article class="carteAvisPage" hidden={i >= PAR_LOT}>
+							<div class="etoilesAvisPage" role="img" aria-label={`${a.note} sur 5`}>
+								{Array.from({ length: 5 }).map((_, k) => (
+									<Star size={16} color={k < a.note ? '#F5A623' : '#E4E7E2'} fill={k < a.note ? '#F5A623' : 'none'} />
+								))}
+							</div>
+							<p class="texteAvisPage">{a.commentaire}</p>
+							<p class="auteurAvisPage">{nomPublic(a.auteur)} — {formatDate(a.date)}</p>
+						</article>
+					))}
+				</div>
+				{avis.length > PAR_LOT && <button type="button" class="boutonVoirPlusAvis" id="voirPlusAvis">Voir plus d'avis</button>}
+			</>
+		)}
+	</section>
+	</div>
+	<Footer></Footer>
+</Layout>
+
+<script>
+	const liste = document.getElementById('listeAvisPage');
+	const bouton = document.getElementById('voirPlusAvis');
+	if (liste && bouton) {
+		const lot = Number(liste.dataset.lot);
+		bouton.addEventListener('click', () => {
+			const caches = [...liste.querySelectorAll('[hidden]')];
+			caches.slice(0, lot).forEach((el) => el.removeAttribute('hidden'));
+			if (caches.length <= lot) bouton.remove();
+		});
+	}
+</script>
