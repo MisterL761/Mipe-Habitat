@@ -1,0 +1,140 @@
+.containerImageDroite .containerParentImageDroite{
+    margin-top: 3rem;
+}
+
+/* ===================== "Nos interventions" (3 cartes) ===================== */
+.sectionInterventionsVelux{
+    background-color: #EEF6E7;
+    padding: 4rem;
+    text-align: center;
+}
+.petitTitreVelux{
+    text-align: center;
+}
+.titreInterventionsVelux{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+.grilleInterventionsVelux{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.carteInterventionVelux{
+    position: relative;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 2.25rem 2rem 2rem 2rem;
+    box-shadow: 0 10px 30px rgba(22, 39, 59, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+.carteInterventionVelux::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #6FBE2C, #8FE05C);
+}
+.carteInterventionVelux:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(22, 39, 59, 0.14);
+}
+.iconeInterventionVelux{
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6FBE2C, #3E7C1F);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 8px 20px rgba(111, 190, 44, 0.3);
+}
+.titreCarteVelux{
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+.descCarteVelux{
+    color: #4A5B6B;
+    line-height: 1.5;
+}
+
+/* ===================== FAQ ===================== */
+.sectionFaqVelux{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 4rem;
+    align-items: flex-start;
+}
+.faqVeluxTexte{
+    width: 35%;
+    flex-shrink: 0;
+}
+.titreFaqVelux{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.faqVeluxListe{
+    flex: 1;
+}
+.faqVeluxItem{
+    border-top: 1px solid #E4E7E2;
+    padding: 1.25rem 0;
+}
+.faqVeluxItem:last-child{
+    border-bottom: 1px solid #E4E7E2;
+}
+.questionFaqVelux{
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.questionFaqVelux::-webkit-details-marker{
+    display: none;
+}
+.questionFaqVelux::after{
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #3E7C1F;
+}
+.faqVeluxItem[open] .questionFaqVelux::after{
+    content: '−';
+}
+.reponseFaqVelux{
+    color: #4A5B6B;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* ===================== Responsive (mobile/tablette) ===================== */
+@media (max-width: 900px){
+    .sectionInterventionsVelux{
+        padding: 3rem 1.5rem;
+    }
+    .grilleInterventionsVelux{
+        grid-template-columns: 1fr;
+    }
+    .titreInterventionsVelux{
+        font-size: 1.5rem;
+    }
+    .sectionFaqVelux{
+        flex-direction: column;
+        margin: 3rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .faqVeluxTexte{
+        width: 100%;
+    }
+}
