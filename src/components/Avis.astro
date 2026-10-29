@@ -21,30 +21,10 @@ const avis = [
 	{ note: 4, texte: "Bon relationnel du début à la fin, et un vrai suivi sur le dossier MaPrimeRénov'.", zone: 'Seine-et-Marne', cp: '77' },
 ];
 
-// Avis Google reels : fichier genere par le cron avis-google/sync_reviews.php
-// (absent tant que le cron n'a pas tourne : on garde alors les avis ci-dessus).
-const fichiersAvisGoogle = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
-const donneesGoogle = Object.values(fichiersAvisGoogle)[0];
-
-// Nom public : prenom + initiale du nom ("Marie D.")
-const nomPublic = (nom) => {
-	const [prenom, ...reste] = (nom || '').trim().split(/\s+/);
-	return reste.length ? `${prenom} ${reste[reste.length - 1][0]}.` : prenom || 'Client';
-};
-
-if (donneesGoogle?.avis) {
-	const reels = donneesGoogle.avis
-		.filter((a) => a.note >= 4 && a.commentaire && a.commentaire.length >= 40)
-		.sort((a, b) => new Date(b.date) - new Date(a.date))
-		.slice(0, 12)
-		.map((a) => ({ note: a.note, texte: a.commentaire, auteur: nomPublic(a.auteur) }));
-	if (reels.length >= 6) avis.splice(0, avis.length, ...reels);
-}
-
 // Les avis sont repartis en 2 colonnes (une qui monte, une qui descend),
 // chacune doublee pour boucler le defilement vertical sans coupure visible.
-const avisColonneA = avis.filter((_, i) => i % 2 === 0);
-const avisColonneB = avis.filter((_, i) => i % 2 === 1);
+const avisColonneA = [avis[0], avis[2], avis[4]];
+const avisColonneB = [avis[1], avis[3], avis[5]];
 const colonneADefilement = [...avisColonneA, ...avisColonneA];
 const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 ---
@@ -93,7 +73,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<div class="colonneAvis colonneMonte">
 					<div class="colonneAvisPiste">
 						{
-							colonneADefilement.map(({ note, texte, zone, cp, auteur }) => (
+							colonneADefilement.map(({ note, texte, zone, cp }) => (
 								<div class="carteAvis">
 									<div class="etoiles">
 										{Array.from({ length: 5 }).map((_, i) => (
@@ -105,7 +85,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 										))}
 									</div>
 									<p class="texteAvis">{texte}</p>
-									<p class="auteurAvis">{auteur ? `${auteur} — avis Google` : `Client MIPE Habitat — ${zone} (${cp})`}</p>
+									<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
 								</div>
 							))
 						}
@@ -115,7 +95,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<div class="colonneAvis colonneDescend">
 					<div class="colonneAvisPiste">
 						{
-							colonneBDefilement.map(({ note, texte, zone, cp, auteur }) => (
+							colonneBDefilement.map(({ note, texte, zone, cp }) => (
 								<div class="carteAvis">
 									<div class="etoiles">
 										{Array.from({ length: 5 }).map((_, i) => (
@@ -127,7 +107,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 										))}
 									</div>
 									<p class="texteAvis">{texte}</p>
-									<p class="auteurAvis">{auteur ? `${auteur} — avis Google` : `Client MIPE Habitat — ${zone} (${cp})`}</p>
+									<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
 								</div>
 							))
 						}
