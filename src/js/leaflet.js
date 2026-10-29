@@ -140,3 +140,4 @@ fermerCard.addEventListener('click', () => {
         marqueurActif = null;
     }
 });
+
