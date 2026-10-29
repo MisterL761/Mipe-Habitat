@@ -2,6 +2,7 @@
 import '../styles/styleComponents/FormDemandeDevis.css';
 import '../styles/global.css';
 import { Image, getImage } from 'astro:assets';
+import Logo3D from './Logo3D.astro';
 import { Check, Warehouse, Wind, Zap, CalendarClock, CalendarRange, Hourglass, ShieldCheck, Clock, BadgeCheck } from '@lucide/astro';
 
 import imgIte from '../assets/image/ite.jpeg';
@@ -52,6 +53,7 @@ const etapes = ['Vos travaux', 'Votre délai', 'Vos coordonnées', 'Confirmation
 
 	<!-- Panneau de gauche : avancement, recapitulatif en direct, garanties -->
 	<aside class="panneauDevis">
+		<Logo3D variante="centre" taille={150} />
 		<p class="titrePanneauDevis">Votre devis gratuit en 4 étapes</p>
 
 		<ol class="etapesDevis" id="etapesDevis">

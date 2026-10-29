@@ -14,6 +14,7 @@
 }
 
 /* ---------- Panneau de gauche ---------- */
+.panneauDevis .logo3d{ margin: -0.75rem auto -1rem auto; }
 .panneauDevis{
     background-color: #16273B;
     background-image:
@@ -265,6 +266,13 @@
 }
 .carteProduitDevis:has(input:checked) .coche{ background: #6FBE2C; border-color: #6FBE2C; }
 .carteProduitDevis:has(input:checked) .coche svg{ opacity: 1; }
+/* petit "pop" quand on coche : repond au geste du client */
+.carteProduitDevis:has(input:checked) .coche{ animation: popCocheDevis 0.3s ease; }
+@keyframes popCocheDevis{
+    0%{ transform: scale(0.6); }
+    60%{ transform: scale(1.2); }
+    100%{ transform: scale(1); }
+}
 
 /* ---- Delais ---- */
 .grilleDelaisDevis{
@@ -441,5 +449,5 @@
     .boutonFormDevis, .boutonRetourDevis{ width: 100%; }
 }
 @media (prefers-reduced-motion: reduce){
-    .carteProduitDevis img, .barreDevisRemplie, .listeVotreProjet li{ transition: none; animation: none; }
+    .carteProduitDevis img, .barreDevisRemplie, .listeVotreProjet li, .coche{ transition: none; animation: none; }
 }
