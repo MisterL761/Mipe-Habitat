@@ -1,6 +1,6 @@
-// Note moyenne et nombre d'avis Google : valeurs reelles ecrites par le cron
-// avis-google/sync_reviews.php dans src/data/avis-google.json. Tant que ce
-// fichier n'existe pas (ou qu'il est incomplet), on garde les valeurs d'avant.
+// Note moyenne et nombre d'avis Google : valeurs relevees sur la fiche Google
+// (src/data/avis-google.json). Si le fichier est absent ou incomplet, on garde
+// les valeurs d'avant.
 const fichiers = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
 const donnees = Object.values(fichiers)[0];
 

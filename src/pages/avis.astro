@@ -8,7 +8,8 @@ import FilAriane from '../components/FilAriane.astro';
 import { Star } from '@lucide/astro';
 import { noteGoogle } from '../utils/noteGoogle.js';
 
-// Tous les avis Google : fichier genere a la main par avis-google/sync_reviews.php
+// Tous les avis Google : releves sur la fiche Google (src/data/avis-google.json).
+// Google n'affiche que des dates relatives : les avis de plus d'un an n'ont qu'une annee approximative.
 const fichiers = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
 const donnees = Object.values(fichiers)[0];
 
@@ -16,7 +17,7 @@ const nomPublic = (nom) => {
 	const [prenom, ...reste] = (nom || '').trim().split(/\s+/);
 	return reste.length ? `${prenom} ${reste[reste.length - 1][0]}.` : prenom || 'Client';
 };
-const formatDate = (iso) => iso ? new Date(iso).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) : '';
+const formatDate = (iso, precision) => !iso ? '' : precision === 'annee' ? String(new Date(iso).getFullYear()) : new Date(iso).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
 
 const avis = (donnees?.avis ?? [])
 	.filter((a) => a.commentaire)
@@ -49,7 +50,7 @@ const lienAvisGoogle = 'https://www.google.com/search?q=MIPE+Habitat+Le+Plessis-
 								))}
 							</div>
 							<p class="texteAvisPage">{a.commentaire}</p>
-							<p class="auteurAvisPage">{nomPublic(a.auteur)} — {formatDate(a.date)}</p>
+							<p class="auteurAvisPage">{nomPublic(a.auteur)} — {formatDate(a.date, a.precision)}</p>
 						</article>
 					))}
 				</div>

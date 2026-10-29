@@ -22,8 +22,8 @@ const avis = [
 	{ note: 4, texte: "Bon relationnel du début à la fin, et un vrai suivi sur le dossier MaPrimeRénov'.", zone: 'Seine-et-Marne', cp: '77' },
 ];
 
-// Avis Google reels : fichier genere par le cron avis-google/sync_reviews.php
-// (absent tant que le cron n'a pas tourne : on garde alors les avis ci-dessus).
+// Avis Google reels (src/data/avis-google.json) : si le fichier est absent,
+// on garde les avis ci-dessus.
 const fichiersAvisGoogle = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
 const donneesGoogle = Object.values(fichiersAvisGoogle)[0];
 
@@ -35,7 +35,7 @@ const nomPublic = (nom) => {
 
 if (donneesGoogle?.avis) {
 	const reels = donneesGoogle.avis
-		.filter((a) => a.note >= 4 && a.commentaire && a.commentaire.length >= 40)
+		.filter((a) => a.note >= 4 && a.commentaire && a.commentaire.length >= 60 && a.commentaire.length <= 260)
 		.sort((a, b) => new Date(b.date) - new Date(a.date))
 		.slice(0, 12)
 		.map((a) => ({ note: a.note, texte: a.commentaire, auteur: nomPublic(a.auteur) }));
