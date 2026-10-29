@@ -1,0 +1,64 @@
+/* Pastille Google flottante, en bas a gauche (pendant de la bulle de simulation,
+   en bas a droite) : fixed, donc visible partout, ajoutee dans Layout.astro. */
+.pastilleGoogle{
+    position: fixed;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1000;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+
+    background-color: #ffffff;
+    color: #16273B;
+    text-decoration: none;
+    padding: 0.55rem 1.1rem 0.55rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid #E4E7E2;
+    box-shadow: 0 8px 24px rgba(22, 39, 59, 0.2);
+
+    transition: transform 0.25s ease, box-shadow 0.2s ease, opacity 0.25s ease;
+}
+.pastilleGoogle:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(22, 39, 59, 0.28);
+}
+.logoPastilleGoogle{ flex: none; }
+.textePastilleGoogle{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+.lignePastilleGoogle{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.lignePastilleGoogle strong{
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+.etoilesPastilleGoogle{ display: inline-flex; gap: 0.05rem; }
+.avisPastilleGoogle{
+    font-size: 0.78rem;
+    color: #5A6B7B;
+    font-weight: 500;
+}
+
+/* Masquee comme la bulle de simulation (hero de l'accueil, footer) */
+.pastilleGoogleCachee{
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .pastilleGoogle{ transition: none; }
+    .pastilleGoogle:hover{ transform: none; }
+    .pastilleGoogleCachee{ transform: none; }
+}
+@media (max-width: 480px){
+    .pastilleGoogle{ left: 1rem; bottom: 1rem; padding: 0.45rem 0.85rem 0.45rem 0.55rem; }
+    .avisPastilleGoogle{ display: none; }
+}
