@@ -45,12 +45,12 @@ const delais = [
 
 	<div class="fromContainerDevis">
 
-		<!-- Parcours en 3 etapes : produits, delai, coordonnees (voir devisParcours.js).
+		<!-- Parcours en 4 etapes : produits, delai, coordonnees, confirmation (voir devisParcours.js).
 		     L'envoi se branche via data-endpoint (vide = pas encore active). -->
 		<form class="formDevis parcoursDevis" id="parcoursDevis" data-endpoint="" novalidate>
 
 			<div class="progressionDevis" aria-live="polite">
-				<p class="etapeDevis" id="etapeDevis">Étape 1 sur 3</p>
+				<p class="etapeDevis" id="etapeDevis">Étape 1 sur 4</p>
 				<div class="barreDevis"><span class="barreDevisRemplie" id="barreDevis"></span></div>
 			</div>
 
@@ -113,12 +113,24 @@ const delais = [
 				</div>
 			</fieldset>
 
+			<!-- Etape 4 : confirmation avant envoi (remplie par devisParcours.js) -->
+			<fieldset class="etapeParcours" data-etape="4" hidden>
+				<legend class="titreEtapeDevis">Tout est correct ?</legend>
+				<p class="sousTitreEtapeDevis">Vérifiez vos informations avant d'envoyer votre demande.</p>
+				<dl class="recapDevis">
+					<div class="ligneRecapDevis"><dt>Travaux</dt><dd id="recapTravaux"></dd><button type="button" class="modifierRecapDevis" data-aller="1">Modifier</button></div>
+					<div class="ligneRecapDevis"><dt>Délai</dt><dd id="recapDelai"></dd><button type="button" class="modifierRecapDevis" data-aller="2">Modifier</button></div>
+					<div class="ligneRecapDevis"><dt>Contact</dt><dd id="recapContact"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
+					<div class="ligneRecapDevis" id="ligneRecapMessage" hidden><dt>Message</dt><dd id="recapMessage"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
+				</dl>
+			</fieldset>
+
 			<p class="messageDevis" id="messageDevis" role="alert" hidden></p>
 
 			<div class="actionsDevis">
 				<button type="button" class="boutonRetourDevis" id="retourDevis" hidden>Retour</button>
 				<button type="button" class="boutonFormDevis" id="suivantDevis" disabled>Continuer</button>
-				<button type="submit" class="boutonFormDevis" id="envoyerDevis" hidden>Envoyer ma demande</button>
+				<button type="submit" class="boutonFormDevis" id="envoyerDevis" hidden>Confirmer et envoyer</button>
 			</div>
 
 		</form>

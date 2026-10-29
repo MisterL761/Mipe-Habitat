@@ -329,3 +329,43 @@ select{
     .actionsDevis{ flex-direction: column-reverse; align-items: stretch; }
     .actionsDevis .boutonFormDevis, .boutonRetourDevis{ width: 100%; }
 }
+
+/* ===================== Etape de confirmation ===================== */
+.recapDevis{
+    border: 1px solid #E4E7E2;
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 0;
+}
+.ligneRecapDevis{
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem 1.2rem;
+    background: #ffffff;
+}
+.ligneRecapDevis[hidden]{ display: none; }
+.ligneRecapDevis + .ligneRecapDevis{ border-top: 1px solid #E4E7E2; }
+.ligneRecapDevis dt{
+    font-weight: bold;
+    color: #3E7C1F;
+}
+.ligneRecapDevis dd{
+    margin: 0;
+    color: #16273B;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+}
+.modifierRecapDevis{
+    background: none;
+    border: 0;
+    color: #16273B;
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+}
+@media (max-width: 560px){
+    .ligneRecapDevis{ grid-template-columns: 1fr auto; }
+    .ligneRecapDevis dt{ grid-column: 1 / -1; }
+}

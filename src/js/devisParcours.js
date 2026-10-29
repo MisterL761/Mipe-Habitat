@@ -1,4 +1,4 @@
-// Parcours de demande de devis en 3 etapes : produits -> delai -> coordonnees.
+// Parcours de demande de devis en 4 etapes : produits -> delai -> coordonnees -> confirmation.
 const form = document.getElementById('parcoursDevis');
 
 if (form) {
@@ -14,7 +14,19 @@ if (form) {
 	function etapeValide(i) {
 		if (i === 0) return form.querySelectorAll('input[name="travaux"]:checked').length > 0;
 		if (i === 1) return !!form.querySelector('input[name="delai"]:checked');
+		if (i === 2) return [...etapes[2].querySelectorAll('input, textarea')].every((c) => c.checkValidity());
 		return true;
+	}
+
+	function remplirRecap() {
+		const donnees = new FormData(form);
+		const texte = (id, valeur) => { document.getElementById(id).textContent = valeur; };
+		texte('recapTravaux', donnees.getAll('travaux').join(', '));
+		texte('recapDelai', donnees.get('delai'));
+		texte('recapContact', `${donnees.get('prenom')} ${donnees.get('nom')} · ${donnees.get('codePostal')} · ${donnees.get('telephone')} · ${donnees.get('email')}`);
+		const msg = (donnees.get('message') || '').trim();
+		document.getElementById('ligneRecapMessage').hidden = !msg;
+		texte('recapMessage', msg);
 	}
 
 	function afficher() {
@@ -25,18 +37,26 @@ if (form) {
 		retour.hidden = courante === 0;
 		suivant.hidden = derniere;
 		envoyer.hidden = !derniere;
-		suivant.disabled = !etapeValide(courante);
+		suivant.disabled = courante === 2 ? false : !etapeValide(courante);
 		message.hidden = true;
+		if (derniere) remplirRecap();
 		form.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
-	form.addEventListener('change', () => { suivant.disabled = !etapeValide(courante); });
-	suivant.addEventListener('click', () => { if (etapeValide(courante)) { courante++; afficher(); } });
+	form.addEventListener('change', () => { suivant.disabled = courante === 2 ? false : !etapeValide(courante); });
+	suivant.addEventListener('click', () => {
+		if (courante === 2) {
+			// Etape coordonnees : on affiche les messages d'erreur natifs des champs invalides
+			const invalide = [...etapes[2].querySelectorAll('input, textarea')].find((c) => !c.checkValidity());
+			if (invalide) { invalide.reportValidity(); return; }
+		}
+		if (etapeValide(courante)) { courante++; afficher(); }
+	});
+	form.querySelectorAll('.modifierRecapDevis').forEach((b) => b.addEventListener('click', () => { courante = Number(b.dataset.aller) - 1; afficher(); }));
 	retour.addEventListener('click', () => { courante--; afficher(); });
 
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		if (!form.reportValidity()) return;
 
 		const donnees = new FormData(form);
 		const payload = {
