@@ -11,7 +11,6 @@
 .containerFormDevis {
     display: grid;
     grid-template-columns: 1fr;
-    max-width: 900px;
     margin: 0 auto;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
