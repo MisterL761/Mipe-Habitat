@@ -10,6 +10,29 @@ if (form) {
 	const envoyer = document.getElementById('envoyerDevis');
 	const message = document.getElementById('messageDevis');
 	let courante = 0;
+	const listeEtapes = [...document.querySelectorAll('.etapeListeDevis')];
+	const blocProjet = document.getElementById('votreProjetDevis');
+	const listeProjet = document.getElementById('listeVotreProjet');
+	const delaiProjet = document.getElementById('delaiVotreProjet');
+
+	// "Votre projet" (panneau de gauche) : se remplit au fil des choix
+	function majPanneau() {
+		const choisis = [...form.querySelectorAll('input[name="travaux"]:checked')];
+		const delai = form.querySelector('input[name="delai"]:checked');
+		listeProjet.replaceChildren(...choisis.map((c) => {
+			const li = document.createElement('li');
+			if (c.dataset.miniature) {
+				const img = document.createElement('img');
+				img.src = c.dataset.miniature; img.alt = ''; img.width = 28; img.height = 28;
+				li.append(img);
+			}
+			li.append(document.createTextNode(c.value));
+			return li;
+		}));
+		delaiProjet.hidden = !delai;
+		delaiProjet.textContent = delai ? `Délai : ${delai.value}` : '';
+		blocProjet.hidden = choisis.length === 0;
+	}
 
 	function etapeValide(i) {
 		if (i === 0) return form.querySelectorAll('input[name="travaux"]:checked').length > 0;
@@ -29,21 +52,25 @@ if (form) {
 		texte('recapMessage', msg);
 	}
 
-	function afficher() {
+	function afficher(defiler = true) {
 		etapes.forEach((e, i) => { e.hidden = i !== courante; });
 		texteEtape.textContent = `Étape ${courante + 1} sur ${etapes.length}`;
 		barre.style.width = `${((courante + 1) / etapes.length) * 100}%`;
 		const derniere = courante === etapes.length - 1;
+		listeEtapes.forEach((li, i) => {
+			li.classList.toggle('en-cours', i === courante);
+			li.classList.toggle('fait', i < courante);
+		});
 		retour.hidden = courante === 0;
 		suivant.hidden = derniere;
 		envoyer.hidden = !derniere;
 		suivant.disabled = courante === 2 ? false : !etapeValide(courante);
 		message.hidden = true;
 		if (derniere) remplirRecap();
-		form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		if (defiler) document.querySelector('.parcoursDevisWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
-	form.addEventListener('change', () => { suivant.disabled = courante === 2 ? false : !etapeValide(courante); });
+	form.addEventListener('change', () => { majPanneau(); suivant.disabled = courante === 2 ? false : !etapeValide(courante); });
 	suivant.addEventListener('click', () => {
 		if (courante === 2) {
 			// Etape coordonnees : on affiche les messages d'erreur natifs des champs invalides
@@ -86,6 +113,5 @@ if (form) {
 		}
 	});
 
-	afficher();
-	window.scrollTo(0, window.scrollY); // evite le saut de page au chargement
+	afficher(false);
 }

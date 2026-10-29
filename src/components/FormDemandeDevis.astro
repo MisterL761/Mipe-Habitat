@@ -1,8 +1,8 @@
 ---
 import '../styles/styleComponents/FormDemandeDevis.css';
 import '../styles/global.css';
-import { Image } from 'astro:assets';
-import { Check, Warehouse, Wind } from '@lucide/astro';
+import { Image, getImage } from 'astro:assets';
+import { Check, Warehouse, Wind, Zap, CalendarClock, CalendarRange, Hourglass, ShieldCheck, Clock, BadgeCheck } from '@lucide/astro';
 
 import imgIte from '../assets/image/ite.jpeg';
 import imgIti from '../assets/image/iti.webp';
@@ -10,13 +10,14 @@ import imgComble from '../assets/image/comble.webp';
 import imgAmenagement from '../assets/image/amenagement-comble.webp';
 import imgFenetre from '../assets/image/menuiserie.webp';
 import imgPorteEntree from '../assets/image/pe.webp';
+import imgPorteGarage from '../assets/image/porteGarage.webp';
 import imgVolet from '../assets/image/voletR.webp';
 import imgEnergie from '../assets/image/clim.webp';
 import imgVelux from '../assets/image/velux.webp';
 import imgToiture from '../assets/image/toiture.webp';
 
 // Etape 1 : les 12 produits. "image" = photo ; "Icone" = en attendant une
-// photo (porte de garage / portail et ventilation n'en ont pas encore).
+// photo (la ventilation n'en a pas encore).
 const produits = [
 	{ titre: 'Isolation thermique extérieure', image: imgIte },
 	{ titre: 'Isolation thermique intérieure', image: imgIti },
@@ -24,117 +25,144 @@ const produits = [
 	{ titre: 'Aménagement des combles', image: imgAmenagement },
 	{ titre: 'Fenêtres', image: imgFenetre },
 	{ titre: "Porte d'entrée", image: imgPorteEntree },
-	{ titre: 'Porte de garage et portail', Icone: Warehouse },
+	{ titre: 'Porte de garage et portail', image: imgPorteGarage },
 	{ titre: 'Volets et motorisation', image: imgVolet },
 	{ titre: 'Énergie et chauffage', image: imgEnergie },
 	{ titre: 'Velux', image: imgVelux },
 	{ titre: 'Nettoyage et entretien de toiture', image: imgToiture },
 	{ titre: 'Ventilation', Icone: Wind },
 ];
+// Petite vignette pour le recapitulatif a gauche (une seule image generee par produit)
+const produitsAvecMiniature = await Promise.all(
+	produits.map(async (p) => ({ ...p, miniature: p.image ? (await getImage({ src: p.image, width: 96, height: 96, fit: 'cover' })).src : '' }))
+);
 
 // Etape 2 : delai du projet
 const delais = [
-	{ titre: 'Immédiat', detail: 'Dans les prochains jours' },
-	{ titre: 'Sous 1 mois', detail: 'Ce mois-ci' },
-	{ titre: 'Sous 3 mois', detail: 'Ce trimestre' },
-	{ titre: 'Sous 6 mois ou plus', detail: 'Pas de contrainte de délai' },
+	{ titre: 'Immédiat', detail: 'Dans les prochains jours', Icone: Zap },
+	{ titre: 'Sous 1 mois', detail: 'Ce mois-ci', Icone: CalendarClock },
+	{ titre: 'Sous 3 mois', detail: 'Ce trimestre', Icone: CalendarRange },
+	{ titre: 'Sous 6 mois ou plus', detail: 'Pas de contrainte de délai', Icone: Hourglass },
 ];
+
+const etapes = ['Vos travaux', 'Votre délai', 'Vos coordonnées', 'Confirmation'];
 ---
 
-<div class="containerFormDevis">
+<div class="parcoursDevisWrap">
 
-	<div class="fromContainerDevis">
+	<!-- Panneau de gauche : avancement, recapitulatif en direct, garanties -->
+	<aside class="panneauDevis">
+		<p class="titrePanneauDevis">Votre devis gratuit en 4 étapes</p>
 
-		<!-- Parcours en 4 etapes : produits, delai, coordonnees, confirmation (voir devisParcours.js).
-		     L'envoi se branche via data-endpoint (vide = pas encore active). -->
-		<form class="formDevis parcoursDevis" id="parcoursDevis" data-endpoint="" novalidate>
+		<ol class="etapesDevis" id="etapesDevis">
+			{ etapes.map((nom, i) => (
+				<li class="etapeListeDevis" data-liste={i + 1}>
+					<span class="pastilleEtapeDevis"><span class="chiffreEtapeDevis">{i + 1}</span><Check size={14} class="cocheEtapeDevis" /></span>
+					<span class="nomEtapeDevis">{nom}</span>
+				</li>
+			)) }
+		</ol>
 
-			<div class="progressionDevis" aria-live="polite">
-				<p class="etapeDevis" id="etapeDevis">Étape 1 sur 4</p>
-				<div class="barreDevis"><span class="barreDevisRemplie" id="barreDevis"></span></div>
+		<div class="votreProjetDevis" id="votreProjetDevis" hidden>
+			<p class="titreVotreProjet">Votre projet</p>
+			<ul class="listeVotreProjet" id="listeVotreProjet"></ul>
+			<p class="delaiVotreProjet" id="delaiVotreProjet" hidden></p>
+		</div>
+
+		<ul class="garantiesDevis">
+			<li><BadgeCheck size={18} /> Devis gratuit et sans engagement</li>
+			<li><Clock size={18} /> Réponse sous 48h ouvrées</li>
+			<li><ShieldCheck size={18} /> Artisans qualifiés RGE</li>
+		</ul>
+	</aside>
+
+	<!-- Parcours : l'envoi se branche via data-endpoint (vide = pas encore active) -->
+	<form class="parcoursDevis" id="parcoursDevis" data-endpoint="" novalidate>
+
+		<div class="progressionDevis" aria-live="polite">
+			<p class="etapeDevis" id="etapeDevis">Étape 1 sur 4</p>
+			<div class="barreDevis"><span class="barreDevisRemplie" id="barreDevis"></span></div>
+		</div>
+
+		<!-- Etape 1 -->
+		<fieldset class="etapeParcours" data-etape="1">
+			<legend class="titreEtapeDevis">Quels travaux envisagez-vous ?</legend>
+			<p class="sousTitreEtapeDevis">Sélectionnez un ou plusieurs projets, on s'occupe du reste.</p>
+			<div class="grilleProduitsDevis">
+				{
+					produitsAvecMiniature.map(({ titre, image, Icone, miniature }) => (
+						<label class="optionDevis carteProduitDevis">
+							<input type="checkbox" name="travaux" value={titre} data-miniature={miniature} />
+							<span class="visuelProduitDevis">
+								{image ? <Image src={image} alt="" width={360} /> : <Icone size={44} color="#ffffff" />}
+							</span>
+							<span class="titreProduitDevis">{titre}</span>
+							<span class="coche"><Check size={15} color="#ffffff" /></span>
+						</label>
+					))
+				}
+			</div>
+		</fieldset>
+
+		<!-- Etape 2 -->
+		<fieldset class="etapeParcours" data-etape="2" hidden>
+			<legend class="titreEtapeDevis">Sous quel délai ?</legend>
+			<p class="sousTitreEtapeDevis">Cela nous aide à organiser notre visite technique.</p>
+			<div class="grilleDelaisDevis">
+				{
+					delais.map(({ titre, detail, Icone }) => (
+						<label class="optionDevis carteDelaiDevis">
+							<input type="radio" name="delai" value={titre} />
+							<span class="iconeDelaiDevis"><Icone size={22} /></span>
+							<span class="titreDelaiDevis">{titre}</span>
+							<span class="detailDelaiDevis">{detail}</span>
+						</label>
+					))
+				}
+			</div>
+		</fieldset>
+
+		<!-- Etape 3 -->
+		<fieldset class="etapeParcours" data-etape="3" hidden>
+			<legend class="titreEtapeDevis">Comment vous joindre ?</legend>
+			<p class="sousTitreEtapeDevis">Un conseiller vous recontacte sous 48h ouvrées.</p>
+
+			<div class="champsDevis">
+				<label class="champDevis"><span>Prénom</span><input type="text" name="prenom" autocomplete="given-name" required /></label>
+				<label class="champDevis"><span>Nom</span><input type="text" name="nom" autocomplete="family-name" required /></label>
+				<label class="champDevis"><span>Code postal</span><input type="text" name="codePostal" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required /></label>
+				<label class="champDevis"><span>Téléphone</span><input type="tel" name="telephone" autocomplete="tel" required /></label>
+				<label class="champDevis champLarge"><span>Email</span><input type="email" name="email" autocomplete="email" required /></label>
+				<label class="champDevis champLarge"><span>Votre projet en quelques mots (facultatif)</span><textarea class="grandTextFormDevis" name="message" rows="3"></textarea></label>
 			</div>
 
-			<!-- Etape 1 -->
-			<fieldset class="etapeParcours" data-etape="1">
-				<legend class="titreEtapeDevis">Quels travaux envisagez-vous ?</legend>
-				<p class="sousTitreEtapeDevis">Sélectionnez un ou plusieurs projets.</p>
-				<div class="grilleProduitsDevis">
-					{
-						produits.map(({ titre, image, Icone }) => (
-							<label class="optionDevis carteProduitDevis">
-								<input type="checkbox" name="travaux" value={titre} />
-								<span class="visuelProduitDevis">
-									{image ? <Image src={image} alt="" width={320} /> : <Icone size={36} color="#16273B" />}
-									<span class="coche"><Check size={14} color="#ffffff" /></span>
-								</span>
-								<span class="titreProduitDevis">{titre}</span>
-							</label>
-						))
-					}
-				</div>
-			</fieldset>
-
-			<!-- Etape 2 -->
-			<fieldset class="etapeParcours" data-etape="2" hidden>
-				<legend class="titreEtapeDevis">Sous quel délai ?</legend>
-				<p class="sousTitreEtapeDevis">Cela nous aide à organiser notre visite technique.</p>
-				<div class="grilleDelaisDevis">
-					{
-						delais.map(({ titre, detail }) => (
-							<label class="optionDevis carteDelaiDevis">
-								<input type="radio" name="delai" value={titre} />
-								<span class="titreDelaiDevis">{titre}</span>
-								<span class="detailDelaiDevis">{detail}</span>
-							</label>
-						))
-					}
-				</div>
-			</fieldset>
-
-			<!-- Etape 3 -->
-			<fieldset class="etapeParcours" data-etape="3" hidden>
-				<legend class="titreEtapeDevis">Vos coordonnées</legend>
-				<p class="sousTitreEtapeDevis">Un conseiller vous recontacte sous 48h ouvrées.</p>
-
-				<div class="containerNpDevis">
-					<input type="text" name="nom" placeholder="Nom" autocomplete="family-name" required />
-					<input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" required />
-				</div>
-				<div class="containerTcDevis">
-					<input type="text" name="codePostal" placeholder="Code postal" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required />
-					<input type="tel" name="telephone" placeholder="Téléphone" autocomplete="tel" required />
-				</div>
-				<input type="email" name="email" placeholder="Email" autocomplete="email" required />
-				<textarea class="grandTextFormDevis" name="message" placeholder="Votre projet en quelques mots (facultatif)" rows="4"></textarea>
-
-				<div class="checkFormDevis">
-					<input type="checkbox" required id="consentementDevis" name="consentement" />
-					<label class="checkText" for="consentementDevis"> J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
-				</div>
-			</fieldset>
-
-			<!-- Etape 4 : confirmation avant envoi (remplie par devisParcours.js) -->
-			<fieldset class="etapeParcours" data-etape="4" hidden>
-				<legend class="titreEtapeDevis">Tout est correct ?</legend>
-				<p class="sousTitreEtapeDevis">Vérifiez vos informations avant d'envoyer votre demande.</p>
-				<dl class="recapDevis">
-					<div class="ligneRecapDevis"><dt>Travaux</dt><dd id="recapTravaux"></dd><button type="button" class="modifierRecapDevis" data-aller="1">Modifier</button></div>
-					<div class="ligneRecapDevis"><dt>Délai</dt><dd id="recapDelai"></dd><button type="button" class="modifierRecapDevis" data-aller="2">Modifier</button></div>
-					<div class="ligneRecapDevis"><dt>Contact</dt><dd id="recapContact"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
-					<div class="ligneRecapDevis" id="ligneRecapMessage" hidden><dt>Message</dt><dd id="recapMessage"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
-				</dl>
-			</fieldset>
-
-			<p class="messageDevis" id="messageDevis" role="alert" hidden></p>
-
-			<div class="actionsDevis">
-				<button type="button" class="boutonRetourDevis" id="retourDevis" hidden>Retour</button>
-				<button type="button" class="boutonFormDevis" id="suivantDevis" disabled>Continuer</button>
-				<button type="submit" class="boutonFormDevis" id="envoyerDevis" hidden>Confirmer et envoyer</button>
+			<div class="checkFormDevis">
+				<input type="checkbox" required id="consentementDevis" name="consentement" />
+				<label class="checkText" for="consentementDevis">J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
 			</div>
+		</fieldset>
 
-		</form>
-	</div>
+		<!-- Etape 4 : confirmation avant envoi (remplie par devisParcours.js) -->
+		<fieldset class="etapeParcours" data-etape="4" hidden>
+			<legend class="titreEtapeDevis">Tout est correct ?</legend>
+			<p class="sousTitreEtapeDevis">Vérifiez vos informations avant d'envoyer votre demande.</p>
+			<dl class="recapDevis">
+				<div class="ligneRecapDevis"><dt>Travaux</dt><dd id="recapTravaux"></dd><button type="button" class="modifierRecapDevis" data-aller="1">Modifier</button></div>
+				<div class="ligneRecapDevis"><dt>Délai</dt><dd id="recapDelai"></dd><button type="button" class="modifierRecapDevis" data-aller="2">Modifier</button></div>
+				<div class="ligneRecapDevis"><dt>Contact</dt><dd id="recapContact"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
+				<div class="ligneRecapDevis" id="ligneRecapMessage" hidden><dt>Message</dt><dd id="recapMessage"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
+			</dl>
+		</fieldset>
+
+		<p class="messageDevis" id="messageDevis" role="alert" hidden></p>
+
+		<div class="actionsDevis">
+			<button type="button" class="boutonRetourDevis" id="retourDevis" hidden>Retour</button>
+			<button type="button" class="boutonFormDevis" id="suivantDevis" disabled>Continuer</button>
+			<button type="submit" class="boutonFormDevis" id="envoyerDevis" hidden>Confirmer et envoyer</button>
+		</div>
+
+	</form>
 </div>
 
 <script src="../js/devisParcours.js"></script>
