@@ -115,11 +115,35 @@ nav a,
 }
 
 .telephone {
-    font-weight: bold;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #16273B;
+    white-space: nowrap;
     display: inline-flex;
     align-items: center;
+    gap: 0.55rem;
     min-height: 44px;
     padding: 0 0.5rem;
+}
+.iconeTelephone{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #EEF6E7;
+    color: #3E7C1F;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.telephone:hover .iconeTelephone{
+    background: #6FBE2C;
+    color: #ffffff;
+}
+
+/* Telephone dans la barre (mobile/tablette) : cache sur desktop */
+.telephone-mobile{
+    display: none;
 }
 
 .bouton-devis {
@@ -131,6 +155,7 @@ nav a,
     background: #6FBE2C;
     color: white;
     font-weight: bold;
+    white-space: nowrap;
     transition: transform 0.2s ease, filter 0.2s ease;
     animation: pulseDevis 2.6s ease-in-out infinite;
 }
@@ -188,6 +213,26 @@ nav a,
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .telephone-mobile{
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-left: auto;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        background: #6FBE2C;
+        color: #16273B;
+        font-weight: 800;
+        font-size: 0.95rem;
+        text-decoration: none;
+        white-space: nowrap;
+        min-height: 44px;
+        box-sizing: border-box;
+    }
+    /* le numero apparait aussi dans le menu ouvert : inutile de le doubler */
+    .navbar .contact .telephone{
+        display: none;
     }
 
     /* nav et .contact passent chacun sur leur propre ligne, en dessous du
@@ -251,4 +296,21 @@ nav a,
     .bouton-devis{
         text-align: center;
     }
+}
+
+/* Tres petits ecrans : l'icone seule garde la pastille d'appel visible */
+@media (max-width: 380px){
+    .telephone-mobile span{ display: none; }
+    .telephone-mobile{ padding: 0.55rem 0.8rem; }
+}
+
+/* Ordinateur etroit : on garde le numero entier sur une ligne en resserrant le reste */
+@media (min-width: 901px) and (max-width: 1300px){
+    nav a{ white-space: nowrap; font-size: 0.95rem; }
+    nav ul{ gap: 0.9rem; }
+    .contact{ gap: 0.6rem; }
+    .telephone{ font-size: 1rem; padding: 0 0.25rem; }
+    .iconeTelephone{ width: 28px; height: 28px; }
+    .bouton-devis{ padding: 0.5rem 0.9rem; }
+    .logo{ width: 130px; }
 }

@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../../assets/logo-mipe-habitat.jpeg';
-import {ChevronDown, Menu, X, CalendarClock, Check} from '@lucide/astro';
+import {ChevronDown, Menu, X, CalendarClock, Check, Phone} from '@lucide/astro';
 import '../../styles/styleComponents/Nav-Footer/Navbar.css';
 import '../../styles/global.css';
 
@@ -54,6 +54,12 @@ const pageActuelle = Astro.url.pathname;
 <header class="navbar" id="navbar">
 	<Image class="logo" src={logoImage} alt={"Image du logo"} />
 
+	<!-- Telephone toujours visible dans la barre en mode mobile/tablette (le menu, lui, est replie) -->
+	<a class="telephone-mobile" href="tel:0375190160" aria-label="Appeler MIPE Habitat au 03 75 19 01 60">
+		<Phone size={18} />
+		<span>03 75 19 01 60</span>
+	</a>
+
 	<button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navbar">
 		<Menu class="iconeBurger iconeBurgerOuvrir" size={24} />
 		<X class="iconeBurger iconeBurgerFermer" size={24} />
@@ -84,7 +90,7 @@ const pageActuelle = Astro.url.pathname;
 	</nav>
 
 	<div class="contact">
-		<a class="telephone" href="tel:0375190160">03 75 19 01 60</a>
+		<a class="telephone" href="tel:0375190160"><span class="iconeTelephone"><Phone size={16} /></span>03 75 19 01 60</a>
 		<a class="bouton-devis" href="/demander-un-devis"><CalendarClock class="calendar" size={20} color="#fff"/>Prendre RDV</a>
 	</div>
 </header>
