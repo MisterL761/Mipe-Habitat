@@ -25,3 +25,12 @@ pnpm-debug.log*
 
 # Fichiers temporaires du navigateur de test
 .playwright-mcp/
+
+# Script PHP des avis Google : secrets OAuth, dépendances et logs
+avis-google/config.php
+avis-google/vendor/
+avis-google/composer.lock
+avis-google/*.log
+avis-google/token*.json
+.env.*
+!.env.example
