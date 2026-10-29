@@ -121,24 +121,21 @@ nav a,
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.5rem;
     min-height: 44px;
-    padding: 0 0.5rem;
+    padding: 0 1.1rem 0 0.9rem;
+    border-radius: 999px;
+    background: #EEF6E7;
+    transition: background-color 0.2s ease;
 }
 .iconeTelephone{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #EEF6E7;
     color: #3E7C1F;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease, color 0.2s ease;
 }
-.telephone:hover .iconeTelephone{
-    background: #6FBE2C;
-    color: #ffffff;
+.telephone:hover{
+    background: #DCEECB;
 }
 
 /* Telephone dans la barre (mobile/tablette) : cache sur desktop */
@@ -309,8 +306,7 @@ nav a,
     nav a{ white-space: nowrap; font-size: 0.95rem; }
     nav ul{ gap: 0.9rem; }
     .contact{ gap: 0.6rem; }
-    .telephone{ font-size: 1rem; padding: 0 0.25rem; }
-    .iconeTelephone{ width: 28px; height: 28px; }
+    .telephone{ font-size: 1rem; padding: 0 0.8rem 0 0.7rem; }
     .bouton-devis{ padding: 0.5rem 0.9rem; }
     .logo{ width: 130px; }
 }
