@@ -44,6 +44,11 @@
 .sectionFinitions{
     margin: 4rem 4rem 0 4rem;
 }
+/* refonteAccueil.css supprime la marge haute des sections en bande : l'espace
+   sous la bande sombre du dessus est donc porte par un padding. */
+.refonte > section.sectionFinitions{
+    padding-top: 3rem;
+}
 .carteFinitions{
     background-color: #16273B;
     border-radius: 28px;
@@ -163,7 +168,10 @@
         margin: 2.5rem 1.5rem 0 1.5rem;
     }
     .refonte .sectionFinitions{
-        margin: 2.5rem var(--gouttiere, 1.5rem) 0 var(--gouttiere, 1.5rem);
+        margin: 0 var(--gouttiere, 1.5rem);
+    }
+    .refonte > section.sectionFinitions{
+        padding-top: 2.5rem;
     }
     .carteFinitions{
         flex-direction: column;
