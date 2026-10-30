@@ -1389,8 +1389,9 @@
     .refonte > section.containerImageDroite:not(:first-of-type) .imageDroite img{
         box-shadow: 8px 8px 0 #6FBE2C;
     }
+    /* pas de chevauchement sur mobile/tablette : on laisse respirer sous la hero */
     .refonte > section.containerImageDroite:first-of-type + section.containerAtout{
-        margin-top: 0;
+        margin-top: 2rem;
     }
 }
 .refonte > section.containerImageGauche + section.containerAtout{
