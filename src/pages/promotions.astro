@@ -6,7 +6,7 @@ import Footer from '../components/Nav-Footer/Footer.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/promotions.css';
-import { Check, Gift, CalendarClock, ArrowRight, Phone } from '@lucide/astro';
+import { Check, Gift, CalendarClock, Phone } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import { offres } from '../data/offres.js';
 
@@ -63,7 +63,7 @@ const offresActives = offres
 								<CalendarClock size={16} />
 								{offre.finFormatee ? `Offre valable jusqu’au ${offre.finFormatee}.` : offre.validite}
 							</p>
-							<a class="boutonOffre" href={offre.cta.lien}>{offre.cta.texte}<ArrowRight size={16} /></a>
+							<a class="boutonOffre" href={offre.cta.lien}><CalendarClock size={16} />{offre.cta.texte}</a>
 						</div>
 					</article>
 				)) : (
@@ -82,7 +82,7 @@ const offresActives = offres
 				<p>Un conseiller vous répond et étudie votre projet, sans engagement.</p>
 			</div>
 			<div class="actionsQuestionOffres">
-				<a class="boutonOffre" href="/demander-un-devis">Demander un devis gratuit<ArrowRight size={16} /></a>
+				<a class="boutonOffre" href="/demander-un-devis"><CalendarClock size={16} />Prendre RDV</a>
 				<a class="boutonOffre boutonOffreClair" href="tel:0375190160"><Phone size={16} />03 75 19 01 60</a>
 			</div>
 		</section>
