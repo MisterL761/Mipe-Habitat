@@ -22,6 +22,6 @@ export const offres = [
 		validite: 'Offre valable dans la limite des stocks disponibles.',
 		image: 'offre-panneau.webp',
 		imageAlt: 'Kit solaire Plug & Play installé sur une terrasse',
-		cta: { texte: 'Profiter de l’offre', lien: '/demander-un-devis' },
+		cta: { texte: 'Demander un devis', lien: '/demander-un-devis' },
 	},
 ];

@@ -235,13 +235,3 @@
         font-size: 1.3rem;
     }
 }
-
-.offreToutes{
-    display: inline-block;
-    margin-top: 0.9rem;
-    margin-left: 1rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #3E7C1F;
-    text-decoration: underline;
-}

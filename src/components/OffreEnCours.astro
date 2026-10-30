@@ -17,7 +17,7 @@ const offre = premiere && {
 	disclaimer: premiere.mentions,
 	dateFin: premiere.dateFin,
 	validite: premiere.validite,
-	cta: premiere.cta,
+	cta: { texte: 'En savoir plus', lien: `/promotions#${premiere.id}` },
 };
 
 const dateFinFormatee = offre?.dateFin
@@ -73,7 +73,6 @@ const dateFinFormatee = offre?.dateFin
 				{offre.cta.texte}
 				<ArrowRight size={16} />
 			</a>
-			<a href="/promotions" class="offreToutes">Voir toutes les offres</a>
 		</div>
 	</div>
 </div>
