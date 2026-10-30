@@ -96,8 +96,8 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<div class="colonneAvis colonneMonte">
 					<div class="colonneAvisPiste">
 						{
-							colonneADefilement.map(({ note, texte, zone, cp, auteur }) => (
-								<div class="carteAvis">
+							colonneADefilement.map(({ note, texte, zone, cp, auteur }, i) => (
+								<div class:list={['carteAvis', { carteAvisDoublon: i >= avisColonneA.length }]} aria-hidden={i >= avisColonneA.length ? 'true' : undefined}>
 									<div class="etoiles">
 										{Array.from({ length: 5 }).map((_, i) => (
 											<Star
@@ -118,8 +118,8 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<div class="colonneAvis colonneDescend">
 					<div class="colonneAvisPiste">
 						{
-							colonneBDefilement.map(({ note, texte, zone, cp, auteur }) => (
-								<div class="carteAvis">
+							colonneBDefilement.map(({ note, texte, zone, cp, auteur }, i) => (
+								<div class:list={['carteAvis', { carteAvisDoublon: i >= avisColonneB.length }]} aria-hidden={i >= avisColonneB.length ? 'true' : undefined}>
 									<div class="etoiles">
 										{Array.from({ length: 5 }).map((_, i) => (
 											<Star
