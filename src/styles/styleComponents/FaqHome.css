@@ -47,3 +47,37 @@
     color: #4A5B6B;
     margin-top: 1rem;
 }
+
+/* ===================== Responsive =====================
+   Largeur mobile-first : pleine largeur sur mobile, puis 82% en tablette,
+   puis les 65% d'origine sur ordinateur (avant : 65% partout, soit 228px
+   de large sur un telephone). */
+.faqHome{
+    width: 100%;
+    max-width: 860px;
+    box-sizing: border-box;
+}
+@media (min-width: 700px){
+    .faqHome{ width: 82%; }
+}
+@media (min-width: 1100px){
+    .faqHome{ width: 65%; }
+}
+.questionFaqHome{
+    min-height: 44px;
+}
+@media (max-width: 600px){
+    .faqHome{
+        padding: 0.9rem 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+    .questionFaqHome{
+        font-size: 1rem;
+        line-height: 1.35;
+    }
+    .reponseFaqHome{
+        font-size: 0.95rem;
+        line-height: 1.55;
+        margin-top: 0.75rem;
+    }
+}
