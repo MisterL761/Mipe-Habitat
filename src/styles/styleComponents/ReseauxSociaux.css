@@ -71,3 +71,33 @@
         gap: 3rem;
     }
 }
+
+/* Mobile : moins d'air entre la fin des avis et le bloc "Suivez-nous"
+   (les paddings de la section avis, de la section sociale et du bandeau
+   s'additionnaient : ~200px de vide). */
+@media (max-width: 600px){
+    .refonte .avisContainer{
+        padding-bottom: 1.5rem;
+    }
+    .refonte .sectionSocial{
+        padding: 0 1rem 2rem 1rem;
+    }
+    .refonte .bandeauSocial{
+        padding: 1.5rem 0 0 0;
+        gap: 1.1rem;
+    }
+}
+
+/* Le lien « Voir tous nos avis » est sur le fond bleu nuit : texte clair (il etait bleu nuit, donc invisible). */
+.refonte .voirTousAvis a{
+    color: #ffffff;
+    text-decoration-color: var(--vert, #6FBE2C);
+    text-underline-offset: 4px;
+}
+@media (max-width: 600px){
+    .refonte .voirTousAvis a{
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+}
