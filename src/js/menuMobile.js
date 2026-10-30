@@ -1,4 +1,4 @@
-// Ouvre/ferme le menu mobile (navbar en dessous de 900px de large).
+// Ouvre/ferme le menu mobile (navbar en dessous de 1100px de large).
 // On ajoute juste la classe "menuOuvert" sur le header : c'est le CSS
 // (media query) qui decide quoi en faire.
 const navbar = document.getElementById('navbar');

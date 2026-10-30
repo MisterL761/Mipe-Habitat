@@ -201,8 +201,10 @@ nav a,
     display: block;
 }
 
-/* ===================== Navbar mobile (<= 900px) ===================== */
-@media (max-width: 900px){
+/* ===================== Navbar mobile / tablette (<= 1100px) =====================
+   En dessous de 1100px les 6 liens + telephone + bouton RDV ne tiennent plus
+   sur une ligne : on bascule sur le menu burger. */
+@media (max-width: 1100px){
     .navbar{
         flex-wrap: wrap;
     }
@@ -302,7 +304,7 @@ nav a,
 }
 
 /* Ordinateur etroit : on garde le numero entier sur une ligne en resserrant le reste */
-@media (min-width: 901px) and (max-width: 1300px){
+@media (min-width: 1101px) and (max-width: 1300px){
     nav a{ white-space: nowrap; font-size: 0.95rem; }
     nav ul{ gap: 0.9rem; }
     .contact{ gap: 0.6rem; }
