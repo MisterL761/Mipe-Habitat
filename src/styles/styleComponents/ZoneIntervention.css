@@ -33,6 +33,10 @@
 
 .carteZone{
     position: relative;
+    /* contexte d'empilement propre : les calques Leaflet et la legende (z-index
+       jusqu'a 1000) restent DANS la carte et passent sous la navbar au scroll */
+    z-index: 0;
+    isolation: isolate;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid #E4E7E2;
