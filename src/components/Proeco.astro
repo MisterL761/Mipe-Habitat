@@ -4,20 +4,26 @@ import Logo3D from './Logo3D.astro';
 // l'accueil (deplace depuis la page qualifications, a la demande du client).
 import { Image } from 'astro:assets';
 import logoProeco from '../assets/image/logo_reseau-proeco-energies_green.svg';
+import logoFfb from '../assets/image/Logo-fede-francaise-batiment.png';
 import '../styles/styleComponents/Proeco.css';
 ---
 
 <section class="sectionProeco reveal">
     <Logo3D position="bas-droite" taille={120} />
 	<div class="containerProeco">
-		<div class="logoProecoWrapper">
-			<Image src={logoProeco} alt="Logo du Réseau Proéco-Énergies" width={280} height={110} />
+		<div class="logosProeco">
+			<div class="logoProecoWrapper">
+				<Image src={logoProeco} alt="Logo du Réseau Proéco-Énergies" width={280} height={110} />
+			</div>
+			<div class="logoProecoWrapper">
+				<Image src={logoFfb} alt="FFB, Fédération Française du Bâtiment" width={160} class="logoFfbProeco" />
+			</div>
 		</div>
 		<div class="texteProeco">
 			<p class="petitTitre">Notre réseau</p>
-			<h2 class="titreProeco">Membre du Réseau Proéco-Énergies</h2>
-			<p class="descProeco">MIPE Habitat est membre du Réseau Proéco-Énergies, un regroupement national d'artisans et d'entreprises du bâtiment engagés pour la performance énergétique de l'habitat. Le réseau réunit des professionnels indépendants partout en France, sélectionnés pour leur expertise et leur fiabilité.</p>
-			<a href="https://www.reseau-proeco-energies.fr" target="_blank" rel="noopener" class="lienProeco">Découvrir le réseau</a>
+			<h2 class="titreProeco">Membre du Réseau Proéco-Énergies et de la FFB</h2>
+			<p class="descProeco">MIPE Habitat est membre du Réseau Proéco-Énergies, un regroupement national d'artisans et d'entreprises du bâtiment engagés pour la performance énergétique de l'habitat, et adhérente de la Fédération Française du Bâtiment (FFB), la première organisation professionnelle du secteur. Le réseau réunit des professionnels indépendants partout en France, sélectionnés pour leur expertise et leur fiabilité ; la FFB, elle, porte un engagement de sérieux, de respect des règles de l'art et de qualité de service.</p>
+			<a href="https://www.reseau-proeco-energies.fr/artisan/mipe-habitat-2026" target="_blank" rel="noopener" class="lienProeco">Voir notre fiche sur le réseau</a>
 		</div>
 	</div>
 </section>

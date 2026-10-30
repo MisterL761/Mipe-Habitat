@@ -3,6 +3,7 @@ import { Star } from '@lucide/astro';
 import '../styles/styleComponents/Avis.css';
 import '../styles/global.css';
 import { Image } from 'astro:assets';
+import { noteGoogle } from '../utils/noteGoogle.js';
 import logoPagesJaunes from '../assets/image/pageJaune.png';
 
 // Liens des fiches d'avis. A REMPLACER par les liens directs de tes fiches :
@@ -21,10 +22,30 @@ const avis = [
 	{ note: 4, texte: "Bon relationnel du début à la fin, et un vrai suivi sur le dossier MaPrimeRénov'.", zone: 'Seine-et-Marne', cp: '77' },
 ];
 
+// Avis Google reels (src/data/avis-google.json) : si le fichier est absent,
+// on garde les avis ci-dessus.
+const fichiersAvisGoogle = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
+const donneesGoogle = Object.values(fichiersAvisGoogle)[0];
+
+// Nom public : prenom + initiale du nom ("Marie D.")
+const nomPublic = (nom) => {
+	const [prenom, ...reste] = (nom || '').trim().split(/\s+/);
+	return reste.length ? `${prenom} ${reste[reste.length - 1][0]}.` : prenom || 'Client';
+};
+
+if (donneesGoogle?.avis) {
+	const reels = donneesGoogle.avis
+		.filter((a) => a.note >= 4 && a.commentaire && a.commentaire.length >= 60 && a.commentaire.length <= 260)
+		.sort((a, b) => new Date(b.date) - new Date(a.date))
+		.slice(0, 12)
+		.map((a) => ({ note: a.note, texte: a.commentaire, auteur: nomPublic(a.auteur) }));
+	if (reels.length >= 6) avis.splice(0, avis.length, ...reels);
+}
+
 // Les avis sont repartis en 2 colonnes (une qui monte, une qui descend),
 // chacune doublee pour boucler le defilement vertical sans coupure visible.
-const avisColonneA = [avis[0], avis[2], avis[4]];
-const avisColonneB = [avis[1], avis[3], avis[5]];
+const avisColonneA = avis.filter((_, i) => i % 2 === 0);
+const avisColonneB = avis.filter((_, i) => i % 2 === 1);
 const colonneADefilement = [...avisColonneA, ...avisColonneA];
 const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 ---
@@ -46,13 +67,13 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 							<path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
 						</svg>
 						<div class="recapNoteAvis">
-							<span class="grandeNoteAvis" data-cible="4,8">0,0</span>
+							<span class="grandeNoteAvis" data-cible={noteGoogle.moyenneTexte}>0,0</span>
 							<div class="etoilesRecap" aria-hidden="true">
 								<div class="etoilesFond">★★★★★</div>
-								<div class="etoilesRemplies" data-largeur-cible="96" style="width: 0%">★★★★★</div>
+								<div class="etoilesRemplies" data-largeur-cible={noteGoogle.largeurEtoiles} style="width: 0%">★★★★★</div>
 							</div>
 						</div>
-						<p class="nombreAvisGoogle">+ de 250 avis Google</p>
+						<p class="nombreAvisGoogle">{noteGoogle.libelle}</p>
 					</a>
 
 					<a class="sourceAvis" href={lienAvisPagesJaunes} target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur PagesJaunes (nouvel onglet)">
@@ -73,8 +94,8 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<div class="colonneAvis colonneMonte">
 					<div class="colonneAvisPiste">
 						{
-							colonneADefilement.map(({ note, texte, zone, cp }) => (
-								<div class="carteAvis">
+							colonneADefilement.map(({ note, texte, zone, cp, auteur }, i) => (
+								<div class:list={['carteAvis', { carteAvisDoublon: i >= avisColonneA.length }]} aria-hidden={i >= avisColonneA.length ? 'true' : undefined}>
 									<div class="etoiles">
 										{Array.from({ length: 5 }).map((_, i) => (
 											<Star
@@ -85,7 +106,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 										))}
 									</div>
 									<p class="texteAvis">{texte}</p>
-									<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
+									<p class="auteurAvis">{auteur ? `${auteur} — avis Google` : `Client MIPE Habitat — ${zone} (${cp})`}</p>
 								</div>
 							))
 						}
@@ -95,8 +116,8 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 				<div class="colonneAvis colonneDescend">
 					<div class="colonneAvisPiste">
 						{
-							colonneBDefilement.map(({ note, texte, zone, cp }) => (
-								<div class="carteAvis">
+							colonneBDefilement.map(({ note, texte, zone, cp, auteur }, i) => (
+								<div class:list={['carteAvis', { carteAvisDoublon: i >= avisColonneB.length }]} aria-hidden={i >= avisColonneB.length ? 'true' : undefined}>
 									<div class="etoiles">
 										{Array.from({ length: 5 }).map((_, i) => (
 											<Star
@@ -107,7 +128,7 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 										))}
 									</div>
 									<p class="texteAvis">{texte}</p>
-									<p class="auteurAvis">Client MIPE Habitat — {zone} ({cp})</p>
+									<p class="auteurAvis">{auteur ? `${auteur} — avis Google` : `Client MIPE Habitat — ${zone} (${cp})`}</p>
 								</div>
 							))
 						}
@@ -120,3 +141,4 @@ const colonneBDefilement = [...avisColonneB, ...avisColonneB];
 </section>
 
 <script src="../js/compteurAvis.js"></script>
+<script src="../js/avisDefilementMobile.js"></script>

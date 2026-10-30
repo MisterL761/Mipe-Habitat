@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import BulleSimulation from '../components/BulleSimulation.astro';
+import PastilleGoogle from '../components/PastilleGoogle.astro';
 import OffreEnCours from '../components/OffreEnCours.astro';
 
 interface Props {
@@ -44,6 +45,7 @@ const {
 		<div class="site-contenu">
 			<slot />
 			<BulleSimulation></BulleSimulation>
+			<PastilleGoogle></PastilleGoogle>
 			<OffreEnCours></OffreEnCours>
 		</div>
 

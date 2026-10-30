@@ -1,0 +1,95 @@
+---
+import '../styles/refonteAccueil.css';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/promotions.css';
+import { Check, Gift, CalendarClock, Phone } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import { offres } from '../data/offres.js';
+
+// Les images d'offres sont chargees par nom de fichier depuis src/assets/image
+const images = import.meta.glob('../assets/image/*.{webp,png,jpg,jpeg}', { eager: true, import: 'default' });
+
+const aujourdhui = new Date();
+aujourdhui.setHours(0, 0, 0, 0);
+
+const offresActives = offres
+	.filter((o) => o.actif && (!o.dateFin || new Date(o.dateFin) >= aujourdhui))
+	.map((o) => ({
+		...o,
+		photo: o.image ? images[`../assets/image/${o.image}`] : null,
+		finFormatee: o.dateFin
+			? new Date(o.dateFin).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+			: null,
+	}));
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<div class="refonte">
+		<FilAriane items={[{ label: 'Promotions' }]} />
+
+		<section class="enteteOffres">
+			<p class="petitTitre">Promotions</p>
+			<h1 class="titreOffres">Les offres du moment</h1>
+			<p class="descOffres">Profitez des avantages réservés à nos clients sur vos travaux de rénovation. Chaque offre précise ses conditions et sa durée de validité.</p>
+		</section>
+
+		<section class="listeOffres">
+			{
+				offresActives.length > 0 ? offresActives.map((offre) => (
+					<article class="carteOffre reveal" id={offre.id}>
+						{offre.photo && (
+							<div class="photoOffre">
+								<Image src={offre.photo} alt={offre.imageAlt || offre.titre} width={720} quality={75} />
+								<span class="etiquetteOffre"><Gift size={15} />{offre.etiquette}</span>
+							</div>
+						)}
+						<div class="contenuOffre">
+							{!offre.photo && <span class="etiquetteOffre etiquetteSeule"><Gift size={15} />{offre.etiquette}</span>}
+							<h2 class="titreCarteOffre">{offre.titre}</h2>
+							<p class="introOffre">{offre.intro}</p>
+							<ul class="pointsOffre">
+								{offre.points.map((point) => (
+									<li><Check size={16} color="#6FBE2C" /><span>{point}</span></li>
+								))}
+							</ul>
+							{offre.mentions && <p class="mentionsOffre">{offre.mentions}</p>}
+							<p class="validiteOffre">
+								<CalendarClock size={16} />
+								{offre.finFormatee ? `Offre valable jusqu’au ${offre.finFormatee}.` : offre.validite}
+							</p>
+							<a class="boutonOffre" href={offre.cta.lien}><CalendarClock size={16} />{offre.cta.texte}</a>
+						</div>
+					</article>
+				)) : (
+					<div class="aucuneOffre">
+						<Gift size={32} color="#6FBE2C" />
+						<h2>Pas d’offre en ce moment</h2>
+						<p>De nouvelles offres arrivent régulièrement. En attendant, demandez un devis gratuit : nous vous indiquerons les aides et avantages auxquels vous avez droit.</p>
+					</div>
+				)
+			}
+		</section>
+
+		<div class="blocQuestionOffres">
+		<section class="questionOffres">
+			<div>
+				<h2>Une question sur une offre ?</h2>
+				<p>Un conseiller vous répond et étudie votre projet, sans engagement.</p>
+			</div>
+			<div class="actionsQuestionOffres">
+				<a class="boutonOffre" href="/demander-un-devis"><CalendarClock size={16} />Prendre RDV</a>
+				<a class="boutonOffre boutonOffreClair" href="tel:0375190160"><Phone size={16} />03 75 19 01 60</a>
+			</div>
+		</section>
+		</div>
+
+		</div>
+		<Footer></Footer>
+	</main>
+</Layout>

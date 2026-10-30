@@ -1,63 +1,214 @@
 ---
 import '../styles/styleComponents/FormDemandeDevis.css';
 import '../styles/global.css';
+import { Image, getImage } from 'astro:assets';
+import Logo3D from './Logo3D.astro';
+import { Check, Warehouse, Wind, Zap, CalendarClock, CalendarRange, Hourglass, ShieldCheck, Clock, BadgeCheck, Star } from '@lucide/astro';
+
+import imgIte from '../assets/image/ite.jpeg';
+import imgIti from '../assets/image/iti.webp';
+import imgComble from '../assets/image/comble.webp';
+import imgAmenagement from '../assets/image/amenagement-comble.webp';
+import imgFenetre from '../assets/image/menuiserie.webp';
+import imgPorteEntree from '../assets/image/pe.webp';
+import imgPorteGarage from '../assets/image/porteGarage.webp';
+import imgVolet from '../assets/image/voletR.webp';
+import imgEnergie from '../assets/image/clim.webp';
+import imgVelux from '../assets/image/velux.webp';
+import imgToiture from '../assets/image/toiture.webp';
+
+// Etape 1 : les 12 produits. "image" = photo ; "Icone" = en attendant une
+// photo (la ventilation n'en a pas encore).
+const produits = [
+	{ titre: 'Isolation thermique extérieure', image: imgIte },
+	{ titre: 'Isolation thermique intérieure', image: imgIti },
+	{ titre: 'Isolation des combles', image: imgComble },
+	{ titre: 'Aménagement des combles', image: imgAmenagement },
+	{ titre: 'Fenêtres', image: imgFenetre },
+	{ titre: "Porte d'entrée", image: imgPorteEntree },
+	{ titre: 'Porte de garage et portail', image: imgPorteGarage },
+	{ titre: 'Volets et motorisation', image: imgVolet },
+	{ titre: 'Énergie et chauffage', image: imgEnergie },
+	{ titre: 'Velux', image: imgVelux },
+	{ titre: 'Nettoyage et entretien de toiture', image: imgToiture },
+	{ titre: 'Ventilation', Icone: Wind },
+];
+// Petite vignette pour le recapitulatif a gauche (une seule image generee par produit)
+const produitsAvecMiniature = await Promise.all(
+	produits.map(async (p) => ({ ...p, miniature: p.image ? (await getImage({ src: p.image, width: 96, height: 96, fit: 'cover' })).src : '' }))
+);
+
+// Etape 2 : delai du projet
+const delais = [
+	{ titre: 'Immédiat', detail: 'Dans les prochains jours', Icone: Zap },
+	{ titre: 'Sous 1 mois', detail: 'Ce mois-ci', Icone: CalendarClock },
+	{ titre: 'Sous 3 mois', detail: 'Ce trimestre', Icone: CalendarRange },
+	{ titre: 'Sous 6 mois ou plus', detail: 'Pas de contrainte de délai', Icone: Hourglass },
+];
+
+// Avis Google reels (src/data/avis-google.json) : le panneau affiche celui qui
+// correspond au projet choisi, ou un avis general. Sans fichier, pas de bloc avis.
+const fichiersAvis = import.meta.glob('../data/avis-google.json', { eager: true, import: 'default' });
+const donneesAvis = Object.values(fichiersAvis)[0];
+const sansAccent = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const nomPublic = (nom) => {
+	const [prenom, ...reste] = (nom || '').trim().split(/\s+/);
+	return reste.length ? `${prenom} ${reste[reste.length - 1][0]}.` : prenom || 'Client';
+};
+const candidats = (donneesAvis?.avis ?? [])
+	.filter((a) => a.note === 5 && a.commentaire && a.commentaire.length >= 70 && a.commentaire.length <= 240 && !a.commentaire.includes('\n'))
+	.sort((a, b) => new Date(b.date) - new Date(a.date));
+const motsCles = {
+	'Isolation thermique extérieure': /isolation (thermique )?(par l'|exterieure)|\bite\b/,
+	'Isolation des combles': /combles/,
+	'Aménagement des combles': /combles/,
+	'Porte de garage et portail': /garage|portail/,
+	'Volets et motorisation': /volet/,
+};
+const versAvis = (a) => ({ texte: a.commentaire, auteur: nomPublic(a.auteur) });
+const avisParProduit = Object.fromEntries(
+	Object.entries(motsCles).flatMap(([produit, re]) => {
+		const trouve = candidats.find((a) => re.test(sansAccent(a.commentaire)));
+		return trouve ? [[produit, versAvis(trouve)]] : [];
+	})
+);
+// avis general : le plus recent qui ne parle d'aucun produit en particulier
+const generaux = candidats.filter((a) => !Object.values(motsCles).some((re) => re.test(sansAccent(a.commentaire))));
+const avisParDefaut = (generaux[0] ?? candidats[0]) ? versAvis(generaux[0] ?? candidats[0]) : null;
+const donneesPanneau = JSON.stringify({ parProduit: avisParProduit, defaut: avisParDefaut });
+const noteTexte = donneesAvis?.moyenne ? String(donneesAvis.moyenne).replace('.', ',') : '4,8';
+
+const etapes = ['Vos travaux', 'Votre délai', 'Vos coordonnées', 'Confirmation'];
 ---
 
+<div class="parcoursDevisWrap">
 
-<div class="containerFormDevis">
+	<!-- Panneau de gauche : avancement, recapitulatif en direct, garanties -->
+	<aside class="panneauDevis" data-avis={donneesPanneau}>
+		<Logo3D variante="centre" taille={100} />
+		<div>
+			<p class="titrePanneauDevis">Votre devis gratuit en 4 étapes</p>
+		</div>
 
-        <div class="fromContainerDevis">
+		<div class="votreProjetDevis" id="votreProjetDevis" hidden>
+			<p class="titreVotreProjet">Votre projet</p>
+			<ul class="listeVotreProjet" id="listeVotreProjet"></ul>
+			<p class="delaiVotreProjet" id="delaiVotreProjet" hidden></p>
+		</div>
 
-            <form class="formDevis">
+		{ avisParDefaut && (
+			<figure class="avisPanneauDevis" id="avisPanneauDevis">
+				<div class="etoilesPanneauDevis" aria-label="5 étoiles sur 5">
+					{ [0, 1, 2, 3, 4].map(() => <Star size={15} fill="#F5B83D" color="#F5B83D" />) }
+				</div>
+				<blockquote class="texteAvisPanneau" id="texteAvisPanneau">« {avisParDefaut.texte} »</blockquote>
+				<figcaption class="auteurAvisPanneau"><span id="auteurAvisPanneau">{avisParDefaut.auteur}</span>, avis Google</figcaption>
+			</figure>
+		) }
 
-                <div class="containerNpDevis">
-                    <input type="text" placeholder="Nom" />
-                    <input type="text" placeholder="Prénom" />
-                </div>
-                <div class="containerTcDevis">
-                    <input type="number" placeholder="Code postal" />
-                    <input type="number" placeholder="Téléphone" />
-                </div>
+		<ul class="garantiesDevis">
+			<li><BadgeCheck size={18} /> Devis gratuit et sans engagement</li>
+			<li><Clock size={18} /> Réponse sous 48h ouvrées</li>
+			<li><ShieldCheck size={18} /> Artisans qualifiés RGE</li>
+		</ul>
+	</aside>
 
-                <input type="email" placeholder="Email" />
+	<!-- Parcours : l'envoi se branche via data-endpoint (vide = pas encore active) -->
+	<form class="parcoursDevis" id="parcoursDevis" data-endpoint="" novalidate>
 
-                <select aria-label="Type de projet">
-                    <option class="selection" value="" disabled selected >Type de projet</option>
-                    <option>Isolation thermique extérieure</option>
-                    <option>Isolation thermique intérieure</option>
-                    <option>Isolation des combles</option>
-                    <option>Ravalement de façade</option>
-                    <option>Menuiserie</option>
-                </select>
+		<ol class="etapesDevis" id="etapesDevis" aria-label="Étapes du devis">
+			{ etapes.map((nom, i) => (
+				<li class="etapeListeDevis" data-liste={i + 1}>
+					<span class="pastilleEtapeDevis"><span class="chiffreEtapeDevis">{i + 1}</span><Check size={14} class="cocheEtapeDevis" /></span>
+					<span class="nomEtapeDevis">{nom}</span>
+				</li>
+			)) }
+		</ol>
 
-                <textarea class="grandTextFormDevis" placeholder="Votre projet en quelques mots" rows="6"></textarea>
+		<div class="progressionDevis" aria-live="polite">
+			<p class="etapeDevis" id="etapeDevis">Étape 1 sur 4</p>
+			<div class="barreDevis"><span class="barreDevisRemplie" id="barreDevis"></span></div>
+		</div>
 
-                <div class="checkFormDevis">
-                    <input type="checkbox" required id="consentementDevis"/>
-                    <label class="checkText" for="consentementDevis"> J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
-                </div>
+		<!-- Etape 1 -->
+		<fieldset class="etapeParcours" data-etape="1">
+			<legend class="titreEtapeDevis">Quels travaux envisagez-vous ?</legend>
+			<p class="sousTitreEtapeDevis">Sélectionnez un ou plusieurs projets, on s'occupe du reste.</p>
+			<div class="grilleProduitsDevis">
+				{
+					produitsAvecMiniature.map(({ titre, image, Icone, miniature }) => (
+						<label class="optionDevis carteProduitDevis">
+							<input type="checkbox" name="travaux" value={titre} data-miniature={miniature} />
+							<span class="visuelProduitDevis">
+								{image ? <Image src={image} alt="" width={360} /> : <Icone size={44} color="#ffffff" />}
+							</span>
+							<span class="titreProduitDevis">{titre}</span>
+							<span class="coche"><Check size={15} color="#ffffff" /></span>
+						</label>
+					))
+				}
+			</div>
+		</fieldset>
 
-                <button class="boutonFormDevis">Envoyer ma demande</button>
+		<!-- Etape 2 -->
+		<fieldset class="etapeParcours" data-etape="2" hidden>
+			<legend class="titreEtapeDevis">Sous quel délai ?</legend>
+			<p class="sousTitreEtapeDevis">Cela nous aide à organiser notre visite technique.</p>
+			<div class="grilleDelaisDevis">
+				{
+					delais.map(({ titre, detail, Icone }) => (
+						<label class="optionDevis carteDelaiDevis">
+							<input type="radio" name="delai" value={titre} />
+							<span class="iconeDelaiDevis"><Icone size={22} /></span>
+							<span class="titreDelaiDevis">{titre}</span>
+							<span class="detailDelaiDevis">{detail}</span>
+						</label>
+					))
+				}
+			</div>
+		</fieldset>
 
-            </form>
-        </div>
-        <div class="coordonneDevis">
+		<!-- Etape 3 -->
+		<fieldset class="etapeParcours" data-etape="3" hidden>
+			<legend class="titreEtapeDevis">Comment vous joindre ?</legend>
+			<p class="sousTitreEtapeDevis">Un conseiller vous recontacte sous 48h ouvrées.</p>
 
-            <div class="cardCord">
-                <p class="titreCord">Coordonnées</p>
-                <p class="addressCord">11 Avenue des Meuniers, 60330 Le Plessis-Belleville</p>
-                <p class="numCord">03 75 19 01 60</p>
-                <p class="emailCord">contact@mipe-group.com</p>
-            </div>
+			<div class="champsDevis">
+				<label class="champDevis"><span>Prénom</span><input type="text" name="prenom" autocomplete="given-name" required /></label>
+				<label class="champDevis"><span>Nom</span><input type="text" name="nom" autocomplete="family-name" required /></label>
+				<label class="champDevis"><span>Code postal</span><input type="text" name="codePostal" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required /></label>
+				<label class="champDevis"><span>Téléphone</span><input type="tel" name="telephone" autocomplete="tel" required /></label>
+				<label class="champDevis champLarge"><span>Email</span><input type="email" name="email" autocomplete="email" required /></label>
+				<label class="champDevis champLarge"><span>Votre projet en quelques mots (facultatif)</span><textarea class="grandTextFormDevis" name="message" rows="3"></textarea></label>
+			</div>
 
-            <div class="cardHoraire">
-                <p class="titreHoraire">Horaires</p>
-                <p class="horaireSemaine">Lundi – Vendredi : 9h00 – 12h30, 13h30 – 17h00</p>
-                <p class="HoraireWeekEnd">Samedi – Dimanche : fermé</p>
-            </div>
+			<div class="checkFormDevis">
+				<input type="checkbox" required id="consentementDevis" name="consentement" />
+				<label class="checkText" for="consentementDevis">J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
+			</div>
+		</fieldset>
 
+		<!-- Etape 4 : confirmation avant envoi (remplie par devisParcours.js) -->
+		<fieldset class="etapeParcours" data-etape="4" hidden>
+			<legend class="titreEtapeDevis">Tout est correct ?</legend>
+			<p class="sousTitreEtapeDevis">Vérifiez vos informations avant d'envoyer votre demande.</p>
+			<dl class="recapDevis">
+				<div class="ligneRecapDevis"><dt>Travaux</dt><dd id="recapTravaux"></dd><button type="button" class="modifierRecapDevis" data-aller="1">Modifier</button></div>
+				<div class="ligneRecapDevis"><dt>Délai</dt><dd id="recapDelai"></dd><button type="button" class="modifierRecapDevis" data-aller="2">Modifier</button></div>
+				<div class="ligneRecapDevis"><dt>Contact</dt><dd id="recapContact"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
+				<div class="ligneRecapDevis" id="ligneRecapMessage" hidden><dt>Message</dt><dd id="recapMessage"></dd><button type="button" class="modifierRecapDevis" data-aller="3">Modifier</button></div>
+			</dl>
+		</fieldset>
 
-        </div>
+		<p class="messageDevis" id="messageDevis" role="alert" hidden></p>
+
+		<div class="actionsDevis">
+			<button type="button" class="boutonRetourDevis" id="retourDevis" hidden>Retour</button>
+			<button type="button" class="boutonFormDevis" id="suivantDevis" disabled>Continuer</button>
+			<button type="submit" class="boutonFormDevis" id="envoyerDevis" hidden>Confirmer et envoyer</button>
+		</div>
+
+	</form>
 </div>
 
-
+<script src="../js/devisParcours.js"></script>

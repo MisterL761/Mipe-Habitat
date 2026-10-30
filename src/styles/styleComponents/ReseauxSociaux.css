@@ -71,3 +71,19 @@
         gap: 3rem;
     }
 }
+
+/* Mobile : moins d'air entre la fin des avis et le bloc "Suivez-nous"
+   (les paddings de la section avis, de la section sociale et du bandeau
+   s'additionnaient : ~200px de vide). */
+@media (max-width: 600px){
+    .refonte .avisContainer{
+        padding-bottom: 1.5rem;
+    }
+    .refonte .sectionSocial{
+        padding: 0 1rem 2rem 1rem;
+    }
+    .refonte .bandeauSocial{
+        padding: 1.5rem 0 0 0;
+        gap: 1.1rem;
+    }
+}

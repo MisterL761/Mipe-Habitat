@@ -115,11 +115,32 @@ nav a,
 }
 
 .telephone {
-    font-weight: bold;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #16273B;
+    white-space: nowrap;
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
     min-height: 44px;
-    padding: 0 0.5rem;
+    padding: 0 1.1rem 0 0.9rem;
+    border-radius: 999px;
+    background: #EEF6E7;
+    transition: background-color 0.2s ease;
+}
+.iconeTelephone{
+    color: #3E7C1F;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.telephone:hover{
+    background: #DCEECB;
+}
+
+/* Telephone dans la barre (mobile/tablette) : cache sur desktop */
+.telephone-mobile{
+    display: none;
 }
 
 .bouton-devis {
@@ -131,6 +152,7 @@ nav a,
     background: #6FBE2C;
     color: white;
     font-weight: bold;
+    white-space: nowrap;
     transition: transform 0.2s ease, filter 0.2s ease;
     animation: pulseDevis 2.6s ease-in-out infinite;
 }
@@ -155,100 +177,305 @@ nav a,
     .bouton-devis{ animation: none; }
 }
 
-/* ===================== Bouton burger (menu mobile) ===================== */
-/* Cache par defaut (desktop) : visible uniquement sous 900px, voir plus bas. */
+/* ===================== Bouton burger (menu mobile) =====================
+   Pastille menthe de 44px avec trois traits qui se transforment en croix. */
 .burger{
     display: none;
-    background: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     border: none;
+    border-radius: 14px;
+    background: #EEF6E7;
     cursor: pointer;
-    padding: 0.5rem;
     color: #16273B;
+    transition: background-color 0.2s ease;
 }
+.burger:hover{
+    background: #DCEECB;
+}
+.burger:focus-visible{
+    outline: 2px solid #3E7C1F;
+    outline-offset: 2px;
+}
+.traitsBurger{
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 20px;
+    height: 14px;
+}
+.traitsBurger i{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease, width 0.3s ease;
+}
+.traitsBurger i:nth-child(1){ top: 0; }
+.traitsBurger i:nth-child(2){ top: 6px; width: 70%; }
+.traitsBurger i:nth-child(3){ top: 12px; }
+.navbar.menuOuvert .burger{
+    background: #16273B;
+    color: #ffffff;
+}
+.navbar.menuOuvert .traitsBurger i:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+.navbar.menuOuvert .traitsBurger i:nth-child(2){ opacity: 0; }
+.navbar.menuOuvert .traitsBurger i:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
 
-/* Les deux icones (burger et croix) sont superposees au meme endroit ;
-   seule une des deux est visible a la fois, selon que le menu est ouvert
-   ou non (voir regles ".menuOuvert" plus bas). */
-.iconeBurgerFermer{
+/* Ordinateur : le panneau n'existe pas (ses enfants s'integrent a la barre), pas de voile. */
+.panneauMenu{
+    display: contents;
+}
+.voileMenu{
     display: none;
 }
-.navbar.menuOuvert .iconeBurgerOuvrir{
+.horairesMenu{
     display: none;
 }
-.navbar.menuOuvert .iconeBurgerFermer{
-    display: block;
-}
 
-/* ===================== Navbar mobile (<= 900px) ===================== */
-@media (max-width: 900px){
-    .navbar{
-        flex-wrap: wrap;
-    }
+/* ===================== Navbar mobile / tablette (<= 1180px) =====================
+   En dessous de 1180px les 6 liens + telephone + bouton RDV ne tiennent plus
+   sur une ligne : on bascule sur le menu burger. Le menu est un panneau qui
+   se deroule SOUS la barre (position absolue : aucun decalage de la page). */
+@media (max-width: 1180px){
     .burger{
-        display: flex;
+        display: block;
+    }
+    .telephone-mobile{
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
+        gap: 0.45rem;
+        margin-left: auto;
+        margin-right: 0.6rem;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        background: #6FBE2C;
+        color: #16273B;
+        font-weight: 800;
+        font-size: 0.95rem;
+        text-decoration: none;
+        white-space: nowrap;
+        min-height: 44px;
+        box-sizing: border-box;
+    }
+    .navbar{
+        padding-right: 0.75rem;
     }
 
-    /* nav et .contact passent chacun sur leur propre ligne, en dessous du
-       bandeau logo+burger (flex-wrap ci-dessus les fait descendre), et
-       restent caches tant que le menu n'est pas ouvert. */
-    .navbar nav,
-    .navbar .contact{
-        display: none;
+    /* voile sombre sur la page, sous la barre */
+    .voileMenu{
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        background: rgba(22, 39, 59, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease, visibility 0.25s;
+    }
+    .navbar.menuOuvert .voileMenu{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* le panneau deroulant */
+    .panneauMenu{
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        max-height: calc(100dvh - 4.5rem);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding: 0.5rem 1.25rem 1.5rem 1.25rem;
+        background: #ffffff;
+        border-radius: 0 0 26px 26px;
+        box-shadow: 0 24px 40px rgba(22, 39, 59, 0.22);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
+    }
+    .navbar.menuOuvert .panneauMenu{
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .navbar nav{
         width: 100%;
-        order: 3;
     }
-    .navbar.menuOuvert nav,
-    .navbar.menuOuvert .contact{
-        display: flex;
-    }
-    .navbar .contact{
-        order: 4;
-    }
-
     nav ul{
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        padding: 1rem 0;
+        padding: 0;
     }
     nav ul li{
         width: 100%;
+        border-bottom: 1px solid #EEF1EC;
+    }
+    nav ul li:last-child{
+        border-bottom: none;
     }
     nav a{
-        padding: 0.75rem 0.5rem;
+        justify-content: space-between;
+        min-height: 54px;
+        padding: 0.75rem 0.25rem;
         width: 100%;
+        box-sizing: border-box;
+        font-size: 1.08rem;
+        font-weight: 600;
+        color: #16273B;
+    }
+    /* page en cours : pastille verte devant le libelle */
+    nav a[aria-current="page"]{
+        color: #3E7C1F;
+    }
+    nav a[aria-current="page"]::before{
+        content: '';
+        width: 8px;
+        height: 8px;
+        margin-right: 0.6rem;
+        border-radius: 50%;
+        background: #6FBE2C;
+        flex-shrink: 0;
+    }
+    nav a[aria-current="page"]{
+        justify-content: flex-start;
+    }
+    .lienAvecMenu svg{
+        margin-left: auto;
+        padding: 6px;
+        box-sizing: content-box;
+        border-radius: 50%;
+        background: #EEF6E7;
+        color: #3E7C1F;
     }
 
-    /* Le sous-menu "Nos metiers" : au lieu de flotter par-dessus le contenu
-       (comme sur desktop), il s'affiche "en ligne", juste en dessous de son
-       lien, et pousse le reste du menu vers le bas. */
+    /* apparition en cascade des liens a l'ouverture */
+    nav > ul > li{
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .navbar.menuOuvert nav > ul > li{
+        opacity: 1;
+        transform: none;
+    }
+    .navbar.menuOuvert nav > ul > li:nth-child(1){ transition-delay: 0.04s; }
+    .navbar.menuOuvert nav > ul > li:nth-child(2){ transition-delay: 0.08s; }
+    .navbar.menuOuvert nav > ul > li:nth-child(3){ transition-delay: 0.12s; }
+    .navbar.menuOuvert nav > ul > li:nth-child(4){ transition-delay: 0.16s; }
+    .navbar.menuOuvert nav > ul > li:nth-child(5){ transition-delay: 0.2s; }
+    .navbar.menuOuvert nav > ul > li:nth-child(6){ transition-delay: 0.24s; }
+    .navbar.menuOuvert nav > ul > li:nth-child(7){ transition-delay: 0.28s; }
+
+    /* Sous-menus : ils se deplient "en ligne", dans un encart menthe */
     .sousMenu{
         position: static;
         opacity: 1;
         visibility: visible;
         transform: none;
-        transition: none;
+        transition: max-height 0.35s ease, margin 0.25s ease;
         width: 100%;
+        box-sizing: border-box;
+        background: #F3F8EE;
         box-shadow: none;
         border: none;
-        margin-top: 0;
-        padding: 0 0 0 1rem;
+        border-radius: 16px;
+        margin: 0;
+        padding: 0 0.4rem;
         max-height: 0;
         overflow: hidden;
+        gap: 0;
     }
     .aSousMenu.ouvert .sousMenu{
-        max-height: 30rem;
+        max-height: 32rem;
+        margin: 0 0 0.75rem 0;
+        padding: 0.4rem;
+    }
+    .sousMenu li{
+        border-bottom: none;
+    }
+    .sousMenu li a{
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.98rem;
+        font-weight: 500;
     }
 
-    .contact{
+    /* Bas du menu : gros bouton RDV + horaires */
+    .navbar .contact{
+        display: flex;
         flex-direction: column;
         align-items: stretch;
-        gap: 1rem;
-        padding: 1rem 0.5rem 1.5rem 0.5rem;
+        gap: 0.9rem;
+        width: 100%;
+        padding: 1.25rem 0 0 0;
+        margin-top: 0.5rem;
+        border-top: 1px solid #EEF1EC;
+    }
+    /* le numero est deja dans la barre : inutile de le doubler */
+    .navbar .contact .telephone{
+        display: none;
     }
     .bouton-devis{
+        justify-content: center;
+        min-height: 52px;
+        font-size: 1.05rem;
         text-align: center;
     }
+    .horairesMenu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        color: #6B7A88;
+        margin: 0;
+    }
+}
+
+/* Menu ouvert : les elements flottants (onglet offres, bulle simulation, pastille Google)
+   s'effacent pour ne pas passer par-dessus le panneau. */
+@media (max-width: 1180px){
+    body:has(.navbar.menuOuvert) :is(.offreTab, .bulleSimulation, .pastilleGoogle){
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, visibility 0.2s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .panneauMenu, .voileMenu, .traitsBurger i, nav > ul > li, .sousMenu{
+        transition: none !important;
+    }
+}
+
+/* Tres petits ecrans : l'icone seule garde la pastille d'appel visible */
+@media (max-width: 380px){
+    .telephone-mobile span{ display: none; }
+    .telephone-mobile{ padding: 0.55rem 0.8rem; }
+}
+
+/* Ordinateur etroit : on garde le numero entier sur une ligne en resserrant le reste */
+@media (min-width: 1181px) and (max-width: 1300px){
+    nav a{ white-space: nowrap; font-size: 0.95rem; }
+    nav ul{ gap: 0.9rem; }
+    .contact{ gap: 0.6rem; }
+    .telephone{ font-size: 1rem; padding: 0 0.8rem 0 0.7rem; }
+    .bouton-devis{ padding: 0.5rem 0.9rem; }
+    .logo{ width: 130px; }
 }

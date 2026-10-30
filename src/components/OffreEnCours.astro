@@ -2,32 +2,30 @@
 import { Gift, X, Check, ArrowRight } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import '../styles/styleComponents/OffreEnCours.css';
+import { offres } from '../data/offres.js';
 import offrePanneauImg from '../assets/image/offre-panneau.webp';
 
-// Offre en cours (kit solaire offert). "dateFin" reste a null : l'offre est
-// limitee par le stock disponible, pas par une date precise - pas de compte
-// a rebours invente, juste la mention "dans la limite des stocks".
-const offre = {
-	kicker: 'Offre en cours',
-	titre: 'Un kit solaire offert avec vos travaux',
-	intro: 'Pour tout dossier de rénovation signé à partir de 9 000 €, nous vous offrons un kit solaire Plug & Play 410 W.',
-	points: [
-		"Valable pour vos projets ITE, ravalement de façade et menuiseries",
-		'Jusqu’à 670 kWh produits par an*',
-		'Jusqu’à 120 € d’économies par an*',
-		'Installation simple : au sol, en terrasse, sur un balcon ou un mur',
-	],
-	disclaimer: '*Production et économies estimées, variables selon l’exposition, la localisation et les conditions d’utilisation.',
-	dateFin: null,
-	validite: 'Offre valable dans la limite des stocks disponibles.',
-	cta: { texte: 'Découvrir l’offre', lien: '/demander-un-devis' },
+// Premiere offre active du fichier src/data/offres.js (toutes les offres
+// sont listees sur la page /promotions).
+const actives = offres.filter((o) => o.actif && (!o.dateFin || new Date(o.dateFin) >= new Date()));
+const premiere = actives[0];
+const offre = premiere && {
+	kicker: premiere.etiquette,
+	titre: premiere.titre,
+	intro: premiere.intro,
+	points: premiere.points,
+	disclaimer: premiere.mentions,
+	dateFin: premiere.dateFin,
+	validite: premiere.validite,
+	cta: { texte: 'En savoir plus', lien: `/promotions#${premiere.id}` },
 };
 
-const dateFinFormatee = offre.dateFin
+const dateFinFormatee = offre?.dateFin
 	? new Date(offre.dateFin).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
 	: null;
 ---
 
+{offre && <>
 <button type="button" id="offreTab" class="offreTab" aria-haspopup="dialog" aria-controls="offreModal">
 	<Gift size={20} />
 	<span class="offreTabLabel">Offres en cours</span>
@@ -78,5 +76,7 @@ const dateFinFormatee = offre.dateFin
 		</div>
 	</div>
 </div>
+
+</>}
 
 <script src="../js/offreEnCours.js"></script>

@@ -1,0 +1,98 @@
+---
+import '../styles/refonteAccueil.css';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+import FilAriane from '../components/FilAriane.astro';
+import '../styles/global.css';
+import '../styles/pages/velux.css';
+import { Check, Sun, Wrench, ShieldCheck } from '@lucide/astro';
+import { Image } from 'astro:assets';
+
+import photoVelux from '../assets/image/velux.webp';
+
+const interventions = [
+	{
+		Icone: Sun,
+		titre: 'Pose de fenêtres de toit',
+		description: "Installation de fenêtres de toit Velux adaptées à la pente et à l'orientation de votre toiture, pour apporter lumière naturelle et ventilation à vos combles.",
+	},
+	{
+		Icone: Wrench,
+		titre: 'Remplacement de Velux',
+		description: "Votre fenêtre de toit est ancienne, difficile à ouvrir ou peu isolante ? Nous la remplaçons par un modèle récent, plus performant et plus confortable.",
+	},
+	{
+		Icone: ShieldCheck,
+		titre: 'Étanchéité & finitions',
+		description: "Raccordement à la couverture, étanchéité à l'eau et à l'air, habillage intérieur soigné : chaque pose est réalisée dans les règles de l'art.",
+	},
+];
+
+const faqVelux = [
+	{ question: 'Quel est l\'intérêt d\'installer un Velux ?', reponse: "Une fenêtre de toit apporte de la lumière naturelle, améliore la ventilation et rend vos combles plus agréables à vivre. Bien posée, elle contribue aussi au confort thermique de votre logement.", ouvert: true },
+	{ question: 'Peut-on installer un Velux dans des combles non aménagés ?', reponse: "Oui, mais l'aménagement de l'espace (isolation, plancher, habillage) est souvent à prévoir pour en profiter pleinement. Nos équipes étudient votre situation et vous conseillent sur la meilleure solution.", ouvert: false },
+	{ question: 'Une déclaration en mairie est-elle nécessaire ?', reponse: "La création ou la modification d'une ouverture en toiture est en général soumise à une déclaration préalable de travaux. Nous vous accompagnons dans cette démarche.", ouvert: false },
+	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller étudie vos besoins et vous propose un devis gratuit et sans engagement.', ouvert: false },
+];
+---
+
+<Layout>
+	<main>
+		<Navbar></Navbar>
+		<div class="refonte">
+		<FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Fenêtres de toit Velux' }]} />
+
+		<section class="containerImageDroite">
+			<div class="containerParentImageDroite">
+				<div class="textImageDroite">
+					<p class="petitTitre">Velux</p>
+					<h1 class="titreImage">Faites entrer la lumière naturelle dans vos combles avec Velux</h1>
+					<p class="descImage">Pose et remplacement de fenêtres de toit : MIPE Habitat vous accompagne pour éclairer, ventiler et valoriser vos combles, avec une installation soignée et parfaitement étanche.</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Pose et remplacement de fenêtres de toit Velux</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Étanchéité et finitions soignées</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Plus de lumière et de confort dans vos combles</p>
+				</div>
+				<div class="imageDroite">
+					<Image src={photoVelux} alt="Fenêtre de toit Velux posée par MIPE Habitat" />
+				</div>
+			</div>
+		</section>
+
+		<section class="sectionInterventionsVelux reveal">
+			<p class="petitTitre petitTitreVelux">Nos interventions</p>
+			<h2 class="titreInterventionsVelux">Une pose Velux complète, de l'étude aux finitions</h2>
+			<div class="grilleInterventionsVelux">
+				{
+					interventions.map(({ Icone, titre, description }) => (
+						<div class="carteInterventionVelux reveal">
+							<div class="iconeInterventionVelux"><Icone size={26} color="#ffffff" /></div>
+							<p class="titreCarteVelux">{titre}</p>
+							<p class="descCarteVelux">{description}</p>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sectionFaqVelux">
+			<div class="faqVeluxTexte">
+				<p class="petitTitre">Questions fréquentes</p>
+				<h2 class="titreFaqVelux">Vos questions sur les fenêtres de toit</h2>
+			</div>
+			<div class="faqVeluxListe">
+				{
+					faqVelux.map(({ question, reponse, ouvert }) => (
+						<details class="faqVeluxItem" open={ouvert}>
+							<summary class="questionFaqVelux">{question}</summary>
+							<p class="reponseFaqVelux">{reponse}</p>
+						</details>
+					))
+				}
+			</div>
+		</section>
+
+		</div>
+		<Footer></Footer>
+	</main>
+</Layout>

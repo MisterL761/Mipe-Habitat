@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Fichiers temporaires du navigateur de test
 .playwright-mcp/
+
+.env.*
+!.env.example

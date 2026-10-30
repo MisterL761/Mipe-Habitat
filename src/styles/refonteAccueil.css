@@ -1102,13 +1102,22 @@
    - bande 1 : bleu nuit en degrade, cartes photo + bloc sombre
    - bande 2 : blanc, cartes photo + liseré vert epais, gros relief
    ========================================================================== */
+/* Grille mobile-first : 1 colonne (mobile), 2 (tablette), 4 (ordinateur). */
 .pageNosMetiers .containerCardMetiers{
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
     margin-top: 2rem;
+}
+@media (min-width: 600px){
+    .pageNosMetiers .containerCardMetiers{ grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+@media (min-width: 1100px){
+    .pageNosMetiers .containerCardMetiers{ grid-template-columns: repeat(4, 1fr); }
 }
 .pageNosMetiers .cardMetiers{
     width: auto;
-    flex: 1 1 0;
+    min-width: 0;
     border: 0;
     border-radius: 18px;
     overflow: hidden;
@@ -1380,8 +1389,9 @@
     .refonte > section.containerImageDroite:not(:first-of-type) .imageDroite img{
         box-shadow: 8px 8px 0 #6FBE2C;
     }
+    /* pas de chevauchement sur mobile/tablette : on laisse respirer sous la hero */
     .refonte > section.containerImageDroite:first-of-type + section.containerAtout{
-        margin-top: 0;
+        margin-top: 2rem;
     }
 }
 .refonte > section.containerImageGauche + section.containerAtout{
@@ -1527,4 +1537,46 @@
 .refonte .voirCertif{
     color: var(--vert-fonce);
     margin-top: auto;
+}
+
+
+/* ==========================================================================
+   Gouttiere unique des pages metiers sur mobile/tablette
+   Avant : 1.5rem (24px) partout, meme a 800px de large, donc des contenus
+   colles aux bords en tablette, et mal alignes avec le fil d'Ariane (6%).
+   Maintenant : une seule valeur fluide (24px sur mobile, jusqu'a 56px en
+   tablette) appliquee aux sections de contenu de toutes les pages metiers.
+   ========================================================================== */
+@media (max-width: 900px){
+    .refonte{
+        --gouttiere: clamp(1.5rem, 6vw, 3.5rem);
+    }
+    /* sections qui portent la gouttiere en padding */
+    .refonte :is(
+        .containerParentImageDroite, .containerParentImageGauche,
+        .containerCardAtout, .deroulementProjetContainer, .sectionIsofrance,
+        .sectionInterventionsToiture, .sectionInterventionsCombles, .sectionInterventionsVelux,
+        .sectionSolutionsEnergie, .sectionPartenaireEnergie
+    ){
+        padding-left: var(--gouttiere);
+        padding-right: var(--gouttiere);
+    }
+    /* sections qui la portent en marge */
+    .refonte :is(
+        .sectionAidesIte, .sectionAidesIti, .sectionAidesCombles,
+        .sectionAnticiper, .sectionFinitions,
+        .sectionFaqIte, .sectionFaqIti, .sectionFaqCombles, .sectionFaqRavalement,
+        .sectionFaqToiture, .sectionFaqVelux, .sectionFaqEnergie
+    ){
+        margin-left: var(--gouttiere);
+        margin-right: var(--gouttiere);
+    }
+}
+
+
+/* FAQ de l'accueil : moins de vide autour sur mobile */
+@media (max-width: 600px){
+    .refonte section:has(> .faqHome){
+        padding: 3rem 1rem 3.5rem 1rem;
+    }
 }

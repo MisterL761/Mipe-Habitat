@@ -1,5 +1,5 @@
 ---
-import { ChevronsLeftRight, ArrowRight } from '@lucide/astro';
+import { ChevronsLeftRight, ArrowRight, Images, X, ChevronLeft, ChevronRight } from '@lucide/astro';
 import { Image } from 'astro:assets';
 import '../styles/styleComponents/AvantApres.css';
 
@@ -11,6 +11,21 @@ import '../styles/styleComponents/AvantApres.css';
 // ce qu'ils montrent vraiment, pas le nom du fichier source.
 import photoEtatOrigine from '../assets/image/apres.webp';
 import photoRenovee from '../assets/image/avant.webp';
+
+// Chantier montre par le curseur : Saint-Mard (77), ITE 2021. Ses 4 photos
+// (memes fichiers que sur la carte de la page Realisations) s'ouvrent dans une
+// popup, sans quitter l'accueil. "avant.webp"/"apres.webp" ci-dessus sont des
+// copies de saint-mard4 (etat d'origine) et saint-mard1 (renove).
+import saintMard1 from '../assets/realisation/saint-mard/boodhun-saint-mard1.webp';
+import saintMard2 from '../assets/realisation/saint-mard/boodhun-saint-mard2.webp';
+import saintMard3 from '../assets/realisation/saint-mard/boodhun-saint-mard3.webp';
+import saintMard4 from '../assets/realisation/saint-mard/boodhun-saint-mard4.webp';
+const photosChantier = [
+	{ photo: saintMard4, etiquette: 'Avant', alt: "Maison de Saint-Mard avant l'intervention" },
+	{ photo: saintMard2, etiquette: 'Pendant', alt: 'Chantier de Saint-Mard : pose des panneaux isolants' },
+	{ photo: saintMard3, etiquette: 'Pendant', alt: 'Chantier de Saint-Mard : finitions' },
+	{ photo: saintMard1, etiquette: 'Après', alt: 'Maison de Saint-Mard après la rénovation' },
+];
 ---
 
 <section class="reveal">
@@ -35,11 +50,48 @@ import photoRenovee from '../assets/image/avant.webp';
 			</div>
 		</div>
 
-		<a href="/realisation" class="lienToutesRealisationsAvantApres">
-			Voir toutes nos réalisations
-			<ArrowRight size={18} />
+		<dialog class="popupChantier" id="popupChantier" aria-labelledby="titrePopupChantier">
+			<div class="enteteChantier">
+				<div>
+					<h3 class="titrePopupChantier" id="titrePopupChantier">Isolation thermique extérieure</h3>
+					<p class="soustitrePopupChantier">Saint-Mard (77) · 2021</p>
+				</div>
+				<button type="button" class="fermerPopupChantier" id="fermerPopupChantier" aria-label="Fermer la fenêtre">
+					<X size={20} />
+				</button>
+			</div>
+			<div class="carrouselChantier" aria-roledescription="carrousel">
+				<div class="pisteChantier" id="pisteChantier" tabindex="0" aria-label="Photos du chantier">
+					{
+						photosChantier.map(({ photo, etiquette, alt }, i) => (
+							<figure class="photoPopupChantier" aria-roledescription="diapositive" aria-label={`Photo ${i + 1} sur ${photosChantier.length}`}>
+								<Image src={photo} alt={alt} width={1100} />
+								<figcaption>{etiquette}</figcaption>
+							</figure>
+						))
+					}
+				</div>
+				<button type="button" class="flecheChantier flecheChantierPrec" id="flechePrecChantier" aria-label="Photo précédente"><ChevronLeft size={26} /></button>
+				<button type="button" class="flecheChantier flecheChantierSuiv" id="flecheSuivChantier" aria-label="Photo suivante"><ChevronRight size={26} /></button>
+			</div>
+			<div class="pointsChantier" id="pointsChantier">
+				{ photosChantier.map(({ etiquette }, i) => <button type="button" class="pointChantier" data-index={i} aria-label={`Photo ${i + 1} : ${etiquette}`}></button>) }
+				<span class="compteurChantier" id="compteurChantier">1 / {photosChantier.length}</span>
+			</div>
+		</dialog>
+
+		<div class="boutonsAvantApres">
+			<button type="button" class="boutonVoirChantier" id="boutonVoirChantier" aria-haspopup="dialog">
+				<Images size={18} />
+				Voir le chantier en photos
+			</button>
+			<a href="/realisation" class="lienToutesRealisationsAvantApres">
+				Voir toutes nos réalisations
+				<ArrowRight size={18} />
 		</a>
+		</div>
 	</div>
 </section>
 
 <script src="../js/avantApres.js"></script>
+<script src="../js/popupChantier.js"></script>

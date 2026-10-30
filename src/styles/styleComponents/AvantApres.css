@@ -151,22 +151,38 @@
 	outline-offset: 2px;
 }
 
-.lienToutesRealisationsAvantApres{
+/* Les deux boutons (popup + toutes les realisations) : meme gabarit, alignes, espaces */
+.boutonsAvantApres{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+.boutonsAvantApres > *{
 	display: inline-flex;
 	align-items: center;
-	gap: 0.5rem;
-	margin-top: 2rem;
-	background-color: #6FBE2C;
-	color: #fff;
-	text-decoration: none;
-	font-weight: 600;
-	padding: 0.7rem 1.5rem;
+	justify-content: center;
+	gap: 0.6rem;
+	margin: 0;
+	min-height: 3rem;
+	padding: 0 1.8rem;
+	box-sizing: border-box;
+	border: 0;
 	border-radius: 999px;
-	transition: background-color 0.2s ease;
+	background: #6FBE2C;
+	color: #16273B;
+	font: inherit;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+	box-shadow: 0 8px 20px rgba(111, 190, 44, 0.35);
+	transition: transform 0.15s ease, filter 0.2s ease;
 }
-
-.lienToutesRealisationsAvantApres:hover{
-	background-color: #5EA324;
+.boutonsAvantApres > *:hover{
+	transform: translateY(-2px);
+	filter: brightness(1.05);
 }
 
 @media (max-width: 800px){
@@ -176,4 +192,149 @@
 	.titreAvantApres{
 		font-size: 1.5rem;
 	}
+}
+
+/* La refonte rend ce lien blanc (fond sombre) : on garde sa couleur mais on lui
+   donne exactement le gabarit du bouton vert a cote. */
+.refonte .boutonsAvantApres .lienToutesRealisationsAvantApres{
+	min-height: 3rem;
+	padding: 0 1.8rem;
+	gap: 0.6rem;
+	font-weight: 700;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* ===================== Popup "Voir le chantier" ===================== */
+
+
+.popupChantier{
+	margin: auto; /* le reset global retirait le centrage natif du <dialog> */
+	width: min(880px, calc(100vw - 2rem));
+	max-height: calc(100vh - 2rem);
+	padding: 1.5rem;
+	border: 0;
+	border-radius: 20px;
+	background: #ffffff;
+	color: #16273B;
+	box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+	overflow-y: auto;
+	text-align: left;
+}
+.popupChantier::backdrop{ background: rgba(22, 39, 59, 0.72); }
+.popupChantier[open]{ animation: ouverturePopupChantier 0.25s ease; }
+@keyframes ouverturePopupChantier{
+	from{ opacity: 0; transform: translateY(14px) scale(0.98); }
+	to{ opacity: 1; transform: none; }
+}
+.enteteChantier{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-bottom: 1.25rem;
+}
+.titrePopupChantier{ font-size: 1.4rem; font-weight: 700; }
+.soustitrePopupChantier{ color: #4A5B6B; margin-top: 0.2rem; }
+.fermerPopupChantier{
+	flex: none;
+	width: 40px;
+	height: 40px;
+	border: 0;
+	border-radius: 50%;
+	background: #F0F2EE;
+	color: #16273B;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.fermerPopupChantier:hover{ background: #E1E5DD; }
+.carrouselChantier{
+	position: relative;
+}
+.pisteChantier{
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	border-radius: 14px;
+	outline-offset: 3px;
+}
+.pisteChantier::-webkit-scrollbar{ display: none; }
+.photoPopupChantier{
+	position: relative;
+	flex: 0 0 100%;
+	scroll-snap-align: center;
+	scroll-snap-stop: always;
+	margin: 0;
+	/* hauteur bornee par la fenetre : photo + points + titre doivent tenir a l'ecran */
+	height: min(560px, calc(100vh - 250px));
+	min-height: 220px;
+	background: #16273B;
+}
+.photoPopupChantier img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.photoPopupChantier figcaption{
+	position: absolute;
+	left: 0.9rem;
+	bottom: 0.9rem;
+	padding: 0.3rem 1rem;
+	border-radius: 999px;
+	background: rgba(22, 39, 59, 0.85);
+	color: #ffffff;
+	font-weight: 600;
+}
+.flecheChantier{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 46px;
+	height: 46px;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.92);
+	color: #16273B;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 6px 18px rgba(22, 39, 59, 0.3);
+	transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+.flecheChantier:hover:not(:disabled){ background: #6FBE2C; }
+.flecheChantier:disabled{ opacity: 0.35; cursor: default; }
+.flecheChantierPrec{ left: 0.8rem; }
+.flecheChantierSuiv{ right: 0.8rem; }
+.pointsChantier{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.55rem;
+	margin-top: 1rem;
+}
+.pointChantier{
+	width: 10px;
+	height: 10px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #CDD5CB;
+	cursor: pointer;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.pointChantier.actif{ background: #6FBE2C; transform: scale(1.3); }
+.compteurChantier{
+	margin-left: 0.8rem;
+	color: #4A5B6B;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+/* page figee derriere la popup */
+html.popupChantierOuverte{ overflow: hidden; }
+
+@media (max-width: 560px){
+	.popupChantier{ padding: 1rem; }
+	.flecheChantier{ width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce){
+	.popupChantier[open]{ animation: none; }
 }

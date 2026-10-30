@@ -29,6 +29,16 @@
     padding: 2.5rem;
 }
 
+.logosProeco{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.logoProecoWrapper .logoFfbProeco{
+    max-width: 160px;
+}
+
 .logoProecoWrapper img{
     width: 100%;
     height: auto;

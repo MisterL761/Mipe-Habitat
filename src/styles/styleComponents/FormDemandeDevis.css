@@ -1,149 +1,539 @@
-.formDevis{
-    background-color: #ffffff;
-    border : 1px solid #E4E7E2;
-    box-shadow: 0 8px 30px rgba(22, 39, 59, 0.05);
-    width: 90%;
-    padding: 2rem;
-    border-radius: 15px;
-}
-
-.containerFormDevis {
+/* ==========================================================================
+   Parcours de demande de devis : panneau bleu nuit a gauche (etapes, recap
+   en direct, garanties) + etape en cours a droite.
+   ========================================================================== */
+.parcoursDevisWrap{
     display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
-.fromContainerDevis {
-    grid-area: 1 / 1 / 2 / 2;
-    margin-top : 1rem;
-}
-.coordonneDevis { grid-area: 1 / 2 / 2 / 3; }
-
-
-.boutonFormDevis{
-    background-color: #6FBE2C;
-    width: 40%;
-    color: white;
-    border-radius: 999px;
-    font-weight: bold;
-    margin-top: 1rem;
-    padding: 0.8rem 1rem;
-    cursor: pointer;
-    transition: filter 0.2s ease;
+    grid-template-columns: 340px 1fr;
+    margin: 1.5rem 0 1rem 0;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #E4E7E2;
+    box-shadow: 0 2px 4px rgba(22, 39, 59, 0.06), 0 22px 48px rgba(22, 39, 59, 0.12);
 }
 
-.containerNpDevis,
-.containerTcDevis{
+/* ---------- Panneau de gauche ---------- */
+.panneauDevis .logo3d{ margin: -0.5rem auto -0.75rem auto; }
+.panneauDevis{
+    background-color: #16273B;
+    background-image:
+        linear-gradient(160deg, rgba(22, 39, 59, 0.94) 35%, rgba(31, 53, 80, 0.88)),
+        url('../../assets/image/fond.webp');
+    background-size: auto, cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 1.75rem 2rem;
     display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+.titrePanneauDevis{
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.etapesDevis{
+    list-style: none;
+    margin: 0 0 1.75rem 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.etapeListeDevis{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #8A96A3;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.etapeListeDevis:not(:last-child){ flex: 1; }
+/* trait entre deux etapes */
+.etapeListeDevis:not(:last-child)::after{
+    content: '';
+    flex: 1;
+    height: 2px;
+    margin: 0 0.75rem;
+    background: #E4E7E2;
+    border-radius: 2px;
+}
+.etapeListeDevis.fait:not(:last-child)::after{ background: #6FBE2C; }
+.pastilleEtapeDevis{
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #CDD5CB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: #ffffff;
+    color: #8A96A3;
+}
+.cocheEtapeDevis{ display: none; }
+.etapeListeDevis.en-cours{ color: #16273B; font-weight: 700; }
+.etapeListeDevis.en-cours .pastilleEtapeDevis{ background: #6FBE2C; border-color: #6FBE2C; color: #16273B; }
+.etapeListeDevis.fait{ color: #3E7C1F; }
+.etapeListeDevis.fait .pastilleEtapeDevis{ background: #6FBE2C; border-color: #6FBE2C; color: #16273B; }
+.etapeListeDevis.fait .chiffreEtapeDevis{ display: none; }
+.etapeListeDevis.fait .cocheEtapeDevis{ display: block; }
+
+/* recap vivant */
+.votreProjetDevis{
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    padding: 1.1rem 1.2rem;
+}
+.votreProjetDevis[hidden]{ display: none; }
+.titreVotreProjet{
+    font-weight: 700;
+    color: #8FE05C;
+    margin-bottom: 0.7rem;
+}
+.listeVotreProjet{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
     gap: 0.5rem;
 }
-
-input:not([type="checkbox"]){
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    height: 2.75rem;
-    box-sizing: border-box;
+.listeVotreProjet li{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    animation: entreeProjetDevis 0.25s ease;
+}
+.listeVotreProjet img{
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex: none;
+}
+.delaiVotreProjet{
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+.delaiVotreProjet[hidden]{ display: none; }
+@keyframes entreeProjetDevis{
+    from{ opacity: 0; transform: translateX(-6px); }
+    to{ opacity: 1; transform: none; }
 }
 
+.garantiesDevis{
+    list-style: none;
+    margin: auto 0 0 0;
+    padding: 1.2rem 0 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.95rem;
+}
+.garantiesDevis li{ display: flex; align-items: center; gap: 0.6rem; }
+.garantiesDevis svg{ color: #8FE05C; flex: none; }
 
-select{
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    height: 2.75rem;
-    box-sizing: border-box;
-}
-.grandTextFormDevis{
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    font-family: inherit;
-    font-size: 1rem;
-    resize: vertical;
-}
-.checkText{
-    color: #4A5B6B;
-}
-.checkText a{
-    color: #3E7C1F;
+/* duree, avis, chiffres */
+.dureeDevis{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(143, 224, 92, 0.16);
+    color: #8FE05C;
+    font-size: 0.9rem;
     font-weight: 600;
 }
-
-.cardCord{
-    background-color: #16273B;
-    width: 90%;
-    padding: 2rem;
-    border-radius: 15px;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-
+.avisPanneauDevis{
+    margin: 0;
+    padding: 1.1rem 1.2rem;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #16273B;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
 }
-.titreCord{
-    color: #8FE05C;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+.avisPanneauDevis.change{ animation: changeAvisDevis 0.45s ease; }
+@keyframes changeAvisDevis{
+    from{ opacity: 0; transform: translateY(8px) rotate(-0.6deg); }
+    to{ opacity: 1; transform: none; }
 }
-.titreHoraire{
+.etoilesPanneauDevis{ display: flex; gap: 0.15rem; }
+.texteAvisPanneau{
+    margin: 0.6rem 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #2B3A4A;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.auteurAvisPanneau{ font-size: 0.85rem; color: #5A6B7B; font-weight: 600; }
+.chiffresDevis{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+}
+.chiffresDevis p{ display: flex; flex-direction: column; gap: 0.15rem; }
+.chiffresDevis strong{ font-size: 1.35rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; }
+.chiffresDevis span{ font-size: 0.78rem; color: rgba(255, 255, 255, 0.7); line-height: 1.2; }
+
+/* ---------- Zone du parcours ---------- */
+.parcoursDevis{
+    padding: 1.75rem 2.25rem 1.75rem 2.25rem;
+    min-width: 0;
+}
+.parcoursDevis .etapeParcours{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+.parcoursDevis .etapeParcours[hidden]{ display: none; }
+/* l'etape glisse depuis la direction d'ou l'on vient */
+.etapeParcours.arrive-droite{ animation: arriveDroiteDevis 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.etapeParcours.arrive-gauche{ animation: arriveGaucheDevis 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes arriveDroiteDevis{ from{ opacity: 0; transform: translateX(28px); } to{ opacity: 1; transform: none; } }
+@keyframes arriveGaucheDevis{ from{ opacity: 0; transform: translateX(-28px); } to{ opacity: 1; transform: none; } }
+
+/* barre de progression : visible surtout sur mobile, ou le panneau se reduit */
+.progressionDevis{ display: none; margin-bottom: 1.25rem; }
+.etapeDevis{ color: #3E7C1F; font-weight: bold; font-size: 0.95rem; }
+.barreDevis{ height: 6px; background: #E4E7E2; border-radius: 999px; margin-top: 0.5rem; overflow: hidden; }
+.barreDevisRemplie{ display: block; height: 100%; width: 25%; background: #6FBE2C; border-radius: 999px; transition: width 0.3s ease; }
+
+.titreEtapeDevis{
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: #16273B;
+    padding: 0;
+}
+.sousTitreEtapeDevis{
+    color: #4A5B6B;
+    margin: 0.4rem 0 1.25rem 0;
+    font-size: 1.05rem;
+}
+
+/* Les inputs des cartes sont invisibles : toute la carte est cliquable */
+.parcoursDevis .optionDevis{
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+.parcoursDevis .optionDevis input{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.parcoursDevis .optionDevis:has(input:focus-visible){ outline: 3px solid #16273B; outline-offset: 3px; }
+
+/* ---- Cards produit : photo pleine, titre sur degrade ---- */
+.grilleProduitsDevis{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.65rem;
+}
+.carteProduitDevis{
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: #16273B;
+    box-shadow: 0 0 0 2px transparent;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.visuelProduitDevis{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1F3550, #3E7C1F);
+}
+.visuelProduitDevis img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+.carteProduitDevis::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(22, 39, 59, 0.88) 0%, rgba(22, 39, 59, 0.1) 55%, transparent 100%);
+    pointer-events: none;
+}
+.titreProduitDevis{
+    position: absolute;
+    left: 0.55rem;
+    right: 0.55rem;
+    bottom: 0.5rem;
+    z-index: 1;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+.coche{
+    position: absolute;
+    top: 0.45rem;
+    right: 0.45rem;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    background: rgba(22, 39, 59, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.coche svg{ opacity: 0; transition: opacity 0.15s ease; }
+.carteProduitDevis:hover img{ transform: scale(1.05); }
+.carteProduitDevis:has(input:checked){
+    box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #6FBE2C;
+}
+.carteProduitDevis:has(input:checked) .coche{ background: #6FBE2C; border-color: #6FBE2C; }
+.carteProduitDevis:has(input:checked) .coche svg{ opacity: 1; }
+/* petit "pop" quand on coche : repond au geste du client */
+.carteProduitDevis:has(input:checked) .coche{ animation: popCocheDevis 0.3s ease; }
+@keyframes popCocheDevis{
+    0%{ transform: scale(0.6); }
+    60%{ transform: scale(1.2); }
+    100%{ transform: scale(1); }
+}
+
+/* ---- Delais ---- */
+.grilleDelaisDevis{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+}
+.carteDelaiDevis{
+    border: 2px solid #E4E7E2;
+    border-radius: 16px;
+    padding: 1.25rem 1.4rem 1.25rem 4.4rem;
+    background: #ffffff;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.carteDelaiDevis:hover{ border-color: #B9DD97; }
+.iconeDelaiDevis{
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #EEF6E7;
     color: #3E7C1F;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
-
-
-.horaireSemaine,
-.HoraireWeekEnd{
-    color : #4A5B6B;
+.titreDelaiDevis{ display: block; font-weight: 700; font-size: 1.1rem; color: #16273B; }
+.detailDelaiDevis{ display: block; color: #4A5B6B; margin-top: 0.15rem; }
+.carteDelaiDevis:has(input:checked){
+    border-color: #6FBE2C;
+    background: #F4FAEC;
+    box-shadow: 0 0 0 3px rgba(111, 190, 44, 0.2);
 }
+.carteDelaiDevis:has(input:checked) .iconeDelaiDevis{ background: #6FBE2C; color: #ffffff; }
 
-
-.addressCord,
-.numCord,
-.emailCord{
-    color: #ffffff ;
+/* ---- Coordonnees ---- */
+.champsDevis{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1rem;
 }
+.champDevis{ display: block; }
+.champLarge{ grid-column: 1 / -1; }
+.champDevis > span{
+    display: block;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: #16273B;
+    margin-bottom: 0.35rem;
+}
+.parcoursDevis input:not([type="checkbox"]):not([type="radio"]),
+.parcoursDevis .grandTextFormDevis{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1.5px solid #CDD5CB;
+    border-radius: 12px;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    background: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.parcoursDevis input:not([type="checkbox"]):not([type="radio"]){ height: 3rem; margin-top: 0; }
+.parcoursDevis .grandTextFormDevis{ resize: vertical; }
+.parcoursDevis input:not([type="checkbox"]):not([type="radio"]):focus,
+.parcoursDevis .grandTextFormDevis:focus{
+    outline: none;
+    border-color: #6FBE2C;
+    box-shadow: 0 0 0 4px rgba(111, 190, 44, 0.2);
+}
+.checkFormDevis{ display: flex; gap: 0.6rem; align-items: flex-start; margin-top: 1.25rem; }
+.checkFormDevis input{ margin-top: 0.25rem; flex: none; }
+.checkText{ color: #4A5B6B; font-size: 0.95rem; }
+.checkText a{ color: #3E7C1F; font-weight: 600; }
 
-.cardHoraire{
-    background-color: #ffffff;
+/* ---- Confirmation ---- */
+.recapDevis{
     border: 1px solid #E4E7E2;
-    box-shadow: 0 4px 18px rgba(22, 39, 59, 0.04);
-    width: 90%;
-    padding: 2rem;
-    border-radius: 15px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0;
 }
-.coordonneDevis{
+.ligneRecapDevis{
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.1rem 1.3rem;
+    background: #ffffff;
 }
-/* ===================== Responsive (mobile/tablette) ===================== */
+.ligneRecapDevis[hidden]{ display: none; }
+.ligneRecapDevis + .ligneRecapDevis{ border-top: 1px solid #E4E7E2; }
+.ligneRecapDevis dt{ font-weight: 700; color: #3E7C1F; }
+.ligneRecapDevis dd{ margin: 0; color: #16273B; overflow-wrap: anywhere; white-space: pre-line; }
+.modifierRecapDevis{
+    background: none;
+    border: 0;
+    color: #16273B;
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ---- Actions et messages ---- */
+.actionsDevis{
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+.actionsDevis [hidden]{ display: none; }
+.boutonFormDevis{
+    background-color: #6FBE2C;
+    color: #16273B;
+    border: 0;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0.95rem 2.4rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(111, 190, 44, 0.35);
+    transition: transform 0.15s ease, filter 0.2s ease;
+}
+.boutonFormDevis:hover:not(:disabled){ transform: translateY(-1px); filter: brightness(1.05); }
+.boutonFormDevis:disabled{
+    background-color: #D5DCCF;
+    color: #7A8794;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+.boutonRetourDevis{
+    background: transparent;
+    border: 2px solid #CDD5CB;
+    color: #16273B;
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 0.85rem 1.7rem;
+    cursor: pointer;
+}
+.boutonRetourDevis:hover{ border-color: #16273B; }
+.messageDevis{
+    margin-top: 1.25rem;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    background: #FDECEA;
+    color: #8A1F11;
+}
+.messageDevis[hidden]{ display: none; }
+.messageDevisOk{ background: #EEF6E7; color: #2F5E17; }
+
+/* ---- Ecran de remerciement ---- */
+.merciDevis{ text-align: center; padding: 1rem 0; }
+.cercleMerciDevis{
+    width: 84px; height: 84px; border-radius: 50%;
+    background: #6FBE2C;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 10px rgba(111, 190, 44, 0.18), 0 0 0 22px rgba(111, 190, 44, 0.08);
+    margin-bottom: 1.75rem;
+    animation: popMerciDevis 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popMerciDevis{ from{ transform: scale(0.3); opacity: 0; } to{ transform: scale(1); opacity: 1; } }
+.suiteMerciDevis{
+    list-style: none; margin: 1.5rem auto; padding: 0; max-width: 520px; text-align: left;
+    display: flex; flex-direction: column; gap: 0.9rem; counter-reset: suite;
+}
+.suiteMerciDevis li{
+    counter-increment: suite;
+    position: relative;
+    padding: 1rem 1.2rem 1rem 4rem;
+    border: 1px solid #E4E7E2;
+    border-radius: 14px;
+}
+.suiteMerciDevis li::before{
+    content: counter(suite);
+    position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #EEF6E7; color: #3E7C1F; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+}
+.suiteMerciDevis strong{ display: block; color: #16273B; }
+.suiteMerciDevis span{ color: #4A5B6B; }
+.telMerciDevis a{ color: #3E7C1F; font-weight: 700; }
+
+/* ===================== Responsive ===================== */
+@media (max-width: 1100px){
+    .grilleProduitsDevis{ grid-template-columns: repeat(4, 1fr); }
+}
 @media (max-width: 900px){
-    .formDevis,
-    .cardCord,
-    .cardHoraire{
-        width: 100%;
-    }
-    .containerFormDevis{
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        gap: 1.5rem;
-    }
-    .fromContainerDevis{ grid-area: 1 / 1 / 2 / 2; }
-    .coordonneDevis{ grid-area: 2 / 1 / 3 / 2; }
-    .boutonFormDevis{
-        width: 100%;
-    }
+    .parcoursDevisWrap{ grid-template-columns: 1fr; }
+    /* le panneau se reduit a ses garanties ; la progression passe dans le parcours */
+    .panneauDevis{ padding: 1.25rem 1.5rem; gap: 0; }
+    .titrePanneauDevis, .dureeDevis, .votreProjetDevis, .avisPanneauDevis{ display: none; }
+    .etapesDevis{ display: none; }
+    .garantiesDevis{ border: 0; padding: 0; margin: 0; flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.9rem; }
+    .progressionDevis{ display: block; }
+    .parcoursDevis{ padding: 1.5rem 1.25rem; }
+    .titreEtapeDevis{ font-size: 1.6rem; }
 }
-@media (max-width: 420px){
-    .containerNpDevis,
-    .containerTcDevis{
-        flex-direction: column;
-        gap: 0;
-    }
+@media (max-width: 560px){
+    .grilleProduitsDevis{ grid-template-columns: repeat(2, 1fr); }
+    .titreProduitDevis{ font-size: 0.9rem; }
+    .grilleDelaisDevis, .champsDevis{ grid-template-columns: 1fr; }
+    .ligneRecapDevis{ grid-template-columns: 1fr auto; }
+    .ligneRecapDevis dt{ grid-column: 1 / -1; }
+    .actionsDevis{ flex-direction: column-reverse; align-items: stretch; }
+    .boutonFormDevis, .boutonRetourDevis{ width: 100%; }
+}
+@media (prefers-reduced-motion: reduce){
+    .carteProduitDevis img, .barreDevisRemplie, .listeVotreProjet li, .coche, .etapeParcours, .avisPanneauDevis, .cercleMerciDevis{ transition: none; animation: none; }
 }

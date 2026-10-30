@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../../assets/logo-mipe-habitat.jpeg';
-import {ChevronDown, Menu, X, CalendarClock, Check} from '@lucide/astro';
+import {ChevronDown, CalendarClock, Check, Phone, Clock} from '@lucide/astro';
 import '../../styles/styleComponents/Nav-Footer/Navbar.css';
 import '../../styles/global.css';
 
@@ -26,11 +26,13 @@ const liens = [
 			{href : '/ravalement-de-facade', label: 'Ravalement de façade'},
 			{href : '/entretien-toiture', label: 'Nettoyage & entretien de toiture'},
 			{href : '/amenagement-combles', label: 'Aménagement des combles'},
+			{href : '/velux', label: 'Fenêtres de toit Velux'},
 			{href : '/energie-chauffage-ventilation', label: 'Énergie, chauffage & ventilation'},
 
 		],
 	},
 	{ href: '/realisation', label: 'Nos réalisations'},
+	{ href: '/promotions', label: 'Promotions'},
 	{
 		href: '/ressources',
 		label: 'Ressources',
@@ -53,11 +55,21 @@ const pageActuelle = Astro.url.pathname;
 <header class="navbar" id="navbar">
 	<Image class="logo" src={logoImage} alt={"Image du logo"} />
 
-	<button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navbar">
-		<Menu class="iconeBurger iconeBurgerOuvrir" size={24} />
-		<X class="iconeBurger iconeBurgerFermer" size={24} />
+	<!-- Telephone toujours visible dans la barre en mode mobile/tablette (le menu, lui, est replie) -->
+	<a class="telephone-mobile" href="tel:0375190160" aria-label="Appeler MIPE Habitat au 03 75 19 01 60">
+		<Phone size={18} />
+		<span>03 75 19 01 60</span>
+	</a>
+
+	<button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="panneauMenu">
+		<span class="traitsBurger" aria-hidden="true"><i></i><i></i><i></i></span>
 	</button>
 
+	<!-- Voile sombre sous la barre quand le menu est ouvert (mobile/tablette) -->
+	<div class="voileMenu" id="voileMenu" aria-hidden="true"></div>
+
+	<!-- Mobile/tablette : panneau deroulant sous la barre. Ordinateur : "display: contents", la mise en page ne change pas. -->
+	<div class="panneauMenu" id="panneauMenu">
 	<nav aria-label="Navigation principale">
 		<ul>
 			{
@@ -83,8 +95,10 @@ const pageActuelle = Astro.url.pathname;
 	</nav>
 
 	<div class="contact">
-		<a class="telephone" href="tel:0375190160">03 75 19 01 60</a>
+		<a class="telephone" href="tel:0375190160"><span class="iconeTelephone"><Phone size={16} /></span>03 75 19 01 60</a>
 		<a class="bouton-devis" href="/demander-un-devis"><CalendarClock class="calendar" size={20} color="#fff"/>Prendre RDV</a>
+		<p class="horairesMenu"><Clock size={14} aria-hidden="true" />Lun – Ven : 9h – 12h30, 13h30 – 17h</p>
+	</div>
 	</div>
 </header>
 

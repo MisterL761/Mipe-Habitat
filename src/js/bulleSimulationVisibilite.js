@@ -6,11 +6,17 @@
 //  - des que le pied de page (footer) apparait a l'ecran, sur toutes les pages :
 //    la bulle ne doit pas masquer ses liens et ses coordonnees.
 // Elle reapparait des qu'on quitte ces zones.
+// La pastille Google (en bas a gauche) suit exactement les memes regles.
 const bulle = document.querySelector('.bulleSimulation');
+const pastille = document.querySelector('.pastilleGoogle');
 
 if (bulle && 'IntersectionObserver' in window) {
 	const zonesVisibles = new Set();
-	const majBulle = () => bulle.classList.toggle('bulleSimulationCachee', zonesVisibles.size > 0);
+	const majBulle = () => {
+		const cachee = zonesVisibles.size > 0;
+		bulle.classList.toggle('bulleSimulationCachee', cachee);
+		pastille?.classList.toggle('pastilleGoogleCachee', cachee);
+	};
 
 	const observer = (zones, seuil) => {
 		if (!zones.length) return;

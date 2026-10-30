@@ -188,4 +188,47 @@
     .grilleUsines{
         grid-template-columns: 1fr;
     }
+
+    /* Autres menuiseries : encart a la gouttiere des autres sections */
+    .refonte section.sectionAutresMenuiseries{
+        margin: 2.5rem var(--gouttiere, 1.5rem) 0 var(--gouttiere, 1.5rem);
+        padding: 1.75rem 1.5rem;
+        border-radius: 20px;
+    }
+    .titreAutresMenuiseries{
+        font-size: 1.5rem;
+    }
+    .badgeAutreMenuiserie{
+        padding: 0.7rem 1.1rem;
+    }
+
+    /* FAQ : titre au-dessus des questions (au lieu de 2 colonnes serrees) */
+    .refonte section.sectionFaqMenuiseries{
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 3rem var(--gouttiere, 1.5rem) 0 var(--gouttiere, 1.5rem);
+    }
+    .faqMenuiseriesTexte{
+        width: 100%;
+    }
+    .titreFaqMenuiseries{
+        font-size: 1.5rem;
+    }
+    .faqMenuiseriesListe{
+        width: 100%;
+    }
+    .questionFaqMenuiseries{
+        min-height: 44px;
+    }
+}
+
+/* Petits mobiles : l'encart partenaire gagne de la largeur */
+@media (max-width: 560px){
+    .refonte section.sectionIsofrance{
+        margin: 1rem 1rem 2.5rem 1rem;
+        padding: 1.5rem 1.25rem;
+    }
+    .carteUsine{
+        padding: 1.25rem;
+    }
 }
