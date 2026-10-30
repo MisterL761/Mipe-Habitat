@@ -133,10 +133,17 @@ chantiers.forEach((chantier) => {
     marqueur.on('click', () => afficherChantier(chantier, marqueur));
 });
 
-fermerCard.addEventListener('click', () => {
+function fermerCardChantier() {
     cardChantier.hidden = true;
     if (marqueurActif) {
         marqueurActif.setIcon(pinChantier);
         marqueurActif = null;
     }
+}
+
+fermerCard.addEventListener('click', fermerCardChantier);
+// Echap ou clic sur le fond de la carte ferment aussi l'apercu
+carte.on('click', fermerCardChantier);
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !cardChantier.hidden) fermerCardChantier();
 });
