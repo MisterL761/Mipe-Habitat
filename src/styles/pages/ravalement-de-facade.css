@@ -162,16 +162,32 @@
     .sectionFinitions{
         margin: 2.5rem 1.5rem 0 1.5rem;
     }
+    .refonte .sectionFinitions{
+        margin: 2.5rem var(--gouttiere, 1.5rem) 0 var(--gouttiere, 1.5rem);
+    }
     .carteFinitions{
         flex-direction: column;
         align-items: stretch;
-        padding: 1.5rem;
+        gap: 1.75rem;
+        padding: 2rem 1.5rem;
+        border-radius: 22px;
     }
     .finitionsTexte{
         width: 100%;
     }
+    .titreFinitions{
+        font-size: 1.5rem;
+    }
+    /* tablette : 2 mini-cartes par ligne ; mobile : 1 (voir plus bas) */
     .finitionsGrille{
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .carteMiniFinition{
+        padding: 1.1rem 1.15rem;
+    }
+    .mentionFinitions{
+        margin-top: 1.25rem;
+        line-height: 1.5;
     }
 
     .sectionFaqRavalement{
@@ -186,5 +202,11 @@
 @media (max-width: 560px){
     .deroulementProjetCard{
         width: 100%;
+    }
+    .carteFinitions{
+        padding: 1.75rem 1.1rem;
+    }
+    .finitionsGrille{
+        grid-template-columns: 1fr;
     }
 }
