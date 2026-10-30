@@ -1,10 +1,6 @@
 /* Le hero (.containerParentImageDroite) est une classe globale partagee
    avec d'autres pages metier, sans marge haute : elle touchait directement
    la navbar. On ajoute la marge ici, scopee a cette page uniquement. */
-.containerImageDroite .containerParentImageDroite{
-    margin-top: 3rem;
-}
-
 /* ===================== "Nos solutions" (2 cartes) ===================== */
 .sectionSolutionsEnergie{
     background-color: #EEF6E7;
