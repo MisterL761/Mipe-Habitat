@@ -28,11 +28,11 @@
    totalite des pages (sauf l'accueil). Liste de "puces" : icone maison,
    chevrons, page actuelle sur une pastille bleu nuit. */
 .filAriane{
-  /* meme barre sur toutes les pages : collee a la navbar, blanche, hauteur fixe */
+  /* meme barre sur toutes les pages : collee a la navbar, blanche, hauteur mini 3rem */
   max-width: none;
   margin: 0;
   padding: 0 6%;
-  height: 3rem;
+  min-height: 3rem;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -44,15 +44,23 @@
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.35rem;
   font-size: 0.9rem;
+  min-width: 0;
+  max-width: 100%;
 }
 .filArianeListe li{
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  flex-shrink: 0;
+}
+/* derniere etape (page actuelle) : prend la place restante et se tronque */
+.filArianeListe li:last-child{
+  flex-shrink: 1;
+  min-width: 0;
 }
 .filArianeLien{
   display: inline-flex;
@@ -88,9 +96,12 @@
   top: -1.5px;
 }
 .filArianePage{
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
+  display: block;
+  line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   padding: 0.4rem 0.8rem;
   color: #16273B;
   font-weight: 700;
@@ -104,7 +115,11 @@
     clip: rect(0 0 0 0);
     white-space: nowrap;
   }
-  .filArianeListe{ font-size: 0.82rem; }
+  .filArianeListe{ font-size: 0.82rem; gap: 0.1rem; }
+  .filArianeLien{ padding: 0.4rem 0.45rem; white-space: nowrap; }
+  .filArianePage{ padding: 0.4rem 0.45rem; }
+  /* zone tactile de 44px sur les liens */
+  .filArianeLien{ min-height: 44px; box-sizing: border-box; }
 }
 
 .containerParentImageDroite {

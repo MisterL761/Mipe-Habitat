@@ -1537,3 +1537,37 @@
     color: var(--vert-fonce);
     margin-top: auto;
 }
+
+
+/* ==========================================================================
+   Gouttiere unique des pages metiers sur mobile/tablette
+   Avant : 1.5rem (24px) partout, meme a 800px de large, donc des contenus
+   colles aux bords en tablette, et mal alignes avec le fil d'Ariane (6%).
+   Maintenant : une seule valeur fluide (24px sur mobile, jusqu'a 56px en
+   tablette) appliquee aux sections de contenu de toutes les pages metiers.
+   ========================================================================== */
+@media (max-width: 900px){
+    .refonte{
+        --gouttiere: clamp(1.5rem, 6vw, 3.5rem);
+    }
+    /* sections qui portent la gouttiere en padding */
+    .refonte :is(
+        .containerParentImageDroite, .containerParentImageGauche,
+        .containerCardAtout, .deroulementProjetContainer, .sectionIsofrance,
+        .sectionInterventionsToiture, .sectionInterventionsCombles, .sectionInterventionsVelux,
+        .sectionSolutionsEnergie, .sectionPartenaireEnergie
+    ){
+        padding-left: var(--gouttiere);
+        padding-right: var(--gouttiere);
+    }
+    /* sections qui la portent en marge */
+    .refonte :is(
+        .sectionAidesIte, .sectionAidesIti, .sectionAidesCombles,
+        .sectionAnticiper, .sectionFinitions,
+        .sectionFaqIte, .sectionFaqIti, .sectionFaqCombles, .sectionFaqRavalement,
+        .sectionFaqToiture, .sectionFaqVelux, .sectionFaqEnergie
+    ){
+        margin-left: var(--gouttiere);
+        margin-right: var(--gouttiere);
+    }
+}
