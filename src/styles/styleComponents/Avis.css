@@ -210,7 +210,6 @@
     .carteAvis:hover{ transform: none; }
     .texteAvis{ font-size: 0.95rem; }
     .auteurAvis{ margin-top: auto; padding-top: 1rem; }
-    .voirTousAvis{ grid-row: 3; margin: 0; }
 }
 
 /* ===================== Sources des notes (Google, PagesJaunes) ===================== */
@@ -266,15 +265,6 @@
     outline-offset: 3px;
 }
 
-.voirTousAvis{
-	text-align: center;
-	margin: 1.5rem 0;
-}
-.voirTousAvis a{
-	font-weight: bold;
-	text-decoration: underline;
-	color: #16273B;
-}
 
 @media (max-width: 600px){
     .sourcesAvis{

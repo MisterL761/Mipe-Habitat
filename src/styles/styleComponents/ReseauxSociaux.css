@@ -87,17 +87,3 @@
         gap: 1.1rem;
     }
 }
-
-/* Le lien « Voir tous nos avis » est sur le fond bleu nuit : texte clair (il etait bleu nuit, donc invisible). */
-.refonte .voirTousAvis a{
-    color: #ffffff;
-    text-decoration-color: var(--vert, #6FBE2C);
-    text-underline-offset: 4px;
-}
-@media (max-width: 600px){
-    .refonte .voirTousAvis a{
-        display: inline-flex;
-        align-items: center;
-        min-height: 44px;
-    }
-}
