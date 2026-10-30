@@ -157,6 +157,16 @@
     }
 }
 
+/* Mobile : une seule bande d'avis, deux bandes de ~140px de large rendaient les
+   commentaires illisibles (quelques mots par ligne). */
+@media (max-width: 600px){
+    .avisGrille{
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .colonneMonte{ grid-column: 1; grid-row: 2; }
+    .colonneDescend{ display: none; }
+}
+
 @media (max-width: 480px){
     .avisContainer{
         padding: 3rem 1rem;
