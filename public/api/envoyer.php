@@ -69,21 +69,6 @@ if (ligne($donnees['site_web'] ?? '') !== '') {
     repondre(200, ['ok' => true]);
 }
 
-// Limite d'envois par IP (fichiers dans le dossier temporaire du serveur).
-$ip = $_SERVER['REMOTE_ADDR'] ?? 'inconnue';
-$fichierLimite = sys_get_temp_dir() . '/mipe_form_' . hash('sha256', $ip);
-$maintenant = time();
-$horodatages = [];
-if (is_file($fichierLimite)) {
-    $horodatages = array_filter(
-        array_map('intval', explode(',', (string) file_get_contents($fichierLimite))),
-        fn ($t) => $t > $maintenant - $config['limite_fenetre_secondes']
-    );
-}
-if (count($horodatages) >= $config['limite_envois']) {
-    repondre(429, ['ok' => false, 'erreur' => 'Trop de demandes. Reessayez dans quelques minutes.']);
-}
-
 // Validation commune
 $type = ligne($donnees['type'] ?? '');
 $nom = ligne($donnees['nom'] ?? '', 80);
@@ -123,6 +108,33 @@ if (empty($donnees['consentement'])) $erreurs[] = 'consentement';
 if ($erreurs) {
     repondre(422, ['ok' => false, 'erreur' => 'Champs invalides.', 'champs' => $erreurs]);
 }
+
+// Limite d'envois par IP (fichier dans le dossier temporaire du serveur). Le fichier
+// reste verrouille pendant tout le cycle lecture / test / ecriture : deux requetes
+// simultanees ne peuvent pas passer la limite en meme temps. La tentative est
+// comptee avant l'envoi.
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'inconnue';
+$maintenant = time();
+$poignee = fopen(sys_get_temp_dir() . '/mipe_form_' . hash('sha256', $ip), 'c+');
+if ($poignee === false || !flock($poignee, LOCK_EX)) {
+    repondre(503, ['ok' => false, 'erreur' => 'Service indisponible, reessayez.']);
+}
+$horodatages = array_filter(
+    array_map('intval', explode(',', (string) stream_get_contents($poignee))),
+    fn ($t) => $t > $maintenant - $config['limite_fenetre_secondes']
+);
+if (count($horodatages) >= $config['limite_envois']) {
+    flock($poignee, LOCK_UN);
+    fclose($poignee);
+    repondre(429, ['ok' => false, 'erreur' => 'Trop de demandes. Reessayez dans quelques minutes.']);
+}
+$horodatages[] = $maintenant;
+ftruncate($poignee, 0);
+rewind($poignee);
+fwrite($poignee, implode(',', $horodatages));
+fflush($poignee);
+flock($poignee, LOCK_UN);
+fclose($poignee);
 
 // Construction de l'e-mail
 $lignes[] = 'Nom : ' . $prenom . ' ' . $nom;
@@ -164,8 +176,5 @@ if (!$envoye) {
     error_log('[mipe-habitat] Echec de mail() pour la demande ' . $type);
     repondre(500, ['ok' => false, 'erreur' => "L'envoi a echoue."]);
 }
-
-$horodatages[] = $maintenant;
-file_put_contents($fichierLimite, implode(',', $horodatages), LOCK_EX);
 
 repondre(200, ['ok' => true]);
