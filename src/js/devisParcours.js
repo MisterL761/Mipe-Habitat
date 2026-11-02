@@ -114,6 +114,9 @@ if (form) {
 
 		const donnees = new FormData(form);
 		const payload = {
+			type: 'devis',
+			site_web: donnees.get('site_web'),
+			consentement: donnees.get('consentement') ? true : false,
 			travaux: donnees.getAll('travaux'),
 			delai: donnees.get('delai'),
 			nom: donnees.get('nom'),

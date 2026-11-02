@@ -114,7 +114,7 @@ const etapes = ['Vos travaux', 'Votre délai', 'Vos coordonnées', 'Confirmation
 	</aside>
 
 	<!-- Parcours : l'envoi se branche via data-endpoint (vide = pas encore active) -->
-	<form class="parcoursDevis" id="parcoursDevis" data-endpoint="" novalidate>
+	<form class="parcoursDevis" id="parcoursDevis" data-endpoint="/api/envoyer.php" novalidate>
 
 		<ol class="etapesDevis" id="etapesDevis" aria-label="Étapes du devis">
 			{ etapes.map((nom, i) => (
@@ -131,6 +131,9 @@ const etapes = ['Vos travaux', 'Votre délai', 'Vos coordonnées', 'Confirmation
 		</div>
 
 		<!-- Etape 1 -->
+		<!-- piege a robots : cache aux visiteurs, ne pas remplir -->
+		<input type="text" name="site_web" class="champPiege" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
 		<fieldset class="etapeParcours" data-etape="1">
 			<legend class="titreEtapeDevis">Quels travaux envisagez-vous ?</legend>
 			<p class="sousTitreEtapeDevis">Sélectionnez un ou plusieurs projets, on s'occupe du reste.</p>
