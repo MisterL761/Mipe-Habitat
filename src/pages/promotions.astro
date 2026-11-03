@@ -7,24 +7,7 @@ import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/promotions.css';
 import { Check, Gift, CalendarClock, Phone } from '@lucide/astro';
-import { Image } from 'astro:assets';
-import { offres } from '../data/offres.js';
 
-// Les images d'offres sont chargees par nom de fichier depuis src/assets/image
-const images = import.meta.glob('../assets/image/*.{webp,png,jpg,jpeg}', { eager: true, import: 'default' });
-
-const aujourdhui = new Date();
-aujourdhui.setHours(0, 0, 0, 0);
-
-const offresActives = offres
-	.filter((o) => o.actif && (!o.dateFin || new Date(o.dateFin) >= aujourdhui))
-	.map((o) => ({
-		...o,
-		photo: o.image ? images[`../assets/image/${o.image}`] : null,
-		finFormatee: o.dateFin
-			? new Date(o.dateFin).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
-			: null,
-	}));
 ---
 
 <Layout title="Offres et promotions du moment | MIPE Habitat" description="Profitez des offres en cours sur vos travaux de rénovation avec MIPE Habitat : conditions et durée de validité détaillées pour chaque promotion.">
@@ -39,42 +22,14 @@ const offresActives = offres
 			<p class="descOffres">Profitez des avantages réservés à nos clients sur vos travaux de rénovation. Chaque offre précise ses conditions et sa durée de validité.</p>
 		</section>
 
-		<section class="listeOffres">
-			{
-				offresActives.length > 0 ? offresActives.map((offre) => (
-					<article class="carteOffre reveal" id={offre.id}>
-						{offre.photo && (
-							<div class="photoOffre">
-								<Image src={offre.photo} alt={offre.imageAlt || offre.titre} width={720} quality={75} />
-								<span class="etiquetteOffre"><Gift size={15} />{offre.etiquette}</span>
-							</div>
-						)}
-						<div class="contenuOffre">
-							{!offre.photo && <span class="etiquetteOffre etiquetteSeule"><Gift size={15} />{offre.etiquette}</span>}
-							<h2 class="titreCarteOffre">{offre.titre}</h2>
-							<p class="introOffre">{offre.intro}</p>
-							<ul class="pointsOffre">
-								{offre.points.map((point) => (
-									<li><Check size={16} color="#6FBE2C" /><span>{point}</span></li>
-								))}
-							</ul>
-							{offre.mentions && <p class="mentionsOffre">{offre.mentions}</p>}
-							<p class="validiteOffre">
-								<CalendarClock size={16} />
-								{offre.finFormatee ? `Offre valable jusqu’au ${offre.finFormatee}.` : offre.validite}
-							</p>
-							<a class="boutonOffre" href={offre.cta.lien}><CalendarClock size={16} />{offre.cta.texte}</a>
-						</div>
-					</article>
-				)) : (
-					<div class="aucuneOffre">
-						<Gift size={32} color="#6FBE2C" />
-						<h2>Pas d’offre en ce moment</h2>
-						<p>De nouvelles offres arrivent régulièrement. En attendant, demandez un devis gratuit : nous vous indiquerons les aides et avantages auxquels vous avez droit.</p>
-					</div>
-				)
-			}
-		</section>
+		<section class="listeOffres" id="listeOffres" aria-live="polite"></section>
+
+		<template id="promoIcones">
+			<span data-i="gift"><Gift size={15} /></span>
+			<span data-i="gift32"><Gift size={32} color="#6FBE2C" /></span>
+			<span data-i="check"><Check size={16} color="#6FBE2C" /></span>
+			<span data-i="calendrier"><CalendarClock size={16} /></span>
+		</template>
 
 		<div class="blocQuestionOffres">
 		<section class="questionOffres">
@@ -93,3 +48,5 @@ const offresActives = offres
 		<Footer></Footer>
 	</main>
 </Layout>
+
+<script src="../js/promotionsListe.js"></script>

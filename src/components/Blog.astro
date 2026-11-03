@@ -1,9 +1,7 @@
 ---
 import { Image as ImageIcon, ArrowRight, ArrowLeft } from '@lucide/astro';
-import { Image } from 'astro:assets';
 import '../styles/global.css';
 import '../styles/styleComponents/Blog.css';
-import { articles } from '../data/articlesBlog.js';
 ---
 
 <section class="reveal">
@@ -15,33 +13,7 @@ import { articles } from '../data/articlesBlog.js';
 			</div>
 		</div>
 
-		<div class="listeArticles" id="listeArticles">
-			{
-				articles.map(({ tag, titre, image, contenu }) => (
-					<div class="carteArticle">
-						{image ? (
-							<div class="imageArticle"><Image src={image} alt={titre} /></div>
-						) : (
-							<div class="imagePlaceholder"><ImageIcon size={28} color="#A9B2BA" /></div>
-						)}
-						<div class="contenuArticle">
-							<p class="tagArticle">{tag}</p>
-							<p class="titreArticle">{titre}</p>
-							<button
-								type="button"
-								class="lirePlus"
-								data-tag={tag}
-								data-titre={titre}
-								data-image={image ? image.src : ''}
-								data-contenu={JSON.stringify(contenu)}
-							>
-								Lire plus <ArrowRight size={14} color="#3E7C1F" />
-							</button>
-						</div>
-					</div>
-				))
-			}
-		</div>
+		<div class="listeArticles" id="listeArticles"></div>
 
 		<div class="containerButtonBlog">
 			<button type="button" class="precedentBlog" id="precedentBlog" aria-label="Article précédent"><ArrowLeft size={20} color="#FFF" /></button>
@@ -65,6 +37,12 @@ import { articles } from '../data/articlesBlog.js';
 	</dialog>
 </section>
 
+<template id="blogIcones">
+	<span data-i="image"><ImageIcon size={28} color="#A9B2BA" /></span>
+	<span data-i="fleche"><ArrowRight size={14} color="#3E7C1F" /></span>
+</template>
+
+<script src="../js/articlesBlog.js"></script>
 <script src="../js/modaleBlog.js"></script>
 <script src="../js/sliderBlog.js"></script>
 

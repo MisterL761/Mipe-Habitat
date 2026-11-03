@@ -1,4 +1,3 @@
-const boutons = document.querySelectorAll('.lirePlus');
 const modale = document.getElementById('modaleArticle');
 const modaleTag = document.getElementById('modaleTag');
 const modaleTitre = document.getElementById('modaleTitre');
@@ -7,8 +6,11 @@ const boutonFermer = document.getElementById('modaleFermer');
 const photoModale = document.getElementById('photoModale');
 const iconeModalePlaceholder = document.getElementById('iconeModalePlaceholder');
 
-boutons.forEach((bouton) => {
-	bouton.addEventListener('click', () => {
+// Delegation : les cartes sont construites apres le chargement de la page (admin)
+document.addEventListener('click', (evenement) => {
+	const bouton = evenement.target.closest('.lirePlus');
+	if (!bouton) return;
+	{
 		modaleTag.textContent = bouton.dataset.tag;
 		modaleTitre.textContent = bouton.dataset.titre;
 
@@ -44,7 +46,7 @@ boutons.forEach((bouton) => {
 		});
 
 		modale.showModal();
-	});
+	}
 });
 
 boutonFermer.addEventListener('click', () => modale.close());
