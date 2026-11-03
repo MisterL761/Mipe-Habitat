@@ -30,7 +30,7 @@ import FaqHome from '../components/FaqHome.astro';
 const heroImg = await getImage({ src: heroImgSrc, width: 1920, quality: 72 });
 ---
 
-<Layout>
+<Layout title="MIPE Habitat | Rénovation énergétique, isolation et ravalement dans l'Oise" description="MIPE Habitat, spécialiste de la rénovation énergétique dans l'Oise et en Île-de-France : isolation, menuiseries, ravalement de façade, toiture. Devis gratuit, qualifié RGE.">
     <!-- Photo de la hero (ordinateur) : telechargee en priorite, des le debut -->
     <link slot="head" rel="preload" as="image" href={heroImg.src} fetchpriority="high" media="(min-width: 901px)" />
     <Navbar></Navbar>
