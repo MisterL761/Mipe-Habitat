@@ -1,0 +1,68 @@
+---
+import '../styles/refonteAccueil.css';
+import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Footer from '../components/Nav-Footer/Footer.astro';
+---
+
+<Layout title="Page introuvable | MIPE Habitat" description="Cette page n'existe pas ou a été déplacée. Retrouvez nos métiers, nos réalisations ou demandez votre devis gratuit.">
+	<Navbar></Navbar>
+	<main class="refonte page404">
+		<p class="petitTitre">Erreur 404</p>
+		<h1 class="titre404">Cette page est introuvable</h1>
+		<p class="texte404">Elle a peut-être été déplacée ou son adresse est incorrecte. Retrouvez ce que vous cherchez depuis l'une des pages ci-dessous.</p>
+		<div class="actions404">
+			<a class="bouton404 bouton404Plein" href="/">Retour à l'accueil</a>
+			<a class="bouton404" href="/nos-metiers">Nos métiers</a>
+			<a class="bouton404" href="/demander-un-devis">Demander un devis</a>
+		</div>
+	</main>
+	<Footer></Footer>
+</Layout>
+
+<style>
+	.page404{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 6rem var(--gouttiere, 1.5rem) 7rem;
+		background: #F7F8F6;
+	}
+	.titre404{
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 800;
+		color: #16273B;
+		line-height: 1.15;
+		margin-top: 0.5rem;
+	}
+	.texte404{
+		max-width: 34rem;
+		margin-top: 1rem;
+		color: #4A5B6B;
+		line-height: 1.6;
+	}
+	.actions404{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-top: 2rem;
+	}
+	.bouton404{
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding: 0.6rem 1.4rem;
+		border-radius: 999px;
+		border: 2px solid #16273B;
+		color: #16273B;
+		font-weight: 600;
+		text-decoration: none;
+		transition: background-color 0.2s ease, color 0.2s ease;
+	}
+	.bouton404:hover{ background: #16273B; color: #fff; }
+	.bouton404Plein{ background: #16273B; color: #fff; }
+	.bouton404Plein:hover{ background: #0F1B2A; }
+</style>
