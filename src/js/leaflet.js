@@ -37,9 +37,10 @@ const pinSiege = creerPin('#16273B');
 const pinChantier = creerPin('#6FBE2C');
 const pinSelectionne = creerPin('#D64545');
 
-L.marker([siege.lat, siege.lng], { icon: pinSiege })
+const marqueurSiege = L.marker([siege.lat, siege.lng], { icon: pinSiege, title: `Siège : ${siege.nom}` })
     .addTo(carte)
     .bindTooltip(siege.nom);
+marqueurSiege.getElement()?.setAttribute('aria-label', `Siège : ${siege.nom}`);
 
 const cardChantier = document.getElementById('cardChantier');
 const fermerCard = document.getElementById('fermerCard');
@@ -63,13 +64,23 @@ function initGalerieStatique(galerie) {
     const boutonSuiv = galerie.querySelector('.galerieSuiv');
     if (photos.length <= 1) return; // 0 ou 1 photo : pas besoin de fleches
 
+    // Les photos suivantes ne sont telechargees qu'au premier survol, toucher ou clic :
+    // la page ne charge ainsi qu'une photo par carte au depart.
+    let chargees = false;
+    function chargerPhotos() {
+        if (chargees) return;
+        chargees = true;
+        track.querySelectorAll('img[data-src]').forEach((img) => { img.src = img.dataset.src; });
+    }
+    ['pointerenter', 'touchstart', 'focusin'].forEach((evt) => galerie.addEventListener(evt, chargerPhotos, { once: true, passive: true }));
+
     let index = 0;
     function allerA(nouvelIndex) {
         index = (nouvelIndex + photos.length) % photos.length;
         track.style.transform = `translateX(-${index * 100}%)`;
     }
-    boutonPrec.addEventListener('click', () => allerA(index - 1));
-    boutonSuiv.addEventListener('click', () => allerA(index + 1));
+    boutonPrec.addEventListener('click', () => { chargerPhotos(); allerA(index - 1); });
+    boutonSuiv.addEventListener('click', () => { chargerPhotos(); allerA(index + 1); });
 }
 document.querySelectorAll('.grilleRealisations .galerieChantier').forEach(initGalerieStatique);
 
@@ -129,7 +140,10 @@ function afficherChantier(chantier, marqueur) {
 }
 
 chantiers.forEach((chantier) => {
-    const marqueur = L.marker([chantier.lat, chantier.lng], { icon: pinChantier }).addTo(carte);
+    const nomChantier = `${chantier.titre}, ${chantier.ville} (${chantier.annee})`;
+    const marqueur = L.marker([chantier.lat, chantier.lng], { icon: pinChantier, title: nomChantier }).addTo(carte);
+    // nom accessible pour les lecteurs d'ecran (le pin n'est qu'un dessin CSS)
+    marqueur.getElement()?.setAttribute('aria-label', nomChantier);
     marqueur.on('click', () => afficherChantier(chantier, marqueur));
 });
 

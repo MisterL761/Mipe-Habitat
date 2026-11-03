@@ -1,6 +1,6 @@
 ---
 import { Image as ImageIcon, X } from '@lucide/astro';
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import 'leaflet/dist/leaflet.css';
 import '../styles/styleComponents/CarteRealisations.css';
 import othisApres1 from '../assets/realisation/othis/gaudry-othis1.webp';
@@ -541,15 +541,35 @@ const chantiers = [
 	},
 ];
 
+// Photos redimensionnees (800 px de large suffisent pour une carte de 380 px,
+// meme sur ecran dense) : les originaux font jusqu'a 1900 px et 400 Ko.
+const LARGEUR_PHOTO = 800;
+const optimiser = (photo) => getImage({ src: photo, width: LARGEUR_PHOTO, format: 'webp' });
+
+// Pour la grille du bas : on garde src/largeur/hauteur de chaque photo.
+const chantiersGrille = await Promise.all(
+	chantiers.map(async (chantier) => ({
+		...chantier,
+		vignettes: await Promise.all((chantier.photos || []).map(async (photo) => {
+			const img = await optimiser(photo);
+			return { src: img.src, width: img.attributes.width, height: img.attributes.height };
+		})),
+	}))
+);
+
 // Pour la carte Leaflet (script JS classique, pas de traitement Astro des
-// images) : on ne transmet que l'URL finale de chaque photo (photo.src),
-// pas l'objet Image complet. Le tableau "chantiers" original, lui, garde
-// les vrais objets Image pour que la grille du bas beneficie de
-// l'optimisation automatique des images d'Astro.
-const chantiersPourCarte = chantiers.map((chantier) => ({
-	...chantier,
-	photos: (chantier.photos || []).map((photo) => photo.src),
-}));
+// images) : on ne transmet que l'URL finale de chaque photo optimisee.
+const chantiersPourCarte = await Promise.all(
+	chantiersGrille.map(async ({ vignettes, ...chantier }) => ({
+		...chantier,
+		photos: vignettes.map((v) => v.src),
+	}))
+);
+
+// Image transparente de 1 px : sert de src provisoire aux photos suivantes d'une carte
+// (elles ne se chargent qu'au premier survol / clic, voir leaflet.js).
+const PIXEL_VIDE = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+
 ---
 
 <section class="reveal">
@@ -594,13 +614,15 @@ const chantiersPourCarte = chantiers.map((chantier) => ({
 		<h2 class="titreToutesRealisations">Toutes nos réalisations</h2>
 		<div class="grilleRealisations">
 			{
-				chantiers.map(({ titre, ville, cp, photos }, index) => (
+				chantiersGrille.map(({ titre, ville, cp, vignettes: photos }, index) => (
 					<div class="carteRealisation" hidden={index >= NB_REALISATIONS_INITIAL}>
 						{photos && photos.length > 0 ? (
 							<div class="galerieChantier">
 								<div class="galerieTrack">
-									{photos.map((photo) => (
-										<Image src={photo} alt={titre} />
+									{photos.map((photo, i) => (
+										i === 0
+											? <img src={photo.src} width={photo.width} height={photo.height} alt={titre} loading="lazy" decoding="async" />
+											: <img src={PIXEL_VIDE} data-src={photo.src} width={photo.width} height={photo.height} alt={titre} decoding="async" />
 									))}
 								</div>
 								{photos.length > 1 && (
