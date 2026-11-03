@@ -11,6 +11,10 @@
    sans avoir a scroller pour decouvrir le bandeau. .hero (texte/formulaire)
    prend l'espace restant une fois le bandeau pose en bas (flex:1). */
 .heroSection{
+    /* Les blocs texte/formulaire glissent depuis les cotes a l'arrivee (entreeGauche/
+       entreeDroite) : sans ce rognage, ils elargissaient brievement la page de
+       quelques pixels pendant l'animation (decalage visible sur mobile). */
+    overflow-x: clip;
     /* min-height (et non height) : sur un ecran plus bas que prevu, la hero
        grandit avec son contenu au lieu de laisser le bandeau de chiffres
        chevaucher le texte et le formulaire. */
