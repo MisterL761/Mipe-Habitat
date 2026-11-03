@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import imagePartage from '../assets/image/ImageHero.webp';
 import BulleSimulation from '../components/BulleSimulation.astro';
 import PastilleGoogle from '../components/PastilleGoogle.astro';
 import OffreEnCours from '../components/OffreEnCours.astro';
@@ -15,6 +17,11 @@ const {
 	title = 'MIPE Habitat',
 	description = "MIPE Habitat, votre partenaire de rénovation énergétique dans l'Oise et en Île-de-France : isolation, menuiseries, ravalement, toiture.",
 } = Astro.props;
+
+// Image d'apercu quand un lien du site est partage (Facebook, WhatsApp, LinkedIn...)
+const apercu = await getImage({ src: imagePartage, width: 1200, format: 'jpg' });
+const urlPage = new URL(Astro.url.pathname, Astro.site).href;
+const urlApercu = new URL(apercu.src, Astro.site).href;
 ---
 
 <!doctype html>
@@ -39,6 +46,14 @@ const {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Archivo:wght@700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
 		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Archivo:wght@700;800;900&display=swap" /></noscript>
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="MIPE Habitat" />
+		<meta property="og:locale" content="fr_FR" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={urlPage} />
+		<meta property="og:image" content={urlApercu} />
+		<meta name="twitter:card" content="summary_large_image" />
 		<slot name="head" />
 	</head>
 	<body class="site-body">
