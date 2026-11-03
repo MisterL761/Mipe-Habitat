@@ -17,13 +17,14 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     usleep(300000); // ralentit les essais automatisés
     if (!verifier_csrf($_POST['csrf'] ?? null)) {
         $erreur = 'Session expirée, rechargez la page.';
-    } elseif (tentatives_connexion() >= 5) {
+    } elseif (!reserver_tentative()) {
         $erreur = 'Trop de tentatives. Réessayez dans 15 minutes.';
     } elseif ($premiere) {
         $code = (string) ($_POST['code'] ?? '');
         $mdp = (string) ($_POST['motdepasse'] ?? '');
-        if (!hash_equals((string) config_admin()['code_installation'], $code)) {
-            tentatives_connexion('echec');
+        if (!code_installation_valide()) {
+            $erreur = "Installation impossible : le code d'installation de admin/config.php est trop court ou n'a pas été personnalisé (16 caractères minimum).";
+        } elseif (!hash_equals((string) config_admin()['code_installation'], $code)) {
             $erreur = "Code d'installation incorrect.";
         } elseif (mb_strlen($mdp) < 10) {
             $erreur = 'Le mot de passe doit faire au moins 10 caractères.';
@@ -32,6 +33,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         } elseif (!enregistrer_motdepasse($mdp)) {
             $erreur = "Impossible d'enregistrer le mot de passe (droits d'écriture du dossier admin).";
         } else {
+            oublier_tentatives();
             session_regenerate_id(true);
             $_SESSION['admin'] = true;
             $_SESSION['activite'] = time();
@@ -39,14 +41,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
             exit;
         }
     } elseif (password_verify((string) ($_POST['motdepasse'] ?? ''), $hash)) {
-        tentatives_connexion('reussite');
+        oublier_tentatives();
         session_regenerate_id(true);
         $_SESSION['admin'] = true;
         $_SESSION['activite'] = time();
         header('Location: index.php');
         exit;
     } else {
-        tentatives_connexion('echec');
         $erreur = 'Mot de passe incorrect.';
     }
 }

@@ -91,28 +91,42 @@ function enregistrer_motdepasse(string $motdepasse): bool
     return file_put_contents(fichier_identifiants(), json_encode(['hash' => password_hash($motdepasse, PASSWORD_DEFAULT)]), LOCK_EX) !== false;
 }
 
-// --- Limite de tentatives de connexion : 5 échecs / 15 minutes par adresse IP ---
-function tentatives_connexion(string $action = 'lire'): int
+// --- Limite de tentatives de connexion : 5 essais / 15 minutes par adresse IP ---
+// La tentative est RÉSERVÉE avant de vérifier le mot de passe, sous un seul verrou :
+// des essais simultanés ne peuvent pas passer sous la limite en même temps.
+// Si le compteur est illisible, on refuse (échec fermé).
+function reserver_tentative(): bool
 {
     $f = sys_get_temp_dir() . '/mipe_admin_login_' . hash('sha256', $_SERVER['REMOTE_ADDR'] ?? 'x');
     $h = fopen($f, 'c+');
-    if ($h === false) {
-        return 0;
+    if ($h === false || !flock($h, LOCK_EX)) {
+        return false;
     }
-    flock($h, LOCK_EX);
     $limite = time() - 900;
     $t = array_values(array_filter(array_map('intval', explode(',', (string) stream_get_contents($h))), fn ($x) => $x > $limite));
-    if ($action === 'echec') {
+    $autorise = count($t) < 5;
+    if ($autorise) {
         $t[] = time();
-    } elseif ($action === 'reussite') {
-        $t = [];
     }
     ftruncate($h, 0);
     rewind($h);
     fwrite($h, implode(',', $t));
     flock($h, LOCK_UN);
     fclose($h);
-    return count($t);
+    return $autorise;
+}
+
+// Connexion réussie : on remet le compteur à zéro
+function oublier_tentatives(): void
+{
+    @unlink(sys_get_temp_dir() . '/mipe_admin_login_' . hash('sha256', $_SERVER['REMOTE_ADDR'] ?? 'x'));
+}
+
+// Le code d'installation doit être long et différent du modèle, sinon on refuse (échec fermé).
+function code_installation_valide(): bool
+{
+    $code = (string) (config_admin()['code_installation'] ?? '');
+    return strlen($code) >= 16 && !str_contains(strtoupper($code), 'CHANGEZ-MOI');
 }
 
 // --- Images : vérification, correction d'orientation, redimensionnement, conversion en WebP ---
