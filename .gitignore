@@ -28,3 +28,9 @@ pnpm-debug.log*
 
 .env.*
 !.env.example
+
+# Admin : réglages locaux (code d'installation) et fichiers créés en ligne
+public/admin/config.php
+public/admin/_prive/
+public/data/
+public/uploads/

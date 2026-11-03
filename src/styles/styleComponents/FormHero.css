@@ -79,3 +79,21 @@ input:not([type="checkbox"]){
         gap: 0;
     }
 }
+
+.messageForm{
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    background: #EEF6E7;
+    color: #2F6B17;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.messageForm.messageFormErreur{
+    background: #FDECEA;
+    color: #9B2C1F;
+}
+.boutonForm:disabled{
+    opacity: 0.7;
+    cursor: wait;
+}

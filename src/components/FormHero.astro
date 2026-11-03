@@ -3,11 +3,13 @@ import '../styles/styleComponents/FormHero.css';
 ---
 
 <section>
-    <form class="formHero">
+    <form class="formHero" id="formHero" data-endpoint="/api/envoyer.php">
         <p class="titreForm">Être rappelé par un chargé d'affaire</p>
         <p class="textForm" >Parlons de votre projet. Nous vous recontactons sous 48h ouvrées</p>
 
-        <select aria-label="Type de travaux">
+        <input type="text" name="site_web" class="champPiege" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <select aria-label="Type de travaux" name="typeTravaux" required>
             <option class="selection" value="" disabled selected >Type de travaux</option>
             <option>Isolation thermique extérieure</option>
             <option>Isolation thermique intérieure</option>
@@ -18,22 +20,26 @@ import '../styles/styleComponents/FormHero.css';
         </select>
 
         <div class="containerNp">
-            <input type="text" placeholder="Nom" />
-            <input type="text" placeholder="Prénom" />
+            <input type="text" name="nom" placeholder="Nom" autocomplete="family-name" required />
+            <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name" required />
         </div>
         <div class="containerTc">
-            <input type="number" placeholder="Téléphone" />
-            <input type="number" placeholder="Code postal" />
+            <input type="tel" name="telephone" placeholder="Téléphone" autocomplete="tel" required />
+            <input type="text" name="codePostal" placeholder="Code postal" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" required />
         </div>
 
-        <input type="email" placeholder="Email" />
+        <input type="email" name="email" placeholder="Email" autocomplete="email" required />
 
         <div class="checkForm">
-            <input type="checkbox" required id="consentementHero"/>
+            <input type="checkbox" required id="consentementHero" name="consentement" />
             <label for="consentementHero">J'accepte que mes données soient utilisées pour traiter ma demande, conformément à notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.</label>
         </div>
 
-        <button class="boutonForm">Envoyer</button>
+        <p class="messageForm" id="messageFormHero" role="alert" hidden></p>
+
+        <button type="submit" class="boutonForm">Envoyer</button>
 
     </form>
 </section>
+
+<script src="../js/formHero.js"></script>

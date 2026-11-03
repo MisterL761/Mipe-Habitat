@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
   // URL de production (utilisee pour les liens canoniques absolus) : a remplacer
   // par le nom de domaine definitif quand il sera en place.
   site: 'https://mipe-habitat.netlify.app',
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()]
   }

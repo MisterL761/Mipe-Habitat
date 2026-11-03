@@ -88,11 +88,14 @@
 	position: absolute;
 	top: 0.6rem;
 	right: 0.6rem;
-	width: 28px;
-	height: 28px;
+	/* au-dessus de la galerie (position: relative, peinte apres) qui le recouvrait */
+	z-index: 5;
+	width: 36px;
+	height: 36px;
 	border-radius: 50%;
 	background: white;
 	border: 1px solid #E4E7E2;
+	box-shadow: 0 2px 8px rgba(22, 39, 59, 0.25);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -279,6 +282,10 @@
 	}
 	.cardChantier{
 		width: calc(100% - 1.5rem);
+	}
+	.fermerCard{
+		width: 44px;
+		height: 44px;
 	}
 	/* Sur mobile, la carte flottante prend presque toute la largeur de la carte :
 	   elle chevaucherait les boutons +/- quel que soit le coin choisi. On les

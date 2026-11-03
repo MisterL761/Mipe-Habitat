@@ -1,8 +1,10 @@
 import L from 'leaflet';
+import { chargerContenu, echapper, icone } from './contenuAdmin.js';
 
 const conteneurCarte = document.getElementById('carte');
 const siege = JSON.parse(conteneurCarte.dataset.siege);
-const chantiers = JSON.parse(conteneurCarte.dataset.chantiers);
+// Réalisations gérées dans l'admin (ordre de la liste = ordre de la grille)
+const chantiers = (await chargerContenu('realisations')) ?? [];
 
 // au lieu d'etre captee par la carte pour zoomer (ce qui bloquait le scroll).
 // pour les remettre nous-meme a droite, car la carte flottante du chantier
@@ -16,6 +18,26 @@ L.control.zoom({ position: 'topright' }).addTo(carte);
 // carte se retrouve trop "collee" si jamais les points sont tres proches.
 const pointsCarte = [[siege.lat, siege.lng], ...chantiers.map((c) => [c.lat, c.lng])];
 carte.fitBounds(pointsCarte, { padding: [40, 40], maxZoom: 11 });
+
+// ---------- Grille "Toutes nos realisations" ----------
+// Image transparente de 1 px : src provisoire des photos suivantes d'une carte
+// (elles ne se chargent qu'au premier survol / toucher / clic, voir initGalerieStatique).
+const PIXEL_VIDE = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+const NB_REALISATIONS_INITIAL = 12;
+
+function carteGrille(c, index) {
+    const photos = c.photos || [];
+    const galerie = photos.length
+        ? `<div class="galerieChantier"><div class="galerieTrack">${photos.map((url, i) => i === 0
+            ? `<img src="${echapper(url)}" width="1000" height="750" alt="${echapper(c.titre)}" loading="lazy" decoding="async">`
+            : `<img src="${PIXEL_VIDE}" data-src="${echapper(url)}" width="1000" height="750" alt="${echapper(c.titre)}" decoding="async">`).join('')}</div>${photos.length > 1
+            ? '<button type="button" class="galeriePrec" aria-label="Photo précédente">‹</button><button type="button" class="galerieSuiv" aria-label="Photo suivante">›</button>' : ''}</div>`
+        : `<div class="imageChantier">${icone('realisationIcones', 'image')}</div>`;
+    return `<div class="carteRealisation"${index >= NB_REALISATIONS_INITIAL ? ' hidden' : ''}>${galerie}<p class="titreCarteRealisation">${echapper(c.titre)}</p><p class="lieuCarteRealisation">${echapper(c.ville)} (${echapper(c.cp)})</p></div>`;
+}
+document.getElementById('grilleRealisations').innerHTML = chantiers.map(carteGrille).join('');
+const boutonPlus = document.getElementById('btnVoirPlusRealisations');
+if (boutonPlus) boutonPlus.hidden = chantiers.length <= NB_REALISATIONS_INITIAL;
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap',
@@ -37,9 +59,10 @@ const pinSiege = creerPin('#16273B');
 const pinChantier = creerPin('#6FBE2C');
 const pinSelectionne = creerPin('#D64545');
 
-L.marker([siege.lat, siege.lng], { icon: pinSiege })
+const marqueurSiege = L.marker([siege.lat, siege.lng], { icon: pinSiege, title: `Siège : ${siege.nom}` })
     .addTo(carte)
     .bindTooltip(siege.nom);
+marqueurSiege.getElement()?.setAttribute('aria-label', `Siège : ${siege.nom}`);
 
 const cardChantier = document.getElementById('cardChantier');
 const fermerCard = document.getElementById('fermerCard');
@@ -63,13 +86,23 @@ function initGalerieStatique(galerie) {
     const boutonSuiv = galerie.querySelector('.galerieSuiv');
     if (photos.length <= 1) return; // 0 ou 1 photo : pas besoin de fleches
 
+    // Les photos suivantes ne sont telechargees qu'au premier survol, toucher ou clic :
+    // la page ne charge ainsi qu'une photo par carte au depart.
+    let chargees = false;
+    function chargerPhotos() {
+        if (chargees) return;
+        chargees = true;
+        track.querySelectorAll('img[data-src]').forEach((img) => { img.src = img.dataset.src; });
+    }
+    ['pointerenter', 'touchstart', 'focusin'].forEach((evt) => galerie.addEventListener(evt, chargerPhotos, { once: true, passive: true }));
+
     let index = 0;
     function allerA(nouvelIndex) {
         index = (nouvelIndex + photos.length) % photos.length;
         track.style.transform = `translateX(-${index * 100}%)`;
     }
-    boutonPrec.addEventListener('click', () => allerA(index - 1));
-    boutonSuiv.addEventListener('click', () => allerA(index + 1));
+    boutonPrec.addEventListener('click', () => { chargerPhotos(); allerA(index - 1); });
+    boutonSuiv.addEventListener('click', () => { chargerPhotos(); allerA(index + 1); });
 }
 document.querySelectorAll('.grilleRealisations .galerieChantier').forEach(initGalerieStatique);
 
@@ -129,14 +162,24 @@ function afficherChantier(chantier, marqueur) {
 }
 
 chantiers.forEach((chantier) => {
-    const marqueur = L.marker([chantier.lat, chantier.lng], { icon: pinChantier }).addTo(carte);
+    const nomChantier = `${chantier.titre}, ${chantier.ville} (${chantier.annee})`;
+    const marqueur = L.marker([chantier.lat, chantier.lng], { icon: pinChantier, title: nomChantier }).addTo(carte);
+    // nom accessible pour les lecteurs d'ecran (le pin n'est qu'un dessin CSS)
+    marqueur.getElement()?.setAttribute('aria-label', nomChantier);
     marqueur.on('click', () => afficherChantier(chantier, marqueur));
 });
 
-fermerCard.addEventListener('click', () => {
+function fermerCardChantier() {
     cardChantier.hidden = true;
     if (marqueurActif) {
         marqueurActif.setIcon(pinChantier);
         marqueurActif = null;
     }
+}
+
+fermerCard.addEventListener('click', fermerCardChantier);
+// Echap ou clic sur le fond de la carte ferment aussi l'apercu
+carte.on('click', fermerCardChantier);
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !cardChantier.hidden) fermerCardChantier();
 });

@@ -586,7 +586,7 @@
     background-color: var(--navy);
     background-image:
         linear-gradient(rgba(22, 39, 59, 0.82), rgba(22, 39, 59, 0.82)),
-        url('../assets/realisation/saint-pathus/armande-saint-pathus4.webp');
+        url('/fonds/avant-apres.webp');
     background-size: auto, cover;
     background-position: center, center;
     background-attachment: scroll, fixed;
@@ -1060,7 +1060,7 @@
 .refonte .containerRealisations .heroPage{
     background-image:
         linear-gradient(rgba(22, 39, 59, 0.78), rgba(22, 39, 59, 0.78)),
-        url('../assets/realisation/cachan/benoit-cachan3.webp');
+        url('/fonds/hero-realisations.webp');
     background-position: center, center 35%;
 }
 

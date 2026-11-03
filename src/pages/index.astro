@@ -28,11 +28,37 @@ import FaqHome from '../components/FaqHome.astro';
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 const heroImg = await getImage({ src: heroImgSrc, width: 1920, quality: 72 });
+
+// Donnees structurees "entreprise locale" : coordonnees, horaires et zone d'intervention
+// identiques a celles du pied de page et de la FAQ.
+const jsonLdEntreprise = {
+    '@context': 'https://schema.org',
+    '@type': 'HomeAndConstructionBusiness',
+    name: 'MIPE Habitat',
+    url: Astro.site?.href,
+    description: "Spécialiste de la rénovation énergétique et de l'amélioration de l'habitat dans l'Oise et en Île-de-France.",
+    telephone: '+33375190160',
+    address: {
+        '@type': 'PostalAddress',
+        streetAddress: '11 Avenue des Meuniers',
+        postalCode: '60330',
+        addressLocality: 'Le Plessis-Belleville',
+        addressCountry: 'FR',
+    },
+    openingHoursSpecification: [['09:00', '12:30'], ['13:30', '17:00']].map(([opens, closes]) => ({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens,
+        closes,
+    })),
+    areaServed: ['Oise', 'Seine-et-Marne', 'Aisne', 'Seine-Saint-Denis', 'Yvelines'].map((nom) => ({ '@type': 'AdministrativeArea', name: nom })),
+};
 ---
 
-<Layout>
+<Layout title="MIPE Habitat | Rénovation énergétique, isolation et ravalement dans l'Oise" description="MIPE Habitat, spécialiste de la rénovation énergétique dans l'Oise et en Île-de-France : isolation, menuiseries, ravalement de façade, toiture. Devis gratuit, qualifié RGE.">
     <!-- Photo de la hero (ordinateur) : telechargee en priorite, des le debut -->
     <link slot="head" rel="preload" as="image" href={heroImg.src} fetchpriority="high" media="(min-width: 901px)" />
+    <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLdEntreprise)} />
     <Navbar></Navbar>
     <HeroSection></HeroSection>
     <main class="refonte">

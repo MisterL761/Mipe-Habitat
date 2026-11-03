@@ -41,7 +41,15 @@ const equipe = [
             {
                 equipe.map(({ nom, poste, photo }) => (
                     <div class="cardEquipe">
-                        <Image src={photo} alt={`Photo de ${nom}`} width={280} height={390} />
+                        <Image
+                            src={photo}
+                            alt={`Photo de ${nom}`}
+                            width={280}
+                            height={440}
+                            widths={[280, 560, 840]}
+                            sizes="(max-width: 480px) 180px, (max-width: 900px) 220px, 280px"
+                            quality={85}
+                        />
                         <div class="containerInfo">
                             <p class="nomPresonne">{nom}</p>
                             <p class="poste">{poste}</p>

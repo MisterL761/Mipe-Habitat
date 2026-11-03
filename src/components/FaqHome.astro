@@ -14,8 +14,21 @@ const faq = [
 
 
 ]
+
+// Donnees structurees : memes questions/reponses que celles affichees ci-dessous
+const jsonLdFaq = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({question, reponse}) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: reponse },
+    })),
+};
 ---
 <section>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdFaq)} />
+
 
     {
         faq.map(({question, reponse}) => (

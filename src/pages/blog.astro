@@ -4,13 +4,11 @@ import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FilAriane from '../components/FilAriane.astro';
 import BoutonRdv from '../components/BoutonRdv.astro';
-import { Image } from 'astro:assets';
 import { Image as ImageIcon, ArrowRight } from '@lucide/astro';
 import '../styles/refonteAccueil.css';
 import '../styles/global.css';
 import '../styles/styleComponents/Blog.css';
 import '../styles/pages/blog.css';
-import { articles } from '../data/articlesBlog.js';
 ---
 
 <Layout
@@ -29,33 +27,7 @@ import { articles } from '../data/articlesBlog.js';
 			</section>
 
 			<section class="sectionArticlesBlog">
-				<div class="grilleArticlesBlog">
-					{
-						articles.map(({ tag, titre, image, contenu }) => (
-							<article class="carteArticle carteArticleBlog reveal">
-								{image ? (
-									<div class="imageArticle"><Image src={image} alt={titre} /></div>
-								) : (
-									<div class="imagePlaceholder"><ImageIcon size={28} color="#A9B2BA" /></div>
-								)}
-								<div class="contenuArticle">
-									<p class="tagArticle">{tag}</p>
-									<h2 class="titreArticle">{titre}</h2>
-									<button
-										type="button"
-										class="lirePlus"
-										data-tag={tag}
-										data-titre={titre}
-										data-image={image ? image.src : ''}
-										data-contenu={JSON.stringify(contenu)}
-									>
-										Lire plus <ArrowRight size={14} color="#3E7C1F" />
-									</button>
-								</div>
-							</article>
-						))
-					}
-				</div>
+				<div class="grilleArticlesBlog" id="grilleArticlesBlog"></div>
 			</section>
 
 			<section class="ctaBlogPage">
@@ -82,4 +54,10 @@ import { articles } from '../data/articlesBlog.js';
 	</main>
 </Layout>
 
+<template id="blogIcones">
+	<span data-i="image"><ImageIcon size={28} color="#A9B2BA" /></span>
+	<span data-i="fleche"><ArrowRight size={14} color="#3E7C1F" /></span>
+</template>
+
+<script src="../js/articlesBlog.js"></script>
 <script src="../js/modaleBlog.js"></script>
