@@ -35,7 +35,7 @@ Options -Indexes
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Le dossier des fichiers générés change de nom à chaque build : pas besoin de le mettre en cache HTML
+# La configuration des formulaires ne doit pas être lisible depuis le navigateur
 <FilesMatch "^config\.php$">
   Require all denied
 </FilesMatch>
