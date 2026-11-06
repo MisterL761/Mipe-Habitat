@@ -2,18 +2,86 @@
 import '../styles/styleComponents/FaqHome.css';
 import '../styles/global.css';
 
+// Chaque reponse est une liste de paragraphes (affichee en <p> separes, jointe pour le JSON-LD)
 const faq = [
-
-    {question : 'Quelles aides puis-je obtenir pour mes travaux ?', reponse : 'MaPrimeRénov\', les Certificats d\'Économie d\'Énergie (CEE) et les aides d\'Action Logement peuvent être mobilisés selon\n' +
-            'votre profil et votre projet.'},
-
-    {question : 'Intervenez-vous dans mon secteur ?', reponse : 'MIPE Habitat intervient principalement dans l’Oise (60), la Seine-et-Marne (77), l’Aisne (02) et la Seine-Saint-Denis (93), ainsi qu’en périphérie de notre implantation dans les Yvelines (78).'},
-    {question : 'Vos équipes sont-elles qualifiées RGE ?', reponse : 'Oui. MIPE Habitat dispose de qualifications RGE Qualibat 7121, 7122 et 7131, correspondant à différents domaines de travaux d’isolation. Nos qualifications sont consultables sur notre site.'},
-    {question : 'Le devis est-il gratuit ?', reponse : 'Oui. Après un premier échange sur votre projet, un conseiller peut se déplacer à votre domicile pour étudier vos besoins. Le devis est gratuit et sans engagement.'},
-    {question : 'Quelle garantie sur les travaux ?', reponse : 'Nos travaux bénéficient des garanties légales et professionnelles applicables selon la nature des prestations réalisées, ainsi que des assurances professionnelles correspondantes.'},
-
-
-]
+    {
+        question: "Par quels travaux commencer pour améliorer l'isolation de ma maison ?",
+        reponse: [
+            "Chaque habitation est différente. L'isolation de la toiture, des murs ou le remplacement des menuiseries peuvent être prioritaires selon les déperditions constatées. MIPE Habitat vous conseille sur les travaux les plus pertinents pour améliorer votre confort et réduire vos consommations d'énergie.",
+        ],
+    },
+    {
+        question: "Quelles aides puis-je obtenir pour mes travaux de rénovation ?",
+        reponse: [
+            "Selon la nature de vos travaux et votre situation, vous pouvez bénéficier de plusieurs dispositifs : MaPrimeRénov’, les primes CEE, la TVA réduite ou encore l’éco-prêt à taux zéro.",
+            "Les conditions varient selon votre logement, vos revenus et les travaux envisagés. MIPE Habitat vous aide à identifier les dispositifs adaptés à votre projet, notamment dans le cadre d’une rénovation énergétique globale.",
+        ],
+    },
+    {
+        question: "Dans quelles villes et quels départements intervenez-vous ?",
+        reponse: [
+            "MIPE Habitat dispose de deux implantations : son établissement principal au Plessis-Belleville (60) et son établissement secondaire à Plaisir (78).",
+            "Nos équipes interviennent dans l'Oise (60), l'Aisne (02), la Seine-et-Marne (77) ainsi que dans une grande partie de l'Île-de-France : Yvelines (78), Val-d'Oise (95), Seine-Saint-Denis (93), Hauts-de-Seine (92), Essonne (91), Val-de-Marne (94).",
+            "Grâce à nos deux implantations, nous assurons un service de proximité pour vos projets d'isolation, de rénovation énergétique, de menuiserie et de ravalement de façade.",
+            "Contactez-nous pour vérifier notre intervention dans votre commune.",
+        ],
+    },
+    {
+        question: "MIPE Habitat est-elle une entreprise certifiée RGE ?",
+        reponse: [
+            "Oui. MIPE Habitat dispose de qualifications RGE Qualibat 7121, 7122 et 7131, correspondant à différents domaines de travaux d’isolation.",
+            "Ces qualifications témoignent de notre savoir-faire et permettent, selon les travaux et les conditions applicables, de bénéficier des aides à la rénovation énergétique.",
+            "Vous pouvez consulter nos certificats sur notre site.",
+        ],
+    },
+    {
+        question: "Le déplacement et le devis sont-ils gratuits ?",
+        reponse: [
+            "Oui, nos devis sont gratuits et sans engagement.",
+            "Après un premier échange, un conseiller MIPE Habitat peut se déplacer à votre domicile pour étudier votre projet, examiner les contraintes techniques et vous proposer une solution adaptée à votre habitation et à votre budget.",
+            "Vous recevez ensuite un devis détaillé pour prendre votre décision en toute sérénité.",
+        ],
+    },
+    {
+        question: "Quelles garanties couvrent vos travaux ?",
+        reponse: [
+            "Votre tranquillité est notre priorité.",
+            "MIPE Habitat dispose d’une assurance de responsabilité civile professionnelle et d’une assurance décennale, couvrant les travaux relevant des garanties souscrites.",
+            "Selon la nature des prestations, vos travaux bénéficient également des garanties légales applicables, notamment la garantie de parfait achèvement et la garantie biennale lorsque leurs conditions sont réunies.",
+            "Nos équipes restent à votre écoute après la réception du chantier pour assurer le suivi de vos travaux.",
+        ],
+    },
+    {
+        question: "Peut-on regrouper plusieurs travaux de rénovation ?",
+        reponse: [
+            "Oui, c'est même l'un des atouts de MIPE Habitat. Isolation extérieure, combles, menuiseries, ventilation ou chauffage : nous pouvons coordonner plusieurs interventions pour vous proposer une rénovation cohérente, avec un interlocuteur unique.",
+        ],
+    },
+    {
+        question: "Réalisez-vous les travaux avec vos propres équipes ?",
+        reponse: [
+            "MIPE Habitat dispose de ses propres équipes de professionnels, notamment pour les travaux d'isolation et de façade. Selon les métiers et les besoins du chantier, nous faisons également intervenir des entreprises partenaires sélectionnées et coordonnées par nos soins.",
+        ],
+    },
+    {
+        question: "Dois-je attendre l'accord des aides avant de commencer les travaux ?",
+        reponse: [
+            "Oui, pour certains dispositifs, il est indispensable d'attendre l'accord de financement avant de démarrer. Les démarches et conditions varient selon les aides sollicitées. Nous vous informons des précautions à prendre pour éviter de compromettre votre éligibilité.",
+        ],
+    },
+    {
+        question: "MIPE Habitat assure-t-elle le suivi après les travaux ?",
+        reponse: [
+            "Oui, notre accompagnement ne s'arrête pas à la fin du chantier. Une réception des travaux est organisée et notre service après-vente reste à votre disposition pour toute demande relevant du suivi de nos prestations et des garanties applicables.",
+        ],
+    },
+    {
+        question: "Combien de temps faut-il pour démarrer les travaux ?",
+        reponse: [
+            "Le délai dépend de la nature du chantier, des disponibilités de nos équipes, des approvisionnements et des éventuelles démarches administratives.",
+        ],
+    },
+];
 
 // Donnees structurees : memes questions/reponses que celles affichees ci-dessous
 const jsonLdFaq = {
@@ -22,7 +90,7 @@ const jsonLdFaq = {
     mainEntity: faq.map(({question, reponse}) => ({
         '@type': 'Question',
         name: question,
-        acceptedAnswer: { '@type': 'Answer', text: reponse },
+        acceptedAnswer: { '@type': 'Answer', text: reponse.join(' ') },
     })),
 };
 ---
@@ -34,7 +102,7 @@ const jsonLdFaq = {
         faq.map(({question, reponse}) => (
             <details class="faqHome" open={false}>
                 <summary class="questionFaqHome">{question}</summary>
-                <p class="reponseFaqHome">{reponse}</p>
+                {reponse.map((paragraphe) => <p class="reponseFaqHome">{paragraphe}</p>)}
             </details>
         ))
     }

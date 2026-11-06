@@ -2,7 +2,9 @@
 import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Fournisseurs from '../components/Fournisseurs.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FaqSchema from '../components/FaqSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css'
 import '../styles/pages/isolation-des-combles.css';
@@ -36,10 +38,10 @@ const aidesCombles = [
     { titre: 'Éco-PTZ', description: "Un prêt sans intérêts peut permettre de financer certains travaux de rénovation énergétique.", note: "Dispositifs soumis aux conditions d'éligibilité et à la réglementation en vigueur au moment de la demande." },
 ];
 const faqCombles = [
-    { question: "Combien de temps dure l'isolation des combles perdus ?", reponse: "Pour une maison individuelle, le soufflage d'isolant en combles perdus se réalise généralement en une journée.", ouvert: true },
-    { question: "Quelle épaisseur d'isolant pour les combles ?", reponse: "L'épaisseur dépend de la technique et du matériau choisi. Pour atteindre les performances recherchées par les dispositifs d'aides, une résistance thermique R ≥ 7 m².K/W est généralement visée pour les combles perdus, soit une épaisseur d'isolant importante selon le matériau utilisé.", ouvert: false },
-    { question: 'Faut-il vider les combles avant les travaux ?', reponse: "Si vos combles perdus servent de stockage, il est nécessaire de les dégager avant le soufflage ou le déroulage de l'isolant. Pour une isolation des rampants ou un plancher de grenier, l'espace de travail nécessaire est généralement plus limité.", ouvert: false },
-    { question: "L'isolation des combles est-elle efficace en été ?", reponse: "Oui. Une toiture mal isolée est l'une des principales causes de surchauffe estivale sous les combles. Une isolation adaptée limite la montée en température en été, en plus de réduire les déperditions en hiver.", ouvert: false },
+	{ question: "Pourquoi isoler ses combles perdus ?", reponse: "Une toiture mal isolée peut représenter jusqu'à 30 % des déperditions de chaleur d'une maison. L'isolation des combles perdus permet de limiter ces pertes, de réduire les besoins en chauffage et d'améliorer le confort de votre habitation, été comme hiver. C'est l'un des travaux de rénovation énergétique les plus efficaces pour améliorer rapidement les performances de votre logement.", ouvert: true },
+	{ question: "Quelle épaisseur d'isolant faut-il prévoir dans les combles perdus ?", reponse: "L'épaisseur dépend du matériau utilisé et de la performance thermique recherchée. Pour une isolation performante, nous préconisons généralement une résistance thermique R d'au moins 7 m².K/W, correspondant souvent à une épaisseur d'environ 30 à 35 cm selon l'isolant. Nos équipes déterminent la solution adaptée à la configuration de vos combles.", ouvert: false },
+	{ question: "Faut-il vider ses combles avant les travaux d'isolation ?", reponse: "Oui, si vos combles servent de stockage, ils doivent être dégagés avant l'intervention. Cela permet à nos équipes de vérifier l'état du support, de préparer le chantier et de répartir correctement l'isolant. MIPE Habitat réalise une visite technique préalable pour identifier les éventuelles contraintes et préparer l'intervention.", ouvert: false },
+	{ question: "Combien de temps durent les travaux d'isolation des combles perdus ?", reponse: "Pour une maison individuelle, l'isolation des combles perdus par soufflage se réalise généralement en une journée, selon la surface et l'accessibilité. Cette technique permet de répartir uniformément l'isolant, y compris dans les zones difficiles d'accès, avec une intervention rapide et peu contraignante pour les occupants.", ouvert: false },
 ];
 ---
 
@@ -113,6 +115,8 @@ const faqCombles = [
             <p class="conseille">Avant toute isolation, nos équipes vérifient l'état des combles, la ventilation, les éventuelles traces d'humidité et les équipements présents. Les conduits, installations électriques et points singuliers sont pris en compte avant la mise en œuvre de l'isolant.</p>
         </section>
 
+        <Fournisseurs categorie="Isolation combles perdus" />
+
         <section>
             <div class="deroulementProjetContainer">
                 <p class="petitTitre">Déroulement du chantier</p>
@@ -157,7 +161,7 @@ const faqCombles = [
         <section class="sectionFaqCombles">
             <div class="faqComblesTexte">
                 <p class="petitTitre">Questions fréquentes</p>
-                <h2 class="titreFaqCombles">Vos questions sur l'isolation des combles</h2>
+                <h2 class="titreFaqCombles">Vos questions sur l'isolation des combles perdus</h2>
             </div>
             <div class="faqComblesListe">
                 {
@@ -172,6 +176,7 @@ const faqCombles = [
         </section>
 
         </div>
+        <FaqSchema items={faqCombles} />
         <Footer></Footer>
     </main>
 </Layout>

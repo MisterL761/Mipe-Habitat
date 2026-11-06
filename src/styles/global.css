@@ -7,6 +7,22 @@
   font-family: "Outfit", sans-serif;
 }
 
+/* ===== Grands ecrans =====
+   Au-dela de 1800px, tout le site (textes, images, marges) est agrandi
+   proportionnellement : la mise en page reste celle d'un ecran d'environ
+   1700px de large, sans grands vides sur les cotes ni texte minuscule.
+   --zoom-site sert aux rares valeurs en vh qui doivent compenser le zoom. */
+:root{ --zoom-site: 1; }
+@media (min-width: 1800px){ :root{ --zoom-site: 1.1; } }
+@media (min-width: 2000px){ :root{ --zoom-site: 1.2; } }
+@media (min-width: 2300px){ :root{ --zoom-site: 1.35; } }
+@media (min-width: 2700px){ :root{ --zoom-site: 1.6; } }
+@media (min-width: 3200px){ :root{ --zoom-site: 1.9; } }
+@media (min-width: 3800px){ :root{ --zoom-site: 2.2; } }
+@media (min-width: 1800px){
+  html{ zoom: var(--zoom-site); }
+}
+
 .petitTitre{
   font-size: 1rem;
   color: #3E7C1F;

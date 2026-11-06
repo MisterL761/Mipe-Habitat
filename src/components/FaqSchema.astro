@@ -1,0 +1,23 @@
+---
+// Balisage JSON-LD "FAQPage" : memes questions/reponses que celles affichees sur la page
+// (Google exige que le balisage reproduise le contenu visible, sans texte supplementaire).
+// Usage : <FaqSchema items={faq} /> avec items = [{ question, reponse }, ...]
+interface Props {
+	items: { question: string; reponse: string | string[] }[];
+}
+const { items } = Astro.props;
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: items.map(({ question, reponse }) => ({
+		'@type': 'Question',
+		name: question,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: Array.isArray(reponse) ? reponse.join(' ') : reponse,
+		},
+	})),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -3,6 +3,7 @@ import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FaqSchema from '../components/FaqSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/velux.css';
@@ -14,54 +15,55 @@ import photoVelux from '../assets/image/velux.webp';
 const interventions = [
 	{
 		Icone: Sun,
-		titre: 'Pose de fenêtres de toit',
-		description: "Installation de fenêtres de toit Velux adaptées à la pente et à l'orientation de votre toiture, pour apporter lumière naturelle et ventilation à vos combles.",
+		titre: 'Pose de fenêtres de toit VELUX',
+		description: "Création d'ouvertures et installation de fenêtres de toit adaptées à votre charpente et à votre couverture. Apportez lumière naturelle, ventilation et confort à vos combles.",
 	},
 	{
 		Icone: Wrench,
-		titre: 'Remplacement de Velux',
-		description: "Votre fenêtre de toit est ancienne, difficile à ouvrir ou peu isolante ? Nous la remplaçons par un modèle récent, plus performant et plus confortable.",
+		titre: 'Remplacement de fenêtres VELUX',
+		description: "Modernisez vos anciennes fenêtres de toit avec des modèles plus performants, offrant une meilleure isolation thermique, un confort d'utilisation accru et de nouvelles fonctionnalités.",
 	},
 	{
 		Icone: ShieldCheck,
-		titre: 'Étanchéité & finitions',
-		description: "Raccordement à la couverture, étanchéité à l'eau et à l'air, habillage intérieur soigné : chaque pose est réalisée dans les règles de l'art.",
+		titre: 'Étanchéité et finitions intérieures',
+		description: "Raccordement à la couverture, traitement de l'étanchéité, isolation périphérique et habillage intérieur : nous apportons un soin particulier aux finitions pour une installation durable et esthétique.",
 	},
 ];
 
 const faqVelux = [
-	{ question: 'Quel est l\'intérêt d\'installer un Velux ?', reponse: "Une fenêtre de toit apporte de la lumière naturelle, améliore la ventilation et rend vos combles plus agréables à vivre. Bien posée, elle contribue aussi au confort thermique de votre logement.", ouvert: true },
-	{ question: 'Peut-on installer un Velux dans des combles non aménagés ?', reponse: "Oui, mais l'aménagement de l'espace (isolation, plancher, habillage) est souvent à prévoir pour en profiter pleinement. Nos équipes étudient votre situation et vous conseillent sur la meilleure solution.", ouvert: false },
-	{ question: 'Une déclaration en mairie est-elle nécessaire ?', reponse: "La création ou la modification d'une ouverture en toiture est en général soumise à une déclaration préalable de travaux. Nous vous accompagnons dans cette démarche.", ouvert: false },
-	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller étudie vos besoins et vous propose un devis gratuit et sans engagement.', ouvert: false },
+	{ question: 'Pourquoi installer une fenêtre de toit VELUX ?', reponse: "Une fenêtre de toit permet de faire entrer davantage de lumière naturelle et de ventiler efficacement vos combles. Elle transforme un espace sombre en une pièce plus agréable à vivre et contribue au confort de votre habitation, notamment grâce aux vitrages isolants et aux équipements de protection solaire.", ouvert: true },
+	{ question: 'Peut-on installer un VELUX dans des combles non aménagés ?', reponse: "Oui, l'installation d'une fenêtre de toit peut s'intégrer à un futur projet d'aménagement des combles. Elle permet d'anticiper les besoins en lumière naturelle et en ventilation. Nos équipes étudient la configuration de votre charpente, la pente de toiture et les contraintes techniques pour définir la solution adaptée.", ouvert: false },
+	{ question: 'Faut-il une autorisation pour installer une fenêtre de toit ?', reponse: "Oui, la création d'une fenêtre de toit nécessite généralement une déclaration préalable de travaux en mairie, puisqu'elle modifie l'aspect extérieur du bâtiment. Des règles particulières peuvent s'appliquer en secteur protégé ou en copropriété. Nous vous informons des démarches à prévoir avant les travaux.", ouvert: false },
+	{ question: 'Peut-on remplacer un ancien VELUX sans modifier la toiture ?', reponse: "Oui, dans de nombreux cas, un ancien VELUX peut être remplacé par un modèle plus récent, en conservant les dimensions de l'ouverture existante. Cette intervention permet d'améliorer l'isolation thermique, l'étanchéité et le confort d'utilisation, sous réserve de compatibilité avec la couverture et le chevêtre existant.", ouvert: false },
+	{ question: 'Le déplacement et le devis sont-ils gratuits ?', reponse: 'Oui, nos devis sont gratuits et sans engagement. Après un premier échange, un conseiller MIPE Habitat peut se déplacer pour étudier votre toiture, prendre les mesures nécessaires et vous proposer une fenêtre de toit adaptée à votre projet.', ouvert: false },
 ];
 ---
 
-<Layout title="Pose et remplacement de fenêtres de toit Velux | MIPE Habitat" description="Pose et remplacement de fenêtres de toit Velux : lumière naturelle, ventilation et installation parfaitement étanche pour vos combles. MIPE Habitat.">
+<Layout title="Pose et remplacement de fenêtres de toit | MIPE Habitat" description="Pose et remplacement de fenêtres de toit : lumière naturelle, ventilation et installation parfaitement étanche pour vos combles. MIPE Habitat.">
 	<main>
 		<Navbar></Navbar>
 		<div class="refonte">
-		<FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Fenêtres de toit Velux' }]} />
+		<FilAriane items={[{ label: 'Nos métiers', href: '/nos-metiers' }, { label: 'Fenêtres de toit' }]} />
 
 		<section class="containerImageDroite">
 			<div class="containerParentImageDroite">
 				<div class="textImageDroite">
-					<p class="petitTitre">Velux</p>
-					<h1 class="titreImage">Faites entrer la lumière naturelle dans vos combles avec Velux</h1>
+					<p class="petitTitre">Fenêtres de toit</p>
+					<h1 class="titreImage">Faites entrer la lumière naturelle dans vos combles avec une fenêtre de toit</h1>
 					<p class="descImage">Pose et remplacement de fenêtres de toit : MIPE Habitat vous accompagne pour éclairer, ventiler et valoriser vos combles, avec une installation soignée et parfaitement étanche.</p>
-					<p class="check"><Check size={15} color="#8FE05C" />Pose et remplacement de fenêtres de toit Velux</p>
+					<p class="check"><Check size={15} color="#8FE05C" />Pose et remplacement de fenêtres de toit</p>
 					<p class="check"><Check size={15} color="#8FE05C" />Étanchéité et finitions soignées</p>
 					<p class="check"><Check size={15} color="#8FE05C" />Plus de lumière et de confort dans vos combles</p>
 				</div>
 				<div class="imageDroite">
-					<Image src={photoVelux} alt="Fenêtre de toit Velux posée par MIPE Habitat" />
+					<Image src={photoVelux} alt="Fenêtre de toit posée par MIPE Habitat" />
 				</div>
 			</div>
 		</section>
 
 		<section class="sectionInterventionsVelux reveal">
 			<p class="petitTitre petitTitreVelux">Nos interventions</p>
-			<h2 class="titreInterventionsVelux">Une pose Velux complète, de l'étude aux finitions</h2>
+			<h2 class="titreInterventionsVelux">Une pose de fenêtre de toit complète, de l'étude aux finitions</h2>
 			<div class="grilleInterventionsVelux">
 				{
 					interventions.map(({ Icone, titre, description }) => (
@@ -93,6 +95,7 @@ const faqVelux = [
 		</section>
 
 		</div>
+		<FaqSchema items={faqVelux} />
 		<Footer></Footer>
 	</main>
 </Layout>

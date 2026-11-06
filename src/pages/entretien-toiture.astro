@@ -3,6 +3,7 @@ import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FaqSchema from '../components/FaqSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/entretien-toiture.css';
@@ -14,26 +15,27 @@ import photoToiture from '../assets/image/toiture.webp';
 const interventions = [
 	{
 		Icone: Sparkles,
-		titre: 'Démoussage & nettoyage',
-		description: "Mousses, lichens et salissures peuvent fragiliser les matériaux et favoriser les infiltrations d'eau. Un nettoyage adapté à votre type de couverture préserve votre toiture et sa valeur.",
+		titre: 'Démoussage et traitement à action lente',
+		description: "Nous privilégions, lorsque cela est possible, l'application de produits professionnels à action lente, qui agissent progressivement sur les mousses, lichens et micro-organismes. Cette méthode permet de limiter le recours au nettoyage haute pression et de préserver les matériaux de couverture.",
 	},
 	{
 		Icone: Search,
-		titre: 'Inspection & gouttières',
-		description: "Une inspection régulière et le contrôle des gouttières permettent de détecter les signes d'usure à temps et de maintenir votre toiture en bon état.",
+		titre: 'Inspection et entretien des gouttières',
+		description: "Nous examinons l'état général de votre couverture et les points sensibles : tuiles, faîtages, raccords et évacuations d'eau. Le contrôle et l'entretien des gouttières contribuent à assurer une bonne évacuation des eaux pluviales et à prévenir les désordres liés à leur obstruction.",
 	},
 	{
 		Icone: Wrench,
-		titre: 'Réparation & étanchéité',
-		description: 'Tuiles déplacées, petites fuites, points faibles identifiés lors de l’inspection : nos équipes interviennent pour préserver l’étanchéité de votre toiture.',
+		titre: 'Petites réparations et étanchéité',
+		description: "Tuiles déplacées ou endommagées, défauts ponctuels d'étanchéité, éléments de couverture à reprendre : nos équipes identifient les anomalies visibles et proposent les interventions adaptées, selon leur nature et leur importance.",
 	},
 ];
 
 const faqToiture = [
-	{ question: 'Pourquoi nettoyer sa toiture régulièrement ?', reponse: "Les mousses, lichens et salissures retiennent l'humidité et peuvent fragiliser les matériaux à la longue, favorisant les infiltrations d'eau. Un entretien régulier préserve l'état de votre toiture et prolonge sa durée de vie.", ouvert: true },
-	{ question: 'À quelle fréquence faut-il entretenir sa toiture ?', reponse: "Cela dépend de l'exposition de votre logement (environnement boisé, humidité, orientation) et du type de couverture. Une inspection périodique permet d'évaluer si un démoussage ou un entretien est nécessaire.", ouvert: false },
-	{ question: 'Intervenez-vous sur tous types de toiture ?', reponse: "La méthode de nettoyage et d'entretien est adaptée à votre type de couverture (tuiles, ardoises...) pour ne pas endommager les matériaux. Nos équipes étudient votre toiture avant toute intervention.", ouvert: false },
-	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller étudie vos besoins et vous propose un devis gratuit et sans engagement.', ouvert: false },
+	{ question: "Pourquoi nettoyer et entretenir régulièrement sa toiture ?", reponse: "Avec le temps, mousses, lichens et salissures peuvent s'accumuler sur votre couverture et favoriser la rétention d'humidité. Un entretien adapté permet de préserver l'état des matériaux, de repérer les éventuelles dégradations et de prolonger la durée de vie de votre toiture.", ouvert: true },
+	{ question: "À quelle fréquence faut-il entretenir sa toiture ?", reponse: "La fréquence dépend du type de couverture, de son ancienneté et de son exposition aux intempéries, aux arbres et à l'humidité. Une inspection régulière permet de déterminer si un nettoyage ou un traitement est nécessaire, sans intervenir inutilement.", ouvert: false },
+	{ question: "Quels types de toitures pouvez-vous nettoyer ?", reponse: "MIPE Habitat intervient sur différents types de couvertures, notamment les tuiles en terre cuite, les tuiles béton et certaines couvertures en ardoise. Après examen de leur état, nos équipes sélectionnent une méthode de nettoyage et de traitement compatible avec les matériaux.", ouvert: false },
+	{ question: "Le diagnostic et le devis sont-ils gratuits ?", reponse: "Oui, nos devis sont gratuits et sans engagement. Après un premier échange, un conseiller peut se déplacer pour examiner votre toiture, évaluer son état et vous proposer une solution d'entretien adaptée à votre couverture.", ouvert: false },
+	{ question: "Faut-il appliquer un traitement hydrofuge après le nettoyage ?", reponse: "Un traitement hydrofuge peut être proposé selon la nature, la porosité et l'état de votre couverture. Il n'est pas systématiquement nécessaire. Nos équipes évaluent l'intérêt de ce traitement afin de vous proposer une solution adaptée, sans intervention superflue.", ouvert: false },
 ];
 ---
 
@@ -47,8 +49,8 @@ const faqToiture = [
 			<div class="containerParentImageDroite">
 				<div class="textImageDroite">
 					<p class="petitTitre">Toiture</p>
-					<h1 class="titreImage">Entretenez votre toiture pour protéger durablement votre maison</h1>
-					<p class="descImage">Un entretien régulier de votre toiture permet de préserver son état, d’éviter les infiltrations et de prolonger sa durée de vie. MIPE Habitat vous accompagne dans le nettoyage et l’entretien de votre couverture.</p>
+					<h1 class="titreImage">Un entretien adapté pour préserver durablement votre toiture</h1>
+					<p class="descImage">Chaque couverture est différente. MIPE Habitat adapte ses méthodes d'entretien à la nature des matériaux, à leur état et au niveau d'encrassement, afin de proposer une intervention efficace et respectueuse de votre toiture.</p>
 					<p class="check"><Check size={15} color="#8FE05C" />Démoussage et nettoyage adaptés aux matériaux</p>
 					<p class="check"><Check size={15} color="#8FE05C" />Inspection et contrôle des gouttières</p>
 					<p class="check"><Check size={15} color="#8FE05C" />Protection contre les infiltrations d’eau</p>
@@ -93,6 +95,7 @@ const faqToiture = [
 		</section>
 
 		</div>
+		<FaqSchema items={faqToiture} />
 		<Footer></Footer>
 	</main>
 </Layout>

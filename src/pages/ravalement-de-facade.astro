@@ -3,6 +3,7 @@ import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FaqSchema from '../components/FaqSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css'
 import '../styles/pages/ravalement-de-facade.css';
@@ -36,10 +37,10 @@ const finitions = [
     { titre: 'Teintes & personnalisation', description: "Un large choix de teintes pour valoriser votre maison, dans le respect des règles d'urbanisme applicables." },
 ];
 const faqRavalement = [
-    { question: 'À quelle fréquence faut-il ravaler sa façade ?', reponse: "Il n'existe pas de fréquence unique applicable partout. L'état du support, son exposition et le revêtement existant déterminent le moment opportun.", ouvert: true },
-    { question: 'Faut-il une autorisation pour un ravalement ?', reponse: "Dans la majorité des cas, une déclaration préalable de travaux est nécessaire en mairie, notamment si l'aspect extérieur (couleur, matériau) est modifié. Certaines communes imposent également un ravalement périodique. MIPE Habitat peut vous accompagner dans ces démarches.", ouvert: false },
-    { question: 'Combien de temps dure un ravalement ?', reponse: "Pour une maison individuelle, un ravalement dure généralement 1 à 3 semaines selon la surface des façades, l'état du support et les traitements nécessaires.", ouvert: false },
-    { question: 'Peut-on isoler en même temps que le ravalement ?', reponse: "Oui, c'est même souvent le moment opportun : réaliser une isolation thermique par l'extérieur (ITE) en même temps qu'un ravalement permet de mutualiser l'échafaudage et d'améliorer la performance thermique de vos murs en plus de leur protection et de leur esthétique.", ouvert: false },
+	{ question: "Quand faut-il envisager un ravalement de façade ?", reponse: "Fissures, enduit qui se décolle, traces d'humidité, salissures ou décoloration sont autant de signes qu'une façade nécessite une intervention. Il n'existe pas de fréquence unique : tout dépend de l'état de vos murs, de leur exposition et du revêtement existant. MIPE Habitat réalise un diagnostic visuel de vos façades pour vous conseiller les travaux adaptés.", ouvert: true },
+	{ question: "Quelles solutions pour rénover une façade abîmée ?", reponse: "Chaque façade nécessite une solution adaptée à son état et à son support. Selon les besoins, nous pouvons réaliser le nettoyage, le traitement des fissures, la réparation des enduits ou la mise en œuvre d'un nouveau revêtement, nous vous conseillons pour protéger et embellir durablement votre habitation.", ouvert: false },
+	{ question: "Faut-il une autorisation pour ravaler sa façade ?", reponse: "Un ravalement à l'identique est généralement dispensé de formalités, sauf dans certaines communes ou zones protégées. En revanche, une modification de l'aspect extérieur peut nécessiter une déclaration préalable de travaux. Nous vous conseillons de vérifier les règles d'urbanisme auprès de votre mairie avant le démarrage du chantier.", ouvert: false },
+	{ question: "Combien de temps durent les travaux de ravalement ?", reponse: "Pour une maison individuelle, les travaux durent généralement 1 à 3 semaines, selon la surface, l'état des façades, les réparations nécessaires et les conditions météorologiques. Après une visite sur place, MIPE Habitat vous propose un devis détaillé et une estimation du délai d'intervention.", ouvert: false },
 ];
 ---
 
@@ -170,6 +171,7 @@ const faqRavalement = [
         </section>
 
         </div>
+        <FaqSchema items={faqRavalement} />
         <Footer></Footer>
     </main>
 </Layout>
