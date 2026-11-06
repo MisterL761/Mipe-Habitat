@@ -2,6 +2,7 @@
 import BoutonRdv from '../components/BoutonRdv.astro';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Fournisseurs from '../components/Fournisseurs.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FilAriane from '../components/FilAriane.astro';
 import { Image } from 'astro:assets';
@@ -14,9 +15,6 @@ import photoSyndic from '../assets/image/maisonRavalement.webp';
 import photoAgence from '../assets/image/ravalement.webp';
 import photoArchitecte from '../assets/image/choixIso.webp';
 import photoPrescripteur from '../assets/image/etudeComble.webp';
-import logoIsofrance from '../assets/image/logo-isofrance.webp';
-import logoMeo from '../assets/image/logo_meo.png';
-import logoBaumit from '../assets/image/baumit-logo-rogne.jpg';
 
 // Une carte par profession : photo, titre, description (et points cles le cas echeant).
 // Pour changer une photo : remplacer l'import correspondant ci-dessus.
@@ -123,14 +121,7 @@ const etapes = [
 			</div>
 		</section>
 
-		<section class="sectionPartenairesPro reveal">
-			<h2 class="titreSectionPro">Nos partenaires techniques et fabricants</h2>
-			<ul class="listePartenairesPro">
-				<li class="partenairePro partenaireProLogo"><Image src={logoIsofrance} alt="ISOFRANCE, Fenêtres & Énergies" width={520} /></li>
-				<li class="partenairePro partenaireProImage"><Image src={logoMeo} alt="MéO, la fenêtre émotion" height={180} quality={80} /></li>
-				<li class="partenairePro partenaireProImage"><Image src={logoBaumit} alt="Baumit" height={180} quality={80} /></li>
-			</ul>
-		</section>
+		<Fournisseurs partenaires />
 
 		<section class="sectionEtapesPro reveal">
 			<h2 class="titreSectionPro">Notre accompagnement</h2>
@@ -148,8 +139,10 @@ const etapes = [
 		</section>
 
 		<section class="ctaFinalePro reveal">
-			<h2>Un projet pour votre copropriété ou votre parc immobilier ?</h2>
-			<p>Contactez notre équipe pour échanger sur votre projet.</p>
+			<h2>Professionnels de l'immobilier et du bâtiment, accompagnons vos clients dans leurs projets</h2>
+			<p>Syndics, agences immobilières, architectes, maîtres d'œuvre et prescripteurs : MIPE Habitat vous accompagne dans les projets de rénovation, d'amélioration énergétique et de valorisation du patrimoine de vos clients.
+
+				Ensemble, apportons des solutions adaptées à leurs besoins, avec un interlocuteur dédié et une expertise reconnue.</p>
 			<div class="ctaFinaleProBoutons">
 				<BoutonRdv />
 				<a href="tel:0375190160" class="boutonPro boutonProContour"><Phone size={16} /> 03 75 19 01 60</a>

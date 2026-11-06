@@ -1,0 +1,153 @@
+.fournisseursSection{
+    padding: 4rem 0 3rem 0;
+    overflow: hidden;
+    background: #FBF8F1;
+}
+.petitTitreFournisseurs{
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.titreFournisseurs{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 1.25rem 0 1.25rem;
+}
+.texteFournisseurs{
+    text-align: center;
+    max-width: 720px;
+    margin: 1rem auto 2.5rem auto;
+    padding: 0 1.25rem;
+    color: #4A5B6B;
+    font-size: 1.1rem;
+}
+
+/* Bandeau qui defile : deux pistes identiques mises bout a bout, translation de -100 % de la piste */
+.fournisseursDefilement{
+    --carte: 220px;
+    --espace: 20px;
+    --pas: calc(var(--carte) + var(--espace));
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+/* Fondu des bords : degrade pose PAR-DESSUS, meme couleur que le fond de page */
+.fournisseursDefilement::before,
+.fournisseursDefilement::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 8%;
+    z-index: 2;
+    pointer-events: none;
+}
+.fournisseursDefilement::before{
+    left: 0;
+    background: linear-gradient(90deg, #FBF8F1, rgba(251, 248, 241, 0));
+}
+.fournisseursDefilement::after{
+    right: 0;
+    background: linear-gradient(270deg, #FBF8F1, rgba(251, 248, 241, 0));
+}
+.fournisseursPiste{
+    list-style: none;
+}
+
+/* Chaque carte part hors ecran a droite, traverse vers la gauche, puis revient : le decalage
+   (animation-delay negatif) les espace regulierement, donc la boucle n'a aucun raccord. */
+.fournisseurCarte{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--carte);
+    height: 144px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    background: #fff;
+    border: 1px solid #E4E7E2;
+    border-radius: 15px;
+    transform: translateX(calc(var(--pas) * (var(--m) - 1)));
+    animation: defilementFournisseurs var(--duree, 60s) linear infinite;
+    animation-delay: calc(var(--duree) * var(--i) / var(--m) * -1);
+}
+/* Carte sombre : pour les logos blancs sur fond transparent */
+.fournisseurCarte--sombre{
+    background: #16273B;
+    border-color: #16273B;
+}
+.fournisseurCarte--sombre .fournisseurNom{
+    color: #fff;
+}
+.fournisseurCarte--sombre .fournisseurMetier{
+    color: #a4b1c2;
+}
+@keyframes defilementFournisseurs{
+    from{ transform: translateX(calc(var(--pas) * (var(--m) - 1))); }
+    to{ transform: translateX(calc(var(--pas) * -1)); }
+}
+
+.fournisseurLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 64px;
+    margin-bottom: 0.9rem;
+}
+.fournisseurLogo img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+.fournisseurNom{
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16273B;
+}
+.fournisseurMetier{
+    margin-top: 0.25rem;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: #4A5B6B;
+}
+
+/* Reduire les animations : plus de defilement, les marques sont listees en grille */
+@media (prefers-reduced-motion: reduce){
+    .fournisseursDefilement{
+        height: auto;
+        overflow: visible;
+    }
+    .fournisseursDefilement::before,
+    .fournisseursDefilement::after{
+        display: none;
+    }
+    .fournisseursPiste{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.25rem;
+        padding: 0 1.25rem;
+    }
+    .fournisseurCarte{
+        position: static;
+        transform: none;
+        animation: none;
+    }
+    .fournisseurCarte[aria-hidden='true']{
+        display: none;
+    }
+}
+@media (max-width: 600px){
+    .titreFournisseurs{ font-size: 1.6rem; }
+    .fournisseursDefilement{ --carte: 180px; }
+}

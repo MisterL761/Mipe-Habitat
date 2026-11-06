@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import '../styles/styleComponents/Fournisseurs.css';
+import '../styles/global.css';
+
+// Logos fournisseurs : dossier src/assets/image/LogosFournisseurs/<categorie>/<Marque>.png
+// Une marque presente dans plusieurs categories (Rockwool, Knauf Insulation) n'apparait qu'une fois.
+const fichiers = import.meta.glob('../assets/image/LogosFournisseurs/*/*.png', { eager: true, import: 'default' });
+
+const categories = {
+	'Isolation ITE': "Isolation thermique par l'extérieur",
+	'Isolation ITI': "Isolation thermique par l'intérieur",
+	'Isolation combles perdus': 'Isolation des combles perdus',
+	Menuiseries: 'Menuiseries, fermetures et protections solaires',
+};
+
+const parMarque = new Map();
+for (const [chemin, image] of Object.entries(fichiers)) {
+	const [, categorie, fichier] = chemin.match(/LogosFournisseurs\/([^/]+)\/([^/]+)\.png$/) ?? [];
+	if (!categorie) continue;
+	const entree = parMarque.get(fichier) ?? { nom: fichier, image, categories: [] };
+	entree.categories.push(categories[categorie] ?? categorie);
+	parMarque.set(fichier, entree);
+}
+
+
+// Prop "categorie" : nom du dossier (ex. "Isolation ITE"). Sans prop (accueil) : toutes les marques.
+// Prop "partenaires" (page Professionnels) : logos de src/assets/image/Logos_Partenaires au lieu des fournisseurs.
+const { categorie, partenaires = false } = Astro.props;
+const fichiersPartenaires = import.meta.glob('../assets/image/Logos_Partenaires/*.png', { eager: true, import: 'default' });
+const listePartenaires = Object.entries(fichiersPartenaires).map(([chemin, image]) => ({
+	nom: chemin.match(/([^/]+)\.png$/)[1],
+	image,
+	categories: [],
+}));
+const textes = {
+	'Isolation ITE': {
+		titre: "Les fabricants de nos systèmes d'isolation par l'extérieur",
+		texte: "Isolants, enduits et finitions : pour votre isolation thermique par l'extérieur (ITE), nous travaillons avec des fabricants reconnus.",
+	},
+	'Isolation ITI': {
+		titre: "Les fabricants de nos solutions d'isolation par l'intérieur",
+		texte: "Laines minérales, isolants biosourcés et plaques de plâtre : des marques de référence pour votre isolation thermique par l'intérieur (ITI).",
+	},
+	'Isolation combles perdus': {
+		titre: "Les fabricants de nos isolants pour combles",
+		texte: "Soufflage, laines et membranes : nous sélectionnons des fabricants reconnus pour l'isolation de vos combles perdus.",
+	},
+	Menuiseries: {
+		titre: 'Nos partenaires menuiseries, fermetures et protections solaires',
+		texte: "Fenêtres, portes, volets, stores, marquises et motorisations : des fabricants et marques partenaires pour vos menuiseries.",
+	},
+};
+const defaut = {
+	titre: 'Des marques reconnues pour vos travaux',
+	texte: "Isolation, menuiseries, protections solaires : MIPE Habitat sélectionne des fabricants de référence pour la rénovation énergétique de votre habitat.",
+};
+const textesPartenaires = {
+	titre: 'Ils nous font confiance',
+	texte: "Syndics, agences immobilières, artisans et professionnels du bâtiment : des partenaires qui travaillent avec nous.",
+};
+const { titre, texte } = partenaires ? textesPartenaires : (categorie && textes[categorie]) || defaut;
+
+const tous = [...parMarque.values()].sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
+const fournisseurs = partenaires
+	? listePartenaires.sort((a, b) => a.nom.localeCompare(b.nom, 'fr'))
+	: categorie
+		? tous.filter((f) => f.categories.includes(categories[categorie]))
+		: tous;
+// Defilement : chaque carte est animee individuellement (petits calques, pas une longue bande
+// qui se faisait couper par le navigateur). Il faut assez de cartes pour couvrir un tres grand
+// ecran (>= 16 cartes de 240 px) ; les series repetees sont masquees aux lecteurs d'ecran.
+const NB_MIN = 16;
+// Logos blancs (transparents) : invisibles sur une carte blanche -> carte bleu fonce
+const logosBlancs = new Set(['Stores Marquises', 'G1 Besoin', 'Citya']);
+const repetitions = Math.max(1, Math.ceil(NB_MIN / Math.max(fournisseurs.length, 1)));
+const cartes = Array.from({ length: repetitions }, (_, rep) =>
+	fournisseurs.map((f) => ({ ...f, visible: rep === 0 })),
+).flat();
+const total = cartes.length;
+// Vitesse constante (~60 px/s) quelle que soit la categorie
+const dureeSecondes = Math.round((total * 240) / 60);
+---
+
+<section class="fournisseursSection reveal" aria-labelledby="titreFournisseurs">
+	<p class="petitTitre petitTitreFournisseurs">{partenaires ? 'Nos partenaires' : 'Nos fournisseurs'}</p>
+	<h2 id="titreFournisseurs" class="titreFournisseurs">{titre}</h2>
+	<p class="texteFournisseurs">{texte}</p>
+
+	<div class="fournisseursDefilement" style={`--m:${total};--duree:${dureeSecondes}s`}>
+		<ul class="fournisseursPiste">
+			{cartes.map(({ nom, image, categories: cats, visible }, i) => (
+				<li class:list={['fournisseurCarte', logosBlancs.has(nom) && 'fournisseurCarte--sombre']} style={`--i:${i}`} aria-hidden={visible ? undefined : 'true'}>
+					<div class="fournisseurLogo">
+						<Image src={image} alt={visible ? `Logo ${nom}` : ''} width={260} quality={80} loading="lazy" decoding="async" />
+					</div>
+					<p class="fournisseurNom">{nom}</p>
+					{visible && !categorie && !partenaires && <p class="fournisseurMetier">{[...new Set(cats)].join(' · ')}</p>}
+				</li>
+			))}
+		</ul>
+	</div>
+</section>

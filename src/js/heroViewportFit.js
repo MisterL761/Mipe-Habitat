@@ -7,7 +7,9 @@
 function ajusterHauteurHero() {
 	const navbar = document.querySelector('.navbar');
 	if (!navbar) return;
-	const hauteur = navbar.getBoundingClientRect().height;
+	// getBoundingClientRect renvoie des pixels ecran : on retire le zoom grands ecrans
+	const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+	const hauteur = navbar.getBoundingClientRect().height / zoom;
 	document.documentElement.style.setProperty('--hauteur-navbar', `${hauteur}px`);
 }
 

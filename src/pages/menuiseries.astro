@@ -2,7 +2,9 @@
 import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
+import Fournisseurs from '../components/Fournisseurs.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FaqSchema from '../components/FaqSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/menuiseries.css';
@@ -22,11 +24,11 @@ const autresMenuiseries = [
 ];
 
 const faqMenuiseries = [
-    { question: 'Le remplacement des fenêtres est-il aidé ?', reponse: "Selon votre projet, certaines aides peuvent être mobilisables. Les CEE peuvent notamment concerner le remplacement de certaines fenêtres, sous conditions. Les menuiseries peuvent également s'intégrer à un projet MaPrimeRénov' Rénovation d'ampleur lorsqu'elles participent à un programme global de travaux.", ouvert: true },
-    { question: 'Faut-il isoler avant de changer ses fenêtres ?', reponse: "Pas nécessairement. L’idéal est d’avoir une vision globale de l’isolation du logement afin de coordonner les menuiseries avec l’isolation des murs, la ventilation et le chauffage. Nos équipes étudient votre projet dans son ensemble.", ouvert: false },
-    { question: 'PVC, aluminium ou autres solutions ?', reponse: "le choix dépend de vos priorités en matière de performance thermique, d’esthétique, d’entretien, de dimensions et de configuration du logement. Nous vous conseillons la solution adaptée à votre projet.", ouvert: false },
-    { question: 'Faut-il une autorisation pour changer ses menuiseries ?', reponse: "Un remplacement à l’identique ne nécessite généralement pas de déclaration préalable. En revanche, si vous modifiez l’aspect extérieur du bâtiment — couleur, dimensions, matériau, type d’ouverture — une autorisation d’urbanisme peut être nécessaire. Des règles particulières peuvent également s’appliquer en secteur protégé.", ouvert: false },
-    { question: "Comment connaître la performance d'une fenêtre ?", reponse: "La performance thermique d’une fenêtre est notamment mesurée par son coefficient Uw. Plus le Uw est faible, plus la fenêtre est performante thermiquement. Le vitrage, le châssis et la qualité de la pose participent ensemble à la performance finale.", ouvert: false },
+	{ question: "Quelles aides pour remplacer ses anciennes fenêtres ?", reponse: "Le remplacement de fenêtres anciennes peut, sous certaines conditions, bénéficier d'aides financières, notamment des Certificats d'Économies d'Énergie (CEE). Les menuiseries peuvent également être intégrées à un projet de rénovation énergétique d'ampleur. MIPE Habitat vous informe sur les dispositifs applicables à votre projet et les conditions d'éligibilité.", ouvert: true },
+	{ question: "Quel matériau choisir pour ses fenêtres : PVC, aluminium ou bois ?", reponse: "Chaque matériau présente ses avantages. Le PVC offre un excellent rapport qualité-prix et nécessite peu d'entretien. L'aluminium séduit par son esthétique moderne et ses profilés fins. Le bois apporte un caractère authentique et une excellente isolation. Les menuiseries mixtes bois-aluminium associent également esthétique et durabilité. Nos conseillers vous orientent vers la solution adaptée à votre habitation, à vos envies et à votre budget.", ouvert: false },
+	{ question: "Peut-on remplacer ses fenêtres sans réaliser d'autres travaux ?", reponse: "Oui, il est tout à fait possible de remplacer uniquement vos fenêtres ou vos portes. Selon l'état des menuiseries existantes, une pose en rénovation ou une dépose totale peut être envisagée. Nos équipes étudient la solution la mieux adaptée pour améliorer votre confort thermique et acoustique, tout en préservant l'esthétique de votre habitation.", ouvert: false },
+	{ question: "Faut-il une autorisation pour changer ses fenêtres, portes ou volets ?", reponse: "Un remplacement à l'identique ne nécessite généralement pas d'autorisation particulière. En revanche, si vous modifiez l'aspect extérieur de votre habitation (couleur, dimensions ou modèle), une déclaration préalable de travaux peut être nécessaire. Des règles spécifiques peuvent également s'appliquer en copropriété ou en secteur protégé.", ouvert: false },
+	{ question: "Comment se déroule un projet de remplacement de menuiseries avec MIPE Habitat ?", reponse: "Nous vous accompagnons de l'étude de votre projet jusqu'à la pose de vos nouvelles menuiseries. Après une visite à domicile et un devis gratuit, nous vous conseillons sur les matériaux, les performances et les finitions. Une prise de mesures précise est ensuite réalisée avant la commande et l'installation, pour une pose soignée et adaptée à votre habitation.", ouvert: false },
 ];
 
 const atout = [
@@ -109,7 +111,7 @@ const atout = [
                 <div class="texteIsofrance">
                     <p class="petitTitre">Notre partenaire menuiseries</p>
                     <h2 class="titreImage">Des menuiseries Isofrance</h2>
-                    <p class="descImage">Pour vos fenêtres, portes-fenêtres et baies vitrées, nous travaillons avec Isofrance, spécialiste des solutions fenêtres & énergies. Une collaboration qui garantit des menuiseries performantes, isolantes et durables.</p>
+                    <p class="descImage">Pour vos fenêtres, portes-fenêtres et baies vitrées, nous travaillons avec Isofrance, spécialiste des solutions fenêtres & énergies. Leurs menuiseries existent en PVC et en aluminium. Une collaboration qui garantit des menuiseries performantes, isolantes et durables.</p>
                     <p class="check"><Check size={15} color="#8FE05C"/>Produits sélectionnés pour leur performance thermique</p>
                     <p class="check"><Check size={15} color="#8FE05C"/>Pose assurée par nos équipes qualifiées</p>
                     <p class="check"><Check size={15} color="#8FE05C"/>Garanties fabricant sur vos menuiseries</p>
@@ -125,13 +127,13 @@ const atout = [
                 <div class="grilleUsines">
                     <div class="carteUsine">
                         <div class="iconeUsine"><Factory size={20} color="#ffffff" /></div>
-                        <p class="villeUsine"><MapPin size={14} color="#6FBE2C" />Châteauroux (Indre)</p>
-                        <p class="descUsine">Site historique fondé en 1947, spécialisé dans la fabrication de fenêtres, portes-fenêtres et portes d'entrée sur mesure en PVC. L'usine fait l'objet d'un plan de modernisation de plusieurs millions d'euros pour accroître ses cadences.</p>
+                        <p class="villeUsine"><MapPin size={14} color="#6FBE2C" />Châteauroux (Indre) · PVC</p>
+                        <p class="descUsine">Site historique fondé en 1947, dédié aux menuiseries PVC : fenêtres, portes-fenêtres et portes d'entrée sur mesure. L'usine fait l'objet d'un plan de modernisation de plusieurs millions d'euros pour accroître ses cadences.</p>
                     </div>
                     <div class="carteUsine">
                         <div class="iconeUsine"><Factory size={20} color="#ffffff" /></div>
-                        <p class="villeUsine"><MapPin size={14} color="#6FBE2C" />La Bresse (Vosges)</p>
-                        <p class="descUsine">Site SNM, entièrement dédié à la fabrication de menuiseries en aluminium, sous les marques AMCC, AMGO et Closy.</p>
+                        <p class="villeUsine"><MapPin size={14} color="#6FBE2C" />La Bresse (Vosges) · Aluminium</p>
+                        <p class="descUsine">Site SNM, entièrement dédié aux menuiseries aluminium, sous les marques AMCC, AMGO et Closy.</p>
                     </div>
                 </div>
             </div>
@@ -177,9 +179,9 @@ const atout = [
         </section>
 
         <section class="sectionAutresMenuiseries">
-            <p class="petitTitre">Et aussi</p>
-            <h2 class="titreAutresMenuiseries">Nous proposons également d'autres menuiseries</h2>
-            <p class="descAutresMenuiseries">Pour l'aménagement, la sécurité et le confort de votre maison, nos équipes fournissent et posent aussi :</p>
+            <p class="petitTitre">NOS AUTRES MENUISERIES ET ÉQUIPEMENTS</p>
+            <h2 class="titreAutresMenuiseries">Des solutions pour tous vos projets d'aménagement</h2>
+            <p class="descAutresMenuiseries">Au-delà des fenêtres, portes d'entrée et volets, MIPE Habitat vous accompagne dans l'amélioration et l'aménagement de votre habitation. Sécurité, confort, esthétique ou aménagement extérieur : découvrez nos solutions sur mesure, adaptées à vos besoins et à vos envies.</p>
             <div class="listeAutresMenuiseries">
                 {
                     autresMenuiseries.map((nom) => (
@@ -189,10 +191,12 @@ const atout = [
             </div>
         </section>
 
+        <Fournisseurs categorie="Menuiseries" />
+
         <section class="sectionFaqMenuiseries">
             <div class="faqMenuiseriesTexte">
                 <p class="petitTitre">Questions fréquentes</p>
-                <h2 class="titreFaqMenuiseries">Vos questions sur nos menuiseries</h2>
+                <h2 class="titreFaqMenuiseries">Vos questions sur nos fenêtres, portes et volets</h2>
             </div>
             <div class="faqMenuiseriesListe">
                 {
@@ -206,6 +210,7 @@ const atout = [
             </div>
         </section>
         </div>
+        <FaqSchema items={faqMenuiseries} />
         <Footer></Footer>
     </main>
 </Layout>

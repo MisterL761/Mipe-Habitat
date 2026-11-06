@@ -18,8 +18,8 @@
     /* min-height (et non height) : sur un ecran plus bas que prevu, la hero
        grandit avec son contenu au lieu de laisser le bandeau de chiffres
        chevaucher le texte et le formulaire. */
-    min-height: max(560px, calc(100vh - var(--hauteur-navbar, 85px)));
-    min-height: max(560px, calc(100svh - var(--hauteur-navbar, 85px)));
+    min-height: max(560px, calc(100vh / var(--zoom-site, 1) - var(--hauteur-navbar, 85px)));
+    min-height: max(560px, calc(100svh / var(--zoom-site, 1) - var(--hauteur-navbar, 85px)));
     display: flex;
     flex-direction: column;
     background-image:

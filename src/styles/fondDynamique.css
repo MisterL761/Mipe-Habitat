@@ -40,8 +40,8 @@ body {
 .fondDynamique {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw / var(--zoom-site, 1));
+  height: calc(100vh / var(--zoom-site, 1));
   pointer-events: none;
   z-index: 0;
   overflow: hidden;

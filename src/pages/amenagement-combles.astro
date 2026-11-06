@@ -3,6 +3,7 @@ import '../styles/refonteAccueil.css';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
+import FaqSchema from '../components/FaqSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/amenagement-combles.css';
@@ -14,26 +15,27 @@ import photoCombles from '../assets/image/amenagement-comble.webp';
 const interventions = [
 	{
 		Icone: Ruler,
-		titre: 'Étude de faisabilité',
-		description: 'Hauteur sous plafond, charpente, accès : nos équipes étudient la configuration de vos combles pour définir le potentiel d’aménagement de votre projet.',
+		titre: 'Étude et conseils',
+		description: 'Nous étudions la configuration de vos combles déjà aménageables afin de vous proposer des solutions adaptées pour l’isolation, l’agencement intérieur et les finitions, selon vos besoins et votre budget.',
 	},
 	{
 		Icone: Layers,
-		titre: 'Isolation & finitions',
-		description: 'Isolation des rampants, pose de cloisons, sol et plafond : votre nouvel espace est aménagé pour être confortable été comme hiver.',
+		titre: 'Isolation et aménagement intérieur',
+		description: 'Isolation des rampants, création de cloisons, plafonds et revêtements : nous coordonnons les différentes étapes pour transformer vos combles en un espace confortable, fonctionnel et agréable à vivre.',
 	},
 	{
 		Icone: Sun,
-		titre: 'Ouvertures & lumière',
-		description: "Fenêtres de toit ou velux : nous étudions les ouvertures adaptées pour apporter la lumière naturelle dans votre nouvel espace de vie.",
+		titre: 'Ouvertures, équipements et finitions',
+		description: 'Installation de fenêtres de toit, adaptation des réseaux électriques, chauffage, ventilation et finitions intérieures : nous organisons les interventions nécessaires pour donner vie à votre nouvel espace.',
 	},
 ];
 
 const faqCombles = [
-	{ question: 'Quelle hauteur sous plafond pour aménager ses combles ?', reponse: "Une hauteur sous plafond d'au moins 1,80 m sur une partie suffisante de la surface est généralement nécessaire pour un aménagement confortable. Nos équipes étudient la configuration exacte de votre charpente lors de la visite technique.", ouvert: true },
-	{ question: 'Faut-il isoler avant d’aménager ses combles ?', reponse: "L'isolation des rampants fait partie intégrante de l'aménagement de combles habitables, pour garantir le confort thermique de la nouvelle pièce. Si vos combles sont déjà isolés, nous adaptons le projet en conséquence.", ouvert: false },
-	{ question: 'Quelles démarches administratives pour aménager ses combles ?', reponse: "Selon l'ampleur du projet (création d'ouvertures, modification de la surface habitable...), une déclaration préalable de travaux peut être nécessaire auprès de votre mairie. Nous vous accompagnons pour identifier les démarches applicables à votre projet.", ouvert: false },
-	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller se déplace pour étudier vos combles et vous propose un devis gratuit et sans engagement.', ouvert: false },
+	{ question: "Peut-on aménager tous les combles ?", reponse: "Tous les combles ne sont pas nécessairement aménageables. La hauteur disponible, la configuration de la charpente et la présence d'un plancher adapté sont des éléments essentiels. MIPE Habitat intervient sur des combles déjà aménageables, pour les transformer en espaces de vie confortables et fonctionnels.", ouvert: true },
+	{ question: "Faut-il isoler ses combles avant de les aménager ?", reponse: "Une bonne isolation est indispensable pour profiter de vos combles été comme hiver. L'isolation des rampants est généralement intégrée aux travaux d'aménagement, avant la réalisation des habillages et des finitions intérieures.", ouvert: false },
+	{ question: "Quels travaux réalisez-vous pour aménager des combles ?", reponse: "Nous intervenons sur l'isolation des rampants, la création de cloisons, les plafonds, les habillages et les finitions intérieures. Selon votre projet, nous pouvons également coordonner l'installation de fenêtres de toit et les interventions complémentaires nécessaires à l'aménagement de votre nouvel espace.", ouvert: false },
+	{ question: "Faut-il une autorisation pour aménager ses combles ?", reponse: "Cela dépend des travaux envisagés. Une déclaration préalable ou un permis de construire peut être nécessaire selon la surface créée, les modifications extérieures et les règles d'urbanisme applicables. Nous vous invitons à vérifier ces obligations auprès de votre mairie avant le démarrage des travaux.", ouvert: false },
+	{ question: "Le déplacement et le devis sont-ils gratuits ?", reponse: "Oui, nos devis sont gratuits et sans engagement. Après un premier échange, un conseiller MIPE Habitat se déplace pour étudier votre projet, examiner la configuration de vos combles et vous proposer une solution d'aménagement adaptée à vos besoins et à votre budget.", ouvert: false },
 ];
 ---
 
@@ -93,6 +95,7 @@ const faqCombles = [
 		</section>
 
 		</div>
+		<FaqSchema items={faqCombles} />
 		<Footer></Footer>
 	</main>
 </Layout>
