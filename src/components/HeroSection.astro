@@ -7,7 +7,6 @@ import heroImgSrc from '../assets/image/ImageHero.webp';
 import FormHero from './FormHero.astro';
 import { noteGoogle } from '../utils/noteGoogle.js';
 import logoRge from '../assets/image/logo-rge.webp';
-import logoCertibat from '../assets/image/logoCertibat.webp';
 import logoFfb from '../assets/image/Logo-fede-francaise-batiment.png';
 import logoProeco from '../assets/image/logo_reseau-proeco-energies_green.svg';
 
@@ -40,9 +39,6 @@ const heroMoyenne = await getImage({ src: heroImgSrc, width: 1100, quality: 72 }
                 <div class="certifsHero">
                     <a href="/qualifications" class="badgeCertifHero" aria-label="Voir nos qualifications RGE Qualibat">
                         <Image src={logoRge} alt="RGE Qualibat" width={160} />
-                    </a>
-                    <a href="/qualifications" class="badgeCertifHero" aria-label="Voir nos qualifications RGE Certibat">
-                        <Image src={logoCertibat} alt="RGE Certibat" width={160} />
                     </a>
                     <a href="https://www.ffbatiment.fr" target="_blank" rel="noopener" class="badgeCertifHero" aria-label="MIPE Habitat, adhérent de la Fédération Française du Bâtiment">
                         <Image src={logoFfb} alt="FFB, Fédération Française du Bâtiment" width={160} />
