@@ -5,6 +5,7 @@ import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Fournisseurs from '../components/Fournisseurs.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FaqSchema from '../components/FaqSchema.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css'
 import '../styles/pages/isolation-thermique-exterieur.css';
@@ -52,7 +53,7 @@ const deroulement = [
 ];
 ---
 
-<Layout title="Isolation thermique par l'extérieur (ITE) | MIPE Habitat" description="Isolation thermique par l'extérieur (ITE) : isolez vos murs sans réduire votre surface habitable, avec finition façade incluse. MIPE Habitat, Oise et Île-de-France.">
+<Layout title="Isolation par l'extérieur (ITE) dans l'Oise | MIPE Habitat" description="Isolation thermique par l'extérieur (ITE) : isolez vos murs sans perdre de surface habitable, façade incluse. MIPE Habitat, Oise et Île-de-France.">
     <main>
         <Navbar></Navbar>
         <div class="refonte">
@@ -186,6 +187,7 @@ const deroulement = [
         </section>
         </div>
         <FaqSchema items={faqIte} />
+        <ServiceSchema nom="Isolation thermique par l'extérieur (ITE)" />
         <Footer></Footer>
     </main>
 </Layout>

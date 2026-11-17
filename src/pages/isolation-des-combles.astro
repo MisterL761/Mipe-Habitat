@@ -5,6 +5,7 @@ import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Fournisseurs from '../components/Fournisseurs.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FaqSchema from '../components/FaqSchema.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css'
 import '../styles/pages/isolation-des-combles.css';
@@ -45,7 +46,7 @@ const faqCombles = [
 ];
 ---
 
-<Layout title="Isolation des combles perdus et rampants | MIPE Habitat" description="Combles perdus, rampants ou grenier : isolez votre toiture, un poste qui peut représenter 25 à 30 % des pertes de chaleur. Devis gratuit MIPE Habitat, qualifié RGE.">
+<Layout title="Isolation des combles perdus et rampants | MIPE Habitat" description="Combles perdus, rampants ou grenier : isolez votre toiture, jusqu'à 25 à 30 % des pertes de chaleur. Devis gratuit MIPE Habitat, qualifié RGE.">
     <main>
         <Navbar></Navbar>
         <div class="refonte">
@@ -177,6 +178,7 @@ const faqCombles = [
 
         </div>
         <FaqSchema items={faqCombles} />
+        <ServiceSchema nom="Isolation des combles perdus et rampants" />
         <Footer></Footer>
     </main>
 </Layout>

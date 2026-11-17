@@ -45,6 +45,20 @@ const SECTIONS = {
 		sousTitre: (e) => `${e.ville} (${e.cp}) · ${e.annee} · ${(e.photos || []).length} photo(s)`,
 		vignette: (e) => (e.photos || [])[0],
 	},
+	equipe: {
+		titre: 'Équipe',
+		aide: "Les membres s'affichent dans « Notre équipe », dans l'ordre de cette liste (le premier à gauche). Photo conseillée : portrait vertical, visage bien centré.",
+		dossier: 'equipe',
+		nouveau: () => ({}),
+		libelleNouveau: 'Nouveau membre',
+		champs: [
+			{ k: 'nom', t: 'texte', l: 'Prénom (ou nom affiché)', req: true, max: 60, demi: true },
+			{ k: 'poste', t: 'texte', l: 'Poste', req: true, max: 80, demi: true, aide: 'Exemple : Chargé d’affaires' },
+			{ k: 'photo', t: 'image', l: 'Photo', req: true },
+		],
+		sousTitre: (e) => e.poste,
+		vignette: (e) => e.photo,
+	},
 	articles: {
 		titre: 'Blog',
 		aide: "Les articles s'affichent sur l'accueil (défilement) et sur la page Blog, du plus récent (en haut de la liste) au plus ancien.",
@@ -123,7 +137,7 @@ function afficherListe() {
 	const q = $('#recherche').value.trim().toLowerCase();
 	const liste = $('#liste');
 	liste.replaceChildren();
-	const visibles = elements.filter((e) => !q || JSON.stringify([e.titre, e.ville, e.tag, e.cp]).toLowerCase().includes(q));
+	const visibles = elements.filter((e) => !q || JSON.stringify([e.titre, e.nom, e.poste, e.ville, e.tag, e.cp]).toLowerCase().includes(q));
 	if (!visibles.length) {
 		liste.append(el('div', { class: 'vide' }, q ? 'Aucun résultat.' : `Rien pour le moment. Cliquez sur « ${s.libelleNouveau} » pour commencer.`));
 		return;
@@ -134,7 +148,7 @@ function afficherListe() {
 		liste.append(el('div', { class: 'ligneElement' },
 			el('div', { class: 'vignette', style: v ? `background-image:url('${v}')` : '' }),
 			el('div', { class: 'infosElement' },
-				el('strong', {}, e.titre),
+				el('strong', {}, e.titre ?? e.nom),
 				el('span', {}, s.sousTitre(e)),
 				el('div', { class: 'badges' }, badges(e).map(([t, c]) => el('span', { class: 'badge ' + c }, t)))),
 			el('div', { class: 'actionsElement' },
@@ -161,7 +175,7 @@ async function deplacer(i, delta) {
 }
 
 async function supprimer(e) {
-	if (!confirm(`Supprimer « ${e.titre} » ? Cette action est définitive.`)) return;
+	if (!confirm(`Supprimer « ${e.titre ?? e.nom} » ? Cette action est définitive.`)) return;
 	try { elements = (await api('supprimer', { methode: 'POST', corps: { id: e.id } })).elements; afficherListe(); message('Supprimé.'); }
 	catch (err) { message(err.message, true); }
 }
@@ -352,3 +366,4 @@ $('#onglets').addEventListener('click', (ev) => {
 });
 
 charger();
+

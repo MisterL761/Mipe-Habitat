@@ -3,7 +3,7 @@
 // Partagé entre l'admin (écriture) et api/contenu.php (lecture publique).
 declare(strict_types=1);
 
-const TYPES_CONTENU = ['offres', 'realisations', 'articles'];
+const TYPES_CONTENU = ['offres', 'realisations', 'articles', 'equipe'];
 
 function racine_site(): string { return dirname(__DIR__); }
 function dossier_donnees(): string { return racine_site() . '/data'; }

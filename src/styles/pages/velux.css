@@ -134,3 +134,23 @@
         width: 100%;
     }
 }
+
+.marqueVelux{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.2rem;
+}
+.marqueVelux img{
+    height: 36px;
+    width: auto;
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+.mentionMarque{
+    font-size: 0.8rem;
+    color: #ffffff;
+    opacity: 0.9;
+}

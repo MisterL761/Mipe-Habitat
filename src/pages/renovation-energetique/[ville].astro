@@ -92,19 +92,19 @@ const faq = [
 // et ne se pretent pas a un glissement avant/apres : on affiche alors une
 // seule photo, sans curseur.
 export const villes = [
-	{ nom: 'Othis', slug: 'othis', cp: '77', agence: 'plessis', realisation: { photoApres: othisApres1, photoAvant: othisPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
-	{ nom: 'Boullarre', slug: 'boullarre', cp: '60', agence: 'plessis', realisation: { photoApres: boullarreApres1, photoAvant: boullarrePendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2021' } },
-	{ nom: 'Penchard', slug: 'penchard', cp: '77', agence: 'plessis', realisation: { photoApres: penchardApres1, photoAvant: penchardPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2025' } },
-	{ nom: 'Saint-Pathus', slug: 'saint-pathus', cp: '77', agence: 'plessis', realisation: { photoApres: pathusApres1, photoAvant: pathusPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2026' } },
-	{ nom: 'Boissy-Fresnoy', slug: 'boissy-fresnoy', cp: '60', agence: 'plessis', realisation: { photoApres: fresnoyApres1, photoAvant: fresnoyPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
-	{ nom: 'Dammartin-en-Goële', slug: 'dammartin-en-goele', cp: '77', agence: 'plessis', realisation: { photoApres: dammartinPhoto, photoAvant: null, avantReel: false, comparaison: false, titre: 'Isolation des combles perdus', annee: '2024' } },
-	{ nom: 'Torcy', slug: 'torcy', cp: '77', agence: 'plessis', realisation: { photoApres: torcyApres1, photoAvant: torcyPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
-	{ nom: 'Fleurines', slug: 'fleurines', cp: '60', agence: 'plessis', realisation: { photoApres: fleurinesApres1, photoAvant: fleurinesPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Othis', slug: 'othis', cp: '77', agence: 'plessis', listee: false, realisation: { photoApres: othisApres1, photoAvant: othisPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Boullarre', slug: 'boullarre', cp: '60', agence: 'plessis', listee: false, realisation: { photoApres: boullarreApres1, photoAvant: boullarrePendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2021' } },
+	{ nom: 'Penchard', slug: 'penchard', cp: '77', agence: 'plessis', listee: false, realisation: { photoApres: penchardApres1, photoAvant: penchardPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2025' } },
+	{ nom: 'Saint-Pathus', slug: 'saint-pathus', cp: '77', agence: 'plessis', listee: false, realisation: { photoApres: pathusApres1, photoAvant: pathusPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2026' } },
+	{ nom: 'Boissy-Fresnoy', slug: 'boissy-fresnoy', cp: '60', agence: 'plessis', listee: false, realisation: { photoApres: fresnoyApres1, photoAvant: fresnoyPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Dammartin-en-Goële', slug: 'dammartin-en-goele', cp: '77', agence: 'plessis', listee: false, realisation: { photoApres: dammartinPhoto, photoAvant: null, avantReel: false, comparaison: false, titre: 'Isolation des combles perdus', annee: '2024' } },
+	{ nom: 'Torcy', slug: 'torcy', cp: '77', agence: 'plessis', listee: false, realisation: { photoApres: torcyApres1, photoAvant: torcyPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Fleurines', slug: 'fleurines', cp: '60', agence: 'plessis', listee: false, realisation: { photoApres: fleurinesApres1, photoAvant: fleurinesPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
 	{ nom: 'Rueil-Malmaison', slug: 'rueil-malmaison', cp: '92', agence: 'plaisir', realisation: { photoApres: rueilApres1, photoAvant: rueilAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2026' } },
-	{ nom: 'Crégy-lès-Meaux', slug: 'cregy-les-meaux', cp: '77', agence: 'plessis', realisation: { photoApres: cregyApres1, photoAvant: cregyAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
-	{ nom: 'Cachan', slug: 'cachan', cp: '94', agence: 'plaisir', realisation: { photoApres: cachanApres1, photoAvant: cachanAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2024' } },
+	{ nom: 'Crégy-lès-Meaux', slug: 'cregy-les-meaux', cp: '77', agence: 'plessis', listee: false, realisation: { photoApres: cregyApres1, photoAvant: cregyAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
+	{ nom: 'Cachan', slug: 'cachan', cp: '94', agence: 'plaisir', listee: false, realisation: { photoApres: cachanApres1, photoAvant: cachanAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2024' } },
 	{ nom: 'Crépy-en-Valois', slug: 'crepy-en-valois', cp: '60', agence: 'plessis', realisation: { photoApres: crepyApres1, photoAvant: crepyAvant1, avantReel: true, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2022' } },
-	{ nom: 'Betz', slug: 'betz', cp: '60', agence: 'plessis', realisation: { photoApres: betzApres1, photoAvant: betzPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2021' } },
+	{ nom: 'Betz', slug: 'betz', cp: '60', agence: 'plessis', listee: false, realisation: { photoApres: betzApres1, photoAvant: betzPendant1, avantReel: false, comparaison: true, titre: 'Isolation thermique extérieure', annee: '2021' } },
 	{ nom: 'Senlis', slug: 'senlis', cp: '60', agence: 'plessis', realisation: null },
 	{ nom: 'Meaux', slug: 'meaux', cp: '77', agence: 'plessis', realisation: null },
 	{ nom: 'Villers-Cotterêts', slug: 'villers-cotterets', cp: '02', agence: 'plessis', realisation: null },
@@ -113,6 +113,19 @@ export const villes = [
 	{ nom: 'Nanterre', slug: 'nanterre', cp: '92', agence: 'plaisir', realisation: null },
 	{ nom: 'Créteil', slug: 'creteil', cp: '94', agence: 'plaisir', realisation: null },
 	{ nom: 'Cergy-Pontoise', slug: 'cergy-pontoise', cp: '95', agence: 'plaisir', realisation: null },
+	// Grandes villes (sans chantier documente) : pages generiques, affichees sur /nos-secteurs-intervention
+	{ nom: 'Le Plessis-Belleville', slug: 'le-plessis-belleville', cp: '60', agence: 'plessis', realisation: null },
+	{ nom: 'Beauvais', slug: 'beauvais', cp: '60', agence: 'plessis', realisation: null },
+	{ nom: 'Compiègne', slug: 'compiegne', cp: '60', agence: 'plessis', realisation: null },
+	{ nom: 'Creil', slug: 'creil', cp: '60', agence: 'plessis', realisation: null },
+	{ nom: 'Soissons', slug: 'soissons', cp: '02', agence: 'plessis', realisation: null },
+	{ nom: 'Laon', slug: 'laon', cp: '02', agence: 'plessis', realisation: null },
+	{ nom: 'Chelles', slug: 'chelles', cp: '77', agence: 'plessis', realisation: null },
+	{ nom: 'Aulnay-sous-Bois', slug: 'aulnay-sous-bois', cp: '93', agence: 'plessis', realisation: null },
+	{ nom: 'Plaisir', slug: 'plaisir', cp: '78', agence: 'plaisir', realisation: null },
+	{ nom: 'Saint-Germain-en-Laye', slug: 'saint-germain-en-laye', cp: '78', agence: 'plaisir', realisation: null },
+	{ nom: 'Boulogne-Billancourt', slug: 'boulogne-billancourt', cp: '92', agence: 'plaisir', realisation: null },
+	{ nom: 'Argenteuil', slug: 'argenteuil', cp: '95', agence: 'plaisir', realisation: null },
 ];
 
 export function getStaticPaths() {
@@ -147,8 +160,11 @@ const legendeHero = aChantierLocal
 	? `${ville.realisation.titre} — ${ville.realisation.annee} · ${ville.nom}`
 	: "Exemple d'une rénovation réalisée par nos équipes";
 
-const titrePage = `Rénovation énergétique à ${ville.nom} (${ville.cp}) | MIPE Habitat`;
-const descriptionPage = `MIPE Habitat réalise vos travaux d'isolation, de menuiseries, de ravalement et de toiture à ${ville.nom} (${ville.cp}). Devis gratuit, intervention locale depuis notre agence de ${nomAgence}.`;
+// 60 caracteres maximum : le code postal saute si le nom de la ville est trop long
+const titreComplet = `Rénovation énergétique à ${ville.nom} (${ville.cp}) | MIPE Habitat`;
+const titreSansCp = `Rénovation énergétique à ${ville.nom} | MIPE Habitat`;
+const titrePage = titreComplet.length <= 60 ? titreComplet : titreSansCp.length <= 60 ? titreSansCp : `Rénovation à ${ville.nom} | MIPE Habitat`;
+const descriptionPage = `Isolation, menuiseries, ravalement et toiture à ${ville.nom} (${ville.cp}) : MIPE Habitat, agence de ${nomAgence}. Devis gratuit.`;
 
 // Donnees structurees (JSON-LD) : aide Google a comprendre qu'il s'agit
 // d'une entreprise du batiment intervenant dans cette ville precise, et

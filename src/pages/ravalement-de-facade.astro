@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FaqSchema from '../components/FaqSchema.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css'
 import '../styles/pages/ravalement-de-facade.css';
@@ -44,7 +45,7 @@ const faqRavalement = [
 ];
 ---
 
-<Layout title="Ravalement de façade : rénovation et protection | MIPE Habitat" description="Diagnostic, nettoyage, réparation et finition : MIPE Habitat rénove et protège votre façade contre les intempéries, dans l'Oise et en Île-de-France.">
+<Layout title="Ravalement de façade dans l'Oise | MIPE Habitat" description="Diagnostic, nettoyage, réparation et finition : MIPE Habitat rénove et protège votre façade contre les intempéries, dans l'Oise et en Île-de-France.">
     <main>
         <Navbar></Navbar>
         <div class="refonte">
@@ -172,6 +173,7 @@ const faqRavalement = [
 
         </div>
         <FaqSchema items={faqRavalement} />
+        <ServiceSchema nom="Ravalement de façade" />
         <Footer></Footer>
     </main>
 </Layout>
