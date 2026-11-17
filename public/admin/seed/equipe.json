@@ -1,0 +1,62 @@
+[
+ {
+  "id": 1,
+  "nom": "Giorgiana",
+  "poste": "Responsable d'agence",
+  "photo": "/media/equipe/giorgiana.webp"
+ },
+ {
+  "id": 2,
+  "nom": "Myriam",
+  "poste": "Responsable administrative et financier",
+  "photo": "/media/equipe/myriam.webp"
+ },
+ {
+  "id": 3,
+  "nom": "Alexandre",
+  "poste": "Chargé d'affaires",
+  "photo": "/media/equipe/alex.webp"
+ },
+ {
+  "id": 4,
+  "nom": "Patrice",
+  "poste": "Chargé d'affaires",
+  "photo": "/media/equipe/patrice.webp"
+ },
+ {
+  "id": 5,
+  "nom": "Rafael",
+  "poste": "Chargé d'affaires",
+  "photo": "/media/equipe/rafael.webp"
+ },
+ {
+  "id": 6,
+  "nom": "Laurent",
+  "poste": "Partenaire pôle menuiserie",
+  "photo": "/media/equipe/laurent.webp"
+ },
+ {
+  "id": 7,
+  "nom": "Clement",
+  "poste": "Technicien isolation confirmé",
+  "photo": "/media/equipe/clement.webp"
+ },
+ {
+  "id": 8,
+  "nom": "Issaka",
+  "poste": "Technicien isolation confirmé",
+  "photo": "/media/equipe/issaka.webp"
+ },
+ {
+  "id": 9,
+  "nom": "Gabriel",
+  "poste": "technicien",
+  "photo": "/media/equipe/gabriel.webp"
+ },
+ {
+  "id": 10,
+  "nom": "Lionel",
+  "poste": "Responsable technique",
+  "photo": "/media/equipe/lionel.webp"
+ }
+]

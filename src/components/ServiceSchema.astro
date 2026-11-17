@@ -1,0 +1,25 @@
+---
+// Balisage JSON-LD "Service" pour les pages metiers : decrit la prestation proposee par MIPE Habitat
+// (aucun texte ajoute a la page). Usage : <ServiceSchema nom="Ravalement de facade" />
+interface Props {
+	nom: string;
+}
+const { nom } = Astro.props;
+const racine = Astro.site ?? Astro.url;
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: nom,
+	serviceType: nom,
+	url: new URL(Astro.url.pathname, racine).href,
+	provider: {
+		'@type': 'HomeAndConstructionBusiness',
+		name: 'MIPE Habitat',
+		url: new URL('/', racine).href,
+		telephone: '+33375190160',
+	},
+	areaServed: ['Oise', 'Seine-et-Marne', 'Aisne', 'Seine-Saint-Denis', 'Yvelines'].map((n) => ({ '@type': 'AdministrativeArea', name: n })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
