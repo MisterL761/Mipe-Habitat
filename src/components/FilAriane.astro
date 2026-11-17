@@ -9,6 +9,23 @@ interface Props {
 }
 
 const { items } = Astro.props;
+
+// Balisage JSON-LD "BreadcrumbList" : memes etapes que le fil d'Ariane affiche.
+const absolu = (chemin: string) => new URL(chemin, Astro.site ?? Astro.url).href;
+const etapes = [
+	{ label: 'Accueil', url: absolu('/') },
+	...items.map(({ label, href }) => ({ label, url: absolu(href ?? Astro.url.pathname) })),
+];
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: etapes.map(({ label, url }, i) => ({
+		'@type': 'ListItem',
+		position: i + 1,
+		name: label,
+		item: url,
+	})),
+};
 ---
 
 <nav class="filAriane" aria-label="Fil d'Ariane">
@@ -26,3 +43,4 @@ const { items } = Astro.props;
 		}
 	</ol>
 </nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

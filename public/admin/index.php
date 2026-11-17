@@ -24,6 +24,7 @@ $jeton = jeton_csrf();
     <button type="button" data-type="offres" class="actif">Promotions</button>
     <button type="button" data-type="realisations">Réalisations</button>
     <button type="button" data-type="articles">Blog</button>
+    <button type="button" data-type="equipe">Équipe</button>
   </nav>
   <div class="actionsHaut">
     <a class="bouton boutonLien" href="/" target="_blank" rel="noopener">Voir le site</a>

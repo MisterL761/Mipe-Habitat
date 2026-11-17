@@ -135,6 +135,18 @@ function nettoyer(string $type, array $in, ?array $ancien, array $tous): array|s
                 'lng' => round($lng, 5),
                 'photos' => $photos,
             ];
+        case 'equipe':
+            $nom = ligne($in['nom'] ?? '', 60);
+            $poste = ligne($in['poste'] ?? '', 80);
+            if ($nom === '' || $poste === '') return 'Le nom et le poste sont obligatoires.';
+            $photo = url_image($in['photo'] ?? '');
+            if ($photo === '') return 'La photo est obligatoire.';
+            return [
+                'id' => $ancien['id'] ?? (max(array_merge([0], array_map('intval', array_column($tous, 'id')))) + 1),
+                'nom' => $nom,
+                'poste' => $poste,
+                'photo' => $photo,
+            ];
         case 'articles':
             $titre = ligne($in['titre'] ?? '', 160);
             $texte = paragraphe($in['texte'] ?? '', 20000);
@@ -152,7 +164,7 @@ function nettoyer(string $type, array $in, ?array $ancien, array $tous): array|s
 
 function images_de(array $element): array
 {
-    $liste = array_merge((array) ($element['photos'] ?? []), [$element['image'] ?? '']);
+    $liste = array_merge((array) ($element['photos'] ?? []), [$element['image'] ?? '', $element['photo'] ?? '']);
     return array_values(array_filter($liste, fn ($u) => is_string($u) && str_starts_with($u, '/uploads/')));
 }
 
@@ -184,7 +196,7 @@ if ($methode !== 'POST') {
 
 if ($action === 'televerser') {
     $dossier = $_POST['dossier'] ?? '';
-    $largeurs = ['realisations' => 1000, 'offres' => 800, 'blog' => 900];
+    $largeurs = ['realisations' => 1000, 'offres' => 800, 'blog' => 900, 'equipe' => 840];
     if (!isset($largeurs[$dossier]) || !isset($_FILES['image'])) {
         sortie(400, ['ok' => false, 'erreur' => 'Requête invalide.']);
     }
@@ -225,7 +237,11 @@ if ($action === 'enregistrer') {
         foreach (array_diff(images_de($ancien), images_de($propre)) as $inutile) supprimer_televersement($inutile);
         $elements[$position] = $propre;
     } else {
-        array_unshift($elements, $propre); // les nouveautés en premier
+        if ($type === 'equipe') {
+            $elements[] = $propre; // un nouveau membre arrive en dernier (réordonnable ensuite)
+        } else {
+            array_unshift($elements, $propre); // les nouveautés en premier
+        }
     }
 } elseif ($action === 'supprimer') {
     $id = (string) ($corps['id'] ?? '');

@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FaqSchema from '../components/FaqSchema.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/amenagement-combles.css';
@@ -39,7 +40,7 @@ const faqCombles = [
 ];
 ---
 
-<Layout title="Aménagement de combles : chambre, bureau, pièce de vie | MIPE Habitat" description="Transformez vos combles en pièce à vivre : étude de la charpente et de la hauteur, isolation, plaques de plâtre et finitions. MIPE Habitat, Oise et Île-de-France.">
+<Layout title="Aménagement de combles : chambre, bureau | MIPE Habitat" description="Transformez vos combles en pièce à vivre : étude de la charpente, isolation, cloisons et finitions. MIPE Habitat, Oise et Île-de-France.">
 	<main>
 		<Navbar></Navbar>
 		<div class="refonte">
@@ -96,6 +97,7 @@ const faqCombles = [
 
 		</div>
 		<FaqSchema items={faqCombles} />
+		<ServiceSchema nom="Aménagement de combles" />
 		<Footer></Footer>
 	</main>
 </Layout>

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getImage } from 'astro:assets';
 import heroImgSrc from '../assets/image/ImageHero.webp';
+import logoSrc from '../assets/logo-mipe-habitat.jpeg';
 import Navbar from "../components/Nav-Footer/Navbar.astro";
 import HeroSection from '../components/HeroSection.astro';
 import BandeauFrancRenov from '../components/BandeauFrancRenov.astro';
@@ -28,6 +29,7 @@ import FaqHome from '../components/FaqHome.astro';
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 const heroImg = await getImage({ src: heroImgSrc, width: 1920, quality: 72 });
+const logoImg = await getImage({ src: logoSrc, width: 600, format: 'png' });
 
 // Donnees structurees "entreprise locale" : coordonnees, horaires et zone d'intervention
 // identiques a celles du pied de page et de la FAQ.
@@ -37,6 +39,14 @@ const jsonLdEntreprise = {
     name: 'MIPE Habitat',
     url: Astro.site?.href,
     description: "Spécialiste de la rénovation énergétique et de l'amélioration de l'habitat dans l'Oise et en Île-de-France.",
+    '@id': new URL('/#entreprise', Astro.site).href,
+    logo: new URL(logoImg.src, Astro.site).href,
+    image: new URL(heroImg.src, Astro.site).href,
+    sameAs: [
+        'https://www.facebook.com/profile.php?id=100063916879593',
+        'https://www.instagram.com/mipehabitat/',
+        'https://www.tiktok.com/@mipe.habitat',
+    ],
     telephone: '+33375190160',
     address: {
         '@type': 'PostalAddress',
@@ -55,7 +65,7 @@ const jsonLdEntreprise = {
 };
 ---
 
-<Layout title="MIPE Habitat | Rénovation énergétique, isolation et ravalement dans l'Oise" description="MIPE Habitat, spécialiste de la rénovation énergétique dans l'Oise et en Île-de-France : isolation, menuiseries, ravalement de façade, toiture. Devis gratuit, qualifié RGE.">
+<Layout title="Rénovation énergétique Oise et Île-de-France | MIPE Habitat" description="Rénovation énergétique dans l'Oise et en Île-de-France : isolation, menuiseries, ravalement, toiture. Devis gratuit, qualifié RGE.">
     <!-- Photo de la hero (ordinateur) : telechargee en priorite, des le debut -->
     <link slot="head" rel="preload" as="image" href={heroImg.src} fetchpriority="high" media="(min-width: 901px)" />
     <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLdEntreprise)} />

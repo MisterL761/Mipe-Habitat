@@ -5,6 +5,7 @@ import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Fournisseurs from '../components/Fournisseurs.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FaqSchema from '../components/FaqSchema.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/menuiseries.css';
@@ -40,8 +41,8 @@ const atout = [
 ---
 
 <Layout
-	title="Menuiseries Isofrance : fenêtres, portes et baies vitrées | MIPE Habitat"
-	description="Fenêtres, portes-fenêtres, baies vitrées et portes d'entrée Isofrance, fabriquées en France à Châteauroux et La Bresse, posées par MIPE Habitat dans l'Oise et en Île-de-France."
+	title="Menuiseries Isofrance : fenêtres et portes | MIPE Habitat"
+	description="Fenêtres, baies vitrées et portes d'entrée Isofrance, fabriquées en France et posées par MIPE Habitat dans l'Oise et en Île-de-France."
 >
 
     <main>
@@ -211,6 +212,7 @@ const atout = [
         </section>
         </div>
         <FaqSchema items={faqMenuiseries} />
+        <ServiceSchema nom="Menuiseries : fenêtres, portes et baies vitrées" />
         <Footer></Footer>
     </main>
 </Layout>

@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Nav-Footer/Navbar.astro';
 import Footer from '../components/Nav-Footer/Footer.astro';
 import FaqSchema from '../components/FaqSchema.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
 import FilAriane from '../components/FilAriane.astro';
 import '../styles/global.css';
 import '../styles/pages/energie-chauffage-ventilation.css';
@@ -37,14 +38,20 @@ const solutions = [
 const certifications = ['RGE', 'QualiPAC', 'Chauffage +', 'Qualigaz', 'SOCOTEC'];
 
 const faqEnergie = [
-	{ question: 'Qui installe les équipements de chauffage et de climatisation ?', reponse: "L'installation est assurée par des professionnels qualifiés et certifiés RGE, sous la coordination de MIPE Habitat, votre interlocuteur unique du début à la fin du projet.", ouvert: true },
-	{ question: 'Une pompe à chaleur est-elle éligible aux aides ?', reponse: "Selon votre projet et votre éligibilité, le remplacement d'un système de chauffage par une pompe à chaleur peut être concerné par certaines aides (MaPrimeRénov', CEE...). Nos équipes étudient votre situation pour vous orienter.", ouvert: false },
-	{ question: 'Quelle différence entre une PAC air/air et air/eau ?', reponse: "Une PAC air/air diffuse de l'air chaud ou froid directement dans les pièces (idéale en climatisation réversible). Une PAC air/eau alimente un circuit de chauffage central (radiateurs, plancher chauffant) et peut aussi produire l'eau chaude sanitaire.", ouvert: false },
-	{ question: 'Le devis est-il gratuit ?', reponse: 'Oui. Après un premier échange sur votre projet, un conseiller étudie vos besoins et vous propose un devis gratuit et sans engagement.', ouvert: false },
+	{ question: "Quelle solution de chauffage ou de climatisation choisir pour votre maison ?", reponse: ["Pompe à chaleur air/eau, climatisation réversible ou autre solution de chauffage : le choix dépend de votre habitation, de son isolation, de vos équipements existants et de vos besoins. MIPE Habitat vous accompagne dans l'étude de votre projet afin de vous orienter vers une solution adaptée à votre confort et à votre budget."], ouvert: true },
+	{ question: "Comment être sûr que votre pompe à chaleur est correctement dimensionnée ?", reponse: [
+		"Une pompe à chaleur doit être adaptée aux besoins réels de votre habitation. Un équipement sous-dimensionné risque de ne pas assurer un chauffage suffisant, tandis qu'un équipement surdimensionné peut entraîner des cycles de fonctionnement trop courts, une usure prématurée et une consommation inutile.",
+		"Chez MIPE Habitat, nous utilisons le logiciel professionnel CardoPAC pour réaliser une étude de dimensionnement, en nous appuyant sur les caractéristiques du logement, son isolation et ses déperditions thermiques.",
+		"Cette étude permet d'établir une note de calcul conforme à la méthode de la norme NF EN 12831, afin de déterminer les besoins de chauffage et d'orienter le choix de la puissance de la pompe à chaleur.",
+		"Notre objectif : vous proposer un équipement adapté à votre maison, sans surdimensionnement inutile, pour un confort optimal et une consommation maîtrisée.",
+	], ouvert: false },
+	{ question: "Qui réalise l'installation des équipements ?", reponse: ["MIPE Habitat s'appuie sur des entreprises partenaires spécialisées et disposant des qualifications requises pour les travaux réalisés. Nous vous accompagnons dans votre projet et facilitons la coordination des différentes interventions, notamment lorsque le chauffage s'intègre à des travaux d'isolation ou à une rénovation énergétique plus globale."], ouvert: false },
+	{ question: "Quelles aides financières pour installer une pompe à chaleur ?", reponse: ["Selon le type de pompe à chaleur, votre logement et votre situation, vous pouvez bénéficier de dispositifs comme MaPrimeRénov' ou les Certificats d'Économies d'Énergie (CEE). Les conditions et montants varient selon les équipements et la réglementation en vigueur. Nous vous orientons vers les dispositifs susceptibles de correspondre à votre projet."], ouvert: false },
+	{ question: "Peut-on associer une pompe à chaleur à des travaux d'isolation ?", reponse: ["Oui, et c'est même souvent recommandé ! Améliorer l'isolation de votre maison avant de remplacer votre chauffage permet de réduire les besoins énergétiques et de mieux dimensionner votre futur équipement. MIPE Habitat peut vous accompagner dans cette approche globale, en associant ses travaux d'isolation aux solutions de chauffage proposées par ses partenaires."], ouvert: false },
 ];
 ---
 
-<Layout title="Pompe à chaleur, chauffage et climatisation | MIPE Habitat" description="Pompes à chaleur, chaudières, climatisation réversible et ventilation : MIPE Habitat coordonne étude, devis, installation et suivi dans l'Oise et en Île-de-France.">
+<Layout title="Pompe à chaleur, chauffage et climatisation | MIPE Habitat" description="Pompes à chaleur, climatisation réversible et ventilation : MIPE Habitat coordonne étude, devis, installation et suivi dans l'Oise et en Île-de-France.">
 	<main>
 		<Navbar></Navbar>
 		<div class="refonte">
@@ -117,7 +124,7 @@ const faqEnergie = [
 					faqEnergie.map(({ question, reponse, ouvert }) => (
 						<details class="faqEnergieItem" open={ouvert}>
 							<summary class="questionFaqEnergie">{question}</summary>
-							<p class="reponseFaqEnergie">{reponse}</p>
+							{reponse.map((paragraphe) => <p class="reponseFaqEnergie">{paragraphe}</p>)}
 						</details>
 					))
 				}
@@ -126,6 +133,7 @@ const faqEnergie = [
 
 		</div>
 		<FaqSchema items={faqEnergie} />
+		<ServiceSchema nom="Pompe à chaleur, chauffage et climatisation" />
 		<Footer></Footer>
 	</main>
 </Layout>

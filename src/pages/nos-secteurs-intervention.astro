@@ -9,11 +9,11 @@ import '../styles/global.css';
 import '../styles/pages/nos-secteurs-intervention.css';
 import { villes } from './renovation-energetique/[ville].astro';
 
-const villesPlessis = villes.filter((v) => v.agence === 'plessis');
-const villesPlaisir = villes.filter((v) => v.agence === 'plaisir');
+const villesPlessis = villes.filter((v) => v.agence === 'plessis' && v.listee !== false);
+const villesPlaisir = villes.filter((v) => v.agence === 'plaisir' && v.listee !== false);
 ---
 
-<Layout title="Nos secteurs d'intervention | MIPE Habitat" description="MIPE Habitat intervient dans l'Oise, la Seine-et-Marne, l'Aisne, la Seine-Saint-Denis, les Yvelines, les Hauts-de-Seine, le Val-de-Marne et le Val-d'Oise. Retrouvez votre ville.">
+<Layout title="Zone d'intervention Oise et Île-de-France | MIPE Habitat" description="MIPE Habitat intervient dans l'Oise et en Île-de-France (60, 77, 02, 93, 78, 92, 94, 95). Retrouvez votre ville.">
 	<main>
 		<Navbar></Navbar>
 		<div class="refonte">
